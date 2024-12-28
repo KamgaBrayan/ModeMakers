@@ -6,17 +6,18 @@ Cette application web innovante vise à créer une plateforme de mise en relatio
 
 ## 🧑‍🤝‍🧑 Membres de l'Équipe
 
-1. NGUEPSSI Brayanne
-2. KUATE KAMGA Brayan
-3. KENFACK NOUMEDEM Franck
-4. NOMO BODIANGA Gabriel
-5. DJOUNKENG Eléonore
-6. HASSANA Zouheiriyya
-7. WANDJI Emmanuel
-8. TIEUGUIM Pavel
-9. KOGHENE Eric
-10. NGAH NDONGO Estelle
-11. DONCHI Trésor
+1. DJOUNKENG Eléonore
+2. DONCHI Trésor
+3. HASSANA Zouheiriyya
+4. KENFACK NOUMEDEM Franck
+5. KOGHENE Eric
+6. KUATE KAMGA Brayan
+7. NGAH NDONGO Estelle
+8. NGUEPSSI Brayanne
+9. NOMO BODIANGA Gabriel
+10. TIEUGUIM Pavel
+11. WANDJI Emmanuel
+
 
 ## 🌍 Contexte
 
