@@ -18,24 +18,35 @@ The `Product` entity represents a product in the system, including its attribute
     {"id": 1,
     "name": "Product Name",
     "gender":"male",
-    "age":"Ranges", "gender":"Product gender",
-    "age":"Ranges",
+    "age":"Ranges", 
     "category": "Category Name",
     "photos": ["url1", "url2"],
     "description": "Product description.",
     "price": 50.0,
     "price_per_square_metter": 25.0,
-    "stylist_id":32,
-    "material_id":12,
+    "stylist": {
+        "id": 32,
+        "name": "John Doe"
+    },
+    "material": {
+        "id": 12,
+        "type": "Cotton"
     }
+
+ }
 ]
 ```
 
+
 #### 500 Internal Server Error
 ```json
-    {
-    "error": "An unexpected error occurred. Please try again later."
-    }
+   {
+  "error": {
+    "code": 500,
+    "type": "Internal server error",
+    "message": "An unexpected error occurred while deleting the product. Please try again later."
+  }
+}
 ```
 ---
 
@@ -65,19 +76,31 @@ The `Product` entity represents a product in the system, including its attribute
   "disponibilite": true,
   "mean_evalue": 4.2,
   "description": "Product description.",
-  "prix": 50.0,
-  "prix_metre_carre": 25.0,
+  "price": 50.0,
+  "price_per_square_metter": 25.0,
   "duree": "2 weeks",
   "couleur": "red",
-   "stylist_id":32,
-    "material_id":12,
+  "stylist": {
+    "id": 32,
+    "name": "John Doe"
+  },
+  "material": {
+    "id": 12,
+    "type": "Cotton"
+  }
+    
+
 }
 ```
 
 #### 404 Not Found
 ```json
 {
-  "error": "Product not found."
+  "error": {
+    "code": 404,
+    "type": "Not Found",
+    "message": "Product not found."
+  }
 }
 ```
 
@@ -102,12 +125,20 @@ The `Product` entity represents a product in the system, including its attribute
   "disponibilite": true,
   "mean_evalue": 4.2,
   "description": "Product description.",
-  "prix": 50.0,
-  "prix_metre_carre": 25.0,
+  "price": 50.0,
+  "price_per_square_metter": 25.0,
   "duree": "2 weeks",
   "couleur": "red",
-   "stylist_id":32,
-    "material_id":12,
+  
+  "stylist": {
+    "id": 32,
+    "name": "John Doe"
+   },
+  "material": {
+    "id": 12,
+    "type": "Cotton"
+  }
+
 }
 ```
 
@@ -125,38 +156,62 @@ The `Product` entity represents a product in the system, including its attribute
   "disponibilite": true,
   "mean_evalue": 4.2,
   "description": "Product description.",
-  "prix": 50.0,
-  "prix_metre_carre": 25.0,
+  "price": 50.0,
+  "price_per_square_metter": 25.0,
   "duree": "2 weeks",
   "couleur": "red",
-   "stylist_id":32,
-    "material_id":12,
+   
+   "stylist": {
+    "id": 32,
+    "name": "John Doe"
+   },
+  "material": {
+    "id": 12,
+    "type": "Cotton"
+  }
+    
 }
 ```
 
 #### 404 Not Found
 ```json
 {
-  "error": "Product not found."
+  "error": {
+    "code": 404,
+    "type": "Not Found",
+    "message": "Product not found."
+  }
 }
 ```
 #### 400 Bad Request
 ```json
 {
   "error": "Validation error.",
-  "details": {
+  "details":
+  {
     "name": "The name field is required.",
-    "price": "The price field must be a positive number."
-  }
+    "price": "The price field must be a positive number.",
+    "category": "The category field is required.",
+    "photos": "At least one photo URL is required.",
+    "description": "The description field cannot be empty.",
+    "gender": "The gender field is required.",
+    "age": "The age field is required."
+    }
+
 }
 ```
 ### 500 internal server error
 ```json
-    {
-  "error": "An unexpected error occurred while deleting the product. Please try again later."
+{
+  "error": {
+    "code": 500,
+    "type": "Internal server error",
+    "message": "An unexpected error occurred while deleting the product. Please try again later."
+  }
 }
+
 ```
-you can update this for any validation
+
 
 ---
 
@@ -185,12 +240,18 @@ you can update this for any validation
   "disponibilite": true,
   "mean_evalue": 4.2,
   "description": "Product description.",
-  "prix": 50.0,
-  "prix_metre_carre": 25.0,
+  "price": 50.0,
+  "price_per_square_metter": 25.0,
   "duree": "2 weeks",
   "couleur": "red",
-   "stylist_id":32,
-    "material_id":12,
+  "stylist": {
+            "id": 32,
+            "name": "John Doe"
+        },
+  "material": {
+    "id": 12,
+    "type": "Cotton"
+  }
 }
 ```
 
@@ -204,8 +265,8 @@ you can update this for any validation
   "photos": ["url1", "url2"],
   "disponibilite": true,
   "description": "Updated description.",
-  "prix": 60.0,
-  "prix_metre_carre": 25.0,
+  "price": 60.0,
+  "price_per_square_metter": 25.0,
   "duree": "2 weeks",
   "couleur": "red"
 }
@@ -214,24 +275,39 @@ you can update this for any validation
 #### 404 Not Found
 ```json
 {
-  "error": "Product not found."
+  "error": {
+    "code": 404,
+    "type": "Not Found",
+    "message": "Product not found."
+  }
 }
 ```
 #### 400 Bad Request
 ```json
 {
   "error": "Validation error.",
-  "details": {
+  "details": 
+   {
     "name": "The name field is required.",
-    "price": "The price field must be a positive number."
-  }
+    "price": "The price field must be a positive number.",
+    "category": "The category field is required.",
+    "photos": "At least one photo URL is required.",
+    "description": "The description field cannot be empty.",
+    "gender": "The gender field is required.",
+    "age": "The age field is required."
+    }
 }
 ```
 ### 500 internal server error
 ```json
-    {
-  "error": "An unexpected error occurred while deleting the product. Please try again later."
+{
+  "error": {
+    "code": 500,
+    "type": "Internal server error",
+    "message": "An unexpected error occurred while deleting the product. Please try again later."
+  }
 }
+
 ```
 ---
 
@@ -247,7 +323,7 @@ you can update this for any validation
 | id   | integer| The ID of the product|
 
 ### Responses
-#### 20 0 OK
+#### 200 OK
 ```json
     {
   "message": "Product successfully deleted."
@@ -257,14 +333,24 @@ you can update this for any validation
 #### 404 Not Found
 ```json
 {
-  "error": "Product not found."
+  "error": {
+    "code": 404,
+    "type": "Not Found",
+    "message": "Product not found."
+  }
 }
+
 ```
 ### 500 internal server error
 ```json
-    {
-  "error": "An unexpected error occurred while deleting the product. Please try again later."
+ {
+  "error": {
+    "code": 500,
+    "type": "Internal server error",
+    "message": "An unexpected error occurred while deleting the product. Please try again later."
+  }
 }
+
 ```
 
 ---
