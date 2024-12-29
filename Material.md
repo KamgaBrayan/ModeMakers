@@ -73,6 +73,17 @@ The `Material` entity represents a material in the system, including its attribu
 }
 ```
 
+#### 500 Internal Server Error
+```json
+{
+  "error": {
+    "code": 500,
+    "type": "Internal server error",
+    "message": "An unexpected error occurred while fetching the materials. Please try again later."
+  }
+}
+```
+
 ---
 
 ## 3. Create a Material
