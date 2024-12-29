@@ -21,9 +21,9 @@ The `payment` entity represents a payment transaction made by a user. It include
     {
         "id": 1,
         "commandId": 12345,
-        "paiement_cost": 100.50,
-        "paiement_date": "2024-12-29T10:00:00Z",
-        "paiement_method": "Credit Card",
+        "payment_cost": 100.50,
+        "payment_date": "2024-12-29T10:00:00Z",
+        "payment_method": "Credit Card",
         "status": "Completed"
     }
 ]
@@ -59,9 +59,9 @@ The `payment` entity represents a payment transaction made by a user. It include
 {
   "id": 1,
   "commandId": 12345,
-  "paiement_cost": 100.50,
-  "paiement_date": "2024-12-29T10:00:00Z",
-  "paiement_method": "Credit Card",
+  "payment_cost": 100.50,
+  "payment_date": "2024-12-29T10:00:00Z",
+  "payment_method": "Credit Card",
   "status": "Completed"
 }
 ```
@@ -100,9 +100,9 @@ The `payment` entity represents a payment transaction made by a user. It include
 ```json
 {
   "commandId": 12345,
-  "paiement_cost": 100.50,
-  "paiement_date": "2024-12-29T10:00:00Z",
-  "paiement_method": "Credit Card",
+  "payment_cost": 100.50,
+  "payment_date": "2024-12-29T10:00:00Z",
+  "payment_method": "Credit Card",
   "status": "Completed"
 }
 ```
@@ -113,9 +113,9 @@ The `payment` entity represents a payment transaction made by a user. It include
 {
   "id": 1,
   "commandId": 12345,
-  "paiement_cost": 100.50,
-  "paiement_date": "2024-12-29T10:00:00Z",
-  "paiement_method": "Credit Card",
+  "payment_cost": 100.50,
+  "payment_date": "2024-12-29T10:00:00Z",
+  "payment_method": "Credit Card",
   "status": "Completed"
 }
 ```
@@ -126,9 +126,9 @@ The `payment` entity represents a payment transaction made by a user. It include
   "error": "Validation error.",
   "details": {
     "commandId": "The command ID is required.",
-    "paiement_cost": "The amount is required.",
-    "paiement_date": "The payment date is required.",
-    "paiement_method": "The payment method is required.",
+    "payment_cost": "The amount is required.",
+    "payment_date": "The payment date is required.",
+    "payment_method": "The payment method is required.",
     "status": "The payment status is required."
   }
 }
@@ -162,9 +162,9 @@ The `payment` entity represents a payment transaction made by a user. It include
 ```json
 {
   "commandId": 12345,
-  "paiement_cost": 150.75,
-  "paiement_date": "2024-12-29T10:00:00Z",
-  "paiement_method": "PayPal",
+  "payment_cost": 150.75,
+  "payment_date": "2024-12-29T10:00:00Z",
+  "payment_method": "PayPal",
   "status": "Pending"
 }
 ```
@@ -175,9 +175,9 @@ The `payment` entity represents a payment transaction made by a user. It include
 {
   "id": 1,
   "commandId": 12345,
-  "paiement_cost": 150.75,
-  "paiement_date": "2024-12-29T10:00:00Z",
-  "paiement_method": "PayPal",
+  "payment_cost": 150.75,
+  "payment_date": "2024-12-29T10:00:00Z",
+  "payment_method": "PayPal",
   "status": "Pending"
 }
 ```
@@ -199,9 +199,9 @@ The `payment` entity represents a payment transaction made by a user. It include
   "error": "Validation error.",
   "details": {
     "commandId": "The command ID is required.",
-    "paiement_cost": "The amount is required.",
-    "paiement_date": "The payment date is required.",
-    "paiement_method": "The payment method is required.",
+    "payment_cost": "The amount is required.",
+    "payment_date": "The payment date is required.",
+    "payment_method": "The payment method is required.",
     "status": "The payment status is required."
   }
 }
