@@ -3,7 +3,7 @@
 ## 1. Login
 
 **Method:** POST  
-**Endpoint:** `/api/login`  
+**Endpoint:** `/api/auth/login`  
 **Description:** Authenticates a user and provides an access token.
 
 ### Request Body
@@ -40,7 +40,7 @@
 ## 2. Register
 
 **Method:** POST  
-**Endpoint:** `/api/register`  
+**Endpoint:** `/api/auth/register`  
 **Description:** Creates a new user account and provides a JWT token upon success.
 
 ### Request Body
@@ -121,6 +121,36 @@
 }
 
 ```
+---
+
+**Note:** Ensure secure HTTPS is used for transmitting sensitive information.
+
+## 3. Logout
+
+**Method:** POST  
+**Endpoint:** `/api/auth/logout`  
+**Description:** Logs out the authenticated user by invalidating their access token.
+
+### Headers
+| Name           | Type   | Description           |
+|----------------|--------|-----------------------|
+| Authorization  | string | Should be `Bearer <access_token>`. |
+
+### Responses
+#### 200 OK
+```json
+{
+  "message": "Successfully logged out."
+}
+```
+
+#### 401 Unauthorized
+```json
+{
+  "error": "Invalid or missing token."
+}
+```
+
 ---
 
 **Note:** Ensure secure HTTPS is used for transmitting sensitive information.
