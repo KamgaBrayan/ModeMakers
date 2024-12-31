@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: 'ModeMakers API'
+  description: 'documentation for modeMakers api'
+  version: 1.0.0
+servers:
+  -
+    url: /docs
+paths:
+  /api/auth/register:
+    post:
+      summary: ''
+      operationId: postApiAuthRegister
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/auth/login:
+    post:
+      summary: ''
+      operationId: postApiAuthLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/auth/logout:
+    post:
+      summary: ''
+      operationId: postApiAuthLogout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/auth/profile:
+    get:
+      summary: ''
+      operationId: getApiAuthProfile
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/user/profile-picture:
+    post:
+      summary: ''
+      operationId: postApiUserProfilePicture
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                profile_picture:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  nullable: false
+              required:
+                - profile_picture
+      security: []
+  /api/sendEmail:
+    post:
+      summary: "Envoi d'un email."
+      operationId: envoiDunEmail
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                to:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: jennifer23@example.org
+                  nullable: false
+                subject:
+                  type: string
+                  description: ''
+                  example: commodi
+                  nullable: false
+                body:
+                  type: string
+                  description: ''
+                  example: maiores
+                  nullable: false
+              required:
+                - to
+                - subject
+                - body
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
