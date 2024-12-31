@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use Illuminate\Http\Request;
 
+/**
+ * @OA\Tag(
+ *     name="Reviews",
+ *     description="Operations related to reviews"
+ * )
+ */
 class ReviewController extends Controller
 {
     /**

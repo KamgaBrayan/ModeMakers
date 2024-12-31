@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "ModeMakers API",
-        "_postman_id": "1997e501-b8f6-4855-984f-3e001b7b5ea9",
+        "_postman_id": "ba87c347-dd06-4f9d-ae15-cb70c6de695f",
         "description": "documentation for modeMakers api",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"John Doe\",\"email\":\"user@example.com\",\"password\":\"password123\",\"password_confirmation\":\"password123\"}"
+                            "raw": "{\"name\":\"gabriel\",\"email\":\"gabriel@example.com\",\"password\":\"password123\",\"password_confirmation\":\"password123\"}"
                         },
                         "description": "",
                         "auth": {
@@ -52,7 +52,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\n \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n \"token_type\": \"bearer\",\n \"expires_in\": 3600,\n \"user\": {\n     \"id\": 1,\n     \"name\": \"John Doe\",\n     \"email\": \"user@example.com\"\n }\n}",
+                            "body": "{\n \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n \"token_type\": \"bearer\",\n \"expires_in\": 3600,\n \"user\": {\n     \"id\": 1,\n     \"name\": \"gabriel\",\n     \"email\": \"gabriel@example.com\"\n }\n}",
                             "name": ""
                         },
                         {
@@ -91,7 +91,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"user@example.com\",\"password\":\"password123\"}"
+                            "raw": "{\"email\":\"gabriel@example.com\",\"password\":\"password123\"}"
                         },
                         "description": "",
                         "auth": {
@@ -190,7 +190,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n \"id\": 1,\n \"name\": \"John Doe\",\n \"email\": \"user@example.com\",\n \"profile_picture_url\": \"http:\/\/localhost\/storage\/profile_pictures\/johndoe.jpg\"\n}",
+                            "body": "{\n \"id\": 1,\n \"name\": \"gabriel\",\n \"email\": \"gabriel@example.com\",\n \"profile_picture_url\": \"http:\/\/localhost\/storage\/profile_pictures\/gabriel.jpg\"\n}",
                             "name": ""
                         },
                         {
@@ -214,44 +214,7 @@
             "description": "",
             "item": [
                 {
-                    "name": "POST api\/user\/profile-picture",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/user\/profile-picture",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/user\/profile-picture"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "multipart\/form-data"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "formdata",
-                            "formdata": [
-                                {
-                                    "key": "profile_picture",
-                                    "src": [],
-                                    "type": "file"
-                                }
-                            ]
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Envoi d'un email.",
+                    "name": "POST api\/sendEmail",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -272,7 +235,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"elva66@example.net\",\"subject\":\"ut\",\"body\":\"officiis\"}"
+                            "raw": "{\"to\":\"lindgren.lola@example.com\",\"subject\":\"non\",\"body\":\"ut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -356,6 +319,2068 @@
                         }
                     },
                     "response": []
+                },
+                {
+                    "name": "GET api\/review",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/review",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/review"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/review\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/review\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/review\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "aliquam",
+                                    "description": "The ID of the review."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/review",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/review",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/review"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":\"pariatur\",\"product_id\":\"quod\",\"comment\":\"illo\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT api\/review\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/review\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/review\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "vero",
+                                    "description": "The ID of the review."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"comment\":\"laboriosam\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/review\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/review\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/review\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "aut",
+                                    "description": "The ID of the review."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Materials Management",
+            "description": "\nAPIs for managing materials",
+            "item": [
+                {
+                    "name": "List Materials",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/materials",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/materials"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieve a list of all materials.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"id\": 1,\n \"name\": \"Cotton\",\n \"description\": \"Soft and breathable fabric.\",\n \"price_per_square_meter\": 10.0,\n \"color\": \"White\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Retrieve a Material",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/materials\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/materials\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the material."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get details of a specific material by ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n \"error\": \"Material not found.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a Material",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/materials",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/materials"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Cotton\",\"description\":\"Soft and breathable fabric.\",\"price_per_square_meter\":10,\"color\":\"White\"}"
+                        },
+                        "description": "Create a new material with the provided data.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n \"id\": 1,\n \"name\": \"Cotton\",\n \"description\": \"Soft and breathable fabric.\",\n \"price_per_square_meter\": 10.0,\n \"color\": \"White\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a Material",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/materials\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/materials\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the material."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Cotton\",\"description\":\"Soft and breathable fabric.\",\"price_per_square_meter\":12,\"color\":\"White\"}"
+                        },
+                        "description": "Update an existing material by ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n \"error\": \"Material not found.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete a Material",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/materials\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/materials\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the material."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Delete a specific material by ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n \"error\": \"Material not found.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Measure Management",
+            "description": "",
+            "item": [
+                {
+                    "name": "List Measures",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/measure",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/measure"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n [{\n     \"id\": 1,\n     \"user_id\": 1,\n     \"stature\": 170,\n     \"shoulder_circumference\": 45,\n     \"chest_circumference\": 90,\n     \"waist_circumference\": 80,\n     \"hip_circumference\": 95,\n     \"shoulder_height\": 60,\n     \"hip_height\": 90,\n     \"knee_height\": 40,\n     \"chest_spacing\": 18,\n     \"breast_height\": 25,\n     \"pelvis_height\": 30,\n     \"front_waist_length\": 45,\n     \"shoulder_length\": 60,\n     \"back_waist_length\": 50,\n     \"arm_length\": 55,\n     \"total_arm_length_bent\": 50,\n     \"wrist_circumference\": 15,\n     \"ankle_height\": 20,\n     \"seated_height\": 90,\n     \"crotch_length\": 70,\n     \"date_measure\": \"2024-12-31\"\n }]\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Measure",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/measure\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/measure\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the measure."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n {\n     \"id\": 1,\n     \"user_id\": 1,\n     \"stature\": 170,\n     \"shoulder_circumference\": 45,\n     \"chest_circumference\": 90,\n     \"waist_circumference\": 80,\n     \"hip_circumference\": 95,\n     \"shoulder_height\": 60,\n     \"hip_height\": 90,\n     \"knee_height\": 40,\n     \"chest_spacing\": 18,\n     \"breast_height\": 25,\n     \"pelvis_height\": 30,\n     \"front_waist_length\": 45,\n     \"shoulder_length\": 60,\n     \"back_waist_length\": 50,\n     \"arm_length\": 55,\n     \"total_arm_length_bent\": 50,\n     \"wrist_circumference\": 15,\n     \"ankle_height\": 20,\n     \"seated_height\": 90,\n     \"crotch_length\": 70,\n     \"date_measure\": \"2024-12-31\"\n }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n \"error\": {\n     \"code\": 404,\n     \"message\": \"Measure not found\"\n }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create Measure",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/measure",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/measure"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":6,\"stature\":\"eveniet\",\"shoulder_circumference\":\"quasi\",\"chest_circumference\":\"minima\",\"waist_circumference\":\"odit\",\"hip_circumference\":\"officiis\",\"shoulder_height\":\"et\",\"hip_height\":\"nulla\",\"knee_height\":\"asperiores\",\"chest_spacing\":\"quia\",\"breast_height\":\"quam\",\"pelvis_height\":\"et\",\"front_waist_length\":\"labore\",\"shoulder_length\":\"voluptate\",\"back_waist_length\":\"voluptatem\",\"arm_length\":\"corrupti\",\"total_arm_length_bent\":\"asperiores\",\"wrist_circumference\":\"et\",\"ankle_height\":\"et\",\"seated_height\":\"est\",\"crotch_length\":\"odit\",\"date_measure\":\"quisquam\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n {\n     \"id\": 1,\n     \"user_id\": 1,\n     \"stature\": 170,\n     \"shoulder_circumference\": 45,\n     \"chest_circumference\": 90,\n     \"waist_circumference\": 80,\n     \"hip_circumference\": 95,\n     \"shoulder_height\": 60,\n     \"hip_height\": 90,\n     \"knee_height\": 40,\n     \"chest_spacing\": 18,\n     \"breast_height\": 25,\n     \"pelvis_height\": 30,\n     \"front_waist_length\": 45,\n     \"shoulder_length\": 60,\n     \"back_waist_length\": 50,\n     \"arm_length\": 55,\n     \"total_arm_length_bent\": 50,\n     \"wrist_circumference\": 15,\n     \"ankle_height\": 20,\n     \"seated_height\": 90,\n     \"crotch_length\": 70,\n     \"date_measure\": \"2024-12-31\"\n }\n}",
+                            "name": "Created"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update Measure",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/measure\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/measure\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the measure.\n[Similar bodyParam documentation as store method]"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":\"rem\",\"stature\":10828.0327597,\"shoulder_circumference\":1052679.03153,\"chest_circumference\":21.147613669,\"waist_circumference\":5.4,\"hip_circumference\":4098,\"shoulder_height\":120097791,\"hip_height\":314063193.4865319,\"knee_height\":0.529395,\"chest_spacing\":311501489.50753206,\"breast_height\":2157061.41872,\"pelvis_height\":1.7,\"front_waist_length\":415059.7409,\"shoulder_length\":1082198.06872,\"back_waist_length\":4095529.17,\"arm_length\":6.42200771,\"total_arm_length_bent\":151,\"wrist_circumference\":271762601.03759,\"ankle_height\":48971062.61568827,\"seated_height\":20856655.9966233,\"crotch_length\":1.9157,\"date_measure\":\"2024-12-31T19:49:40\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  {\n     \"id\": 1,\n     \"user_id\": 1,\n     \"stature\": 170,\n     \"shoulder_circumference\": 45,\n     \"chest_circumference\": 90,\n     \"waist_circumference\": 80,\n     \"hip_circumference\": 95,\n     \"shoulder_height\": 60,\n     \"hip_height\": 90,\n     \"knee_height\": 40,\n     \"chest_spacing\": 18,\n     \"breast_height\": 25,\n     \"pelvis_height\": 30,\n     \"front_waist_length\": 45,\n     \"shoulder_length\": 60,\n     \"back_waist_length\": 50,\n     \"arm_length\": 55,\n     \"total_arm_length_bent\": 50,\n     \"wrist_circumference\": 15,\n     \"ankle_height\": 20,\n     \"seated_height\": 90,\n     \"crotch_length\": 70,\n     \"date_measure\": \"2024-12-31\"\n }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete Measure",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/measure\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/measure\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "7",
+                                    "description": "The ID of the measure."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "{\n \"message\": \"Measure deleted successfully\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Notifications",
+            "description": "\nAPIs for managing notifications",
+            "item": [
+                {
+                    "name": "List Notifications",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/notification",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/notification"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieve all notifications.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Retrieve a Notification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/notification\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/notification\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "quis",
+                                    "description": "The ID of the notification."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get details of a specific notification by ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a Notification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/notification",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/notification"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":\"velit\",\"content\":\"ratione\",\"date\":\"2024-12-31T19:49:41\",\"readed\":true,\"received\":false}"
+                        },
+                        "description": "Store a newly created notification in the database.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update a Notification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/notification\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/notification\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "dolorum",
+                                    "description": "The ID of the notification."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":\"alias\",\"content\":\"non\",\"date\":\"2024-12-31T19:49:41\",\"readed\":true,\"received\":false}"
+                        },
+                        "description": "Modify an existing notification by ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete a Notification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/notification\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/notification\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "corrupti",
+                                    "description": "The ID of the notification."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Remove a specific notification by ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Order Management",
+            "description": "",
+            "item": [
+                {
+                    "name": "Display a listing of orders.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/order",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/order"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"id\": 1,\n    \"user\": { \"id\": 123, \"name\": \"Gabriel Nomo\" },\n    \"order_date\": \"2024-12-29T10:00:00Z\",\n    \"status\": \"Completed\",\n    \"total_cost\": 150.75,\n    \"payment_method\": \"Credit Card\",\n    \"time_limit\": \"2024-12-31T23:59:59Z\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified order.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/order\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/order\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the order."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"id\": 1,\n    \"user\": { \"id\": 123, \"name\": \"Gabriel Nomo\" },\n    \"order_date\": \"2024-12-29T10:00:00Z\",\n    \"status\": \"Completed\",\n    \"total_cost\": 150.75,\n    \"payment_method\": \"Credit Card\",\n    \"time_limit\": \"2024-12-31T23:59:59Z\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created order.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/order",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/order"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":123,\"order_date\":\"\\\"2024-12-29T10:00:00Z\\\"\",\"status\":\"\\\"Pending\\\"\",\"total_cost\":\"150.75\",\"payment_method\":\"\\\"Credit Card\\\"\",\"time_limit\":\"\\\"2024-12-31T23:59:59Z\\\"\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"id\": 1,\n    \"user_id\": 123,\n    \"order_date\": \"2024-12-29T10:00:00Z\",\n    \"status\": \"Pending\",\n    \"total_cost\": 150.75,\n    \"payment_method\": \"Credit Card\",\n    \"time_limit\": \"2024-12-31T23:59:59Z\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified order.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/order\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/order\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the order."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":20,\"order_date\":\"2024-12-31T19:49:41\",\"status\":\"sunt\",\"total_cost\":15018288.256196,\"payment_method\":\"omnis\",\"time_limit\":\"2024-12-31T19:49:41\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Order updated successfully.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified order.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/order\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/order\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the order."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Order deleted successfully.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Payments management",
+            "description": "",
+            "item": [
+                {
+                    "name": "Display a listing of the payments.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payment",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payment"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified payment.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payment\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payment\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "aut",
+                                    "description": "The ID of the payment."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created payment in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payment",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payment"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"orderId\":\"illum\",\"payment_cost\":3531603.8746361,\"payment_date\":\"2024-12-31T19:49:41\",\"payment_method\":\"est\",\"status\":\"accusantium\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update the specified payment in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payment\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payment\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "eligendi",
+                                    "description": "The ID of the payment."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"orderId\":\"ut\",\"payment_cost\":1.2,\"payment_date\":\"2024-12-31T19:49:41\",\"payment_method\":\"alias\",\"status\":\"perferendis\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified payment from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payment\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payment\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "est",
+                                    "description": "The ID of the payment."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Preference Management",
+            "description": "",
+            "item": [
+                {
+                    "name": "List Preferences",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/preference",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/preference"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"user\": {\n    \"user_id\": 123,\n    \"user_name\": \"gabriel Nomo\"\n  },\n  \"category\": \"Category A\",\n  \"field1\": \"Value 1\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n  \"error\": {\n    \"code\": 500,\n    \"type\": \"Internal server error\",\n    \"message\": \"An unexpected error occurred while fetching the preferences. Please try again later.\"\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Retrieve a Preference",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/preference\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/preference\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "7",
+                                    "description": "The ID of the preference."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"user\": {\n    \"user_id\": 123,\n    \"user_name\": \"gabriel Nomo\"\n  },\n  \"category\": \"Category A\",\n  \"field1\": \"Value 1\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n  \"error\": {\n    \"code\": 404,\n    \"type\": \"Not Found\",\n    \"message\": \"Preference not found.\"\n  }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n  \"error\": {\n    \"code\": 500,\n    \"type\": \"Internal server error\",\n    \"message\": \"An unexpected error occurred while fetching the preference. Please try again later.\"\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a Preference",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/preference",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/preference"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":123,\"category\":\"\\\"Category A\\\"\",\"field1\":\"\\\"Value 1\\\"\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n  \"id\": 1,\n  \"user\": {\n    \"user_id\": 123,\n    \"user_name\": \"gabriel Nomo\"\n  },\n  \"category\": \"Category A\",\n  \"field1\": \"Value 1\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n  \"error\": \"Validation error.\",\n  \"details\": {\n    \"user\": \"The user information is required.\",\n    \"category\": \"The category field is required.\",\n    \"field1\": \"The field1 field is required.\"\n  }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n  \"error\": {\n    \"code\": 500,\n    \"type\": \"Internal server error\",\n    \"message\": \"An unexpected error occurred while creating the preference. Please try again later.\"\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a Preference",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/preference\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/preference\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "5",
+                                    "description": "The ID of the preference."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":123,\"category\":\"\\\"Category A\\\"\",\"field1\":\"\\\"Updated Value\\\"\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"user\": {\n    \"user_id\": 123,\n    \"user_name\": \"gabriel Nomo\"\n  },\n  \"category\": \"Category A\",\n  \"field1\": \"Updated Value\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n  \"error\": \"Validation error.\",\n  \"details\": {\n    \"user\": \"The user information is required.\",\n    \"category\": \"The category field is required.\",\n    \"field1\": \"The field1 field is required.\"\n  }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n  \"error\": {\n    \"code\": 404,\n    \"type\": \"Not Found\",\n    \"message\": \"Preference not found.\"\n  }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n  \"error\": {\n    \"code\": 500,\n    \"type\": \"Internal server error\",\n    \"message\": \"An unexpected error occurred while updating the preference. Please try again later.\"\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete a Preference",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/preference\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/preference\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the preference."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"Preference successfully deleted.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n  \"error\": {\n    \"code\": 404,\n    \"type\": \"Not Found\",\n    \"message\": \"Preference not found.\"\n  }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n  \"error\": {\n    \"code\": 500,\n    \"type\": \"Internal server error\",\n    \"message\": \"An unexpected error occurred while deleting the preference. Please try again later.\"\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Product Management",
+            "description": "\nAPIs for managing products",
+            "item": [
+                {
+                    "name": "List Products",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/products"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieve a list of all products.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Retrieve a Product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/products\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/products\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17",
+                                    "description": "The ID of the product."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get details of a specific product by ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a Product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/products"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"odio\",\"gender\":\"dicta\",\"age\":\"itaque\",\"category\":\"facere\",\"photos\":[\"minima\"],\"description\":\"Et omnis vel consectetur.\",\"price\":349995.481256,\"stylist_id\":1,\"material_id\":19}"
+                        },
+                        "description": "Add a new product.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update a Product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/products\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/products\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the product."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"expedita\",\"gender\":\"aspernatur\",\"age\":\"consequatur\",\"category\":\"incidunt\",\"description\":\"Et animi nulla eos et dolores quasi quia.\",\"price\":2}"
+                        },
+                        "description": "Modify an existing product by ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete a Product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/products\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/products\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "9",
+                                    "description": "The ID of the product."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Remove a product by ID.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "User Management",
+            "description": "",
+            "item": [
+                {
+                    "name": "List Users",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n [{\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo\",\n     \"email\": \"gabriel@example.com\",\n     \"profil_picture\": \"profile1.jpg\",\n     \"roles\": [\"ROLE_STYLIST\"],\n     \"photos\": [\"photo1.jpg\", \"photo2.jpg\"],\n     \"note\": 5,\n     \"bibliography\": \"Some biography text.\",\n     \"calendar\": [\"monday\", \"thursday\",\"sunday\"],\n     \"preferences_id\": [1, 2],\n     \"measures_id\": [101, 102],\n     \"specialty\": \"clothes\",\n     \"experience\": \"5 years in stylism\"\n }]\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n \"error\": {\n     \"code\": 401,\n     \"message\": \"Unauthorized\"\n }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get User",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "4",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n {\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo\",\n     \"email\": \"gabriel@example.com\",\n     \"profil_picture\": \"profile1.jpg\",\n     \"roles\": [\"ROLE_STYLIST\"],\n     \"photos\": [\"photo1.jpg\", \"photo2.jpg\"],\n     \"note\": 5,\n     \"bibliography\": \"Some biography text.\",\n     \"calendar\": [\"monday\", \"thursday\",\"sunday\"],\n     \"preferences_id\": [1, 2],\n     \"measures_id\": [101, 102],\n     \"specialty\": \"clothes\",\n     \"experience\": \"5 years in stylism\"\n }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n \"error\": {\n     \"code\": 404,\n     \"message\": \"User not found\"\n }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create User",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"velit\",\"email\":\"heaney.jeffery@example.org\",\"password\":\"q9lO`lK?YYo.cm\\\"\",\"roles\":\"perferendis\",\"photos\":[\"ut\"],\"note\":3,\"bibliography\":\"eveniet\",\"calendar\":[\"sapiente\"],\"preferences_id\":[\"quo\"],\"measures_id\":[\"aut\"],\"specialty\":\"dolorem\",\"experience\":\"deserunt\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n {\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo\",\n     \"email\": \"gabriel@example.com\"\n }\n}",
+                            "name": "Created"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update User",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "19",
+                                    "description": "The ID of the user.\n[Similar bodyParam documentation as store method]"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"omnis\",\"password\":\";!3VRIt\\\"UzrA')V'5\",\"roles\":\"ROLE_USER\",\"note\":3,\"bibliography\":\"dolores\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  {\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo Updated\"\n }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete User",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "10",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"message\": \"User successfully deleted\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Upload Profile Picture",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user\/:id\/profile-picture",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user\/:id\/profile-picture",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "natus",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "profile_picture",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"message\": \"Profile picture updated successfully\",\n \"profile_picture_url\": \"profile1.jpg\"\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         }

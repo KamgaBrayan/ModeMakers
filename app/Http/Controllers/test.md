@@ -1,1 +1,0 @@
-je veux le code de la migration,du modele, la liste des routes acoller dans api.php  et controlleur bien documente pour scribe.

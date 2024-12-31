@@ -26,8 +26,8 @@ paths:
                   expires_in: 3600
                   user:
                     id: 1
-                    name: 'John Doe'
-                    email: user@example.com
+                    name: gabriel
+                    email: gabriel@example.com
                 properties:
                   token:
                     type: string
@@ -46,10 +46,10 @@ paths:
                         example: 1
                       name:
                         type: string
-                        example: 'John Doe'
+                        example: gabriel
                       email:
                         type: string
-                        example: user@example.com
+                        example: gabriel@example.com
         400:
           description: ''
           content:
@@ -94,12 +94,12 @@ paths:
                 name:
                   type: string
                   description: "The user's full name."
-                  example: 'John Doe'
+                  example: gabriel
                   nullable: false
                 email:
                   type: string
                   description: "The user's email address."
-                  example: user@example.com
+                  example: gabriel@example.com
                   nullable: false
                 password:
                   type: string
@@ -180,7 +180,7 @@ paths:
                 email:
                   type: string
                   description: "The user's email address."
-                  example: user@example.com
+                  example: gabriel@example.com
                   nullable: false
                 password:
                   type: string
@@ -240,22 +240,22 @@ paths:
                 type: object
                 example:
                   id: 1
-                  name: 'John Doe'
-                  email: user@example.com
-                  profile_picture_url: 'http://localhost/storage/profile_pictures/johndoe.jpg'
+                  name: gabriel
+                  email: gabriel@example.com
+                  profile_picture_url: 'http://localhost/storage/profile_pictures/gabriel.jpg'
                 properties:
                   id:
                     type: integer
                     example: 1
                   name:
                     type: string
-                    example: 'John Doe'
+                    example: gabriel
                   email:
                     type: string
-                    example: user@example.com
+                    example: gabriel@example.com
                   profile_picture_url:
                     type: string
-                    example: 'http://localhost/storage/profile_pictures/johndoe.jpg'
+                    example: 'http://localhost/storage/profile_pictures/gabriel.jpg'
         401:
           description: ''
           content:
@@ -283,34 +283,10 @@ paths:
       tags:
         - Authentication
       security: []
-  /api/user/profile-picture:
-    post:
-      summary: ''
-      operationId: postApiUserProfilePicture
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                profile_picture:
-                  type: string
-                  format: binary
-                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
-                  nullable: false
-              required:
-                - profile_picture
-      security: []
   /api/sendEmail:
     post:
-      summary: "Envoi d'un email."
-      operationId: envoiDunEmail
+      summary: ''
+      operationId: postApiSendEmail
       description: ''
       parameters: []
       responses: {  }
@@ -326,17 +302,17 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: elva66@example.net
+                  example: lindgren.lola@example.com
                   nullable: false
                 subject:
                   type: string
                   description: ''
-                  example: ut
+                  example: non
                   nullable: false
                 body:
                   type: string
                   description: ''
-                  example: officiis
+                  example: ut
                   nullable: false
               required:
                 - to
@@ -375,12 +351,2400 @@ paths:
       tags:
         - Endpoints
       security: []
+  /api/review:
+    get:
+      summary: ''
+      operationId: getApiReview
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiReview
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the users table.'
+                  example: pariatur
+                  nullable: false
+                product_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the products table.'
+                  example: quod
+                  nullable: false
+                comment:
+                  type: string
+                  description: ''
+                  example: illo
+                  nullable: false
+              required:
+                - user_id
+                - product_id
+                - comment
+      security: []
+  '/api/review/{id}':
+    get:
+      summary: ''
+      operationId: getApiReviewId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiReviewId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the users table.'
+                  example: null
+                  nullable: false
+                product_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the products table.'
+                  example: null
+                  nullable: false
+                comment:
+                  type: string
+                  description: ''
+                  example: laboriosam
+                  nullable: false
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiReviewId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the review.'
+        example: aliquam
+        required: true
+        schema:
+          type: string
+  /api/materials:
+    get:
+      summary: 'List Materials'
+      operationId: listMaterials
+      description: 'Retrieve a list of all materials.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: Cotton
+                  description: 'Soft and breathable fabric.'
+                  price_per_square_meter: 10.0
+                  color: White
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Cotton
+                  description:
+                    type: string
+                    example: 'Soft and breathable fabric.'
+                  price_per_square_meter:
+                    type: number
+                    example: 10.0
+                  color:
+                    type: string
+                    example: White
+      tags:
+        - 'Materials Management'
+      security: []
+    post:
+      summary: 'Create a Material'
+      operationId: createAMaterial
+      description: 'Create a new material with the provided data.'
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: Cotton
+                  description: 'Soft and breathable fabric.'
+                  price_per_square_meter: 10.0
+                  color: White
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Cotton
+                  description:
+                    type: string
+                    example: 'Soft and breathable fabric.'
+                  price_per_square_meter:
+                    type: number
+                    example: 10.0
+                  color:
+                    type: string
+                    example: White
+      tags:
+        - 'Materials Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the material.'
+                  example: Cotton
+                  nullable: false
+                description:
+                  type: string
+                  description: 'The description of the material.'
+                  example: 'Soft and breathable fabric.'
+                  nullable: true
+                price_per_square_meter:
+                  type: number
+                  description: 'The price per square meter.'
+                  example: 10.0
+                  nullable: false
+                color:
+                  type: string
+                  description: 'The color of the material.'
+                  example: White
+                  nullable: false
+              required:
+                - name
+                - color
+      security: []
+  '/api/materials/{id}':
+    get:
+      summary: 'Retrieve a Material'
+      operationId: retrieveAMaterial
+      description: 'Get details of a specific material by ID.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Material not found.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Material not found.'
+      tags:
+        - 'Materials Management'
+      security: []
+    put:
+      summary: 'Update a Material'
+      operationId: updateAMaterial
+      description: 'Update an existing material by ID.'
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Material not found.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Material not found.'
+      tags:
+        - 'Materials Management'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the material.'
+                  example: Cotton
+                  nullable: false
+                description:
+                  type: string
+                  description: 'The description of the material.'
+                  example: 'Soft and breathable fabric.'
+                  nullable: true
+                price_per_square_meter:
+                  type: number
+                  description: 'The price per square meter.'
+                  example: 12.0
+                  nullable: false
+                color:
+                  type: string
+                  description: 'The color of the material.'
+                  example: White
+                  nullable: false
+      security: []
+    delete:
+      summary: 'Delete a Material'
+      operationId: deleteAMaterial
+      description: 'Delete a specific material by ID.'
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Material not found.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Material not found.'
+      tags:
+        - 'Materials Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the material.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/measure:
+    get:
+      summary: 'List Measures'
+      operationId: listMeasures
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n [{\n     \"id\": 1,\n     \"user_id\": 1,\n     \"stature\": 170,\n     \"shoulder_circumference\": 45,\n     \"chest_circumference\": 90,\n     \"waist_circumference\": 80,\n     \"hip_circumference\": 95,\n     \"shoulder_height\": 60,\n     \"hip_height\": 90,\n     \"knee_height\": 40,\n     \"chest_spacing\": 18,\n     \"breast_height\": 25,\n     \"pelvis_height\": 30,\n     \"front_waist_length\": 45,\n     \"shoulder_length\": 60,\n     \"back_waist_length\": 50,\n     \"arm_length\": 55,\n     \"total_arm_length_bent\": 50,\n     \"wrist_circumference\": 15,\n     \"ankle_height\": 20,\n     \"seated_height\": 90,\n     \"crotch_length\": 70,\n     \"date_measure\": \"2024-12-31\"\n }]\n}"
+      tags:
+        - 'Measure Management'
+      security: []
+    post:
+      summary: 'Create Measure'
+      operationId: createMeasure
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: Created
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n {\n     \"id\": 1,\n     \"user_id\": 1,\n     \"stature\": 170,\n     \"shoulder_circumference\": 45,\n     \"chest_circumference\": 90,\n     \"waist_circumference\": 80,\n     \"hip_circumference\": 95,\n     \"shoulder_height\": 60,\n     \"hip_height\": 90,\n     \"knee_height\": 40,\n     \"chest_spacing\": 18,\n     \"breast_height\": 25,\n     \"pelvis_height\": 30,\n     \"front_waist_length\": 45,\n     \"shoulder_length\": 60,\n     \"back_waist_length\": 50,\n     \"arm_length\": 55,\n     \"total_arm_length_bent\": 50,\n     \"wrist_circumference\": 15,\n     \"ankle_height\": 20,\n     \"seated_height\": 90,\n     \"crotch_length\": 70,\n     \"date_measure\": \"2024-12-31\"\n }\n}"
+      tags:
+        - 'Measure Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: 'The ID of the user.'
+                  example: 6
+                  nullable: false
+                stature:
+                  type: numeric
+                  description: 'The stature of the user.'
+                  example: eveniet
+                  nullable: false
+                shoulder_circumference:
+                  type: numeric
+                  description: 'The shoulder circumference.'
+                  example: quasi
+                  nullable: false
+                chest_circumference:
+                  type: numeric
+                  description: 'The chest circumference.'
+                  example: minima
+                  nullable: false
+                waist_circumference:
+                  type: numeric
+                  description: 'The waist circumference.'
+                  example: odit
+                  nullable: false
+                hip_circumference:
+                  type: numeric
+                  description: 'The hip circumference.'
+                  example: officiis
+                  nullable: false
+                shoulder_height:
+                  type: numeric
+                  description: 'The shoulder height.'
+                  example: et
+                  nullable: false
+                hip_height:
+                  type: numeric
+                  description: 'The hip height.'
+                  example: nulla
+                  nullable: false
+                knee_height:
+                  type: numeric
+                  description: 'The knee height.'
+                  example: asperiores
+                  nullable: false
+                chest_spacing:
+                  type: numeric
+                  description: 'The chest spacing.'
+                  example: quia
+                  nullable: false
+                breast_height:
+                  type: numeric
+                  description: 'The breast height.'
+                  example: quam
+                  nullable: false
+                pelvis_height:
+                  type: numeric
+                  description: 'The pelvis height.'
+                  example: et
+                  nullable: false
+                front_waist_length:
+                  type: numeric
+                  description: 'The front waist length.'
+                  example: labore
+                  nullable: false
+                shoulder_length:
+                  type: numeric
+                  description: 'The shoulder length.'
+                  example: voluptate
+                  nullable: false
+                back_waist_length:
+                  type: numeric
+                  description: 'The back waist length.'
+                  example: voluptatem
+                  nullable: false
+                arm_length:
+                  type: numeric
+                  description: 'The arm length.'
+                  example: corrupti
+                  nullable: false
+                total_arm_length_bent:
+                  type: numeric
+                  description: 'The total arm length bent.'
+                  example: asperiores
+                  nullable: false
+                wrist_circumference:
+                  type: numeric
+                  description: 'The wrist circumference.'
+                  example: et
+                  nullable: false
+                ankle_height:
+                  type: numeric
+                  description: 'The ankle height.'
+                  example: et
+                  nullable: false
+                seated_height:
+                  type: numeric
+                  description: 'The seated height.'
+                  example: est
+                  nullable: false
+                crotch_length:
+                  type: numeric
+                  description: 'The crotch length.'
+                  example: odit
+                  nullable: false
+                date_measure:
+                  type: date
+                  description: 'The date of the measurement.'
+                  example: quisquam
+                  nullable: false
+              required:
+                - user_id
+                - stature
+                - shoulder_circumference
+                - chest_circumference
+                - waist_circumference
+                - hip_circumference
+                - shoulder_height
+                - hip_height
+                - knee_height
+                - chest_spacing
+                - breast_height
+                - pelvis_height
+                - front_waist_length
+                - shoulder_length
+                - back_waist_length
+                - arm_length
+                - total_arm_length_bent
+                - wrist_circumference
+                - ankle_height
+                - seated_height
+                - crotch_length
+                - date_measure
+      security: []
+  '/api/measure/{id}':
+    get:
+      summary: 'Get Measure'
+      operationId: getMeasure
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n {\n     \"id\": 1,\n     \"user_id\": 1,\n     \"stature\": 170,\n     \"shoulder_circumference\": 45,\n     \"chest_circumference\": 90,\n     \"waist_circumference\": 80,\n     \"hip_circumference\": 95,\n     \"shoulder_height\": 60,\n     \"hip_height\": 90,\n     \"knee_height\": 40,\n     \"chest_spacing\": 18,\n     \"breast_height\": 25,\n     \"pelvis_height\": 30,\n     \"front_waist_length\": 45,\n     \"shoulder_length\": 60,\n     \"back_waist_length\": 50,\n     \"arm_length\": 55,\n     \"total_arm_length_bent\": 50,\n     \"wrist_circumference\": 15,\n     \"ankle_height\": 20,\n     \"seated_height\": 90,\n     \"crotch_length\": 70,\n     \"date_measure\": \"2024-12-31\"\n }\n}"
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    code: 404
+                    message: 'Measure not found'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      message:
+                        type: string
+                        example: 'Measure not found'
+      tags:
+        - 'Measure Management'
+      security: []
+    put:
+      summary: 'Update Measure'
+      operationId: updateMeasure
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  {\n     \"id\": 1,\n     \"user_id\": 1,\n     \"stature\": 170,\n     \"shoulder_circumference\": 45,\n     \"chest_circumference\": 90,\n     \"waist_circumference\": 80,\n     \"hip_circumference\": 95,\n     \"shoulder_height\": 60,\n     \"hip_height\": 90,\n     \"knee_height\": 40,\n     \"chest_spacing\": 18,\n     \"breast_height\": 25,\n     \"pelvis_height\": 30,\n     \"front_waist_length\": 45,\n     \"shoulder_length\": 60,\n     \"back_waist_length\": 50,\n     \"arm_length\": 55,\n     \"total_arm_length_bent\": 50,\n     \"wrist_circumference\": 15,\n     \"ankle_height\": 20,\n     \"seated_height\": 90,\n     \"crotch_length\": 70,\n     \"date_measure\": \"2024-12-31\"\n }\n}"
+      tags:
+        - 'Measure Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the users table.'
+                  example: rem
+                  nullable: false
+                stature:
+                  type: number
+                  description: ''
+                  example: 10828.0327597
+                  nullable: false
+                shoulder_circumference:
+                  type: number
+                  description: ''
+                  example: 1052679.03153
+                  nullable: false
+                chest_circumference:
+                  type: number
+                  description: ''
+                  example: 21.147613669
+                  nullable: false
+                waist_circumference:
+                  type: number
+                  description: ''
+                  example: 5.4
+                  nullable: false
+                hip_circumference:
+                  type: number
+                  description: ''
+                  example: 4098.0
+                  nullable: false
+                shoulder_height:
+                  type: number
+                  description: ''
+                  example: 120097791.0
+                  nullable: false
+                hip_height:
+                  type: number
+                  description: ''
+                  example: 314063193.48653
+                  nullable: false
+                knee_height:
+                  type: number
+                  description: ''
+                  example: 0.529395
+                  nullable: false
+                chest_spacing:
+                  type: number
+                  description: ''
+                  example: 311501489.50753
+                  nullable: false
+                breast_height:
+                  type: number
+                  description: ''
+                  example: 2157061.41872
+                  nullable: false
+                pelvis_height:
+                  type: number
+                  description: ''
+                  example: 1.7
+                  nullable: false
+                front_waist_length:
+                  type: number
+                  description: ''
+                  example: 415059.7409
+                  nullable: false
+                shoulder_length:
+                  type: number
+                  description: ''
+                  example: 1082198.06872
+                  nullable: false
+                back_waist_length:
+                  type: number
+                  description: ''
+                  example: 4095529.17
+                  nullable: false
+                arm_length:
+                  type: number
+                  description: ''
+                  example: 6.42200771
+                  nullable: false
+                total_arm_length_bent:
+                  type: number
+                  description: ''
+                  example: 151.0
+                  nullable: false
+                wrist_circumference:
+                  type: number
+                  description: ''
+                  example: 271762601.03759
+                  nullable: false
+                ankle_height:
+                  type: number
+                  description: ''
+                  example: 48971062.615688
+                  nullable: false
+                seated_height:
+                  type: number
+                  description: ''
+                  example: 20856655.996623
+                  nullable: false
+                crotch_length:
+                  type: number
+                  description: ''
+                  example: 1.9157
+                  nullable: false
+                date_measure:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-12-31T19:49:40'
+                  nullable: false
+              required:
+                - user_id
+                - stature
+                - shoulder_circumference
+                - chest_circumference
+                - waist_circumference
+                - hip_circumference
+                - shoulder_height
+                - hip_height
+                - knee_height
+                - chest_spacing
+                - breast_height
+                - pelvis_height
+                - front_waist_length
+                - shoulder_length
+                - back_waist_length
+                - arm_length
+                - total_arm_length_bent
+                - wrist_circumference
+                - ankle_height
+                - seated_height
+                - crotch_length
+                - date_measure
+      security: []
+    delete:
+      summary: 'Delete Measure'
+      operationId: deleteMeasure
+      description: ''
+      parameters: []
+      responses:
+        204:
+          description: ''
+      tags:
+        - 'Measure Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the measure.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/notification:
+    get:
+      summary: 'List Notifications'
+      operationId: listNotifications
+      description: 'Retrieve all notifications.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Notifications
+      security: []
+    post:
+      summary: 'Create a Notification'
+      operationId: createANotification
+      description: 'Store a newly created notification in the database.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Notifications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the users table.'
+                  example: velit
+                  nullable: false
+                content:
+                  type: string
+                  description: ''
+                  example: ratione
+                  nullable: false
+                date:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-12-31T19:49:41'
+                  nullable: false
+                readed:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+                received:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+              required:
+                - user_id
+                - content
+                - date
+                - readed
+                - received
+      security: []
+  '/api/notification/{id}':
+    get:
+      summary: 'Retrieve a Notification'
+      operationId: retrieveANotification
+      description: 'Get details of a specific notification by ID.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Notifications
+      security: []
+    put:
+      summary: 'Update a Notification'
+      operationId: updateANotification
+      description: 'Modify an existing notification by ID.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Notifications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the users table.'
+                  example: alias
+                  nullable: false
+                content:
+                  type: string
+                  description: ''
+                  example: non
+                  nullable: false
+                date:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-12-31T19:49:41'
+                  nullable: false
+                readed:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+                received:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+              required:
+                - user_id
+                - content
+                - date
+                - readed
+                - received
+      security: []
+    delete:
+      summary: 'Delete a Notification'
+      operationId: deleteANotification
+      description: 'Remove a specific notification by ID.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Notifications
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the notification.'
+        example: quis
+        required: true
+        schema:
+          type: string
+  /api/order:
+    get:
+      summary: 'Display a listing of orders.'
+      operationId: displayAListingOfOrders
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  user:
+                    id: 123
+                    name: 'Gabriel Nomo'
+                  order_date: '2024-12-29T10:00:00Z'
+                  status: Completed
+                  total_cost: 150.75
+                  payment_method: 'Credit Card'
+                  time_limit: '2024-12-31T23:59:59Z'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 123
+                      name:
+                        type: string
+                        example: 'Gabriel Nomo'
+                  order_date:
+                    type: string
+                    example: '2024-12-29T10:00:00Z'
+                  status:
+                    type: string
+                    example: Completed
+                  total_cost:
+                    type: number
+                    example: 150.75
+                  payment_method:
+                    type: string
+                    example: 'Credit Card'
+                  time_limit:
+                    type: string
+                    example: '2024-12-31T23:59:59Z'
+      tags:
+        - 'Order Management'
+      security: []
+    post:
+      summary: 'Store a newly created order.'
+      operationId: storeANewlyCreatedOrder
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  user_id: 123
+                  order_date: '2024-12-29T10:00:00Z'
+                  status: Pending
+                  total_cost: 150.75
+                  payment_method: 'Credit Card'
+                  time_limit: '2024-12-31T23:59:59Z'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  user_id:
+                    type: integer
+                    example: 123
+                  order_date:
+                    type: string
+                    example: '2024-12-29T10:00:00Z'
+                  status:
+                    type: string
+                    example: Pending
+                  total_cost:
+                    type: number
+                    example: 150.75
+                  payment_method:
+                    type: string
+                    example: 'Credit Card'
+                  time_limit:
+                    type: string
+                    example: '2024-12-31T23:59:59Z'
+      tags:
+        - 'Order Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: 'The ID of the user.'
+                  example: 123
+                  nullable: false
+                order_date:
+                  type: string
+                  description: 'The date of the order.'
+                  example: '"2024-12-29T10:00:00Z"'
+                  nullable: false
+                status:
+                  type: string
+                  description: 'The status of the order.'
+                  example: '"Pending"'
+                  nullable: false
+                total_cost:
+                  type: decimal
+                  description: 'The total cost of the order.'
+                  example: '150.75'
+                  nullable: false
+                payment_method:
+                  type: string
+                  description: 'The payment method.'
+                  example: '"Credit Card"'
+                  nullable: false
+                time_limit:
+                  type: string
+                  description: 'The time limit for the order.'
+                  example: '"2024-12-31T23:59:59Z"'
+                  nullable: false
+              required:
+                - user_id
+                - order_date
+                - status
+                - total_cost
+                - payment_method
+                - time_limit
+      security: []
+  '/api/order/{id}':
+    get:
+      summary: 'Display the specified order.'
+      operationId: displayTheSpecifiedOrder
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  user:
+                    id: 123
+                    name: 'Gabriel Nomo'
+                  order_date: '2024-12-29T10:00:00Z'
+                  status: Completed
+                  total_cost: 150.75
+                  payment_method: 'Credit Card'
+                  time_limit: '2024-12-31T23:59:59Z'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 123
+                      name:
+                        type: string
+                        example: 'Gabriel Nomo'
+                  order_date:
+                    type: string
+                    example: '2024-12-29T10:00:00Z'
+                  status:
+                    type: string
+                    example: Completed
+                  total_cost:
+                    type: number
+                    example: 150.75
+                  payment_method:
+                    type: string
+                    example: 'Credit Card'
+                  time_limit:
+                    type: string
+                    example: '2024-12-31T23:59:59Z'
+      tags:
+        - 'Order Management'
+      security: []
+    put:
+      summary: 'Update the specified order.'
+      operationId: updateTheSpecifiedOrder
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Order updated successfully.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Order updated successfully.'
+      tags:
+        - 'Order Management'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the users table.'
+                  example: 20
+                  nullable: false
+                order_date:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-12-31T19:49:41'
+                  nullable: false
+                status:
+                  type: string
+                  description: ''
+                  example: sunt
+                  nullable: false
+                total_cost:
+                  type: number
+                  description: ''
+                  example: 15018288.256196
+                  nullable: false
+                payment_method:
+                  type: string
+                  description: ''
+                  example: omnis
+                  nullable: false
+                time_limit:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-12-31T19:49:41'
+                  nullable: false
+      security: []
+    delete:
+      summary: 'Remove the specified order.'
+      operationId: removeTheSpecifiedOrder
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Order deleted successfully.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Order deleted successfully.'
+      tags:
+        - 'Order Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the order.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/payment:
+    get:
+      summary: 'Display a listing of the payments.'
+      operationId: displayAListingOfThePayments
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Payments management'
+      security: []
+    post:
+      summary: 'Store a newly created payment in storage.'
+      operationId: storeANewlyCreatedPaymentInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Payments management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the orders table.'
+                  example: illum
+                  nullable: false
+                payment_cost:
+                  type: number
+                  description: ''
+                  example: 3531603.8746361
+                  nullable: false
+                payment_date:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-12-31T19:49:41'
+                  nullable: false
+                payment_method:
+                  type: string
+                  description: ''
+                  example: est
+                  nullable: false
+                status:
+                  type: string
+                  description: ''
+                  example: accusantium
+                  nullable: false
+              required:
+                - orderId
+                - payment_cost
+                - payment_date
+                - payment_method
+                - status
+      security: []
+  '/api/payment/{id}':
+    get:
+      summary: 'Display the specified payment.'
+      operationId: displayTheSpecifiedPayment
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Payments management'
+      security: []
+    put:
+      summary: 'Update the specified payment in storage.'
+      operationId: updateTheSpecifiedPaymentInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Payments management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the orders table.'
+                  example: ut
+                  nullable: false
+                payment_cost:
+                  type: number
+                  description: ''
+                  example: 1.2
+                  nullable: false
+                payment_date:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-12-31T19:49:41'
+                  nullable: false
+                payment_method:
+                  type: string
+                  description: ''
+                  example: alias
+                  nullable: false
+                status:
+                  type: string
+                  description: ''
+                  example: perferendis
+                  nullable: false
+              required:
+                - orderId
+                - payment_cost
+                - payment_date
+                - payment_method
+                - status
+      security: []
+    delete:
+      summary: 'Remove the specified payment from storage.'
+      operationId: removeTheSpecifiedPaymentFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Payments management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the payment.'
+        example: aut
+        required: true
+        schema:
+          type: string
+  /api/preference:
+    get:
+      summary: 'List Preferences'
+      operationId: listPreferences
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  user:
+                    user_id: 123
+                    user_name: 'gabriel Nomo'
+                  category: 'Category A'
+                  field1: 'Value 1'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  user:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 123
+                      user_name:
+                        type: string
+                        example: 'gabriel Nomo'
+                  category:
+                    type: string
+                    example: 'Category A'
+                  field1:
+                    type: string
+                    example: 'Value 1'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    code: 500
+                    type: 'Internal server error'
+                    message: 'An unexpected error occurred while fetching the preferences. Please try again later.'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 500
+                      type:
+                        type: string
+                        example: 'Internal server error'
+                      message:
+                        type: string
+                        example: 'An unexpected error occurred while fetching the preferences. Please try again later.'
+      tags:
+        - 'Preference Management'
+      security: []
+    post:
+      summary: 'Create a Preference'
+      operationId: createAPreference
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  user:
+                    user_id: 123
+                    user_name: 'gabriel Nomo'
+                  category: 'Category A'
+                  field1: 'Value 1'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  user:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 123
+                      user_name:
+                        type: string
+                        example: 'gabriel Nomo'
+                  category:
+                    type: string
+                    example: 'Category A'
+                  field1:
+                    type: string
+                    example: 'Value 1'
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Validation error.'
+                  details:
+                    user: 'The user information is required.'
+                    category: 'The category field is required.'
+                    field1: 'The field1 field is required.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Validation error.'
+                  details:
+                    type: object
+                    properties:
+                      user:
+                        type: string
+                        example: 'The user information is required.'
+                      category:
+                        type: string
+                        example: 'The category field is required.'
+                      field1:
+                        type: string
+                        example: 'The field1 field is required.'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    code: 500
+                    type: 'Internal server error'
+                    message: 'An unexpected error occurred while creating the preference. Please try again later.'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 500
+                      type:
+                        type: string
+                        example: 'Internal server error'
+                      message:
+                        type: string
+                        example: 'An unexpected error occurred while creating the preference. Please try again later.'
+      tags:
+        - 'Preference Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: 'The user ID.'
+                  example: 123
+                  nullable: false
+                category:
+                  type: string
+                  description: 'The category.'
+                  example: '"Category A"'
+                  nullable: false
+                field1:
+                  type: string
+                  description: 'The field1 value.'
+                  example: '"Value 1"'
+                  nullable: false
+              required:
+                - user_id
+                - category
+                - field1
+      security: []
+  '/api/preference/{id}':
+    get:
+      summary: 'Retrieve a Preference'
+      operationId: retrieveAPreference
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  user:
+                    user_id: 123
+                    user_name: 'gabriel Nomo'
+                  category: 'Category A'
+                  field1: 'Value 1'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  user:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 123
+                      user_name:
+                        type: string
+                        example: 'gabriel Nomo'
+                  category:
+                    type: string
+                    example: 'Category A'
+                  field1:
+                    type: string
+                    example: 'Value 1'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    code: 404
+                    type: 'Not Found'
+                    message: 'Preference not found.'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      type:
+                        type: string
+                        example: 'Not Found'
+                      message:
+                        type: string
+                        example: 'Preference not found.'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    code: 500
+                    type: 'Internal server error'
+                    message: 'An unexpected error occurred while fetching the preference. Please try again later.'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 500
+                      type:
+                        type: string
+                        example: 'Internal server error'
+                      message:
+                        type: string
+                        example: 'An unexpected error occurred while fetching the preference. Please try again later.'
+      tags:
+        - 'Preference Management'
+      security: []
+    put:
+      summary: 'Update a Preference'
+      operationId: updateAPreference
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  user:
+                    user_id: 123
+                    user_name: 'gabriel Nomo'
+                  category: 'Category A'
+                  field1: 'Updated Value'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  user:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 123
+                      user_name:
+                        type: string
+                        example: 'gabriel Nomo'
+                  category:
+                    type: string
+                    example: 'Category A'
+                  field1:
+                    type: string
+                    example: 'Updated Value'
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Validation error.'
+                  details:
+                    user: 'The user information is required.'
+                    category: 'The category field is required.'
+                    field1: 'The field1 field is required.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Validation error.'
+                  details:
+                    type: object
+                    properties:
+                      user:
+                        type: string
+                        example: 'The user information is required.'
+                      category:
+                        type: string
+                        example: 'The category field is required.'
+                      field1:
+                        type: string
+                        example: 'The field1 field is required.'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    code: 404
+                    type: 'Not Found'
+                    message: 'Preference not found.'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      type:
+                        type: string
+                        example: 'Not Found'
+                      message:
+                        type: string
+                        example: 'Preference not found.'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    code: 500
+                    type: 'Internal server error'
+                    message: 'An unexpected error occurred while updating the preference. Please try again later.'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 500
+                      type:
+                        type: string
+                        example: 'Internal server error'
+                      message:
+                        type: string
+                        example: 'An unexpected error occurred while updating the preference. Please try again later.'
+      tags:
+        - 'Preference Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: 'The user ID.'
+                  example: 123
+                  nullable: false
+                category:
+                  type: string
+                  description: 'The category.'
+                  example: '"Category A"'
+                  nullable: false
+                field1:
+                  type: string
+                  description: 'The field1 value.'
+                  example: '"Updated Value"'
+                  nullable: false
+              required:
+                - user_id
+                - category
+                - field1
+      security: []
+    delete:
+      summary: 'Delete a Preference'
+      operationId: deleteAPreference
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Preference successfully deleted.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Preference successfully deleted.'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    code: 404
+                    type: 'Not Found'
+                    message: 'Preference not found.'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      type:
+                        type: string
+                        example: 'Not Found'
+                      message:
+                        type: string
+                        example: 'Preference not found.'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    code: 500
+                    type: 'Internal server error'
+                    message: 'An unexpected error occurred while deleting the preference. Please try again later.'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 500
+                      type:
+                        type: string
+                        example: 'Internal server error'
+                      message:
+                        type: string
+                        example: 'An unexpected error occurred while deleting the preference. Please try again later.'
+      tags:
+        - 'Preference Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the preference.'
+        example: 7
+        required: true
+        schema:
+          type: integer
+  /api/products:
+    get:
+      summary: 'List Products'
+      operationId: listProducts
+      description: 'Retrieve a list of all products.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Product Management'
+      security: []
+    post:
+      summary: 'Create a Product'
+      operationId: createAProduct
+      description: 'Add a new product.'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Product Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the product.'
+                  example: odio
+                  nullable: false
+                gender:
+                  type: string
+                  description: 'The gender category of the product.'
+                  example: dicta
+                  nullable: false
+                age:
+                  type: string
+                  description: 'The age range of the product.'
+                  example: itaque
+                  nullable: false
+                category:
+                  type: string
+                  description: 'The category of the product.'
+                  example: facere
+                  nullable: false
+                photos:
+                  type: array
+                  description: "URLs of the product's photos."
+                  example:
+                    - minima
+                  items:
+                    type: string
+                description:
+                  type: string
+                  description: 'The description of the product.'
+                  example: 'Et omnis vel consectetur.'
+                  nullable: false
+                price:
+                  type: number
+                  description: 'The price of the product.'
+                  example: 349995.481256
+                  nullable: false
+                stylist_id:
+                  type: integer
+                  description: 'The ID of the stylist.'
+                  example: 1
+                  nullable: false
+                material_id:
+                  type: integer
+                  description: 'The ID of the material.'
+                  example: 19
+                  nullable: false
+              required:
+                - name
+                - gender
+                - age
+                - category
+                - photos
+                - description
+                - price
+                - stylist_id
+                - material_id
+      security: []
+  '/api/products/{id}':
+    get:
+      summary: 'Retrieve a Product'
+      operationId: retrieveAProduct
+      description: 'Get details of a specific product by ID.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Product Management'
+      security: []
+    put:
+      summary: 'Update a Product'
+      operationId: updateAProduct
+      description: 'Modify an existing product by ID.'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Product Management'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: expedita
+                  nullable: false
+                gender:
+                  type: string
+                  description: ''
+                  example: aspernatur
+                  nullable: false
+                age:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: false
+                category:
+                  type: string
+                  description: ''
+                  example: incidunt
+                  nullable: false
+                photos:
+                  type: object
+                  description: ''
+                  example: null
+                  nullable: false
+                  properties: {  }
+                description:
+                  type: string
+                  description: ''
+                  example: 'Et animi nulla eos et dolores quasi quia.'
+                  nullable: false
+                price:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 2
+                  nullable: false
+                stylist_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the stylists table.'
+                  example: null
+                  nullable: false
+                material_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the materials table.'
+                  example: null
+                  nullable: false
+      security: []
+    delete:
+      summary: 'Delete a Product'
+      operationId: deleteAProduct
+      description: 'Remove a product by ID.'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Product Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the product.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  /api/user:
+    get:
+      summary: 'List Users'
+      operationId: listUsers
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n [{\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo\",\n     \"email\": \"gabriel@example.com\",\n     \"profil_picture\": \"profile1.jpg\",\n     \"roles\": [\"ROLE_STYLIST\"],\n     \"photos\": [\"photo1.jpg\", \"photo2.jpg\"],\n     \"note\": 5,\n     \"bibliography\": \"Some biography text.\",\n     \"calendar\": [\"monday\", \"thursday\",\"sunday\"],\n     \"preferences_id\": [1, 2],\n     \"measures_id\": [101, 102],\n     \"specialty\": \"clothes\",\n     \"experience\": \"5 years in stylism\"\n }]\n}"
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    code: 401
+                    message: Unauthorized
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      message:
+                        type: string
+                        example: Unauthorized
+      tags:
+        - 'User Management'
+      security: []
+    post:
+      summary: 'Create User'
+      operationId: createUser
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: Created
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n {\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo\",\n     \"email\": \"gabriel@example.com\"\n }\n}"
+      tags:
+        - 'User Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the user.'
+                  example: velit
+                  nullable: false
+                email:
+                  type: string
+                  description: 'The email of the user.'
+                  example: heaney.jeffery@example.org
+                  nullable: false
+                password:
+                  type: string
+                  description: 'The password of the user.'
+                  example: 'q9lO`lK?YYo.cm"'
+                  nullable: false
+                roles:
+                  type: string
+                  description: 'The user role (ROLE_USER or ROLE_STYLIST).'
+                  example: perferendis
+                  nullable: false
+                photos:
+                  type: array
+                  description: "optional User's photos."
+                  example:
+                    - ut
+                  items:
+                    type: string
+                    nullable: true
+                note:
+                  type: integer
+                  description: "optional User's rating."
+                  example: 3
+                  nullable: true
+                bibliography:
+                  type: string
+                  description: "optional User's biography."
+                  example: eveniet
+                  nullable: true
+                calendar:
+                  type: array
+                  description: "optional User's availability."
+                  example:
+                    - sapiente
+                  items:
+                    type: string
+                    nullable: true
+                preferences_id:
+                  type: array
+                  description: "optional User's preferences IDs."
+                  example:
+                    - quo
+                  items:
+                    type: string
+                    nullable: true
+                measures_id:
+                  type: array
+                  description: "optional User's measures IDs."
+                  example:
+                    - aut
+                  items:
+                    type: string
+                    nullable: true
+                specialty:
+                  type: string
+                  description: 'optional required for stylists.'
+                  example: dolorem
+                  nullable: false
+                experience:
+                  type: string
+                  description: 'optional required for stylists.'
+                  example: deserunt
+                  nullable: false
+              required:
+                - name
+                - email
+                - password
+                - roles
+      security: []
+  '/api/user/{id}':
+    get:
+      summary: 'Get User'
+      operationId: getUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n {\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo\",\n     \"email\": \"gabriel@example.com\",\n     \"profil_picture\": \"profile1.jpg\",\n     \"roles\": [\"ROLE_STYLIST\"],\n     \"photos\": [\"photo1.jpg\", \"photo2.jpg\"],\n     \"note\": 5,\n     \"bibliography\": \"Some biography text.\",\n     \"calendar\": [\"monday\", \"thursday\",\"sunday\"],\n     \"preferences_id\": [1, 2],\n     \"measures_id\": [101, 102],\n     \"specialty\": \"clothes\",\n     \"experience\": \"5 years in stylism\"\n }\n}"
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    code: 404
+                    message: 'User not found'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      message:
+                        type: string
+                        example: 'User not found'
+      tags:
+        - 'User Management'
+      security: []
+    put:
+      summary: 'Update User'
+      operationId: updateUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  {\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo Updated\"\n }\n}"
+      tags:
+        - 'User Management'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: omnis
+                  nullable: false
+                email:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: false
+                password:
+                  type: string
+                  description: 'Must be at least 6 characters.'
+                  example: ";!3VRIt\"UzrA')V'5"
+                  nullable: false
+                roles:
+                  type: string
+                  description: ''
+                  example: ROLE_USER
+                  nullable: false
+                  enum:
+                    - ROLE_USER
+                    - ROLE_STYLIST
+                photos:
+                  type: object
+                  description: ''
+                  example: null
+                  nullable: true
+                  properties: {  }
+                note:
+                  type: integer
+                  description: ''
+                  example: 3
+                  nullable: true
+                bibliography:
+                  type: string
+                  description: ''
+                  example: dolores
+                  nullable: true
+                calendar:
+                  type: object
+                  description: ''
+                  example: null
+                  nullable: true
+                  properties: {  }
+                preferences_id:
+                  type: object
+                  description: ''
+                  example: null
+                  nullable: true
+                  properties: {  }
+                measures_id:
+                  type: object
+                  description: ''
+                  example: null
+                  nullable: true
+                  properties: {  }
+                specialty:
+                  type: string
+                  description: 'This field is required when <code>roles</code> is <code>ROLE_STYLIST</code>.'
+                  example: null
+                  nullable: false
+                experience:
+                  type: string
+                  description: 'This field is required when <code>roles</code> is <code>ROLE_STYLIST</code>.'
+                  example: null
+                  nullable: false
+      security: []
+    delete:
+      summary: 'Delete User'
+      operationId: deleteUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User successfully deleted'
+                properties:
+                  message:
+                    type: string
+                    example: 'User successfully deleted'
+      tags:
+        - 'User Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 4
+        required: true
+        schema:
+          type: integer
+  '/api/user/{id}/profile-picture':
+    post:
+      summary: 'Upload Profile Picture'
+      operationId: uploadProfilePicture
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Profile picture updated successfully'
+                  profile_picture_url: profile1.jpg
+                properties:
+                  message:
+                    type: string
+                    example: 'Profile picture updated successfully'
+                  profile_picture_url:
+                    type: string
+                    example: profile1.jpg
+      tags:
+        - 'User Management'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                profile_picture:
+                  type: string
+                  format: binary
+                  description: 'The profile picture to upload.'
+                  nullable: false
+              required:
+                - profile_picture
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: natus
+        required: true
+        schema:
+          type: string
 tags:
   -
     name: Authentication
     description: ''
   -
     name: Endpoints
+    description: ''
+  -
+    name: 'Materials Management'
+    description: "\nAPIs for managing materials"
+  -
+    name: 'Measure Management'
+    description: ''
+  -
+    name: Notifications
+    description: "\nAPIs for managing notifications"
+  -
+    name: 'Order Management'
+    description: ''
+  -
+    name: 'Payments management'
+    description: ''
+  -
+    name: 'Preference Management'
+    description: ''
+  -
+    name: 'Product Management'
+    description: "\nAPIs for managing products"
+  -
+    name: 'User Management'
     description: ''
 components:
   securitySchemes:
