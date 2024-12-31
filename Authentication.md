@@ -9,7 +9,7 @@
 ### Request Body
 ```json
 {
-  "email": "user@example.com",
+  "email": "gabriel@example.com",
   "password": "password123"
 }
 ```
@@ -46,8 +46,8 @@
 ### Request Body
 ```json
 {
-  "name": "John Doe",
-  "email": "user@example.com",
+  "name": "gabriel",
+  "email": "gabriel@example.com",
   "password": "password123",
   "password_confirmation": "password123"
 }
@@ -66,7 +66,7 @@
   "token_type": "Bearer",
   "user": {
     "id": 1,
-    "name": "John Doe",
+    "name": "gabriel",
     "email": "user@example.com"
   }
 }
@@ -124,7 +124,7 @@
 ---
 
 **Note:** Ensure secure HTTPS is used for transmitting sensitive information.
-
+---
 ## 3. Logout
 
 **Method:** POST  
@@ -150,7 +150,42 @@
   "error": "Invalid or missing token."
 }
 ```
+---
+## 4. Profile
 
+**Method:** GET  
+**Endpoint:** `/api/auth/profile`  
+**Description:** Retrieves the profile information of the authenticated user.
+
+### Headers
+| Name           | Type   | Description           |
+|----------------|--------|-----------------------|
+| Authorization  | string | Should be `Bearer <access_token>`. |
+
+### Responses
+#### 200 OK
+```json
+{
+  "id": 1,
+  "name": "gabriel",
+  "email": "gabriel@example.com",
+  "profile_picture_url": "https://example.com/storage/profile-pic.jpg"
+}
+```
+
+#### 401 Unauthorized
+```json
+{
+  "error": "Invalid or expired token."
+}
+```
+
+#### 404 Not Found
+```json
+{
+  "error": "User not found."
+}
+```
 ---
 
 **Note:** Ensure secure HTTPS is used for transmitting sensitive information.
