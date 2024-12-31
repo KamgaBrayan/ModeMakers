@@ -8,68 +8,85 @@ use App\Http\Controllers\StripeTestController;
 use App\Http\Controllers\MeasureController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\NotificationController;
-use Illuminate\Routing\Controllers\Middleware;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 
+// Authentication Routes
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
-
-    //authentication
-
     Route::post('auth/logout', [AuthController::class, 'logout']);
     Route::get('auth/profile', [AuthController::class, 'profile']);
-    
 
-    // email and stripe payment
+    // Email and Stripe Payment Routes
     Route::post('/sendEmail', [SendEmailController::class, 'sendEmail']);
     Route::get('/test-stripe', [StripeTestController::class, 'testStripe']);
     Route::post('/create-payment', [StripeTestController::class, 'createPayment']);
 
-    // users management
+    // User Management Routes
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class, 'index']);
+        Route::get('/{id}', [UserController::class, 'show']);
+        Route::post('/', [UserController::class, 'store']);
+        Route::put('/{id}', [UserController::class, 'update']);
+        Route::delete('/{id}', [UserController::class, 'destroy']);
+        Route::post('/{id}/profile-picture', [UserController::class, 'uploadProfilePicture']);
+    });
 
-    Route::get('/user', [UserController::class, 'index']);
-    Route::get('/user/{id}', [UserController::class, 'show']);
-    Route::post('/user', [UserController::class, 'store']);
-    Route::put('/user/{id}', [UserController::class, 'update']);
-    Route::delete('/user/{id}', [UserController::class, 'destroy']);
-    Route::post('/user/{id}/profile-picture', [UserController::class, 'uploadProfilePicture']);
+    // Measure Routes
+    Route::prefix('measure')->group(function () {
+        Route::get('/', [MeasureController::class, 'index']);
+        Route::get('/{id}', [MeasureController::class, 'show']);
+        Route::post('/', [MeasureController::class, 'store']);
+        Route::put('/{id}', [MeasureController::class, 'update']);
+        Route::delete('/{id}', [MeasureController::class, 'destroy']);
+    });
 
+    // Preference Routes
+    Route::prefix('preference')->group(function () {
+        Route::get('/', [PreferenceController::class, 'index']);
+        Route::get('/{id}', [PreferenceController::class, 'show']);
+        Route::post('/', [PreferenceController::class, 'store']);
+        Route::put('/{id}', [PreferenceController::class, 'update']);
+        Route::delete('/{id}', [PreferenceController::class, 'destroy']);
+    });
+        // Notification Routes
+    Route::prefix('notification')->middleware('auth:api')->group(function () {
+        Route::get('/', [NotificationController::class, 'index']);
+        Route::get('/{id}', [NotificationController::class, 'show']);
+        Route::post('/', [NotificationController::class, 'store']);
+        Route::put('/{id}', [NotificationController::class, 'update']);
+        Route::delete('/{id}', [NotificationController::class, 'destroy']);
+    });
 
-    //measures
+    // Material Routes
+    Route::prefix('materials')->group(function () {
+        Route::get('/', [MaterialController::class, 'index']);
+        Route::get('/{id}', [MaterialController::class, 'show']);
+        Route::post('/', [MaterialController::class, 'store']);
+        Route::put('/{id}', [MaterialController::class, 'update']);
+        Route::delete('/{id}', [MaterialController::class, 'destroy']);
+    });
 
-    Route::get('/measure', [MeasureController::class, 'index']);
-    Route::get('/measure/{id}', [MeasureController::class, 'show']);
-    Route::post('/measure', [MeasureController::class, 'store']);
-    Route::put('/measure/{id}', [MeasureController::class, 'update']);
-    Route::delete('/measure/{id}', [MeasureController::class, 'destroy']);
+    // Product Routes
+    Route::prefix('products')->group(function () {
+        Route::get('/', [ProductController::class, 'index'])->name('products.index');
+        Route::get('/{id}', [ProductController::class, 'show'])->name('products.show');
+        Route::post('/', [ProductController::class, 'store'])->name('products.store');
+        Route::put('/{id}', [ProductController::class, 'update'])->name('products.update');
+        Route::delete('/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+    });
 
+    // Review Routes
+    Route::prefix('review')->group(function () {
+        Route::get('/', [ReviewController::class, 'index'])->name('review.index');
+        Route::get('/{id}', [ReviewController::class, 'show'])->name('review.show');
+        Route::post('/', [ReviewController::class, 'store'])->name('review.store');
+        Route::put('/{id}', [ReviewController::class, 'update'])->name('review.update');
+        Route::delete('/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
+    });
 
-    //preferences
-
-
-    Route::get('preference', [PreferenceController::class, 'index']);
-    Route::get('preference/{id}', [PreferenceController::class, 'show']);
-    Route::post('preference', [PreferenceController::class, 'store']);
-    Route::put('preference/{id}', [PreferenceController::class, 'update']);
-    Route::delete('preference/{id}', [PreferenceController::class, 'destroy']);
 });
-
-//notifications
-
-Route::prefix('notification')->group(function () {
-    Route::get('/', [NotificationController::class, 'index']);
-    Route::get('/{id}', [NotificationController::class, 'show']);
-    Route::post('/', [NotificationController::class, 'store']);
-    Route::put('/{id}', [NotificationController::class, 'update']);
-    Route::delete('/{id}', [NotificationController::class, 'destroy']);
-})->Middleware('auth:api');
-
-
-
-
-
-
-
-
 
