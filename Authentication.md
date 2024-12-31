@@ -46,10 +46,10 @@
 ### Request Body
 ```json
 {
-  "name": "gabriel",
-  "email": "gabriel@example.com",
+  "name": "gabriel1",
+  "email": "gabriel1@example.com",
   "password": "password123",
-  "password_confirmation": "password123"
+ 
 }
 ```
 
@@ -62,13 +62,16 @@
 #### 201 Created
 ```json
 {
-  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "token_type": "Bearer",
-  "user": {
-    "id": 1,
-    "name": "gabriel",
-    "email": "user@example.com"
-  }
+    "user": {
+        "name": "gabriel1",
+        "email": "gabriel1@example.com",
+        "updated_at": "2024-12-31T17:33:58.000000Z",
+        "created_at": "2024-12-31T17:33:58.000000Z",
+        "id": 2
+    },
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvcmVnaXN0ZXIiLCJpYXQiOjE3MzU2NjY0MzgsImV4cCI6MTczNTY3MDAzOCwibmJmIjoxNzM1NjY2NDM4LCJqdGkiOiJtRkVxSjZyNTFCMjE1ZEZZIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.EfT-UZwQcuAiQC7aYlYDSjhQSDwFjF-Kfhey-mbZKfM",
+    "token_type": "bearer",
+    "expires_in": 3600
 }
 ```
 
