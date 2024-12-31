@@ -11,6 +11,10 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
+
+
 
 // Authentication Routes
 Route::post('auth/register', [AuthController::class, 'register']);
@@ -87,6 +91,26 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/{id}', [ReviewController::class, 'update'])->name('review.update');
         Route::delete('/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
     });
+
+    //Orders routes
+    Route::prefix('order')->group(function () {
+        Route::get('/', [OrderController::class, 'index']); 
+        Route::get('/{id}', [OrderController::class, 'show']); 
+        Route::post('/', [OrderController::class, 'store']); 
+        Route::put('/{id}', [OrderController::class, 'update']); 
+        Route::delete('/{id}', [OrderController::class, 'destroy']); 
+    });
+
+    // Payments routes
+    Route::prefix('payment')->group(function () {
+        Route::get('/', [PaymentController::class, 'index']);  
+        Route::get('/{id}', [PaymentController::class, 'show']);  
+        Route::post('/', [PaymentController::class, 'store']);  
+        Route::put('/{id}', [PaymentController::class, 'update']);  
+        Route::delete('/{id}', [PaymentController::class, 'destroy']);  
+    });
+
+    
 
 });
 
