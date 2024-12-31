@@ -1,0 +1,41 @@
+<div class="flex flex-row flex-wrap justify-around items-center w-full" *ngIf="stylist">
+    <div class="flex  flex-row justify-center align-center p-4">
+        <div class=" w-[280px] h-full overflow-hidden rounded-full">
+            <img [src]="stylist.photos[0]" alt="{{ stylist.name }}" class="h-full w-full object-cover">
+        </div>
+    </div> 
+    <div class="details-section flex flex-col w-[40%] gap-4">
+      <div class="name-rating">
+        <h2 class="text-3xl font-bold ">{{ stylist.name }}</h2>
+        <span class="text-yellow-500 text-3xl">
+            <ng-container *ngFor="let star of getStarsArray(stylist.rating)">
+                <span>★</span>
+            </ng-container>
+        </span>
+      </div>
+      <div class="location">
+        <i class="fa fa-map-marker mr-4 icon-size" aria-hidden="true"></i>
+        <span>{{ stylist.localisation }}</span>
+      </div>
+      <div class="phone">
+        <i class="fa fa-phone mr-4 icon-size" aria-hidden="true"></i>
+        <span>{{ stylist.phone }}</span>
+      </div>
+      <p class="biography">{{ stylist.biography }}</p>
+      <div class="flex flex-row items-center gap-2">
+        <strong>Categories:</strong>
+        <div class="flex flex-wrap gap-8">
+            <span *ngFor="let category of stylist.category" class="category-bubble">
+                {{ category }}
+            </span>
+        </div>
+    </div>
+      <div class="flex flex-row items-center gap-2">
+        <strong>Specialty:</strong> 
+        <span class="category-bubble">
+            {{ stylist.specialty }}
+        </span>
+      </div>
+      <button class="w-full h-[40px] rounded-md bg-blue-500 text-white flex items-center justify-center transition-all hover:bg-blue-600 text-sm">Ask to Make a Garnment</button>
+    </div>
+  </div>

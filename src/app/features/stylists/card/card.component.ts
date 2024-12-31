@@ -1,17 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 interface Stylist {
+  id: number;
   name: string;
-  image: string;
+  photos: string[]
   specialty: string;
   rating: number;
+  category: string[];
+  views: number; 
 }
 
 
 @Component({
   selector: 'app-card',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })

@@ -1,0 +1,45 @@
+[
+    {
+      "id": 1,
+      "name": "John Doe",
+      "specialty": "Hair Stylist",
+      "rating": 4.5,
+      "photos": ["/images/stylists/stylist_1.jpg"],
+      "biography": "John is a talented hair stylist with over 10 years of experience in the industry. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam labore maxime aperiam alias commodi quisquam. Quos quibusdam autem, dolor, error cumque perferendis animi deleniti tenetur harum odio porro facere praesentium.",
+      "calendar": ["monday", "wednesday", "friday"],
+      "experience": "10 years of experience in cutting, coloring, and styling hair.",
+      "localisation": "Paris, France",
+      "phone": "0123456789",
+      "category": ["Homme", "Femme"],
+      "views": 120
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "specialty": "Makeup Artist",
+      "rating": 4.8,
+      "photos": ["/images/stylists/stylist_1.jpg"],
+      "biography": "Jane is a professional makeup artist specializing in bridal and special event makeup. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam labore maxime aperiam alias commodi quisquam. Quos quibusdam autem, dolor, error cumque perferendis animi deleniti tenetur harum odio porro facere praesentium.",
+      "calendar": ["tuesday", "thursday", "saturday"],
+      "experience": "8 years of experience working with top beauty brands and bridal clients.",
+      "localisation": "Lyon, France",
+      "phone": "0987654321",
+      "category": ["Femme", "Enfant"],
+      "views": 320
+    },
+    {
+      "id": 3,
+      "name": "Emily Johnson",
+      "specialty": "Nail Technician",
+      "rating": 4.7,
+      "photos": ["/images/stylists/stylist_1.jpg"],
+      "biography": "Emily is an expert in nail art and professional manicures, creating beautiful designs for her clients. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam labore maxime aperiam alias commodi quisquam. Quos quibusdam autem, dolor, error cumque perferendis animi deleniti tenetur harum odio porro facere praesentium.",
+      "calendar": ["monday", "wednesday", "friday"],
+      "experience": "6 years of experience specializing in nail care and creative nail designs.",
+      "localisation": "Marseille, France",
+      "phone": "0246801357",
+      "category": ["Homme", "Femme", "Enfant"],
+      "views": 220
+    }
+  ]
+  

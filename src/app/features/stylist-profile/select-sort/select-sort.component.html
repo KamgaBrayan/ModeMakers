@@ -1,0 +1,12 @@
+<div class="flex flex-row items-center ">
+    <h3 class="text-lg  w-[100px] h-full flex items-center">Sort by :</h3>
+    <select
+      [(ngModel)]="selectedSort"
+      (change)="onSortChange()"
+      class="w-full p-2 border border-gray-300 rounded-full text-gray-700 focus:ring focus:ring-blue-300"
+    >
+      <option value="popularity">Popularité (Mieux notés)</option>
+      <option value="trending">Tendance (Plus visités)</option>
+    </select>
+  </div>
+  

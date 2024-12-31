@@ -1,0 +1,31 @@
+<main class="px-4">
+    <app-navbar></app-navbar>
+    <div class="py-2">
+      <app-breadcrumb></app-breadcrumb>
+    </div>
+    <div class="py-4">
+        <app-description [stylist]="stylist"></app-description> <!-- Pass stylist data -->
+    </div>
+    <section class="flex gap-2 pb-4">  
+        <div>
+            <span class="p-6">
+                <h3 class="font-bold text-lg p-4">Availability :</h3>
+            </span>
+           yo
+        </div>  
+        <div>
+            <span class="flex p-6 flex-row items-center justify-between">
+                <span class="flex flex-row items-center">
+                    <!-- Affichage du texte dynamique pour les filtres et le tri -->
+                    <h1 class="text-md font-bold  p-4">{{ getFilterText() }}</h1>
+                </span>
+                <span class="flex flex-row items-center">
+                    <app-select-sort (sortChanged)="applySort($event)"></app-select-sort>
+                </span>
+            </span>
+            <div class="flex flex-row flex-wrap gap-4">
+                <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+            </div>
+        </div>
+    </section>
+</main>

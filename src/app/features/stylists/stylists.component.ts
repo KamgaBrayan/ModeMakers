@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
 import { HeroComponent } from "./hero/hero.component";
@@ -8,60 +8,52 @@ import { SidebarFilterComponent } from './sidebar-filter/sidebar-filter.componen
 import { SelectSortComponent } from './select-sort/select-sort.component';
 
 interface Stylist {
+  id: number;
   name: string;
-  specialty: string;
-  image: string;
+  photos: string[];
+  biography: string;
+  calendar: string[];
+  experience: string;
+  localisation: string;
+  phone: string;
   rating: number;
+  specialty: string;
   category: string[];
-  views: number; 
+  views: number;
 }
 
 @Component({
   selector: 'app-stylists',
-  imports: [CommonModule,NavbarComponent, BreadcrumbComponent, HeroComponent, CardComponent, SidebarFilterComponent, SelectSortComponent],
+  imports: [CommonModule, NavbarComponent, BreadcrumbComponent, HeroComponent, CardComponent, SidebarFilterComponent, SelectSortComponent],
   templateUrl: './stylists.component.html',
-  styleUrl: './stylists.component.css',
+  styleUrls: ['./stylists.component.css'],
   // standalone: true // This line indicates it's a standalone component
 })
-
-export class StylistsComponent {
+export class StylistsComponent implements OnInit {
   categories: string[] = ['Homme', 'Femme', 'Enfant'];
   specialties: string[] = ['Hair Stylist', 'Makeup Artist', 'Nail Technician'];
 
-  stylists: Stylist[] = [
-    { 
-      name: 'John Doe', 
-      specialty: 'Hair Stylist', 
-      rating: 4.5, 
-      image: '/images/stylists/stylist_1.jpg', 
-      category: ['Homme', 'Femme'] ,
-      views: 120
-    },
-    { 
-      name: 'Jane Smith', 
-      specialty: 'Makeup Artist', 
-      rating: 4.8, 
-      image: '/images/stylists/stylist_1.jpg', 
-      category: ['Femme', 'Enfant'],
-      views: 320 
-    },
-    { 
-      name: 'Emily Johnson', 
-      specialty: 'Nail Technician', 
-      rating: 4.7, 
-      image: '/images/stylists/stylist_1.jpg', 
-      category: ['Homme', 'Femme', 'Enfant'],
-      views: 220 
-    }
-  ];
+  stylists: Stylist[] = []; // Initialisé avec un tableau vide
+  filteredStylists: Stylist[] = [];
 
-  filteredStylists: Stylist[] = [...this.stylists];
-  
   selectedSort: string = 'popularity';  // Par défaut, tri par popularité
   selectedFilters = {
     categories: this.categories, // Par défaut, toutes les catégories sont sélectionnées
     specialties: this.specialties // Par défaut, toutes les spécialités sont sélectionnées
   };
+
+  ngOnInit(): void {
+    // Chargez les stylistes depuis le fichier JSON à l'initialisation du composant
+    fetch('/datas/stylists.json')
+      .then(response => response.json())
+      .then((data: Stylist[]) => {
+        this.stylists = data; // Assurez-vous que les données sont bien récupérées et assignées à la variable stylists
+        this.filteredStylists = [...this.stylists]; // Initialiser le tableau des stylistes filtrés
+      })
+      .catch(error => {
+        console.error("Erreur lors de la récupération des stylistes :", error);
+      });
+  }
 
   applyFilters(filters: { categories: string[]; specialties: string[] }): void {
     const { categories, specialties } = filters;
@@ -71,6 +63,7 @@ export class StylistsComponent {
       specialties.includes(stylist.specialty)
     );
   }
+
   applySort(sortType: string) {
     this.selectedSort = sortType;
     if (sortType === 'popularity') {
@@ -79,6 +72,7 @@ export class StylistsComponent {
       this.filteredStylists = [...this.stylists].sort((a, b) => b.views - a.views);
     }
   }
+
   // Méthode pour obtenir le texte dynamique à afficher pour le tri et les filtres
   getFilterText(): string {
     const sortText = this.selectedSort === 'popularity' ? 'Les plus populaires' : 'Les plus tendances';
@@ -88,6 +82,4 @@ export class StylistsComponent {
     
     return `${sortText} / ${categoriesText} / ${specialtiesText}`;
   }
-
-  
 }

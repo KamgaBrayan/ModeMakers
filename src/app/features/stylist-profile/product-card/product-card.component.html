@@ -1,0 +1,30 @@
+<div class="product-card flex flex-col justify-center">
+    <span class="w-[230px] h-[260px] overflow-hidden rounded-md flex justify-center items-center">
+        <img [src]="product.photos[0]" alt="{{ product.name }}" class="product-image">
+    </span>
+    <span class="flex flex-row justify-between items-center">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <span class="text-yellow-500">
+            <ng-container *ngFor="let star of getStarsArray(product.rating)">
+                <span>★</span>
+            </ng-container>
+        </span>
+    </span>
+
+    <span class="flex flex-row gap-4">
+        <span class="flex flex-row text-md gap-2 text-gray-500 text-sm">
+            <p><i>Gender:</i></p>
+            <p class="product-description">{{ product.gender }}</p>
+        </span>
+        <span class="flex flex-row text-md gap-2 text-gray-500 text-sm">
+            <p><i>Year:</i></p>
+            <p class="product-description">{{ product.age }}</p>
+        </span>
+    </span>
+   
+    <p class="product-price">{{ product.price }} Fcfa</p>
+    <div class="flex flex-row justify-between w-full p-2">
+        <button class="w-[90px] h-[40px] rounded-md bg-blue-500 text-white flex items-center justify-center transition-all hover:bg-blue-600 text-sm">View more</button>
+        <button class="w-[90px] h-[40px] rounded-md bg-blue-500 text-white flex items-center justify-center transition-all hover:bg-blue-600 text-sm">Ask for a Garnment</button>
+    </div>
+  </div>
