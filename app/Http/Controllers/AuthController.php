@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,8 +12,28 @@ use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
-
-    // Login utilisateur
+    /**
+     * Authenticates a user and provides an access token.
+     * 
+     * @group Authentication
+     * 
+     * @bodyParam email string required The user's email address. Example: gabriel@example.com
+     * @bodyParam password string required The user's password. Example: password123
+     * 
+     * @response 200 {
+     *  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+     *  "token_type": "bearer",
+     *  "expires_in": 3600
+     * }
+     * 
+     * @response 401 {
+     *  "error": "Invalid credentials"
+     * }
+     * 
+     * @response 500 {
+     *  "error": "Could not create token"
+     * }
+     */
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -32,6 +53,38 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Registers a new user and provides a JWT token upon success.
+     * 
+     * @group Authentication
+     * 
+     * @bodyParam name string required The user's full name. Example: gabriel
+     * @bodyParam email string required The user's email address. Example: gabriel@example.com
+     * @bodyParam password string required The user's password. Example: password123
+     * @bodyParam password_confirmation string required The user's password confirmation. Example: password123
+     * 
+     * @response 201 {
+     *  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+     *  "token_type": "bearer",
+     *  "expires_in": 3600,
+     *  "user": {
+     *      "id": 1,
+     *      "name": "gabriel",
+     *      "email": "gabriel@example.com"
+     *  }
+     * }
+     * 
+     * @response 400 {
+     *  "error": "Validation error",
+     *  "details": {
+     *      "email": "The email field is required."
+     *  }
+     * }
+     * 
+     * @response 500 {
+     *  "error": "An unexpected error occurred. Please try again later."
+     * }
+     */
     public function register(Request $request)
     {
         try {
@@ -80,6 +133,26 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Fetches the profile of the authenticated user.
+     * 
+     * @group Authentication
+     * 
+     * @response 200 {
+     *  "id": 1,
+     *  "name": "gabriel",
+     *  "email": "gabriel@example.com",
+     *  "profile_picture_url": "http://localhost/storage/profile_pictures/gabriel.jpg"
+     * }
+     * 
+     * @response 401 {
+     *  "error": "Token expired"
+     * }
+     * 
+     * @response 404 {
+     *  "error": "User not found"
+     * }
+     */
     public function profile()
     {
         try {
@@ -101,6 +174,19 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Logs out the authenticated user by invalidating their access token.
+     * 
+     * @group Authentication
+     * 
+     * @response 200 {
+     *  "message": "Successfully logged out."
+     * }
+     * 
+     * @response 401 {
+     *  "error": "Invalid or missing token."
+     * }
+     */
     public function logout()
     {
         try {

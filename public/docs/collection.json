@@ -10,17 +10,17 @@
     ],
     "info": {
         "name": "ModeMakers API",
-        "_postman_id": "eb8891b8-2f01-4279-a148-f63c90457bc7",
+        "_postman_id": "1997e501-b8f6-4855-984f-3e001b7b5ea9",
         "description": "documentation for modeMakers api",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
         {
-            "name": "Endpoints",
+            "name": "Authentication",
             "description": "",
             "item": [
                 {
-                    "name": "POST api\/auth\/register",
+                    "name": "Registers a new user and provides a JWT token upon success.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -39,16 +39,38 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"John Doe\",\"email\":\"user@example.com\",\"password\":\"password123\",\"password_confirmation\":\"password123\"}"
+                        },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n \"token_type\": \"bearer\",\n \"expires_in\": 3600,\n \"user\": {\n     \"id\": 1,\n     \"name\": \"John Doe\",\n     \"email\": \"user@example.com\"\n }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n \"error\": \"Validation error\",\n \"details\": {\n     \"email\": \"The email field is required.\"\n }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n \"error\": \"An unexpected error occurred. Please try again later.\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/auth\/login",
+                    "name": "Authenticates a user and provides an access token.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -67,16 +89,38 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"user@example.com\",\"password\":\"password123\"}"
+                        },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n \"token_type\": \"bearer\",\n \"expires_in\": 3600\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n \"error\": \"Invalid credentials\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n \"error\": \"Could not create token\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/auth\/logout",
+                    "name": "Logs out the authenticated user by invalidating their access token.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -101,10 +145,23 @@
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"message\": \"Successfully logged out.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n \"error\": \"Invalid or missing token.\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
-                    "name": "GET api\/auth\/profile",
+                    "name": "Fetches the profile of the authenticated user.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -131,26 +188,31 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"id\": 1,\n \"name\": \"John Doe\",\n \"email\": \"user@example.com\",\n \"profile_picture_url\": \"http:\/\/localhost\/storage\/profile_pictures\/johndoe.jpg\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
                             "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "body": "{\n \"error\": \"Token expired\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n \"error\": \"User not found\"\n}",
                             "name": ""
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
                 {
                     "name": "POST api\/user\/profile-picture",
                     "request": {
@@ -210,8 +272,84 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"jennifer23@example.org\",\"subject\":\"commodi\",\"body\":\"maiores\"}"
+                            "raw": "{\"to\":\"elva66@example.net\",\"subject\":\"ut\",\"body\":\"officiis\"}"
                         },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/test-stripe",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/test-stripe",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/test-stripe"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/create-payment",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/create-payment",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/create-payment"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
                         "description": "",
                         "auth": {
                             "type": "noauth"
@@ -223,6 +361,12 @@
         }
     ],
     "auth": {
-        "type": "noauth"
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "Authorization",
+                "type": "string"
+            }
+        ]
     }
 }

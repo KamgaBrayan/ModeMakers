@@ -1,3 +1,94 @@
+// database/migrations/[timestamp]_create_users_table.php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('profil_picture')->nullable();
+            $table->enum('roles', ['ROLE_USER', 'ROLE_STYLIST']);
+            $table->json('photos')->nullable();
+            $table->integer('note')->nullable();
+            $table->text('bibliography')->nullable();
+            $table->json('calendar')->nullable();
+            $table->json('preferences_id')->nullable();
+            $table->json('measures_id')->nullable();
+            $table->string('specialty')->nullable();
+            $table->string('experience')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('users');
+    }
+};
+
+// app/Models/User.php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+class User extends Authenticatable implements JWTSubject
+{
+    use HasFactory, Notifiable;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'profil_picture',
+        'roles',
+        'photos',
+        'note',
+        'bibliography',
+        'calendar',
+        'preferences_id',
+        'measures_id',
+        'specialty',
+        'experience'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'photos' => 'array',
+        'calendar' => 'array',
+        'preferences_id' => 'array',
+        'measures_id' => 'array',
+    ];
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+}
+
+// app/Http/Controllers/UserController.php
 <?php
 
 namespace App\Http\Controllers;
@@ -5,7 +96,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Tymon\JWTAuth\Facades\JWTAuth;
+
 class UserController extends Controller
 {
     /**
@@ -14,7 +105,7 @@ class UserController extends Controller
      * @group User Management
      * 
      * @response 200 {
-     *  [{
+     *  "data": [{
      *      "id": 1,
      *      "name": "Gabriel Nomo",
      *      "email": "gabriel@example.com",
@@ -40,7 +131,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json(User::all());
+        return response()->json(['data' => User::all()]);
     }
 
     /**
@@ -51,7 +142,7 @@ class UserController extends Controller
      * @urlParam id integer required The ID of the user.
      * 
      * @response 200 {
-     *  {
+     *  "data": {
      *      "id": 1,
      *      "name": "Gabriel Nomo",
      *      "email": "gabriel@example.com",
@@ -78,7 +169,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return response()->json( $user);
+        return response()->json(['data' => $user]);
     }
 
     /**
@@ -100,7 +191,7 @@ class UserController extends Controller
      * @bodyParam experience string optional required for stylists.
      * 
      * @response 201 scenario="Created" {
-     *  {
+     *  "data": {
      *      "id": 1,
      *      "name": "Gabriel Nomo",
      *      "email": "gabriel@example.com"
@@ -125,7 +216,7 @@ class UserController extends Controller
         ]);
 
         $user = User::create($validated);
-        return response()->json($user, 201);
+        return response()->json(['data' => $user], 201);
     }
 
     /**
@@ -137,7 +228,7 @@ class UserController extends Controller
      * [Similar bodyParam documentation as store method]
      * 
      * @response 200 {
-     *   {
+     *  "data": {
      *      "id": 1,
      *      "name": "Gabriel Nomo Updated"
      *  }
@@ -162,7 +253,7 @@ class UserController extends Controller
         ]);
 
         $user->update($validated);
-        return response()->json($user);
+        return response()->json(['data' => $user]);
     }
 
     /**
@@ -195,39 +286,29 @@ class UserController extends Controller
      *  "profile_picture_url": "profile1.jpg"
      * }
      */
-    public function uploadProfilePicture(Request $request,int $id)
+    public function uploadProfilePicture(Request $request)
     {
         $request->validate([
             'profile_picture' => 'required|image|mimes:jpeg,png,jpg|max:5120'
         ]);
 
         if ($request->hasFile('profile_picture')) {
-
-            $user = User::findOrFail($id);
-
-            if(!$user) {
-                return response()->json(['error' => 'User not found'], 404);
+            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            
+            $user = auth()->user();
+            if ($user->profil_picture) {
+                Storage::disk('public')->delete($user->profil_picture);
             }
+            
+            $user->profil_picture = $path;
+            $user->save();
 
-            // Supprimer l'ancienne photo si elle existe
-            if ($user->profile_picture) {
-                Storage::disk('public')->delete($user->profile_picture);
-            }
-
-        // Sauvegarder la nouvelle photo
-        $path = $request->file('profile_picture')->store('profile_pictures', 'public');
-
-        // Mettre à jour le chemin dans la base de données
-        $user->profile_picture = $path;
-        $user->save();
-
-        return response()->json([
-            'message' => 'Profile picture updated successfully',
-            'profile_picture_url' => Storage::url($path),
-        ]);
-     }
+            return response()->json([
+                'message' => 'Profile picture updated successfully',
+                'profile_picture_url' => Storage::url($path)
+            ]);
+        }
 
         return response()->json(['error' => 'No file uploaded'], 400);
     }
-    
 }

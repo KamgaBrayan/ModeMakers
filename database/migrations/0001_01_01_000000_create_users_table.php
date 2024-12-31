@@ -17,6 +17,17 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('profil_picture')->nullable();
+            $table->enum('roles', ['ROLE_USER', 'ROLE_STYLIST']);
+            $table->json('photos')->nullable();
+            $table->integer('note')->nullable();
+            $table->text('bibliography')->nullable();
+            $table->json('calendar')->nullable();
+            $table->string('specialty')->nullable();
+            $table->string('experience')->nullable();
+
+            $table->json('preferences_id')->nullable();
+            $table->json('measures_id')->nullable();
             
             $table->rememberToken();
             $table->timestamps();
@@ -37,6 +48,13 @@ return new class extends Migration
             $table->integer('last_activity')->index();
         });
     }
+    
+    
+    
+    
+    
+    
+    
 
     /**
      * Reverse the migrations.
