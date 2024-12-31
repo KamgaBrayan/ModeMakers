@@ -1,0 +1,73 @@
+<div class="min-h-screen bg-gray-50 flex flex-col">
+  <!-- Header -->
+  <header class="bg-white shadow-sm w-full z-20">
+    <div class="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <div class="flex items-center gap-2">
+        <img src="assets/logo.png" alt="Logo" class="h-8 w-8">
+        <span class="text-[#3734A9] font-semibold">FashionForAll</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button class="p-2 text-gray-500 lg:hidden toggle-button" (click)="toggleSidebar()">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+        <nav class="hidden lg:flex space-x-4">
+          <a href="#" class="text-gray-700 hover:text-[#3734A9]">Home</a>
+          <a href="#" class="text-gray-700 hover:text-[#3734A9]">Contact</a>
+          <a href="#" class="text-gray-700 hover:text-[#3734A9]">Help</a>
+          <a href="#" class="text-gray-700 hover:text-[#3734A9]">Search</a>
+          <a href="#" class="text-gray-700 hover:text-[#3734A9]">Cart</a>
+        </nav>
+        <button class="bg-[#3734A9] text-white px-4 py-2 rounded-lg">
+          Dashboard
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar and Main Content Container -->
+  <div class="flex flex-1 m-5">
+    <!-- Sidebar -->
+    <div [class.w-64]="isSidebarOpen"
+         [class.w-16]="!isSidebarOpen"
+         class="bg-white border-r transition-all duration-300 ease-in-out">
+      <div class="flex flex-col h-full">
+        <nav class="flex-1 px-2 space-y-1">
+          @for (item of navItems; track item) {
+            <a [routerLink]="item.path"
+               routerLinkActive="bg-[#3734A9] text-white"
+               class="flex items-center px-4 py-3 text-sm font-medium rounded-lg hover:bg-gray-100 text-gray-900 group">
+              <i class="fas fa-{{item.icon}} mr-3 h-5 w-5"></i>
+              <span [class.hidden]="!isSidebarOpen">{{item.label}}</span>
+            </a>
+          }
+        </nav>
+
+        <div class="mt-auto px-4">
+          <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+            <img [src]="currentUser.image" alt="Profile" class="h-10 w-10 rounded-full object-cover">
+            <div [class.hidden]="!isSidebarOpen" class="flex-1">
+              <p class="text-sm font-medium text-gray-900">{{currentUser.name}}</p>
+              <button (click)="logout()" class="flex items-center text-sm text-gray-500 hover:text-gray-700">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Déconnexion
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-4 sm:p-6 lg:p-8">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <!-- Overlay -->
+  @if (isSidebarOpen) {
+    <div class="fixed inset-0 bg-gray-600 bg-opacity-75 z-20 lg:hidden"
+         (click)="toggleSidebar()">
+    </div>
+  }
+</div>
