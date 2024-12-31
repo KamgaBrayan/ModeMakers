@@ -22,6 +22,16 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'profil_picture',
+        'roles',
+        'photos',
+        'note',
+        'bibliography',
+        'calendar',
+        'preferences_id',
+        'measures_id',
+        'specialty',
+        'experience'
     ];
 
     /**
@@ -44,6 +54,10 @@ class User extends Authenticatable implements JWTSubject
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'photos' => 'array',
+            'calendar' => 'array',
+            'preferences_id' => 'array',
+            'measures_id' => 'array',
         ];
     }
 

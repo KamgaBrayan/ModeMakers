@@ -9,41 +9,141 @@ servers:
 paths:
   /api/auth/register:
     post:
-      summary: ''
-      operationId: postApiAuthRegister
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  /api/auth/login:
-    post:
-      summary: ''
-      operationId: postApiAuthLogin
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  /api/auth/logout:
-    post:
-      summary: ''
-      operationId: postApiAuthLogout
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  /api/auth/profile:
-    get:
-      summary: ''
-      operationId: getApiAuthProfile
+      summary: 'Registers a new user and provides a JWT token upon success.'
+      operationId: registersANewUserAndProvidesAJWTTokenUponSuccess
       description: ''
       parameters: []
       responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                  token_type: bearer
+                  expires_in: 3600
+                  user:
+                    id: 1
+                    name: 'John Doe'
+                    email: user@example.com
+                properties:
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                  token_type:
+                    type: string
+                    example: bearer
+                  expires_in:
+                    type: integer
+                    example: 3600
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'John Doe'
+                      email:
+                        type: string
+                        example: user@example.com
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Validation error'
+                  details:
+                    email: 'The email field is required.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Validation error'
+                  details:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        example: 'The email field is required.'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'An unexpected error occurred. Please try again later.'
+                properties:
+                  error:
+                    type: string
+                    example: 'An unexpected error occurred. Please try again later.'
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: "The user's full name."
+                  example: 'John Doe'
+                  nullable: false
+                email:
+                  type: string
+                  description: "The user's email address."
+                  example: user@example.com
+                  nullable: false
+                password:
+                  type: string
+                  description: "The user's password."
+                  example: password123
+                  nullable: false
+                password_confirmation:
+                  type: string
+                  description: "The user's password confirmation."
+                  example: password123
+                  nullable: false
+              required:
+                - name
+                - email
+                - password
+                - password_confirmation
+      security: []
+  /api/auth/login:
+    post:
+      summary: 'Authenticates a user and provides an access token.'
+      operationId: authenticatesAUserAndProvidesAnAccessToken
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                  token_type: bearer
+                  expires_in: 3600
+                properties:
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                  token_type:
+                    type: string
+                    example: bearer
+                  expires_in:
+                    type: integer
+                    example: 3600
         401:
           description: ''
           content:
@@ -51,13 +151,137 @@ paths:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  error: 'Invalid credentials'
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid credentials'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Could not create token'
+                properties:
+                  error:
+                    type: string
+                    example: 'Could not create token'
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: "The user's email address."
+                  example: user@example.com
+                  nullable: false
+                password:
+                  type: string
+                  description: "The user's password."
+                  example: password123
+                  nullable: false
+              required:
+                - email
+                - password
+      security: []
+  /api/auth/logout:
+    post:
+      summary: 'Logs out the authenticated user by invalidating their access token.'
+      operationId: logsOutTheAuthenticatedUserByInvalidatingTheirAccessToken
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Successfully logged out.'
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
+                    example: 'Successfully logged out.'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Invalid or missing token.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid or missing token.'
       tags:
-        - Endpoints
+        - Authentication
+      security: []
+  /api/auth/profile:
+    get:
+      summary: 'Fetches the profile of the authenticated user.'
+      operationId: fetchesTheProfileOfTheAuthenticatedUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: 'John Doe'
+                  email: user@example.com
+                  profile_picture_url: 'http://localhost/storage/profile_pictures/johndoe.jpg'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'John Doe'
+                  email:
+                    type: string
+                    example: user@example.com
+                  profile_picture_url:
+                    type: string
+                    example: 'http://localhost/storage/profile_pictures/johndoe.jpg'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Token expired'
+                properties:
+                  error:
+                    type: string
+                    example: 'Token expired'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'User not found'
+                properties:
+                  error:
+                    type: string
+                    example: 'User not found'
+      tags:
+        - Authentication
       security: []
   /api/user/profile-picture:
     post:
@@ -102,24 +326,68 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: jennifer23@example.org
+                  example: elva66@example.net
                   nullable: false
                 subject:
                   type: string
                   description: ''
-                  example: commodi
+                  example: ut
                   nullable: false
                 body:
                   type: string
                   description: ''
-                  example: maiores
+                  example: officiis
                   nullable: false
               required:
                 - to
                 - subject
                 - body
       security: []
+  /api/test-stripe:
+    get:
+      summary: ''
+      operationId: getApiTestStripe
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/create-payment:
+    post:
+      summary: ''
+      operationId: postApiCreatePayment
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
 tags:
+  -
+    name: Authentication
+    description: ''
   -
     name: Endpoints
     description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []
