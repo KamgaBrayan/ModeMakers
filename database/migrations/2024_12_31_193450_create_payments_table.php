@@ -11,7 +11,7 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('commandId');
+            $table->unsignedBigInteger('OrderId');
             $table->decimal('payment_cost', 10, 2);
             $table->timestamp('payment_date');
             $table->string('payment_method');
