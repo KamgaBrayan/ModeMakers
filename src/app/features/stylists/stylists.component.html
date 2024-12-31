@@ -1,0 +1,39 @@
+<main class="px-4">
+    <app-navbar></app-navbar>
+    <div class="py-2">
+        <app-breadcrumb></app-breadcrumb>
+    </div>
+
+    <div class="py-2">
+        <app-hero></app-hero>
+    </div>
+    <div class="p-12 w-full flex align-center justify-center">
+        <h1 class="font-bold text-5xl  w-full text-center">Your Stylists</h1>
+    </div>
+    <section class="flex gap-2">
+        <div>
+            <span class="p-6">
+                <h3 class="font-bold text-lg p-4">Filtrer par :</h3>
+            </span>
+            <app-sidebar-filter 
+                [categories]="categories" 
+                [specialties]="specialties"
+                (filtersUpdated)="applyFilters($event)">
+            </app-sidebar-filter>
+        </div>
+        <div>
+            <span class="flex p-6 flex-row items-center justify-between">
+                <span class="flex flex-row items-center">
+                    <!-- Affichage du texte dynamique pour les filtres et le tri -->
+                    <h1 class="text-md font-bold  p-4">{{ getFilterText() }}</h1>
+                </span>
+                <span class="flex flex-row items-center">
+                    <app-select-sort (sortChanged)="applySort($event)"></app-select-sort>
+                </span>
+            </span>
+            <div class="flex flex-row flex-wrap gap-4">
+                <app-card *ngFor="let stylist of filteredStylists" [stylist]="stylist"></app-card>
+            </div>
+        </div>
+    </section>
+</main>

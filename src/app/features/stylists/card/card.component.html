@@ -1,0 +1,21 @@
+<div class="border p-4 rounded shadow-md w-[280px] h-[380px] flex flex-col  items-center" >
+    <div class="w-[230px] h-[260px] overflow-hidden rounded-md flex justify-center items-center">
+        <img src={{stylist.image}} alt="profile of stylist" class="w-full">
+    </div>
+    <div class="flex flex-row justify-between w-full p-2">
+        <h2 class="text-xl font-bold">{{ stylist.name }}</h2>
+        <span class="text-yellow-500">
+            <ng-container *ngFor="let star of getStarsArray(stylist.rating)">
+                <span>★</span>
+            </ng-container>
+        </span>
+    </div>
+    <div class="flex flex-row justify-between w-full p-2">
+        <p><i>Specialty : </i></p>
+        <p class="text-gray-600">{{ stylist.specialty }}</p>
+    </div>  
+    <div class="flex flex-row justify-between w-full p-2">
+        <button class="w-[90px] h-[40px] rounded-md bg-blue-500 text-white flex items-center justify-center transition-all hover:bg-blue-600 text-sm">View more</button>
+        <button class="w-[90px] h-[40px] rounded-md bg-blue-500 text-white flex items-center justify-center transition-all hover:bg-blue-600 text-sm">Ask for a Garnment</button>
+    </div>
+  </div>     
