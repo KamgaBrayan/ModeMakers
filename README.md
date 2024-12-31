@@ -1,66 +1,141 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# API Laravel - Guide d'installation et de configuration
 
-## About Laravel
+## Prérequis
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Avant de commencer, assurez-vous d'avoir installé les outils suivants sur votre machine :
+- [Docker](https://www.docker.com/products/docker-desktop)
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/)
+- [PHP](https://www.php.net/)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Étapes d'installation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Cloner le dépôt
 
-## Learning Laravel
+Commencez par cloner le projet depuis le dépôt Git et switcher vers la branche backend :
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+git clone https://github.com/KamgaBrayan/ModeMakers.git
+cd modeMakers
+git checkout backend
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 2. Installer les dépendances PHP
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Installez les dépendances PHP avec Composer :
 
-## Laravel Sponsors
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 3. Configurer le fichier `.env`
 
-### Premium Partners
+Copiez le fichier `.env.example` et renommez-le en `.env` :
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+cp .env.example .env
+```
 
-## Contributing
+Ouvrez le fichier `.env` et configurez les informations suivantes :
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Base de données** : Assurez-vous que les paramètres de connexion à la base de données sont corrects. Par exemple :
+  ```env
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_DATABASE=nom_de_votre_base
+  DB_USERNAME=votre_utilisateur
+  DB_PASSWORD=votre_mot_de_passe
+  ```
+Rassurez vous que vous avez lance votre serveur de base de donnees au port 3306 sinon configurez le bon port.
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **Clé JWT** : Configurez la clé secrète pour JWT :
+  ```env
+  php artisan jwt:secret
+  ```
+  ceci generera une cle secrete a la mettra automatiquement dans la variable JWT_SECRET du fichier .env
 
-## Security Vulnerabilities
+### 4. Lancer Mailpit avec Docker
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Mailpit est utilisé pour capturer et afficher les emails envoyés depuis l'application en local.
 
-## License
+```bash
+docker run -d -p 1025:1025 -p 8025:8025 axllent/mailpit
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Vous pouvez accéder à l'interface Mailpit en ouvrant [http://localhost:8025](http://localhost:8025) dans votre navigateur.
+
+### 5. Générer la clé JWT
+
+Générez la clé secrète JWT avec la commande suivante :
+
+```bash
+php artisan jwt:secret
+```
+
+Cela générera une clé secrète et la placera dans le fichier `.env` sous la variable `JWT_SECRET`.
+
+### 6. Effectuer les migrations de la base de données
+
+Exécutez les migrations pour créer les tables nécessaires dans la base de données :
+
+```bash
+php artisan migrate
+```
+
+### 7. Générer la documentation API avec Scribe
+
+Scribe est utilisé pour générer automatiquement la documentation de votre API à partir des annotations dans le code.
+
+- Générez la documentation de l'API :
+
+```bash
+php artisan scribe:generate
+```
+
+La documentation sera générée dans le dossier `public/docs`. Vous pouvez y accéder sur la route `/docs` de votre api une fois le serveur lance
+
+### 8. Démarrer le serveur Laravel
+
+Enfin, démarrez le serveur Laravel pour tester l'API :
+
+```bash
+php artisan serve
+```
+
+Votre API sera maintenant disponible à [http://localhost:8000](http://localhost:8000).
+
+vous pouvez  maintenant tester l'api en vous servants des consignes de la documentation.
+
+## Commandes utiles
+
+- **Exécuter les migrations** : `php artisan migrate`
+- **Exécuter les tests** : `php artisan test`
+- **Générer la clé JWT** : `php artisan jwt:secret`
+- **Générer la documentation API** : `php artisan scribe:generate`
+- **Démarrer le serveur Laravel** : `php artisan serve`
+
+## Dépannage
+
+- Si vous avez des problèmes avec les migrations, assurez-vous que votre base de données est correctement configurée dans le fichier `.env`.
+- Si vous avez des problèmes avec Mailpit, vérifiez que Docker fonctionne correctement et que les ports ne sont pas bloqués.
+
+
+
+---
+
+Si vous avez des questions ou des problèmes, n'hésitez pas à me contacter.
+---
+
+### Explication des étapes :
+1. **Installation des dépendances** : Vous devez d'abord installer les dépendances PHP via Composer.
+2. **Configuration du fichier `.env`** : Le fichier `.env` contient les configurations sensibles, comme les informations de la base de données et la clé JWT.
+3. **Mailpit avec Docker** : Mailpit est utilisé pour capturer les emails envoyés localement. Il est exécuté via Docker.
+4. **Génération de la clé JWT** : La clé JWT est générée pour la sécurisation des tokens d'authentification.
+5. **Migrations** : Les migrations sont exécutées pour créer la structure de la base de données.
+6. **Génération de la documentation API** : Scribe est utilisé pour générer la documentation de l'API automatiquement.
+7. **Démarrage du serveur Laravel** : Vous lancez le serveur Laravel pour tester l'API en local.
+
+Ce README fournit une documentation claire et logique pour que vos collaborateurs puissent configurer et utiliser votre API Laravel.
