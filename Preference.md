@@ -21,7 +21,7 @@ The `preference` entity represents a user's preferences. Each preference contain
         "id": 1,
         "user": {
             "user_id": 123,
-            "user_name": "John Doe"
+            "user_name": "gabriel Nomo"
         },
         "category": "Category A",
         "field1": "Value 1"
@@ -60,7 +60,7 @@ The `preference` entity represents a user's preferences. Each preference contain
   "id": 1,
   "user": {
     "user_id": 123,
-    "user_name": "John Doe"
+    "user_name": "gabriel Nomo"
   },
   "category": "Category A",
   "field1": "Value 1"
@@ -102,7 +102,7 @@ The `preference` entity represents a user's preferences. Each preference contain
 {
   "user": {
     "user_id": 123,
-    "user_name": "John Doe"
+    "user_name": "gabriel Nomo"
   },
   "category": "Category A",
   "field1": "Value 1"
@@ -116,7 +116,7 @@ The `preference` entity represents a user's preferences. Each preference contain
   "id": 1,
   "user": {
     "user_id": 123,
-    "user_name": "John Doe"
+    "user_name": "gabriel Nomo"
   },
   "category": "Category A",
   "field1": "Value 1"
@@ -164,7 +164,7 @@ The `preference` entity represents a user's preferences. Each preference contain
 {
   "user": {
     "user_id": 123,
-    "user_name": "John Doe"
+    "user_name": "gabriel Nomo"
   },
   "category": "Category A",
   "field1": "Updated Value"
@@ -178,7 +178,7 @@ The `preference` entity represents a user's preferences. Each preference contain
   "id": 1,
   "user": {
     "user_id": 123,
-    "user_name": "John Doe"
+    "user_name": "gabriel Nomo"
   },
   "category": "Category A",
   "field1": "Updated Value"

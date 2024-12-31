@@ -1,18 +1,18 @@
 
 ---
 
-# API Documentation: Command Entity
+# API Documentation: order Entity
 
 ## Overview
-The `command` entity represents a user’s order, including details about the user who placed the order, the date of the command, the status, the total cost, the payment method, and the time limit for the order.
+The `order` entity represents a user’s order, including details about the user who placed the order, the date of the order, the status, the total cost, the payment method, and the time limit for the order.
 
 ---
 
-## 1. List Commands
+## 1. List orders
 
 **Method:** GET  
-**Endpoint:** `/api/command`  
-**Description:** Retrieves a list of all commands.
+**Endpoint:** `/api/order`  
+**Description:** Retrieves a list of all orders.
 
 ### Responses
 #### 200 OK
@@ -24,7 +24,7 @@ The `command` entity represents a user’s order, including details about the us
             "user_id": 123,
             "user_name": "Gabriel Nomo"
         },
-        "command_date": "2024-12-29T10:00:00Z",
+        "order_date": "2024-12-29T10:00:00Z",
         "status": "Completed",
         "total_cost": 150.75,
         "paiement_method": "Credit Card",
@@ -39,23 +39,23 @@ The `command` entity represents a user’s order, including details about the us
   "error": {
     "code": 500,
     "type": "Internal server error",
-    "message": "An unexpected error occurred while fetching the commands. Please try again later."
+    "message": "An unexpected error occurred while fetching the orders. Please try again later."
   }
 }
 ```
 
 ---
 
-## 2. Retrieve a Command
+## 2. Retrieve a order
 
 **Method:** GET  
-**Endpoint:** `/api/command/{id}`  
-**Description:** Retrieves details of a specific command by ID.
+**Endpoint:** `/api/order/{id}`  
+**Description:** Retrieves details of a specific order by ID.
 
 ### Path Parameters
 | Name | Type   | Description           |
 |------|--------|-----------------------|
-| id   | integer| The ID of the command  |
+| id   | integer| The ID of the order  |
 
 ### Responses
 #### 200 OK
@@ -66,7 +66,7 @@ The `command` entity represents a user’s order, including details about the us
     "user_id": 123,
     "user_name": "Gabriel Nomo"
   },
-  "command_date": "2024-12-29T10:00:00Z",
+  "order_date": "2024-12-29T10:00:00Z",
   "status": "Completed",
   "total_cost": 150.75,
   "paiement_method": "Credit Card",
@@ -80,7 +80,7 @@ The `command` entity represents a user’s order, including details about the us
   "error": {
     "code": 404,
     "type": "Not Found",
-    "message": "Command not found."
+    "message": "order not found."
   }
 }
 ```
@@ -91,18 +91,18 @@ The `command` entity represents a user’s order, including details about the us
   "error": {
     "code": 500,
     "type": "Internal server error",
-    "message": "An unexpected error occurred while fetching the command. Please try again later."
+    "message": "An unexpected error occurred while fetching the order. Please try again later."
   }
 }
 ```
 
 ---
 
-## 3. Create a Command
+## 3. Create a order
 
 **Method:** POST  
-**Endpoint:** `/api/command`  
-**Description:** Creates a new command.
+**Endpoint:** `/api/order`  
+**Description:** Creates a new order.
 
 ### Request Body
 ```json
@@ -111,7 +111,7 @@ The `command` entity represents a user’s order, including details about the us
     "user_id": 123,
     "user_name": "Gabriel Nomo"
   },
-  "command_date": "2024-12-29T10:00:00Z",
+  "order_date": "2024-12-29T10:00:00Z",
   "status": "Pending",
   "total_cost": 150.75,
   "paiement_method": "Credit Card",
@@ -128,7 +128,7 @@ The `command` entity represents a user’s order, including details about the us
     "user_id": 123,
     "user_name": "Gabriel Nomo"
   },
-  "command_date": "2024-12-29T10:00:00Z",
+  "order_date": "2024-12-29T10:00:00Z",
   "status": "Pending",
   "total_cost": 150.75,
   "paiement_method": "Credit Card",
@@ -143,8 +143,8 @@ The `command` entity represents a user’s order, including details about the us
   "details": {
     "user_id": "The user ID is required.",
     "user_name": "The user name is required.",
-    "command_date": "The command date is required.",
-    "status": "The command status is required.",
+    "order_date": "The order date is required.",
+    "status": "The order status is required.",
     "total_cost": "The total cost is required.",
     "paiement_method": "The payment method is required.",
     "time_limit": "The time limit is required."
@@ -158,23 +158,23 @@ The `command` entity represents a user’s order, including details about the us
   "error": {
     "code": 500,
     "type": "Internal server error",
-    "message": "An unexpected error occurred while creating the command. Please try again later."
+    "message": "An unexpected error occurred while creating the order. Please try again later."
   }
 }
 ```
 
 ---
 
-## 4. Update a Command
+## 4. Update a order
 
 **Method:** PUT  
-**Endpoint:** `/api/command/{id}`  
-**Description:** Updates an existing command by ID.
+**Endpoint:** `/api/order/{id}`  
+**Description:** Updates an existing order by ID.
 
 ### Path Parameters
 | Name | Type   | Description           |
 |------|--------|-----------------------|
-| id   | integer| The ID of the command  |
+| id   | integer| The ID of the order  |
 
 ### Request Body
 ```json
@@ -183,7 +183,7 @@ The `command` entity represents a user’s order, including details about the us
     "user_id": 123,
     "user_name": "Gabriel Nomo"
   },
-  "command_date": "2024-12-29T10:00:00Z",
+  "order_date": "2024-12-29T10:00:00Z",
   "status": "Shipped",
   "total_cost": 200.00,
   "paiement_method": "PayPal",
@@ -200,7 +200,7 @@ The `command` entity represents a user’s order, including details about the us
     "user_id": 123,
     "user_name": "Gabriel Nomo"
   },
-  "command_date": "2024-12-29T10:00:00Z",
+  "order_date": "2024-12-29T10:00:00Z",
   "status": "Shipped",
   "total_cost": 200.00,
   "paiement_method": "PayPal",
@@ -214,7 +214,7 @@ The `command` entity represents a user’s order, including details about the us
   "error": {
     "code": 404,
     "type": "Not Found",
-    "message": "Command not found."
+    "message": "order not found."
   }
 }
 ```
@@ -226,8 +226,8 @@ The `command` entity represents a user’s order, including details about the us
   "details": {
     "user_id": "The user ID is required.",
     "user_name": "The user name is required.",
-    "command_date": "The command date is required.",
-    "status": "The command status is required.",
+    "order_date": "The order date is required.",
+    "status": "The order status is required.",
     "total_cost": "The total cost is required.",
     "paiement_method": "The payment method is required.",
     "time_limit": "The time limit is required."
@@ -241,29 +241,29 @@ The `command` entity represents a user’s order, including details about the us
   "error": {
     "code": 500,
     "type": "Internal server error",
-    "message": "An unexpected error occurred while updating the command. Please try again later."
+    "message": "An unexpected error occurred while updating the order. Please try again later."
   }
 }
 ```
 
 ---
 
-## 5. Delete a Command
+## 5. Delete a order
 
 **Method:** DELETE  
-**Endpoint:** `/api/command/{id}`  
-**Description:** Deletes a specific command by ID.
+**Endpoint:** `/api/order/{id}`  
+**Description:** Deletes a specific order by ID.
 
 ### Path Parameters
 | Name | Type   | Description           |
 |------|--------|-----------------------|
-| id   | integer| The ID of the command  |
+| id   | integer| The ID of the order  |
 
 ### Responses
 #### 200 OK
 ```json
 {
-  "message": "Command successfully deleted."
+  "message": "order successfully deleted."
 }
 ```
 
@@ -273,7 +273,7 @@ The `command` entity represents a user’s order, including details about the us
   "error": {
     "code": 404,
     "type": "Not Found",
-    "message": "Command not found."
+    "message": "order not found."
   }
 }
 ```
@@ -284,7 +284,7 @@ The `command` entity represents a user’s order, including details about the us
   "error": {
     "code": 500,
     "type": "Internal server error",
-    "message": "An unexpected error occurred while deleting the command. Please try again later."
+    "message": "An unexpected error occurred while deleting the order. Please try again later."
   }
 }
 ```
