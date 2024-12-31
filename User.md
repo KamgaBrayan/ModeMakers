@@ -1,10 +1,14 @@
-
----
-
 # API Documentation: User Entity
 
 ## Overview
-The `user` entity represents a user in the system. It includes essential user information such as name, email, password, roles, photos, notes, bibliography, calendar, preferences, and measures. Additionally, it contains the user's **specialty** and **experience**.
+The `user` entity represents a user in the system. Users can be either clients (ROLE_USER) or stylists (ROLE_STYLIST). It includes essential user information such as name, email, password, roles, profile picture, photos, notes, bibliography, calendar, preferences, and measures. For stylists, additional information includes **specialty** and **experience**.
+
+## Authentication
+All endpoints require a valid JWT token in the Authorization header:
+
+```bash
+Authorization: Bearer {token}
+```
 
 ---
 
@@ -22,7 +26,8 @@ The `user` entity represents a user in the system. It includes essential user in
         "id": 1,
         "name": "Gabriel Nomo",
         "email": "gabriel@example.com",
-        "roles": ["ROLE_USER"],
+        "profil_picture": "profile1.jpg",
+        "roles": ["ROLE_STYLIST"],
         "photos": ["photo1.jpg", "photo2.jpg"],
         "note": 5,
         "bibliography": "Some biography text.",
@@ -30,10 +35,20 @@ The `user` entity represents a user in the system. It includes essential user in
         "preferences_id": [1, 2],
         "measures_id": [101, 102],
         "specialty": "clothes",
-        "experience": "5 years in stylism",
-        
-   }
+        "experience": "5 years in stylism"
+    }
 ]
+```
+
+#### 401 Unauthorized
+```json
+{
+  "error": {
+    "code": 401,
+    "type": "Unauthorized",
+    "message": "Invalid or missing token"
+  }
+}
 ```
 
 #### 500 Internal Server Error
@@ -67,7 +82,8 @@ The `user` entity represents a user in the system. It includes essential user in
   "id": 1,
   "name": "Gabriel Nomo",
   "email": "gabriel@example.com",
-  "roles": ["ROLE_USER"],
+  "profil_picture": "profile1.jpg",
+  "roles": ["ROLE_STYLIST"],
   "photos": ["photo1.jpg", "photo2.jpg"],
   "note": 5,
   "bibliography": "Some biography text.",
@@ -76,6 +92,17 @@ The `user` entity represents a user in the system. It includes essential user in
   "measures_id": [101, 102],
   "specialty": "clothes",
   "experience": "5 years in stylism"
+}
+```
+
+#### 401 Unauthorized
+```json
+{
+  "error": {
+    "code": 401,
+    "type": "Unauthorized",
+    "message": "Invalid or missing token"
+  }
 }
 ```
 
@@ -115,7 +142,8 @@ The `user` entity represents a user in the system. It includes essential user in
   "name": "Gabriel Nomo",
   "email": "gabriel@example.com",
   "password": "securepassword123",
-  "roles": ["ROLE_USER"],
+  "profil_picture": "",
+  "roles": ["ROLE_STYLIST"],
   "photos": ["photo1.jpg", "photo2.jpg"],
   "note": 5,
   "bibliography": "Some biography text.",
@@ -134,7 +162,8 @@ The `user` entity represents a user in the system. It includes essential user in
   "id": 1,
   "name": "Gabriel Nomo",
   "email": "gabriel@example.com",
-  "roles": ["ROLE_USER"],
+  "profil_picture": "",
+  "roles": ["ROLE_STYLIST"],
   "photos": ["photo1.jpg", "photo2.jpg"],
   "note": 5,
   "bibliography": "Some biography text.",
@@ -154,15 +183,26 @@ The `user` entity represents a user in the system. It includes essential user in
     "name": "The name is required.",
     "email": "The email is required.",
     "password": "The password is required.",
-    "roles": "The roles are required.",
+    "roles": "The roles must be either ROLE_USER or ROLE_STYLIST.",
     "photos": "The photos are required.",
     "note": "The note is required.",
     "bibliography": "The bibliography is required.",
     "calendar": "The calendar is required.",
     "preferences_id": "The preferences_id must be an array of integers.",
     "measures_id": "The measures_id must be an array of integers.",
-    "specialty": "The specialty is required.",
-    "experience": "The experience is required."
+    "specialty": "The specialty is required for stylists.",
+    "experience": "The experience is required for stylists."
+  }
+}
+```
+
+#### 401 Unauthorized
+```json
+{
+  "error": {
+    "code": 401,
+    "type": "Unauthorized",
+    "message": "Invalid or missing token"
   }
 }
 ```
@@ -197,7 +237,8 @@ The `user` entity represents a user in the system. It includes essential user in
   "name": "Gabriel Nomo",
   "email": "gabriel_new@example.com",
   "password": "newpassword123",
-  "roles": ["ROLE_USER"],
+  "profil_picture": "new_profile.jpg",
+  "roles": ["ROLE_STYLIST"],
   "photos": ["photo1.jpg", "photo2.jpg"],
   "note": 5,
   "bibliography": "Updated biography text.",
@@ -216,7 +257,8 @@ The `user` entity represents a user in the system. It includes essential user in
   "id": 1,
   "name": "Gabriel Nomo",
   "email": "gabriel_new@example.com",
-  "roles": ["ROLE_USER"],
+  "profil_picture": "new_profile.jpg",
+  "roles": ["ROLE_STYLIST"],
   "photos": ["photo1.jpg", "photo2.jpg"],
   "note": 5,
   "bibliography": "Updated biography text.",
@@ -228,17 +270,6 @@ The `user` entity represents a user in the system. It includes essential user in
 }
 ```
 
-#### 404 Not Found
-```json
-{
-  "error": {
-    "code": 404,
-    "type": "Not Found",
-    "message": "User not found."
-  }
-}
-```
-
 #### 400 Bad Request
 ```json
 {
@@ -247,15 +278,37 @@ The `user` entity represents a user in the system. It includes essential user in
     "name": "The name is required.",
     "email": "The email is required.",
     "password": "The password is required.",
-    "roles": "The roles are required.",
+    "roles": "The roles must be either ROLE_USER or ROLE_STYLIST.",
     "photos": "The photos are required.",
     "note": "The note is required.",
     "bibliography": "The bibliography is required.",
     "calendar": "The calendar is required.",
     "preferences_id": "The preferences_id must be an array of integers.",
     "measures_id": "The measures_id must be an array of integers.",
-    "specialty": "The specialty is required.",
-    "experience": "The experience is required."
+    "specialty": "The specialty is required for stylists.",
+    "experience": "The experience is required for stylists."
+  }
+}
+```
+
+#### 401 Unauthorized
+```json
+{
+  "error": {
+    "code": 401,
+    "type": "Unauthorized",
+    "message": "Invalid or missing token"
+  }
+}
+```
+
+#### 404 Not Found
+```json
+{
+  "error": {
+    "code": 404,
+    "type": "Not Found",
+    "message": "User not found."
   }
 }
 ```
@@ -292,6 +345,17 @@ The `user` entity represents a user in the system. It includes essential user in
 }
 ```
 
+#### 401 Unauthorized
+```json
+{
+  "error": {
+    "code": 401,
+    "type": "Unauthorized",
+    "message": "Invalid or missing token"
+  }
+}
+```
+
 #### 404 Not Found
 ```json
 {
@@ -316,6 +380,65 @@ The `user` entity represents a user in the system. It includes essential user in
 
 ---
 
-**Note:** All endpoints require proper authentication and authorization headers to access.
+## 6. Upload Profile Picture
+
+**Method:** POST  
+**Endpoint:** `/api/user/profile-picture`  
+**Description:** Uploads or updates the authenticated user's profile picture.
+
+### Request
+- Content-Type: multipart/form-data
+- Body: form-data with key "profile_picture" containing the image file
+- Authorization: Bearer token required
+
+### Responses
+#### 200 OK
+```json
+{
+  "message": "Profile picture updated successfully",
+  "profile_picture_url": "profile1.jpg"
+}
+```
+
+#### 400 Bad Request
+```json
+{
+  "error": {
+    "code": 400,
+    "type": "Bad Request",
+    "message": "Invalid file format. Supported formats are: jpg, jpeg, png"
+  }
+}
+```
+
+#### 401 Unauthorized
+```json
+{
+  "error": {
+    "code": 401,
+    "type": "Unauthorized",
+    "message": "Invalid or missing token"
+  }
+}
+```
+
+#### 500 Internal Server Error
+```json
+{
+  "error": {
+    "code": 500,
+    "type": "Internal server error",
+    "message": "An unexpected error occurred while uploading the profile picture. Please try again later."
+  }
+}
+```
+
+---
+
+**Notes:** 
+- All endpoints require proper authentication and authorization headers to access.
+- The specialty and experience fields are required only for users with ROLE_STYLIST.
+- Profile pictures must be in jpg, jpeg, or png format.
+- Maximum file size for profile pictures: 5MB
 
 ---
