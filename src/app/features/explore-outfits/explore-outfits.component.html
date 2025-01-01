@@ -1,1 +1,32 @@
-components
+<div class="min-h-screen bg-gray-50">
+    <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-72 p-8 flex items-center relative overflow-hidden">
+        <p>ICI C'EST LA NAVBAR</p>
+    </div>
+
+    <app-banner-section></app-banner-section>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+            <h2 class="text-2xl font-bold text-blue-800">Filter</h2>
+            <select class="w-full sm:w-44 p-2 border border-blue-800 rounded-2xl text-blue-800 bg-white focus:outline-none focus:ring-2 focus:ring-blue-800">
+                <option>Sort by: Popular</option>
+            </select>
+        </header>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar Filter -->
+            <aside class="w-full lg:w-64 bg-slate-50 rounded-xl shadow-sm p-4">
+                <app-filter-section [title]="title"></app-filter-section>
+            </aside>
+
+            <!-- Product Grid -->
+            <div class="flex-1">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <app-product-card></app-product-card>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-newsletter-section></app-newsletter-section>
+</div>
