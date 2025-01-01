@@ -1,0 +1,25 @@
+<div class="w-[90%] absolute bg-gray-50 ml-4">
+    <div 
+      class="inset-x-0 bottom-0  p-4 overflow-hidden" 
+      >
+      <!-- Conteneur de reviews avec défilement -->
+      <div 
+        class="flex flex-row gap-4 w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+        <div *ngFor="let review of reviews" class="review-card border p-4 rounded-md w-[300px] flex-shrink-0">
+          <div class="flex justify-between">
+            <span class="font-bold">{{ review.user.user_name }}</span>
+            <span class="text-gray-500">{{ review.date | date: 'shortDate' }}</span>
+          </div>
+          <div class="flex mt-2">
+            <span class="text-yellow-500">
+                <ng-container *ngFor="let star of getStarsArray(review.product.product_note)">
+                    <span>★</span>
+                </ng-container>
+            </span>
+          </div>
+          <p class="mt-2">{{ review.comment }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

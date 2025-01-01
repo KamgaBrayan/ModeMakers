@@ -1,0 +1,119 @@
+[
+    {
+        "id": 1,
+        "user": {
+            "user_id": 123,
+            "user_name": "John Doe"
+        },
+        "product": {
+            "product_note": 4.5,
+            "product_id": 1
+        },
+        "comment": "Great product, highly recommend!",
+        "date": "2024-12-29T10:00:00Z"
+    },
+    {
+        "id": 2,
+        "user": {
+            "user_id": 124,
+            "user_name": "Jane Smith"
+        },
+        "product": {
+            "product_note": 4.0,
+            "product_id": 2
+        },
+        "comment": "Good quality, but could be better.",
+        "date": "2024-12-28T12:00:00Z"
+    },
+    {
+        "id": 3,
+        "user": {
+            "user_id": 125,
+            "user_name": "Emily Johnson"
+        },
+        "product": {
+            "product_note": 4.8,
+            "product_id": 3
+        },
+        "comment": "Amazing design and material.",
+        "date": "2024-12-27T09:30:00Z"
+    },
+    {
+        "id": 4,
+        "user": {
+            "user_id": 126,
+            "user_name": "Michael Brown"
+        },
+        "product": {
+            "product_note": 3.5,
+            "product_id": 4
+        },
+        "comment": "Not bad, but I expected more durability.",
+        "date": "2024-12-26T15:45:00Z"
+    },
+    {
+        "id": 5,
+        "user": {
+            "user_id": 127,
+            "user_name": "Sarah Wilson"
+        },
+        "product": {
+            "product_note": 5.0,
+            "product_id": 5
+        },
+        "comment": "Perfect! Exceeded my expectations.",
+        "date": "2024-12-25T14:20:00Z"
+    },
+    {
+        "id": 6,
+        "user": {
+            "user_id": 128,
+            "user_name": "David Taylor"
+        },
+        "product": {
+            "product_note": 4.2,
+            "product_id": 6
+        },
+        "comment": "Good value for the price.",
+        "date": "2024-12-24T11:10:00Z"
+    },
+    {
+        "id": 7,
+        "user": {
+            "user_id": 129,
+            "user_name": "Laura Martin"
+        },
+        "product": {
+            "product_note": 3.8,
+            "product_id": 7
+        },
+        "comment": "The product is decent but took time to deliver.",
+        "date": "2024-12-23T08:55:00Z"
+    },
+    {
+        "id": 8,
+        "user": {
+            "user_id": 130,
+            "user_name": "Chris Lee"
+        },
+        "product": {
+            "product_note": 4.6,
+            "product_id": 8
+        },
+        "comment": "Excellent product! Highly functional.",
+        "date": "2024-12-22T16:30:00Z"
+    },
+    {
+        "id": 9,
+        "user": {
+            "user_id": 131,
+            "user_name": "Sophia Anderson"
+        },
+        "product": {
+            "product_note": 4.9,
+            "product_id": 9
+        },
+        "comment": "Absolutely love it! Will buy again.",
+        "date": "2024-12-21T17:15:00Z"
+    }
+]

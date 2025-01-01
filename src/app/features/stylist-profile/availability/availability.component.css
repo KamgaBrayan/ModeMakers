@@ -1,0 +1,10 @@
+.availability-container {
+    padding: 10px;
+  }
+  
+  .calendar {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 10px;
+}

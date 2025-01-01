@@ -5,6 +5,9 @@ import { StylistProfileComponent } from './stylist-profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { DescriptionComponent } from './description/description.component';
+import { FormsModule } from '@angular/forms';
+import { CalendarComponent } from './calendar/calendar.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 
 @NgModule({
@@ -12,19 +15,27 @@ import { DescriptionComponent } from './description/description.component';
         StylistProfileComponent,
         NavbarComponent,
         BreadcrumbComponent,
-        DescriptionComponent
+        DescriptionComponent,
+        FormsModule,
+        CalendarComponent,
+        ReviewsComponent
     ],
     imports: [
         CommonModule,
         RouterModule, // Ensure this is included
         NavbarComponent,
         BreadcrumbComponent,
-        DescriptionComponent
+        DescriptionComponent,
+        FormsModule,
+        CalendarComponent,
+        ReviewsComponent
       ], 
       exports: [
           NavbarComponent,
           BreadcrumbComponent ,
-          DescriptionComponent
+          DescriptionComponent,
+          CalendarComponent,
+          ReviewsComponent
       ]
 })
 

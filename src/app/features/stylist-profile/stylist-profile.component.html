@@ -7,11 +7,11 @@
         <app-description [stylist]="stylist"></app-description> <!-- Pass stylist data -->
     </div>
     <section class="flex gap-2 pb-4">  
-        <div>
+        <div class="px-4">
             <span class="p-6">
                 <h3 class="font-bold text-lg p-4">Availability :</h3>
             </span>
-           yo
+            <app-availability [daysAvailable]="stylist.calendar"></app-availability> <!-- Pass stylist's available days -->
         </div>  
         <div>
             <span class="flex p-6 flex-row items-center justify-between">
@@ -23,9 +23,19 @@
                     <app-select-sort (sortChanged)="applySort($event)"></app-select-sort>
                 </span>
             </span>
-            <div class="flex flex-row flex-wrap gap-4">
+            <div class="flex flex-row flex-wrap gap-4 h-[900px]">
                 <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
             </div>
         </div>
     </section>
+    <span class="w-full flex justify-center">
+        <h3 class="font-bold text-lg p-4">User Reviews:</h3>
+    </span>
+    <section class="flex gap-2 pb-4">
+    <div class="px-4">
+      <span class="w-full flex flex-row justify-center items-center">
+        <app-reviews></app-reviews> <!-- Include the ReviewsComponent -->
+      </span>
+    </div>
+  </section>
 </main>

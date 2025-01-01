@@ -6,6 +6,8 @@ import { DescriptionComponent } from './description/description.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { CommonModule } from '@angular/common';
 import { SelectSortComponent } from './select-sort/select-sort.component';
+import { AvailabilityComponent } from './availability/availability.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 interface Stylist {
   id: number;
@@ -46,7 +48,16 @@ interface Product {
 
 @Component({
   selector: 'app-stylist-profile',
-  imports: [CommonModule,NavbarComponent, BreadcrumbComponent, DescriptionComponent, ProductCardComponent, SelectSortComponent],
+  imports: [
+    CommonModule,
+    NavbarComponent, 
+    BreadcrumbComponent, 
+    DescriptionComponent, 
+    ProductCardComponent, 
+    SelectSortComponent,
+    AvailabilityComponent,
+    ReviewsComponent
+  ],
   templateUrl: './stylist-profile.component.html',
   styleUrls: ['./stylist-profile.component.css']
 })
@@ -89,11 +100,9 @@ export class StylistProfileComponent implements OnInit {
       .then(response => response.json())
       .then((data: Product[]) => {
         // Filter products by stylist ID
-        console.log(data);
-        console.log(data[0].stylist.id);
+        // console.log(data);
         this.products = data.filter(product => product.stylist.id === this.stylist.id);
-        console.log(this.products);
-        console.log(this.stylist.id);
+ 
       })
       .catch(error => {
         console.error("Error fetching products:", error);
@@ -104,8 +113,10 @@ export class StylistProfileComponent implements OnInit {
     this.selectedSort = sortType;
     if (sortType === 'popularity') {
       this.filteredProducts = [...this.products].sort((a, b) => b.rating - a.rating);
+      console.log(this.filteredProducts)
     } else if (sortType === 'trending') {
       this.filteredProducts = [...this.products].sort((a, b) => b.views - a.views);
+      console.log(this.filteredProducts)
     }
   }
 

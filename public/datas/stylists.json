@@ -11,7 +11,10 @@
       "localisation": "Paris, France",
       "phone": "0123456789",
       "category": ["Homme", "Femme"],
-      "views": 120
+      "views": 120,
+      "reviews":[
+        
+      ]
     },
     {
       "id": 2,
