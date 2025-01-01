@@ -1,15 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-
-interface Product {
-  id: number;
-  name: string;
-  gender: string;
-  age: string;
-  price: number;
-  rating: number;
-  photos: string[];
-}
+import { Product } from './product-card.model';
 
 @Component({
   selector: 'app-product-card',

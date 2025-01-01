@@ -6,21 +6,8 @@ import { CardComponent } from './card/card.component';
 import { CommonModule } from '@angular/common';
 import { SidebarFilterComponent } from './sidebar-filter/sidebar-filter.component';
 import { SelectSortComponent } from './select-sort/select-sort.component';
+import { Stylist } from './stylist.model';
 
-interface Stylist {
-  id: number;
-  name: string;
-  photos: string[];
-  biography: string;
-  calendar: string[];
-  experience: string;
-  localisation: string;
-  phone: string;
-  rating: number;
-  specialty: string;
-  category: string[];
-  views: number;
-}
 
 @Component({
   selector: 'app-stylists',

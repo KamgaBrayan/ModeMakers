@@ -8,43 +8,7 @@ import { CommonModule } from '@angular/common';
 import { SelectSortComponent } from './select-sort/select-sort.component';
 import { AvailabilityComponent } from './availability/availability.component';
 import { ReviewsComponent } from './reviews/reviews.component';
-
-interface Stylist {
-  id: number;
-  name: string;
-  photos: string[];
-  biography: string;
-  calendar: string[];
-  experience: string;
-  localisation: string;
-  phone: string;
-  rating: number;
-  specialty: string;
-  category: string[];
-  views: number;
-}
-
-interface Product {
-  id: number;
-  name: string;
-  gender: string;
-  age: string; // Vous pouvez adapter le type en fonction des valeurs possibles, comme 'Range' ou 'Child'
-  category: string;
-  photos: string[];
-  description: string;
-  price: number;
-  price_per_square_metter: number;
-  stylist: {
-    id: number;
-    name: string;
-  };
-  material: {
-    id: number;
-    type: string;
-  };
-  rating: number;
-  views: number;
-}
+import { Product, Stylist } from './stylist-profile.model';
 
 @Component({
   selector: 'app-stylist-profile',
