@@ -1,1 +1,66 @@
-<p>outfits-details works!</p>
+
+<div class="bg-white">
+    <div class="bg-white">
+        <div class="container mx-auto px-4 py-8">
+            <!-- Section principale du produit -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+                <!-- Section image avec navigation -->
+                    <app-image-view-section></app-image-view-section>
+
+                <!-- Informations produit -->
+                <div class="bg-white p-6 rounded-lg shadow-sm space-y-6 h-full">
+                    <!-- Product title - caché sur mobile -->
+                    
+
+                    <!-- Détails du produit -->
+                        <app-outfits-details-section></app-outfits-details-section>
+
+                    <!-- Boutons d'action -->
+                    <div class="flex gap-4 pt-4">
+                        <button class="flex-1 bg-blue-800 text-white py-3 px-6 rounded-lg hover:bg-blue-900 transition-all">
+                            Command
+                        </button>
+                        <button class="flex-1 bg-white text-blue-800 py-3 px-6 rounded-lg border border-blue-800 hover:bg-purple-50 transition-all">
+                            Pay Immediately
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            
+            
+        </div>
+    </div>
+    <div class="bg-slate-50">
+        <!-- Section produits similaires -->
+        <div class="mt-16 max-w-7xl mx-auto ">
+            <h2 class="text-2xl font-semibold mb-8 text-center text-blue-800">Similar Products</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card Produit 1 -->
+                <app-same-outfits-section></app-same-outfits-section>
+        </div>
+        </div>
+
+    <!-- Section commentaires clients -->
+        <div class="mt-16 mb-12 max-w-7xl mx-auto">
+            <h2 class="text-2xl font-semibold mb-8 text-center text-blue-800">Customer Reviews</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Commentaire 1 -->
+               <app-one-comment-card></app-one-comment-card>
+            </div>
+
+               <!-- Section ajout de commentaire  -->
+                <app-comment-section></app-comment-section>
+        
+
+        
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+
