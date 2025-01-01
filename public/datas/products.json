@@ -5,7 +5,7 @@
       "gender": "male",
       "age": "Adults",
       "category": "Hair Care",
-      "photos": ["/images/stylists/stylist_1.jpg"],
+      "photos": ["/images/products/product_1.png"],
       "description": "A professional hair styling kit for men, including clippers and accessories.",
       "price": 45.0,
       "price_per_square_metter": 15.0,

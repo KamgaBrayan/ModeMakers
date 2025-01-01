@@ -24,7 +24,7 @@
    
     <p class="product-price">{{ product.price }} Fcfa</p>
     <div class="flex flex-row justify-between w-full p-2">
-        <button class="w-[90px] h-[40px] rounded-md bg-blue-500 text-white flex items-center justify-center transition-all hover:bg-blue-600 text-sm">View more</button>
-        <button class="w-[90px] h-[40px] rounded-md bg-blue-500 text-white flex items-center justify-center transition-all hover:bg-blue-600 text-sm">Ask for a Garnment</button>
+        <button  class="w-[90px] h-[40px] rounded-md bg-blue-500 text-white flex items-center justify-center transition-all hover:bg-blue-600 text-sm">View more</button>
+        <button [routerLink]="['/products',product.id]" class="w-[90px] h-[40px] rounded-md bg-blue-500 text-white flex items-center justify-center transition-all hover:bg-blue-600 text-sm">Ask for a Garnment</button>
     </div>
   </div>

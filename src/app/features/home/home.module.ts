@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { StylistsComponent } from '../stylists/stylists.component';
 import { FormsModule } from '@angular/forms';
 import { StylistProfileComponent } from '../stylist-profile/stylist-profile.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,10 @@ const routes: Routes = [
     path: 'stylists/:id', 
     component: StylistProfileComponent 
   }, // Route for stylist profile
-  // other routes
+  { 
+    path: 'products/:id', 
+    component: ProductDetailComponent
+  }
 ];
 
 @NgModule({

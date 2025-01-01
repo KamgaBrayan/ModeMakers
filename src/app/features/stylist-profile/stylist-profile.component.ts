@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { DescriptionComponent } from './description/description.component';
 import { ProductCardComponent } from './product-card/product-card.component';
@@ -9,6 +8,7 @@ import { SelectSortComponent } from './select-sort/select-sort.component';
 import { AvailabilityComponent } from './availability/availability.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { Product, Stylist } from './stylist-profile.model';
+import { NavbarComponent } from '../stylists/navbar/navbar.component';
 
 @Component({
   selector: 'app-stylist-profile',
