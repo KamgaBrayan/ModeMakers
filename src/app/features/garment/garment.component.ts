@@ -1,20 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Stylist } from '../stylists/stylist.model';
-import { Product } from './product-detail.model';
+import { Product, Stylist } from './garment.model';
 import { NavbarComponent } from '../stylists/navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ProductSlideComponent } from './product-slide/product-slide.component';
 
 @Component({
-  selector: 'app-product-detail',
+  selector: 'app-garment',
   imports: [CommonModule, NavbarComponent, BreadcrumbComponent, ProductSlideComponent],
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
-})
-export class ProductDetailComponent {
-  stylist!: Stylist | undefined;
+  templateUrl: './garment.component.html',
+  styleUrls: ['./garment.component.css']
+}) 
+export class GarmentComponent {
+  stylist!: Stylist 
   product!: Product; // Initialize the product
   
   currentImageIndex: number = 0;
@@ -56,7 +55,10 @@ export class ProductDetailComponent {
       .then(response => response.json())
       .then((stylists: Stylist[]) => {
         // Find the stylist by their ID
-        this.stylist = stylists.find(stylist => stylist.id === stylistId);
+        const data = stylists.find(stylist => stylist.id === stylistId);
+        if(data){
+          this.stylist = data
+        }
         if (!this.stylist) {
           console.error("Stylist not found");
         }

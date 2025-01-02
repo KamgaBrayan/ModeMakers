@@ -1,0 +1,43 @@
+<div class="relative w-full">
+    <div class="w-full flex flex-row justify-around items-center gap-4 ">
+        <button class="arrow left" (click)="previousImage()">&#10094;</button>
+        <div class="product-card w-[500px] ">
+            <div class="main-image">
+                <img [src]="images[currentImageIndex]" alt="Product Image" />
+             </div> 
+             <div class="gap-2 ">
+                <span class="flex flex-row justify-between items-center">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <span class="text-yellow-500">
+                        <ng-container *ngFor="let star of getStarsArray(product.rating)">
+                            <span>★</span>
+                        </ng-container>
+                    </span>
+                </span>
+            
+                <span class="flex flex-row gap-4 ">
+                    <span class="flex flex-row text-md gap-2 text-gray-500 text-sm">
+                        <p><i>Gender:</i></p>
+                        <p class="product-description">{{ product.gender }}</p>
+                    </span>
+                    <span class="flex flex-row text-md gap-2 text-gray-500 text-sm">
+                        <p><i>Year:</i></p>
+                        <p class="product-description">{{ product.age }}</p>
+                    </span>
+                </span>
+                <span>
+                    <p class="product-price py-2">{{ product.price }} Fcfa</p>
+                </span>
+             </div>
+            <div class="thumbnail-container">
+                <img *ngFor="let image of images; let i = index" 
+                     [src]="image" 
+                     [class.active]="i === currentImageIndex" 
+                     (click)="currentImageIndex = i" 
+                     alt="Thumbnail" />
+              </div>
+        </div>
+        <button class="arrow right" (click)="nextImage()">&#10095;</button>   
+    </div>
+    
+  </div>

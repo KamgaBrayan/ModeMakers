@@ -12,9 +12,7 @@
       "phone": "0123456789",
       "category": ["Homme", "Femme"],
       "views": 120,
-      "reviews":[
-        
-      ]
+      "workforce": [1000, 2000, 3000]
     },
     {
       "id": 2,
@@ -28,7 +26,8 @@
       "localisation": "Lyon, France",
       "phone": "0987654321",
       "category": ["Femme", "Enfant"],
-      "views": 320
+      "views": 320,
+      "workforce": [4000, 5000, 6000]
     },
     {
       "id": 3,
@@ -42,7 +41,8 @@
       "localisation": "Marseille, France",
       "phone": "0246801357",
       "category": ["Homme", "Femme", "Enfant"],
-      "views": 220
+      "views": 220,
+      "workforce": [7000, 8000, 9000]
     }
   ]
   

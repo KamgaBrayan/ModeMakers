@@ -1,19 +1,4 @@
-export interface Stylist {
-    id: number;
-    name: string;
-    photos: string[];
-    biography: string;
-    calendar: string[];
-    experience: string;
-    localisation: string;
-    phone: string;
-    rating: number;
-    specialty: string;
-    category: string[];
-    views: number;
-    workforce: number[]; //La main d'oeuvre
-  }
-  
+ 
 export   interface Product {
     id: number;
     name: string;
@@ -28,11 +13,27 @@ export   interface Product {
       id: number;
       name: string;
     };
-    material: {
+    material: { 
       id: number;
       type: string;
     };
     rating: number;
     views: number;
+  }
+    
+  export interface Stylist {
+    id: number;
+    name: string;
+    photos: string[];
+    biography: string;
+    calendar: string[];
+    experience: string;
+    localisation: string;
+    phone: string;
+    rating: number;
+    specialty: string;
+    category: string[];
+    views: number;
+    workforce: number[]; //La main d'oeuvre
   }
   

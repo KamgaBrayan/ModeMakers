@@ -66,7 +66,7 @@ export class StylistProfileComponent implements OnInit {
         // Filter products by stylist ID
         // console.log(data);
         this.products = data.filter(product => product.stylist.id === this.stylist.id);
- 
+        console.log(this.products[1].photos[0])
       })
       .catch(error => {
         console.error("Error fetching products:", error);

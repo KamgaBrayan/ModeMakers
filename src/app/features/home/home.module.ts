@@ -5,7 +5,8 @@ import { StylistsComponent } from '../stylists/stylists.component';
 import { FormsModule } from '@angular/forms';
 import { StylistProfileComponent } from '../stylist-profile/stylist-profile.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
-
+import { GarmentComponent } from '../garment/garment.component';
+ 
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +23,10 @@ const routes: Routes = [
   { 
     path: 'products/:id', 
     component: ProductDetailComponent
+  },
+  { 
+    path: 'garment/:id', 
+    component: GarmentComponent
   }
 ];
 

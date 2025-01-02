@@ -3,10 +3,14 @@
     <div class="py-2">
       <app-breadcrumb></app-breadcrumb>
     </div>
+    <div>
+        <h1 class="font-bold text-2xl p-4">Stylist : {{stylist.name}}</h1>
+    </div>
     <section class="flex gap-2 pb-4 w-full ">  
-        <div class="w-full ">
-            <app-product-slide [images]="product.photos" [product]="product" ></app-product-slide>
-        </div>  
+        <div class="w-[600px] ">
+            <app-product-slide [images]="product.photos" [product]="product" [stylist]="stylist"></app-product-slide>
+        </div> 
+        
         <!-- <div>
             <span class="flex p-6 flex-row items-center justify-between">
                 <span class="flex flex-row items-center">
@@ -18,7 +22,7 @@
             </span>
             <div class="flex flex-row flex-wrap gap-4 h-[900px]">
                 <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
-            </div>
+            </div> 
         </div> -->
     </section>
 </main>

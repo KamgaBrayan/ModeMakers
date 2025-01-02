@@ -1,0 +1,41 @@
+<div class="relative w-full">
+    <div class="product-card w-full flex flex-row justify-around items-center gap-4 ">
+        <button class="arrow left" (click)="previousImage()">&#10094;</button>
+        <div class="w-[500px] ">
+            <div class="main-image">
+                <img [src]="images[currentImageIndex]" alt="Product Image" />
+             </div> 
+             <div class="gap-2 ">
+                <span>
+                    <!-- <p class="product-price py-2">{{ product.name }} </p> -->
+                </span>
+             </div>
+            <div class="thumbnail-container">
+                <img *ngFor="let image of images; let i = index" 
+                     [src]="image" 
+                     [class.active]="i === currentImageIndex" 
+                     (click)="currentImageIndex = i" 
+                     alt="Thumbnail" />
+              </div> 
+              <div>
+                <h1 class="font-bold text-2xl py-4 text-left">Main D'oeuvre</h1>
+              </div>
+              <ul>
+                <li class="flex flex-row w-full justify-between py-1">
+                    <p><b>Standard (1mois):</b></p>
+                    {{stylist.workforce[0]}} FrancsCFA
+                </li>
+                <li class="flex flex-row w-full justify-between py-1">
+                    <p><b>Avancé (2 semaines):</b></p>
+                    {{stylist.workforce[1]}} FrancsCFA
+                </li>
+                <li class="flex flex-row w-full justify-between py-1">
+                    <p><b>Express (1 semaine):</b></p>
+                    {{stylist.workforce[2]}} FrancsCFA
+                </li>
+              </ul>
+        </div>
+        <button class="arrow right" (click)="nextImage()">&#10095;</button>   
+    </div>
+    
+  </div>
