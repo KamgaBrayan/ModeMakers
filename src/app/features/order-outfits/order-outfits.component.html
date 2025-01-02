@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails Produit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-20 py-20">
+        <!-- Suppression du max-height sur le conteneur principal -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Section images avec hauteur ajustée -->
+            <app-order-outfits-image-section></app-order-outfits-image-section>
+
+            <!-- Section détails sans overflow et avec espacement réduit -->
+            <div class="p-4">
+                <app-order-details-section></app-order-details-section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

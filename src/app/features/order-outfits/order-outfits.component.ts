@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ImageViewSectionComponent } from 'app/shared/components/image-view-section/image-view-section.component';
+import { OrderDetailsSectionComponent } from 'app/shared/components/order-details-section/order-details-section.component';
+import { OrderOutfitsImageSectionComponent } from 'app/shared/components/order-outfits-image-section/order-outfits-image-section.component';
 
 @Component({
   selector: 'app-order-outfits',
   standalone:true,
   imports: [
     CommonModule,
-    ImageViewSectionComponent
+    OrderOutfitsImageSectionComponent,
+    OrderDetailsSectionComponent
   ],
   templateUrl: './order-outfits.component.html',
   styleUrl: './order-outfits.component.css'
