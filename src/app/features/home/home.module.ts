@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { StylistsComponent } from '../stylists/stylists.component';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { StylistProfileComponent } from '../stylist-profile/stylist-profile.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { GarmentComponent } from '../garment/garment.component';
@@ -33,9 +33,15 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule,
+    FormBuilder,
+    FormGroup
   ],
-  exports: [RouterModule]
-})
+  exports: [
+    RouterModule,
+    FormsModule,
+    FormBuilder,
+    FormGroup]
+}) 
 
 export class HomeModule { }

@@ -1,5 +1,5 @@
-<section class=" w-full flex flex-row flex-wrap">
-<h1>Materials</h1>
+<section class="flex flex-row relative overflow-x-auto overflow-y-hidden">
+
     <div *ngFor="let material of materials; let i = index" class="material-card">
     <h2>{{ material.name }}</h2>
     <div class="slider-container">
@@ -14,10 +14,11 @@
                 [class.active]="j === currentImageIndex[i]" 
                 class="color-circle" 
                 (click)="selectColor(color, i)"></div>
-           
+                
             </div>
         </div>
         <button (click)="nextMaterial(i)" class="slider-button">&#10095;</button>
     </div>
+    <h2 class="pt-2">{{ material.price_per_square_meter }} FrCFA/m²</h2>
 </div>
 </section>

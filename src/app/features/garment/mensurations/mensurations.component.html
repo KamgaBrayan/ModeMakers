@@ -1,1 +1,15 @@
-<p>mensurations works!</p>
+<div class="container">
+    <h2>Products</h2>
+  
+    <div *ngIf="product">
+      <h3>Enter Measures for {{ product.name }}</h3>
+      <form [formGroup]="measureForm" (ngSubmit)="saveMeasures()">
+        <div *ngFor="let measure of measureForm?.controls | keyvalue">
+          <label [for]="measure.key">{{ measure.key }}</label>
+          <input [id]="measure.key" [formControlName]="measure.key" />
+        </div>
+        <button type="submit">Save Measures</button>
+      </form>
+    </div>
+  </div>
+  

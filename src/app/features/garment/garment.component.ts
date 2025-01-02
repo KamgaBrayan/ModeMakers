@@ -6,6 +6,8 @@ import { NavbarComponent } from '../stylists/navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ProductSlideComponent } from './product-slide/product-slide.component';
 import { MaterialsComponent } from './materials/materials.component';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { MensurationsComponent } from './mensurations/mensurations.component';
 
 @Component({
   selector: 'app-garment',
@@ -14,7 +16,9 @@ import { MaterialsComponent } from './materials/materials.component';
     NavbarComponent, 
     BreadcrumbComponent, 
     ProductSlideComponent,
-    MaterialsComponent
+    MaterialsComponent,
+    PersonalInfoComponent,
+    MensurationsComponent
   ],
   templateUrl: './garment.component.html',
   styleUrls: ['./garment.component.css']
@@ -50,6 +54,7 @@ export class GarmentComponent {
           this.product = product;
           this.images = product.photos;
           this.fetchStylist(product.stylist.id);
+          console.log(this.product.requiredMeasures);
           return; // Résoudre la promesse après l'assignation
         } else {
           console.error("Product not found");
@@ -91,7 +96,7 @@ export class GarmentComponent {
         this.materials = materials.filter(material =>
           this.product.material.some(prodMaterial => prodMaterial.id === material.id)
         );
-        console.log(this.materials); // Log to confirm the filtered materials
+        // console.log(this.materials); // Log to confirm the filtered materials
       })
       .catch(error => {
         console.error("Error fetching materials:", error);

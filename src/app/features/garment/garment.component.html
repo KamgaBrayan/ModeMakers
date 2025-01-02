@@ -10,8 +10,27 @@
         <div class="w-[600px] ">
             <app-product-slide [images]="product.photos" [product]="product" [stylist]="stylist"></app-product-slide>
         </div> 
-        <div class="w-full">
-            <app-materials [materials]="materials"></app-materials> 
+        <div class="w-[50%] h-[900px] flex flex-col justify-between">
+            <!-- <h1 class="text-2xl font-bold">Informations</h1> -->
+            
+            <div class="w-full  overflow-hidden border max-w-lg mx-auto p-2 bg-white shadow-md rounded-lg">
+                <h2 class="text-xl font-semibold py-2 pl-4 ">Materials</h2> 
+                <app-materials [materials]="materials"></app-materials> 
+            </div>
+            <!-- <h2 class="text-xl font-semibold py-4 ">Personnal Informations</h2>  -->
+            <div class="w-full border max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
+                <app-personal-info></app-personal-info>
+                <div class="flex flex-wrap gap-2">
+                    <span *ngFor="let day of stylist.calendar" class="bg-blue-500 text-white py-1 px-3 rounded-full">
+                      {{ day }}
+                    </span>
+                </div>
+            </div>
+            <div>
+                <app-mensurations [product]="product"></app-mensurations>
+            </div>
         </div>
+        
+       
     </section>
 </main>
