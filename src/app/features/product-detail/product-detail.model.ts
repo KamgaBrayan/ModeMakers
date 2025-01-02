@@ -16,7 +16,7 @@ export   interface Product {
     material: {
       id: number;
       type: string;
-    };
+    }[];
     rating: number;
     views: number;
   }

@@ -13,10 +13,24 @@
         "id": 1,
         "name": "John Doe"
       },
-      "material": {
-        "id": 12,
-        "type": "Stainless Steel"
-      },
+     "material": [
+        {
+        "id": 1,
+        "type": "Cotton"
+        },
+        {
+          "id": 2,
+          "type": "Cotton"
+        },
+        {
+          "id": 3,
+          "type": "Cotton"
+        },
+        {
+          "id": 4,
+          "type": "Cotton"
+        }
+      ],
       "rating": 3,
       "views": 40
     },
@@ -34,10 +48,24 @@
         "id": 1,
         "name": "John Doe"
       },
-      "material": {
-        "id": 12,
-        "type": "Wood"
-      },
+      "material": [
+        {
+        "id": 1,
+        "type": "Cotton"
+        },
+        {
+          "id": 2,
+          "type": "Cotton"
+        },
+        {
+          "id": 3,
+          "type": "Cotton"
+        },
+        {
+          "id": 4,
+          "type": "Cotton"
+        }
+      ],
       "rating": 2,
       "views": 50
     },
@@ -55,10 +83,24 @@
         "id": 1,
         "name": "John Doe"
       },
-      "material": {
-        "id": 12,
+      "material": [
+        {
+        "id": 1,
         "type": "Cotton"
-      },
+        },
+        {
+          "id": 2,
+          "type": "Cotton"
+        },
+        {
+          "id": 3,
+          "type": "Cotton"
+        },
+        {
+          "id": 4,
+          "type": "Cotton"
+        }
+      ],
       "rating": 1,
       "views": 60
     },
@@ -76,10 +118,24 @@
         "id": 2,
         "name": "Jane Smith"
       },
-      "material": {
-        "id": 12,
-        "type": "Mineral"
-      },
+      "material": [
+        {
+        "id": 1,
+        "type": "Cotton"
+        },
+        {
+          "id": 2,
+          "type": "Cotton"
+        },
+        {
+          "id": 3,
+          "type": "Cotton"
+        },
+        {
+          "id": 4,
+          "type": "Cotton"
+        }
+      ],
       "rating": 1,
       "views": 90
     },
@@ -97,10 +153,24 @@
         "id": 2,
         "name": "Jane Smith"
       },
-      "material": {
-        "id": 12,
-        "type": "Silicone"
-      },
+      "material": [
+        {
+        "id": 1,
+        "type": "Cotton"
+        },
+        {
+          "id": 2,
+          "type": "Cotton"
+        },
+        {
+          "id": 3,
+          "type": "Cotton"
+        },
+        {
+          "id": 4,
+          "type": "Cotton"
+        }
+      ],
       "rating": 4.9,
       "views": 10
     },
@@ -118,10 +188,24 @@
         "id": 2,
         "name": "Jane Smith"
       },
-      "material": {
-        "id": 12,
+      "material": [
+        {
+        "id": 1,
         "type": "Cotton"
-      },
+        },
+        {
+          "id": 2,
+          "type": "Cotton"
+        },
+        {
+          "id": 3,
+          "type": "Cotton"
+        },
+        {
+          "id": 4,
+          "type": "Cotton"
+        }
+      ],
       "rating": 4,
       "views": 90
     },
@@ -139,10 +223,24 @@
         "id": 3,
         "name": "Emily Johnson"
       },
-      "material": {
-        "id": 12,
-        "type": "Acrylic"
-      },
+      "material": [
+        {
+        "id": 1,
+        "type": "Cotton"
+        },
+        {
+          "id": 2,
+          "type": "Cotton"
+        },
+        {
+          "id": 3,
+          "type": "Cotton"
+        },
+        {
+          "id": 4,
+          "type": "Cotton"
+        }
+      ],
       "rating": 3,
       "views": 100
     },
@@ -160,10 +258,24 @@
         "id": 3,
         "name": "Emily Johnson"
       },
-      "material": {
-        "id": 12,
-        "type": "Leather"
-      },
+      "material": [
+        {
+        "id": 1,
+        "type": "Cotton"
+        },
+        {
+          "id": 2,
+          "type": "Cotton"
+        },
+        {
+          "id": 3,
+          "type": "Cotton"
+        },
+        {
+          "id": 4,
+          "type": "Cotton"
+        }
+      ],
       "rating": 2,
       "views": 50
     },
@@ -181,10 +293,24 @@
         "id": 3,
         "name": "Emily Johnson"
       },
-      "material": {
-        "id": 12,
-        "type": "Stainless Steel"
-      },
+      "material": [
+        {
+        "id": 1,
+        "type": "Cotton"
+        },
+        {
+          "id": 2,
+          "type": "Cotton"
+        },
+        {
+          "id": 3,
+          "type": "Cotton"
+        },
+        {
+          "id": 4,
+          "type": "Cotton"
+        }
+      ],
       "rating": 4,
       "views": 40
     }

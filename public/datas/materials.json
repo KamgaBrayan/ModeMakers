@@ -1,0 +1,35 @@
+[
+    {
+      "id": 1,
+      "name": "Cotton",
+      "photos": ["/images/materials/material_1.jpg", "/images/materials/material_1.jpg", "/images/materials/material_1.jpg"],
+      "description": "Soft and breathable fabric.",
+      "price_per_square_meter": 10.0,
+      "color": ["#FFFFFF", "#FF0000", "#808080"]
+    },
+    {
+      "id": 2,
+      "name": "Silk",
+      "photos": ["/images/materials/material_2.jpg", "/images/materials/material_2.jpg", "/images/materials/material_2.jpg"],
+      "description": "Luxurious and smooth fabric with a shiny finish.",
+      "price_per_square_meter": 25.0,
+      "color": ["#FFFFF0", "#F5F5DC", "#000000"]
+    },
+    {
+      "id": 3,
+      "name": "Denim",
+      "photos": ["/images/materials/material_3.jpg", "/images/materials/material_3.jpg", "/images/materials/material_3.jpg"],
+      "description": "Durable and versatile fabric often used in jeans.",
+      "price_per_square_meter": 15.0,
+      "color": ["#0000FF", "#000000", "#FFFFFF"]
+    },
+    {
+      "id": 4,
+      "name": "Wool",
+      "photos": ["/images/materials/material_4.jpg", "/images/materials/material_4.jpg", "/images/materials/material_4.jpg"],
+      "description": "Warm and soft fabric, ideal for cold climates.",
+      "price_per_square_meter": 20.0,
+      "color": ["#FFFFFF", "#FF0000", "#808080"]
+    }
+  ]
+  

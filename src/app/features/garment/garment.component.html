@@ -10,19 +10,8 @@
         <div class="w-[600px] ">
             <app-product-slide [images]="product.photos" [product]="product" [stylist]="stylist"></app-product-slide>
         </div> 
-        
-        <!-- <div>
-            <span class="flex p-6 flex-row items-center justify-between">
-                <span class="flex flex-row items-center">
-                    <h1 class="text-md font-bold  p-4">{{ getFilterText() }}</h1>
-                </span>
-                <span class="flex flex-row items-center">
-                    <app-select-sort (sortChanged)="applySort($event)"></app-select-sort>
-                </span>
-            </span>
-            <div class="flex flex-row flex-wrap gap-4 h-[900px]">
-                <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
-            </div> 
-        </div> -->
+        <div class="w-full">
+            <app-materials [materials]="materials"></app-materials> 
+        </div>
     </section>
 </main>

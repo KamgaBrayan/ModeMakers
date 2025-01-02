@@ -13,10 +13,10 @@ export   interface Product {
       id: number;
       name: string;
     };
-    material: { 
+    material: {
       id: number;
       type: string;
-    };
+    }[];
     rating: number;
     views: number;
   }
@@ -36,4 +36,13 @@ export   interface Product {
     views: number;
     workforce: number[]; //La main d'oeuvre
   }
+  
+export interface Material {
+  id: number;
+  name: string;
+  photos: string[];
+  description: string;
+  price_per_square_meter: number;
+  color: string[];
+}
   

@@ -1,0 +1,23 @@
+<section class=" w-full flex flex-row flex-wrap">
+<h1>Materials</h1>
+    <div *ngFor="let material of materials; let i = index" class="material-card">
+    <h2>{{ material.name }}</h2>
+    <div class="slider-container">
+        <button (click)="previousMaterial(i)" class="slider-button">&#10094;</button>
+        <div class="material-display">
+            <img *ngIf="material.photos.length > 0" 
+                 [src]="material.photos[currentImageIndex[i]]" 
+                 alt="Material Image" />
+            <div class="color-circles">
+                <div *ngFor="let color of material.color; let j = index" 
+                [style.backgroundColor]="color" 
+                [class.active]="j === currentImageIndex[i]" 
+                class="color-circle" 
+                (click)="selectColor(color, i)"></div>
+           
+            </div>
+        </div>
+        <button (click)="nextMaterial(i)" class="slider-button">&#10095;</button>
+    </div>
+</div>
+</section>

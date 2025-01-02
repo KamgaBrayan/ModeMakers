@@ -1,71 +1,101 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product, Stylist } from './garment.model';
+import { Material, Product, Stylist } from './garment.model';
 import { NavbarComponent } from '../stylists/navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ProductSlideComponent } from './product-slide/product-slide.component';
+import { MaterialsComponent } from './materials/materials.component';
 
 @Component({
   selector: 'app-garment',
-  imports: [CommonModule, NavbarComponent, BreadcrumbComponent, ProductSlideComponent],
+  imports: [
+    CommonModule, 
+    NavbarComponent, 
+    BreadcrumbComponent, 
+    ProductSlideComponent,
+    MaterialsComponent
+  ],
   templateUrl: './garment.component.html',
   styleUrls: ['./garment.component.css']
 }) 
 export class GarmentComponent {
-  stylist!: Stylist 
+  stylist!: Stylist;
   product!: Product; // Initialize the product
-  
+  materials: Material[] = [];
   currentImageIndex: number = 0;
   images: string[] = [];
-
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.fetchProductById(id);
-      // Supposons que les images soient chargées depuis un modèle ou un service
-      this.images = this.product.photos; // Remplacez par votre source d'images
+    this.fetchProductById(id)
+      .then(() => {
+        // Appeler fetchMaterials après avoir récupéré le produit
+        this.fetchMaterials();
+      })
+      .catch(error => {
+        console.error("Initialization failed:", error);
+      });
   }
- 
-  fetchProductById(id: string | null) {
-    // Fetch products from the JSON file
-    fetch('/datas/products.json')
+  
+
+  fetchProductById(id: string | null): Promise<void> {
+    return fetch('/datas/products.json')
       .then(response => response.json())
       .then((products: Product[]) => {
-        // Find the product by its ID
         const product = products.find(product => product.id === Number(id));
         if (product) {
           this.product = product;
-          console.log(product)
-          this.fetchStylist(product.stylist.id); // Fetch stylist using the product's stylist ID
+          this.images = product.photos;
+          this.fetchStylist(product.stylist.id);
+          return; // Résoudre la promesse après l'assignation
         } else {
           console.error("Product not found");
+          throw new Error("Product not found");
         }
       })
       .catch(error => {
         console.error("Error fetching product:", error);
+        throw error;
       });
   }
+  
 
   fetchStylist(stylistId: number) {
-    // Fetch stylists from the JSON file
     fetch('/datas/stylists.json')
       .then(response => response.json())
       .then((stylists: Stylist[]) => {
-        // Find the stylist by their ID
-        const data = stylists.find(stylist => stylist.id === stylistId);
-        if(data){
-          this.stylist = data
-        }
-        if (!this.stylist) {
+        const stylist = stylists.find(s => s.id === stylistId);
+        if (stylist) {
+          this.stylist = stylist;
+        } else {
           console.error("Stylist not found");
         }
-        console.log(this.stylist)
       })
       .catch(error => {
         console.error("Error fetching stylist:", error);
       });
   }
+
+  fetchMaterials() {
+    if (!this.product) {
+      console.error("Product not loaded, cannot fetch materials.");
+      return;
+    } 
+  
+    fetch('/datas/materials.json')
+      .then(response => response.json())
+      .then((materials: Material[]) => {
+        this.materials = materials.filter(material =>
+          this.product.material.some(prodMaterial => prodMaterial.id === material.id)
+        );
+        console.log(this.materials); // Log to confirm the filtered materials
+      })
+      .catch(error => {
+        console.error("Error fetching materials:", error);
+      });
+  }
+  
 }
