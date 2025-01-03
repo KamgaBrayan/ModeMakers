@@ -1,0 +1,604 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Elegant Summer Dress",
+      "price": 25000,
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Beautiful floral summer dress perfect for any occasion",
+      "category": "Women",
+      "rating": 4.5,
+      "numberReviews": 128,
+      "inStock": true,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Classic Denim Jacket",
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Timeless denim jacket that goes with everything",
+      "price": 129.99,
+      "category": "Unisex",
+      "rating": 4.8,
+      "numberReviews": 256,
+      "inStock": true,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Casual Sneakers",
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Comfortable and stylish sneakers for everyday wear",
+      "price": 79.99,
+      "category": "Shoes",
+      "rating": 4.3,
+      "numberReviews": 89,
+      "inStock": true,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Leather Handbag",
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Premium leather handbag with multiple compartments",
+      "price": 199.99,
+      "category": "Accessories",
+      "rating": 4.7,
+      "numberReviews": 167,
+      "inStock": false,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Elegant Summer Dress",
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Beautiful floral summer dress perfect for any occasion",
+      "price": 89.99,
+      "category": "Women",
+      "rating": 4.5,
+      "numberReviews": 128,
+      "inStock": true,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Classic Denim Jacket",
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Timeless denim jacket that goes with everything",
+      "price": 129.99,
+      "category": "Unisex",
+      "rating": 4.8,
+      "numberreviews": 256,
+      "inStock": true,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Casual Sneakers",
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Comfortable and stylish sneakers for everyday wear",
+      "price": 79.99,
+      "category": "Shoes",
+      "rating": 4.3,
+      "numberReviews": 89,
+      "inStock": true,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Leather Handbag",
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Premium leather handbag with multiple compartments",
+      "price": 199.99,
+      "category": "Accessories",
+      "rating": 4.7,
+      "numberReviews": 167,
+      "inStock": false,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Elegant Summer Dress",
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Beautiful floral summer dress perfect for any occasion",
+      "price": 89.99,
+      "category": "Women",
+      "rating": 4.5,
+      "numberReviews": 128,
+      "inStock": true,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Classic Denim Jacket",
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Timeless denim jacket that goes with everything",
+      "price": 129.99,
+      "category": "Unisex",
+      "rating": 4.8,
+      "numberReviews": 256,
+      "inStock": true,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Casual Sneakers",
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Comfortable and stylish sneakers for everyday wear",
+      "price": 79.99,
+      "category": "Shoes",
+      "rating": 4.3,
+      "numberReviews": 89,
+      "inStock": true,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Leather Handbag",
+      "storeNumber": "5fhp90",
+      "gender": "Female",
+      "age": "Ranges",
+      "size": "Medium adult",
+      "color": "Brown and yellow",
+      "measurementRequest": true,
+      "location": "Nation wide",
+      "publishedDate": "16/11/2022",
+      "description": "Premium leather handbag with multiple compartments",
+      "price": 199.99,
+      "category": "Accessories",
+      "rating": 4.7,
+      "numberReviews": 167,
+      "inStock": false,
+      "isFavorite": false,
+      "colors": ["Red", "Blue", "Green", "Yellow"],
+      "materials": [
+        { "name": "Satin", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Microfiber", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" },
+        { "name": "Polyester", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg"},
+        { "name": "Cotton", "colors": ["Red", "Blue", "Green", "Yellow"], "image": "assets/images/products/dress4.jpg" }
+      ],
+      "images": [
+        "assets/images/products/dress1.jpg",
+        "assets/images/products/dress2.jpg",
+        "assets/images/products/dress3.jpg",
+        "assets/images/products/dress4.jpg"
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "userName": "Alice Stevens",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 5,
+          "comment": "Perfect fit and beautiful material! I love it!",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "userName": "Sophie Chen",
+          "userTitle": "CEO at Bukalapak",
+          "rating": 4,
+          "comment": "Great dress, shipping was fast and the quality is amazing.",
+          "date": "2024-03-10"
+        }
+      ]
+    }
+  ]
+}

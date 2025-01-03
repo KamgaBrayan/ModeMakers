@@ -1,4 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importation de Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Importation des polices et icônes */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+/* Variables globales */
+:root {
+  --primary-color: #3734A9;
+  --primary-color-dark: #2d2b87;
+  --primary-color-light: #F2F0FF;
+  --text-dark: #00171F;
+  --text-gray: #667479;
+  --text-primary: #3734A9;
+  --white: #ffffff;
+  --accent-red: #FF4B4B;
+  --accent-red-dark: #ff3333;
+  --border-color: #ddd;
+  --bg-light: #f5f5f5;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --radius-sm: 8px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+  --radius-full: 50%;
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* Reset général */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}

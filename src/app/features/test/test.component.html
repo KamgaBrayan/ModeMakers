@@ -1,0 +1,165 @@
+<app-navbar/>
+
+<div class="product-gallery">
+  <button class="nav-button prev" (click)="previousImage()">&lt;</button>
+  <div class="main-image">
+    <img [src]="selectedImage" [alt]="product.name">
+  </div>
+  <button class="nav-button next" (click)="nextImage()">&gt;</button>
+
+  <div class="thumbnail-container">
+    <div class="thumbnail" *ngFor="let img of product.images; let i = index"
+        [class.active]="selectedImage === img"
+        (click)="selectImage(img, i)">
+      <img [src]="img" [alt]="product.name">
+    </div>
+  </div>
+</div>
+
+<!-- product-detail.component.html -->
+<div class="product-detail" *ngIf="product">
+  <div class="product-info">
+    <h1 class="product-title">{{ product.name }}</h1>
+    <p class="product-price">{{ product.price }} FCFA</p>
+
+    <div class="action-buttons">
+      <button class="btn-primary">Contact us</button>
+    </div>
+
+    <div class="product-details-grid">
+      <div class="detail-row">
+        <span class="label">Store Number</span>
+        <span class="value">{{ product.storeNumber }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Gender</span>
+        <span class="value">{{ product.gender }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Age</span>
+        <span class="value">{{ product.age }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Size</span>
+        <span class="value">{{ product.size }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Color</span>
+        <span class="value">{{ product.color }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Measurement request</span>
+        <span class="value">{{ product.measurementRequest ? 'Yes' : 'No' }}
+          <a href="#" class="link-blue">Request for measurement</a>
+        </span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Location</span>
+        <span class="value">{{ product.location }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Published Date</span>
+        <span class="value">{{ product.publishedDate }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Additional Information</span>
+        <span class="value">{{ product.additionalInformation }}</span>
+      </div>
+    </div>
+
+    <div class="action-buttons-bottom">
+      <button class="btn-primary">Add to cart</button>
+      <button class="btn-outline">Command now</button>
+    </div>
+  </div>
+
+  <div class="other">
+    <div class="materials-section">
+      <h2 class="section-title">Materiels</h2>
+
+      <div class="materials-carousel">
+        <button class="nav-btn prev" (click)="previousMaterial()">&lt;</button>
+
+        <div class="materials-wrapper">
+          <div class="material-card" *ngFor="let material of product.materials; let i = index"
+               [class.active]="i === selectedMaterial">
+            <img [src]="material.image" [alt]="material.name">
+            <div class="material-name">
+              {{ material.name }}
+              <span class="material-spec">(100F/m²)</span>
+            </div>
+            <div class="color-dots">
+              <span class="dot" *ngFor="let color of material.colors"
+                    [style.background-color]="color"></span>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-btn next" (click)="nextMaterial()">&gt;</button>
+      </div>
+    </div>
+
+    <div class="planning-section">
+      <h2 class="section-title">Planning of stylist</h2>
+      <div class="month-name">December</div>
+
+      <div class="planning-grid">
+        <div class="grid-header">
+          <div class="day-header" *ngFor="let day of currentWeek">{{ day }}</div>
+        </div>
+
+        <div class="grid-body">
+          <ng-container *ngFor="let week of getPlanningData()">
+            <div class="grid-cell" *ngFor="let day of week"
+                 [class.unavailable]="day === 'unavailable'">
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="planning-legend">
+        <div class="legend-item">
+          <div class="legend-color available"></div>
+          <span>Available</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color unavailable"></div>
+          <span>Unavailable</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="reviews-section" *ngIf="product.reviews.length">
+  <h2 class="section-title">Reviews <span class="review-count">{{ product.reviews.length }}</span></h2>
+
+  <div class="review-list">
+    <div class="review-item" *ngFor="let review of product.reviews.slice(0, 3)">
+      <div class="review-header">
+        <div class="user-info">
+          <h3 class="user-name">{{ review.userName }}</h3>
+          <p class="user-title">{{ review.userTitle }}</p>
+        </div>
+        <div class="review-date">{{ review.date }}</div>
+      </div>
+
+      <div class="rating">
+        <ng-container *ngFor="let star of [1,2,3,4,5]">
+          <i class="fas fa-star" [class.filled]="star <= review.rating"></i>
+        </ng-container>
+      </div>
+
+      <p class="review-text">{{ review.comment }}</p>
+    </div>
+
+    <!-- Optionnel : Ajouter un bouton "Voir plus" s'il y a plus de 4 reviews -->
+    <button *ngIf="product.reviews.length > 4" class="btn-outline">
+      Voir les {{ product.reviews.length - 4 }} autres avis
+    </button>
+    <hr>
+  </div>
+</div>
+
+<app-footer/>
