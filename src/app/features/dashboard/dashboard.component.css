@@ -1,0 +1,187 @@
+/* Dashboard styles */
+:host {
+  display: block;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.dashboard-container {
+  @apply flex min-h-screen bg-gray-50;
+}
+
+.main-content {
+  @apply flex-1 p-8 transition-all duration-300;
+}
+
+.main-content.sidebar-expanded {
+  @apply ml-60;
+}
+
+.main-content.sidebar-collapsed {
+  @apply ml-20;
+}
+
+/* Header Styles */
+.header {
+  @apply flex justify-between items-center mb-8;
+}
+
+.greeting {
+  @apply text-2xl font-semibold;
+}
+
+.search-bar {
+  @apply flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm;
+}
+
+.search-bar svg {
+  @apply text-gray-400;
+}
+
+.search-bar input {
+  @apply border-none outline-none bg-transparent;
+}
+
+/* Stats Grid */
+.stats-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8;
+}
+
+.stat-card {
+  @apply bg-white p-6 rounded-lg shadow-sm flex items-start gap-4;
+}
+
+.stat-icon {
+  @apply p-3 rounded-lg;
+}
+
+.stat-icon.revenue {
+  @apply bg-blue-50 text-blue-600;
+}
+
+.stat-icon.sales {
+  @apply bg-green-50 text-green-600;
+}
+
+.stat-icon.models {
+  @apply bg-purple-50 text-purple-600;
+}
+
+.stat-icon.balance {
+  @apply bg-orange-50 text-orange-600;
+}
+
+.stat-info {
+  @apply flex flex-col;
+}
+
+.stat-label {
+  @apply text-sm text-gray-500;
+}
+
+.stat-value {
+  @apply text-xl font-semibold mt-1;
+}
+
+.stat-change {
+  @apply text-sm mt-1;
+}
+
+.stat-change.positive {
+  @apply text-green-600;
+}
+
+.stat-change.negative {
+  @apply text-red-600;
+}
+
+/* Charts Grid */
+.charts-grid {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8;
+}
+
+.sales-progress-card {
+  @apply bg-white p-6 rounded-lg shadow-sm lg:col-span-1;
+}
+
+.statistics-card {
+  @apply bg-white p-6 rounded-lg shadow-sm lg:col-span-2;
+}
+
+.card-header {
+  @apply flex flex-col mb-6;
+}
+
+.card-header h3 {
+  @apply text-lg font-semibold;
+}
+
+.card-header .subtitle {
+  @apply text-sm text-gray-500 mt-1;
+}
+
+.progress-info {
+  @apply mt-6;
+}
+
+.progress-values {
+  @apply flex justify-between text-sm;
+}
+
+.value-item {
+  @apply flex flex-col;
+}
+
+.value-item .label {
+  @apply text-gray-500;
+}
+
+.value-item .amount {
+  @apply font-semibold mt-1;
+}
+
+/* Bottom Grid */
+.bottom-grid {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8;
+}
+
+.bottom-grid app-top-selling-models {
+  @apply lg:col-span-2;
+}
+
+.bottom-grid app-sales-by-location {
+  @apply lg:col-span-1;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .stats-grid {
+    @apply grid-cols-2;
+  }
+
+  .charts-grid {
+    @apply grid-cols-1;
+  }
+
+  .bottom-grid {
+    @apply grid-cols-1;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
