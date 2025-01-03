@@ -7,16 +7,17 @@ import { DescriptionComponent } from './description/description.component';
 import { FormsModule } from '@angular/forms';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { SignupComponent } from '../stylists/signup/signup.component';
 
 
 @NgModule({
     declarations: [
-        StylistProfileComponent,
-        BreadcrumbComponent,
-        DescriptionComponent,
-        FormsModule,
-        CalendarComponent,
-        ReviewsComponent
+        // StylistProfileComponent,
+        // BreadcrumbComponent,
+        // DescriptionComponent,
+        // FormsModule,
+        // CalendarComponent,
+        // ReviewsComponent 
     ],
     imports: [
         CommonModule,
@@ -25,13 +26,15 @@ import { ReviewsComponent } from './reviews/reviews.component';
         DescriptionComponent,
         FormsModule,
         CalendarComponent,
-        ReviewsComponent
+        ReviewsComponent,
+        SignupComponent
       ], 
       exports: [
           BreadcrumbComponent ,
           DescriptionComponent,
           CalendarComponent,
-          ReviewsComponent
+          ReviewsComponent,
+          SignupComponent 
       ]
 })
 

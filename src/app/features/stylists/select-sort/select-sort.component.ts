@@ -3,7 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-select-sort',
+  selector: 'app-select-sort-stylist',
   imports: [CommonModule, FormsModule],
   templateUrl: './select-sort.component.html',
   styleUrls: ['./select-sort.component.css'],

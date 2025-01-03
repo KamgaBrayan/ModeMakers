@@ -1,7 +1,7 @@
 <main class="px-4">
     <app-navbar></app-navbar>
     <div class="py-2">
-      <app-breadcrumb></app-breadcrumb>
+      <app-breadcrumb-stylist-profile></app-breadcrumb-stylist-profile>
     </div>
     <div class="py-4">
         <app-description [stylist]="stylist"></app-description> <!-- Pass stylist data -->
@@ -20,22 +20,23 @@
                     <h1 class="text-md font-bold  p-4">{{ getFilterText() }}</h1>
                 </span>
                 <span class="flex flex-row items-center">
-                    <app-select-sort (sortChanged)="applySort($event)"></app-select-sort>
+                    <app-select-sort-product (sortChanged)="applySort($event)"></app-select-sort-product>
                 </span>
             </span>
-            <div class="flex flex-row flex-wrap gap-4 h-[900px]">
+            <div class="flex flex-row flex-wrap gap-4 max-h-[900px] overflow-y-auto">
                 <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
             </div>
         </div>
     </section>
     <span class="w-full flex justify-center">
-        <h3 class="font-bold text-lg p-4">User Reviews:</h3>
+        <h3 class="font-bold text-2xl p-8">What people all over the world are saying about the Stylist</h3>
     </span>
-    <section class="flex gap-2 pb-4">
-    <div class="px-4">
-      <span class="w-full flex flex-row justify-center items-center">
-        <app-reviews></app-reviews> <!-- Include the ReviewsComponent -->
-      </span>
-    </div>
+    <section class="w-full flex p-4 justify-center">
+        <div class="overflow-hidden w-[80%] border p-4 bg-white shadow-md rounded-lg">
+            <app-reviews></app-reviews> <!-- Include the ReviewsComponent -->
+        </div>
   </section>
+  <div class="w-full py-28">
+    <app-signup></app-signup>
+</div>
 </main>

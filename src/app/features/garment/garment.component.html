@@ -1,36 +1,61 @@
-<main class="px-4">
+<main class="px-4 md:px-8 lg:px-16">
     <app-navbar></app-navbar>
+    
+    <!-- Breadcrumb Section -->
     <div class="py-2">
-      <app-breadcrumb></app-breadcrumb>
+      <app-breadcrumb-garnment></app-breadcrumb-garnment>
     </div>
+    
+    <!-- Stylist Header -->
     <div>
-        <h1 class="font-bold text-2xl p-4">Stylist : {{stylist.name}}</h1>
+      <h1 class="font-bold text-xl md:text-2xl lg:text-3xl p-4">Stylist: {{ stylist.name }}</h1>
     </div>
-    <section class="flex gap-2 pb-4 w-full ">  
-        <div class="w-[600px] ">
-            <app-product-slide [images]="product.photos" [product]="product" [stylist]="stylist"></app-product-slide>
-        </div> 
-        <div class="w-[50%] h-[900px] flex flex-col justify-between">
-            <!-- <h1 class="text-2xl font-bold">Informations</h1> -->
-            
-            <div class="w-full  overflow-hidden border max-w-lg mx-auto p-2 bg-white shadow-md rounded-lg">
-                <h2 class="text-xl font-semibold py-2 pl-4 ">Materials</h2> 
-                <app-materials [materials]="materials"></app-materials> 
-            </div>
-            <!-- <h2 class="text-xl font-semibold py-4 ">Personnal Informations</h2>  -->
-            <div class="w-full border max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
-                <app-personal-info></app-personal-info>
-                <div class="flex flex-wrap gap-2">
-                    <span *ngFor="let day of stylist.calendar" class="bg-blue-500 text-white py-1 px-3 rounded-full">
-                      {{ day }}
-                    </span>
-                </div>
-            </div>
-            <div>
-                <app-mensurations [product]="product"></app-mensurations>
-            </div>
+  
+    <!-- Main Section -->
+    <section class="flex flex-col lg:flex-row lg:justify-between gap-4  pb-4">
+      <!-- Product Slide Section -->
+      <div class="h-[900px] w-full lg:w-[48%]">
+        <app-product-slide [images]="product.photos" [product]="product" [stylist]="stylist"></app-product-slide>
+      </div>
+      
+      <!-- Materials and Personal Info Section -->
+      <div class="h-[900px] w-full lg:w-[48%] flex flex-col justify-between gap-4">
+        <!-- Materials -->
+        <div class="overflow-hidden border p-4 bg-white shadow-md rounded-lg">
+          <h2 class="text-lg md:text-xl font-semibold py-2">Materials</h2>
+          <app-materials [materials]="materials"></app-materials>
         </div>
         
-       
+        <!-- Personal Information -->
+        <div class="border p-4 bg-white shadow-md rounded-lg">
+          <app-personal-info></app-personal-info>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span
+              *ngFor="let day of stylist.calendar"
+              class="bg-indigo-700 text-white py-1 px-3 rounded-full"
+            >
+              {{ day }}
+            </span>
+          </div>
+        </div>
+      </div>
     </section>
-</main>
+  
+    <!-- Mensurations and Reviews Section -->
+    <div class="flex flex-col lg:flex-row justify-between w-full">
+      <!-- Mensurations -->
+      <div class="w-full lg:w-[48%] py-2">
+        <app-mensurations [product]="product"></app-mensurations>
+      </div>
+  
+      <!-- User Reviews -->
+      <div class="w-full lg:w-[48%] py-2">
+        <div class="flex flex-row justify-between w-full pb-4">
+            <button  class="w-[48%] h-[40px] rounded-md bg-indigo-700 text-white flex items-center justify-center transition-all hover:bg-indigo-800 text-sm">Add to card</button>
+            <button  class="w-[48%] h-[40px] rounded-md bg-white border-indigo-700 border text-indigo-700 flex items-center justify-center transition-all hover:bg-indigo-600 text-sm hover:text-white">Ask for a Garnment</button>
+        </div>
+        <app-user-reviews></app-user-reviews>
+      </div>
+    </div>
+  </main>
+  

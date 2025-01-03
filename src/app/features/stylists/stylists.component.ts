@@ -7,11 +7,21 @@ import { CommonModule } from '@angular/common';
 import { SidebarFilterComponent } from './sidebar-filter/sidebar-filter.component';
 import { SelectSortComponent } from './select-sort/select-sort.component';
 import { Stylist } from './stylist.model';
+import { SignupComponent } from './signup/signup.component';
 
 
 @Component({
   selector: 'app-stylists',
-  imports: [CommonModule, NavbarComponent, BreadcrumbComponent, HeroComponent, CardComponent, SidebarFilterComponent, SelectSortComponent],
+  imports: [
+    CommonModule, 
+    NavbarComponent, 
+    BreadcrumbComponent, 
+    HeroComponent, 
+    CardComponent, 
+    SidebarFilterComponent, 
+    SelectSortComponent,
+    SignupComponent, 
+  ],
   templateUrl: './stylists.component.html',
   styleUrls: ['./stylists.component.css'],
   // standalone: true // This line indicates it's a standalone component

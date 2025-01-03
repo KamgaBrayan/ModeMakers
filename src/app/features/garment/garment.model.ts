@@ -1,10 +1,8 @@
- 
-export   interface Product {
+ export   interface Product {
     id: number;
     name: string;
     gender: string;
-    age: string; // Vous pouvez adapter le type en fonction des valeurs possibles, comme 'Range' ou 'Child'
-    category: string;
+    age: string;
     photos: string[];
     description: string;
     price: number;
@@ -47,6 +45,14 @@ export interface Material {
   color: string[];
 }
   
+export interface UserReview {
+  username: string;
+  rating: number; // Valeur entre 1 et 5
+  comment: string;
+  date: Date;
+}
+
+
 export type MeasureKey = 
   | "stature"
   | "shoulder_circumference"
@@ -67,5 +73,4 @@ export type MeasureKey =
   | "wrist_circumference"
   | "ankle_height"
   | "seated_height"
-  | "crotch_length"
-  | "";
+  | "crotch_length";

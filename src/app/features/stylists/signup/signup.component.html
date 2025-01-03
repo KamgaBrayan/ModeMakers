@@ -1,0 +1,39 @@
+<div class="w-[80%] mx-auto p-6 bg-indigo-700 shadow-md rounded-lg">
+    <!-- Entête -->
+
+
+    <!-- Formulaire d'inscription -->
+    <form *ngIf="signupForm" [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="space-y-4">
+
+        <!-- Champ email -->
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">
+                <h2 class="text-xl font-bold text-white mb-6 text-center">
+                    Sign up now so your selected items are saved to your personal cart.
+                </h2>
+            </label>
+            <span class="flex flex-row justify-around bg-white w-full h-[100px] p-6 rounded-lg ">
+                <input id="email" formControlName="email" type="email"
+                    class="mt-1 w-[60%] px-3 py-2 border text-indigo-700 border-indigo-700 rounded-lg focus:outline-none focus:ring focus:ring-indigo-300"
+                    placeholder="Enter your email" />
+                <p *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    Veuillez entrer un email valide.
+                </p>
+                <button type="submit" [disabled]="signupForm.invalid"
+                    class="w-[35%] bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-300 flex items-center justify-center gap-2">
+                    <span>
+                        Sign up now
+                        <i class="fa fa-user-plus px-2"></i> <!-- Icône FontAwesome -->
+                    </span>
+
+                </button>
+
+            </span>
+
+        </div>
+
+        <!-- Bouton de soumission -->
+
+    </form>
+</div>

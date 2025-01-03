@@ -8,17 +8,20 @@ import { CardComponent } from './card/card.component';
 import { SidebarFilterComponent } from './sidebar-filter/sidebar-filter.component';
 import { SelectSortComponent } from './select-sort/select-sort.component';
 import { FormsModule } from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
-    StylistsComponent,
-    NavbarComponent,
-    BreadcrumbComponent,
-    HeroComponent,
-    CardComponent,
-    SidebarFilterComponent,
-    SelectSortComponent,
-    FormsModule
+    // StylistsComponent,
+    // NavbarComponent,
+    // BreadcrumbComponent,
+    // HeroComponent,
+    // CardComponent,
+    // SidebarFilterComponent,
+    // SelectSortComponent
+    // ,
+    // FormsModule
+    // SignupComponent,
     
   ],
   imports: [
@@ -30,8 +33,8 @@ import { FormsModule } from '@angular/forms';
     CardComponent,
     SidebarFilterComponent,
     SelectSortComponent,
-    FormsModule
-    
+    FormsModule,
+    SignupComponent
   ],
   exports: [
     NavbarComponent,
@@ -39,7 +42,8 @@ import { FormsModule } from '@angular/forms';
     HeroComponent,
     CardComponent,
     SidebarFilterComponent,
-    SelectSortComponent
+    SelectSortComponent,
+    SignupComponent
 
   ]
 })

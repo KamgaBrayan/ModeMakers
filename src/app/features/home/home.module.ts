@@ -34,14 +34,15 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     FormsModule,
-    FormBuilder,
-    FormGroup
+    // FormBuilder,
+    // FormGroup
   ],
   exports: [
     RouterModule,
-    FormsModule,
-    FormBuilder,
-    FormGroup]
+    // FormsModule,
+    // FormBuilder,
+    // FormGroup
+  ]
 }) 
 
 export class HomeModule { }

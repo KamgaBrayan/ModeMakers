@@ -11,7 +11,6 @@ describe('MensurationsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MensurationsComponent,
-        FormGroup
       ]
     })
     .compileComponents();

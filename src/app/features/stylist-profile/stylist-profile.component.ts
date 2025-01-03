@@ -9,19 +9,21 @@ import { AvailabilityComponent } from './availability/availability.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { Product, Stylist } from './stylist-profile.model';
 import { NavbarComponent } from '../stylists/navbar/navbar.component';
+import { SignupComponent } from "../stylists/signup/signup.component";
 
 @Component({
   selector: 'app-stylist-profile',
   imports: [
     CommonModule,
-    NavbarComponent, 
-    BreadcrumbComponent, 
-    DescriptionComponent, 
-    ProductCardComponent, 
+    NavbarComponent,
+    BreadcrumbComponent,
+    DescriptionComponent,
+    ProductCardComponent,
     SelectSortComponent,
     AvailabilityComponent,
-    ReviewsComponent
-  ],
+    ReviewsComponent,
+    SignupComponent
+],
   templateUrl: './stylist-profile.component.html',
   styleUrls: ['./stylist-profile.component.css']
 })

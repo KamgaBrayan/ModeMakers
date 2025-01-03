@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-breadcrumb',
+  selector: 'app-breadcrumb-product-detail',
   imports: [RouterModule],
   templateUrl: './breadcrumb.component.html',
   styleUrls: ['./breadcrumb.component.css'],

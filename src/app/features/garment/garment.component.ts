@@ -8,6 +8,7 @@ import { ProductSlideComponent } from './product-slide/product-slide.component';
 import { MaterialsComponent } from './materials/materials.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { MensurationsComponent } from './mensurations/mensurations.component';
+import { UserReviewsComponent } from './user-reviews/user-reviews.component';
 
 @Component({
   selector: 'app-garment',
@@ -18,7 +19,9 @@ import { MensurationsComponent } from './mensurations/mensurations.component';
     ProductSlideComponent,
     MaterialsComponent,
     PersonalInfoComponent,
-    MensurationsComponent
+    MensurationsComponent,
+    UserReviewsComponent
+  
   ],
   templateUrl: './garment.component.html',
   styleUrls: ['./garment.component.css']

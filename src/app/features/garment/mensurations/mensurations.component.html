@@ -1,15 +1,30 @@
-<div class="container">
-    <h2>Products</h2>
-  
-    <div *ngIf="product">
-      <h3>Enter Measures for {{ product.name }}</h3>
-      <form [formGroup]="measureForm" (ngSubmit)="saveMeasures()">
-        <div *ngFor="let measure of measureForm?.controls | keyvalue">
-          <label [for]="measure.key">{{ measure.key }}</label>
-          <input [id]="measure.key" [formControlName]="measure.key" />
-        </div>
-        <button type="submit">Save Measures</button>
-      </form>
+<div class="border p-4 bg-white shadow-md rounded-lg max-w-2xl">
+  <h2 class="text-xl font-bold text-gray-800 mb-4">Mesures pour {{ product.name }}</h2>
+
+  <form *ngIf="measureForm" [formGroup]="measureForm" (ngSubmit)="saveMeasures()">
+    <div class="space-y-4">
+      <div *ngFor="let measure of requiredMeasureKeys" class="flex flex-col">
+        <label
+          [for]="measure"
+          class="text-sm font-semibold text-gray-600 mb-2 capitalize"
+        >
+          {{ measure.replace('_', ' ') }}
+        </label>
+        <input
+          [id]="measure"
+          [formControlName]="measure"
+          type="text"
+          class="px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300"
+          placeholder="Enter {{ measure.replace('_', ' ') }}"
+        />
+      </div>
     </div>
-  </div>
-  
+
+    <button
+      type="submit"
+      class="mt-6 w-full bg-indigo-700 text-white py-2 px-4 rounded-lg hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-indigo-400"
+    >
+      Sauvegarder
+    </button>
+  </form>
+</div>

@@ -1,0 +1,78 @@
+<div class="border p-4 bg-white shadow-md rounded-lg">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Laissez une review</h2>
+  
+    <!-- Formulaire -->
+    <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+      <div class="mb-4">
+        <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
+        <input
+          id="username"
+          formControlName="username"
+          type="text"
+          class="mt-1 px-3 py-2 border rounded-lg w-full focus:outline-none focus:ring focus:ring-indigo-300"
+          placeholder="Votre nom"
+        />
+        <p *ngIf="reviewForm.get('username')?.invalid && reviewForm.get('username')?.touched" class="text-red-500 text-sm mt-1">
+          Nom requis (minimum 2 caractères).
+        </p>
+      </div>
+  
+      <div class="mb-4">
+        <label for="rating" class="block text-sm font-medium text-gray-700">Note</label>
+        <select
+          id="rating"
+          formControlName="rating"
+          class="mt-1 px-3 py-2 border rounded-lg w-full focus:outline-none focus:ring focus:ring-indigo-300"
+        >
+          <option value="" disabled>Sélectionnez une note</option>
+          <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">{{ star }}</option>
+        </select>
+        <p *ngIf="reviewForm.get('rating')?.invalid && reviewForm.get('rating')?.touched" class="text-red-500 text-sm mt-1">
+          Une note entre 1 et 5 est requise.
+        </p>
+      </div>
+  
+      <div class="mb-4">
+        <label for="comment" class="block text-sm font-medium text-gray-700">Commentaire</label>
+        <textarea
+          id="comment"
+          formControlName="comment"
+          rows="4"
+          class="mt-1 px-3 py-2 border rounded-lg w-full focus:outline-none focus:ring focus:ring-indigo-300"
+          placeholder="Votre commentaire"
+        ></textarea>
+        <p *ngIf="reviewForm.get('comment')?.invalid && reviewForm.get('comment')?.touched" class="text-red-500 text-sm mt-1">
+          Commentaire requis (minimum 5 caractères).
+        </p>
+      </div>
+  
+      <button
+        type="submit"
+        [disabled]="reviewForm.invalid"
+        class="w-full bg-indigo-700 text-white py-2 px-4 rounded-lg hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-indigo-800"
+      >
+        Soumettre
+      </button>
+    </form>
+  
+    <!-- Liste des reviews -->
+    <div *ngIf="reviews.length > 0" class="mt-8">
+      <h3 class="text-lg font-bold text-gray-800 mb-4">Reviews des utilisateurs</h3>
+      <div *ngFor="let review of reviews" class="border-b py-4">
+        <p class="text-sm text-gray-600">Par <span class="font-medium">{{ review.username }}</span> le {{ review.date | date: 'shortDate' }}</p>
+        <p class="text-yellow-500">Note : {{ review.rating }} / 5</p>
+        <p class="text-gray-700 mt-2">{{ review.comment }}</p>
+      </div>
+    </div>
+  
+    <!-- Boutons 'Contact Us' et 'Chat with the Stylist' -->
+    <div class="mt-8 flex gap-4 justify-between">
+      <button class="bg-indigo-700 text-white px-4 py-2 rounded-lg hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-indigo-400">
+        Contactez-nous
+      </button>
+      <button class="bg-white border border-indigo-700 text-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring focus:ring-indigo-300">
+        Chattez avec le Stylist
+      </button>
+    </div>
+  </div>
+  
