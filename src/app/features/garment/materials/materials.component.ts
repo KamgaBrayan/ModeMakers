@@ -20,18 +20,16 @@ export class MaterialsComponent implements OnInit {
   }
 
   nextMaterial(index: number): void {
-    this.currentImageIndex[index] = (this.currentImageIndex[index] + 1) % this.materials[index].photos.length;
+    this.currentImageIndex[index] = 
+      (this.currentImageIndex[index] + 1) % this.materials[index].photos.length;
   }
 
   previousMaterial(index: number): void {
-    this.currentImageIndex[index] = (this.currentImageIndex[index] - 1 + this.materials[index].photos.length) % this.materials[index].photos.length;
+    this.currentImageIndex[index] = 
+      (this.currentImageIndex[index] - 1 + this.materials[index].photos.length) % this.materials[index].photos.length;
   }
 
-  selectColor(color: string, index: number): void {
-    const material = this.materials[index];
-    const colorIndex = material.color.indexOf(color);
-    if (colorIndex !== -1) {
-      this.currentImageIndex[index] = colorIndex;
-    }
+  setImage(index: number, imageIndex: number): void {
+    this.currentImageIndex[index] = imageIndex;
   }
 }

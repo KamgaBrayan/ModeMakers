@@ -3,22 +3,26 @@
     <div *ngFor="let material of materials; let i = index" class="material-card">
     <h2>{{ material.name }}</h2>
     <div class="slider-container">
-        <button (click)="previousMaterial(i)" class="slider-button">&#10094;</button>
-        <div class="material-display">
+        
+        <div class="material-display flex flex-row justify-around w-full">
+            <button (click)="previousMaterial(i)" class="slider-button">&#10094;</button>
             <img *ngIf="material.photos.length > 0" 
                  [src]="material.photos[currentImageIndex[i]]" 
                  alt="Material Image" />
-            <div class="color-circles">
-                <div *ngFor="let color of material.color; let j = index" 
-                [style.backgroundColor]="color" 
-                [class.active]="j === currentImageIndex[i]" 
-                class="color-circle" 
-                (click)="selectColor(color, i)"></div>
-                
-            </div>
+            <button (click)="nextMaterial(i)" class="slider-button">&#10095;</button>
         </div>
-        <button (click)="nextMaterial(i)" class="slider-button">&#10095;</button>
+        <div class="color-circles">
+            <div class="dots-container">
+                <span
+                  *ngFor="let photo of material.photos; let j = index"
+                  (click)="setImage(i, j)"
+                  class="dot"
+                  [class.active]="currentImageIndex[i] === j"
+                ></span>
+              </div>
+        </div>
+        
     </div>
-    <h2 class="pt-2">{{ material.price_per_square_meter }} FrCFA/m²</h2>
+    <h2 class="pt-4">{{ material.price_per_square_meter }} FrCFA/m²</h2>
 </div>
 </section>

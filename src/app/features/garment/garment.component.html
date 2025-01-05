@@ -15,7 +15,7 @@
     <section class="flex flex-col lg:flex-row lg:justify-between gap-4  pb-4">
       <!-- Product Slide Section -->
       <div class="h-[900px] w-full lg:w-[48%]">
-        <app-product-slide [images]="product.photos" [product]="product" [stylist]="stylist"></app-product-slide>
+        <app-product-slide [product]="product" [stylist]="stylist" [rating]="rating"></app-product-slide>
       </div>
       
       <!-- Materials and Personal Info Section -->
@@ -30,6 +30,7 @@
         <div class="border p-4 bg-white shadow-md rounded-lg">
           <app-personal-info></app-personal-info>
           <div class="flex flex-wrap gap-2 mt-4">
+            <p>Stylist Availability : </p>
             <span
               *ngFor="let day of stylist.calendar"
               class="bg-indigo-700 text-white py-1 px-3 rounded-full"
@@ -42,20 +43,21 @@
     </section>
   
     <!-- Mensurations and Reviews Section -->
-    <div class="flex flex-col lg:flex-row justify-between w-full">
+    <div class="flex flex-col justify-center items-center w-full">
       <!-- Mensurations -->
-      <div class="w-full lg:w-[48%] py-2">
+      <!-- <div class="w-full lg:w-[48%] py-2">
         <app-mensurations [product]="product"></app-mensurations>
-      </div>
+      </div> -->
   
       <!-- User Reviews -->
-      <div class="w-full lg:w-[48%] py-2">
+      
         <div class="flex flex-row justify-between w-full pb-4">
+          <button  class="w-[48%] h-[40px] rounded-md bg-white border-indigo-700 border text-indigo-700 flex items-center justify-center transition-all hover:bg-indigo-600 text-sm hover:text-white">Ask for a Garnment</button>
             <button  class="w-[48%] h-[40px] rounded-md bg-indigo-700 text-white flex items-center justify-center transition-all hover:bg-indigo-800 text-sm">Add to card</button>
-            <button  class="w-[48%] h-[40px] rounded-md bg-white border-indigo-700 border text-indigo-700 flex items-center justify-center transition-all hover:bg-indigo-600 text-sm hover:text-white">Ask for a Garnment</button>
         </div>
-        <app-user-reviews></app-user-reviews>
-      </div>
-    </div>
+        <div class="w-[60%] py-12">
+          <app-user-reviews></app-user-reviews>
+        </div>
+    </div> 
   </main>
   

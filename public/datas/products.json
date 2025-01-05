@@ -23,17 +23,8 @@
         "type": "Metal"
       }
     ],
-    "rating": 3,
     "views": 40,
-    "requiredMeasures": {
-      "stature": true,
-      "shoulder_circumference": true,
-      "chest_circumference": true,
-      "waist_circumference": true,
-      "hip_circumference": true,
-      "arm_length": true,
-      "total_arm_length_bent": false 
-    }
+    "workforce": [1000, 2000, 3000]
   },
   {
     "id": 2,
@@ -60,16 +51,7 @@
       }
     ],
     "rating": 2,
-    "views": 50,
-    "requiredMeasures": {
-      "stature": true,
-      "shoulder_circumference": true,
-      "chest_circumference": true,
-      "waist_circumference": true,
-      "hip_circumference": true,
-      "arm_length": true,
-      "total_arm_length_bent": false 
-    }
+    "workforce": [1000, 2000, 3000]
   },
   {
     "id": 3,
@@ -95,17 +77,8 @@
         "type": "Metal"
       }
     ],
-    "rating": 1,
     "views": 60,
-    "requiredMeasures": {
-      "stature": true,
-      "shoulder_circumference": true,
-      "chest_circumference": true,
-      "waist_circumference": true,
-      "hip_circumference": true,
-      "arm_length": true,
-      "total_arm_length_bent": false 
-    }
+    "workforce": [1000, 2000, 3000]
   },
   {
     "id": 4,
@@ -131,17 +104,8 @@
         "type": "Metal"
       }
     ],
-    "rating": 1,
     "views": 90,
-    "requiredMeasures": {
-      "stature": true,
-      "shoulder_circumference": true,
-      "chest_circumference": true,
-      "waist_circumference": true,
-      "hip_circumference": true,
-      "arm_length": true,
-      "total_arm_length_bent": false 
-    }
+    "workforce": [1000, 2000, 3000]
   },
   {
     "id": 5,
@@ -167,17 +131,8 @@
         "type": "Metal"
       }
     ],
-    "rating": 4.9,
     "views": 10,
-    "requiredMeasures": {
-      "stature": true,
-      "shoulder_circumference": true,
-      "chest_circumference": true,
-      "waist_circumference": true,
-      "hip_circumference": true,
-      "arm_length": true,
-      "total_arm_length_bent": false 
-    }
+    "workforce": [1000, 2000, 3000]
   },
   {
     "id": 6,
@@ -203,17 +158,8 @@
         "type": "Metal"
       }
     ],
-    "rating": 4,
     "views": 90,
-    "requiredMeasures": {
-      "stature": true,
-      "shoulder_circumference": true,
-      "chest_circumference": true,
-      "waist_circumference": true,
-      "hip_circumference": true,
-      "arm_length": true,
-      "total_arm_length_bent": false 
-    }
+    "workforce": [1000, 2000, 3000]
   },
   {
     "id": 7,
@@ -239,16 +185,7 @@
         "type": "Metal"
       }
     ],
-    "rating": 3,
     "views": 100,
-    "requiredMeasures": {
-      "stature": true,
-      "shoulder_circumference": true,
-      "chest_circumference": true,
-      "waist_circumference": true,
-      "hip_circumference": true,
-      "arm_length": true,
-      "total_arm_length_bent": false 
-    }
+    "workforce": [1000, 2000, 3000]
   }
 ]

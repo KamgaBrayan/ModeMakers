@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Stylist } from './card.model';
+import { Review } from '../../garment/garment.model';
 
 @Component({
   selector: 'app-card',
@@ -11,8 +12,9 @@ import { Stylist } from './card.model';
 })
 export class CardComponent {
   @Input() stylist!: Stylist; // Use the stylist object as an input
+  @Input() rating: number = 0;
   // Méthode pour générer un tableau basé sur le rating
-  getStarsArray(rating: number): number[] {
-    return Array(Math.round(rating)).fill(0);
+  getStarsArray(): number[] {
+    return Array(Math.round(this.rating)).fill(0);
   }
 }

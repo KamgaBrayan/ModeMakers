@@ -10,6 +10,7 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { Product, Stylist } from './stylist-profile.model';
 import { NavbarComponent } from '../stylists/navbar/navbar.component';
 import { SignupComponent } from "../stylists/signup/signup.component";
+import { Review } from './reviews/reviews.model';
 
 @Component({
   selector: 'app-stylist-profile',
@@ -30,9 +31,10 @@ import { SignupComponent } from "../stylists/signup/signup.component";
 export class StylistProfileComponent implements OnInit {
   stylist!: Stylist;
   products: Product[] = []; // Initialize the products array
-  
   selectedSort: string = 'popularity';  // Par défaut, tri par popularité
   filteredProducts: Product[] = [];
+  reviews: Review[] = [];
+  rating: number = 0;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -40,6 +42,7 @@ export class StylistProfileComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.fetchStylistById(id);
     this.fetchProducts();
+    this.fetchReviews();
   }
 
   fetchStylistById(id: string | null) {
@@ -74,7 +77,27 @@ export class StylistProfileComponent implements OnInit {
         console.error("Error fetching products:", error);
       });
   }
-  
+
+  fetchReviews() {
+    let reviews_data = [];
+    fetch('/datas/reviews.json') // Adjust the path as necessary
+      .then(response => response.json())
+      .then((data: Review[]) => {
+        reviews_data = data;
+        for (let product of this.products) {
+          for (let review of reviews_data){
+            if(review.product.product_id === product.id){
+              this.reviews.push(review); // Add the review to the array=
+            }
+          }
+        }
+        this.rating = this.reviews.reduce((acc, review) => acc + review.product.product_note, 0) / this.reviews.length;
+         // Assign the fetched reviews to the component's array
+      })
+      .catch(error => {
+        console.error("Error fetching reviews:", error);
+      });
+  }
   applySort(sortType: string) {
     this.selectedSort = sortType;
     if (sortType === 'popularity') {

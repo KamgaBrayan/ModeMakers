@@ -1,28 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Material, Product, Stylist } from './garment.model';
+import { Material, Product, Review, Stylist } from './garment.model';
 import { NavbarComponent } from '../stylists/navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ProductSlideComponent } from './product-slide/product-slide.component';
 import { MaterialsComponent } from './materials/materials.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
-import { MensurationsComponent } from './mensurations/mensurations.component';
+// import { MensurationsComponent } from './mensurations/mensurations.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
 
 @Component({
   selector: 'app-garment',
   imports: [
-    CommonModule, 
-    NavbarComponent, 
-    BreadcrumbComponent, 
+    CommonModule,
+    NavbarComponent,
+    BreadcrumbComponent,
     ProductSlideComponent,
     MaterialsComponent,
     PersonalInfoComponent,
-    MensurationsComponent,
-    UserReviewsComponent
-  
-  ],
+    UserReviewsComponent,
+    // MensurationsComponent
+],
   templateUrl: './garment.component.html',
   styleUrls: ['./garment.component.css']
 }) 
@@ -30,9 +29,10 @@ export class GarmentComponent {
   stylist!: Stylist;
   product!: Product; // Initialize the product
   materials: Material[] = [];
-  currentImageIndex: number = 0;
+  reviews: Review[] = [];
+  rating: number = 0;
   images: string[] = [];
-
+ 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -45,6 +45,9 @@ export class GarmentComponent {
       .catch(error => {
         console.error("Initialization failed:", error);
       });
+      
+      this.fetchReviews();
+    
   }
   
 
@@ -57,7 +60,6 @@ export class GarmentComponent {
           this.product = product;
           this.images = product.photos;
           this.fetchStylist(product.stylist.id);
-          console.log(this.product.requiredMeasures);
           return; // Résoudre la promesse après l'assignation
         } else {
           console.error("Product not found");
@@ -103,6 +105,27 @@ export class GarmentComponent {
       })
       .catch(error => {
         console.error("Error fetching materials:", error);
+      });
+  }
+
+  fetchReviews() {
+    let reviews_data = [];
+    fetch('/datas/reviews.json') // Adjust the path as necessary
+      .then(response => response.json())
+      .then((data: Review[]) => {
+        reviews_data = data;
+          for (let review of reviews_data){
+            if(review.product.product_id === this.product.id){
+              this.reviews.push(review); // Add the review to the array=
+            }
+          }
+          this.rating = this.reviews.reduce((acc, review) => acc + review.product.product_note, 0) / this.reviews.length;
+          // console.log(this.reviews);
+        
+         // Assign the fetched reviews to the component's array
+      })
+      .catch(error => {
+        console.error("Error fetching reviews:", error);
       });
   }
   

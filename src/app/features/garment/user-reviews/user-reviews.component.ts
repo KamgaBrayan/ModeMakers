@@ -32,4 +32,7 @@ export class UserReviewsComponent {
       this.reviewForm.reset(); // Réinitialise le formulaire après soumission
     }
   }
+  getStarsArray(rating: number): number[] {
+    return Array(Math.round(rating)).fill(0);
+  }
 }

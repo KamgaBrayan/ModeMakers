@@ -32,7 +32,7 @@
                 </span>
             </span>
             <div class="flex flex-row flex-wrap gap-4">
-                <app-card *ngFor="let stylist of filteredStylists" [stylist]="stylist"></app-card>
+                <app-card *ngFor="let stylist of filteredStylists" [stylist]="stylist" [rating]="stylist.rating"></app-card>
             </div>
         </div>
     </section>

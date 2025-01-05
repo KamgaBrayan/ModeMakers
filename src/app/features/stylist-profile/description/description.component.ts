@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 
 interface Stylist {
   name: string;
@@ -20,7 +20,9 @@ interface Stylist {
 })
 export class DescriptionComponent {
   @Input() stylist!: Stylist; // Accept stylist data as input
-  getStarsArray(rating: number): number[] {
-    return Array(Math.round(rating)).fill(0);
+  @Input() rating: number = 0; // Accept rating as input
+
+  getStarsArray(): number[] {
+    return Array(Math.round(this.rating)).fill(0);
   }
 }

@@ -5,7 +5,7 @@
     <div class="flex flex-row justify-between w-full p-2">
         <h2 class="text-xl font-bold">{{ stylist.name }}</h2>
         <span class="text-yellow-500">
-            <ng-container *ngFor="let star of getStarsArray(stylist.rating)">
+            <ng-container *ngFor="let star of getStarsArray()">
                 <span>★</span>
             </ng-container>
         </span>

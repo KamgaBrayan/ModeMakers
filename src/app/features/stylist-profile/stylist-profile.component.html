@@ -4,7 +4,7 @@
       <app-breadcrumb-stylist-profile></app-breadcrumb-stylist-profile>
     </div>
     <div class="py-4">
-        <app-description [stylist]="stylist"></app-description> <!-- Pass stylist data -->
+        <app-description [stylist]="stylist" [rating]="rating"></app-description> <!-- Pass stylist data -->
     </div>
     <section class="flex gap-2 pb-4">  
         <div class="px-4">
@@ -33,7 +33,7 @@
     </span>
     <section class="w-full flex p-4 justify-center">
         <div class="overflow-hidden w-[80%] border p-4 bg-white shadow-md rounded-lg">
-            <app-reviews></app-reviews> <!-- Include the ReviewsComponent -->
+            <app-reviews [reviews]="reviews"></app-reviews> <!-- Include the ReviewsComponent -->
         </div>
   </section>
   <div class="w-full py-28">

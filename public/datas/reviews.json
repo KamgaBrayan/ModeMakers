@@ -6,7 +6,7 @@
             "user_name": "John Doe"
         },
         "product": {
-            "product_note": 4.5,
+            "product_note": 1.5,
             "product_id": 1
         },
         "comment": "Great product, highly recommend!",
@@ -19,7 +19,7 @@
             "user_name": "Jane Smith"
         },
         "product": {
-            "product_note": 4.0,
+            "product_note": 2.0,
             "product_id": 2
         },
         "comment": "Good quality, but could be better.",
@@ -32,7 +32,7 @@
             "user_name": "Emily Johnson"
         },
         "product": {
-            "product_note": 4.8,
+            "product_note": 2.8,
             "product_id": 3
         },
         "comment": "Amazing design and material.",

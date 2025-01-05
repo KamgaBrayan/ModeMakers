@@ -11,5 +11,4 @@ export interface Stylist {
     specialty: string;
     category: string[];
     views: number;
-    workforce: number[]; //La main d'oeuvre
   }

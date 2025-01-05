@@ -1,9 +1,9 @@
 <div class="border p-4 bg-white shadow-md rounded-lg max-w-2xl">
-  <h2 class="text-xl font-bold text-gray-800 mb-4">Mesures pour {{ product.name }}</h2>
+  <h2 class="text-xl font-bold text-gray-800 mb-4">Mesures</h2>
 
   <form *ngIf="measureForm" [formGroup]="measureForm" (ngSubmit)="saveMeasures()">
     <div class="space-y-4">
-      <div *ngFor="let measure of requiredMeasureKeys" class="flex flex-col">
+      <div *ngFor="let measure of MeasureKey" class="flex flex-col">
         <label
           [for]="measure"
           class="text-sm font-semibold text-gray-600 mb-2 capitalize"

@@ -9,8 +9,8 @@ export class PersonalInfoComponent {
   formData = {
     gender: '',
     location: '',
-    commandDate: '',
-    specification: ''
+    specification: '',
+    deliveryType: ''
   };
 
   onSubmit() {

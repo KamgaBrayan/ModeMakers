@@ -9,14 +9,12 @@
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 500px;
     overflow: hidden;
   }
   
-  .main-image img {
-    width: 100%;
-    height: auto;
-  }
+  
   
   .arrow {
     /* position: absolute; */
