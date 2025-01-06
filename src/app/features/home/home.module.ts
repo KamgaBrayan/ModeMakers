@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { StylistProfileComponent } from '../stylist-profile/stylist-profile.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { GarmentComponent } from '../garment/garment.component';
+import { GarmentSpecialComponent } from '../garment-special/garment-special.component';
  
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   { 
     path: 'garment/:id', 
     component: GarmentComponent
+  },
+  { 
+    path: 'garment-special/:id', 
+    component: GarmentSpecialComponent
   }
 ];
 
