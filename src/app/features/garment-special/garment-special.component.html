@@ -40,7 +40,10 @@
     <!-- Mensurations and Reviews Section -->
     <div class="flex flex-row justify-between items-center w-full py-4">
         <div class="w-[48%] border bg-white shadow-md rounded-lg">
-          <app-personal-info-special (formSubmit)="handleFormSubmit($event)"></app-personal-info-special>
+          <app-personal-info-special 
+            [measures]="measures"
+            (formSubmit)="handleFormSubmit($event)">
+          </app-personal-info-special>
           <div class="flex flex-wrap gap-2 mt-4 p-4">
             <p>Stylist Availability : </p>
             <span

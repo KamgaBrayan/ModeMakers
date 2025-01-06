@@ -9,6 +9,7 @@ import { MaterialsComponent } from './materials/materials.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { SignupComponent } from "../stylists/signup/signup.component";
 import { UserReviewsComponent } from "../garment/user-reviews/user-reviews.component";
+import { Measure } from '../garment/garment.model';
 
 @Component({
   selector: 'app-garment',
@@ -31,6 +32,8 @@ export class GarmentSpecialComponent {
   materials: Material[] = [];
   rating: number = 0;
   images: string[] = [];
+  measures: Measure[] = [];
+
   receivedPersonnalInfo: any = null;
   selectedMaterials: ReduceMaterial[] = [];
   
@@ -41,6 +44,7 @@ export class GarmentSpecialComponent {
     const stylist_id = this.route.snapshot.paramMap.get('id')
     this.fetchStylist(stylist_id ? parseInt(stylist_id) : 0);
     this.fetchMaterials();
+    this.fetchMeasures();
   }
   
 
@@ -71,6 +75,17 @@ export class GarmentSpecialComponent {
         console.error("Error fetching materials:", error);
       });
   }
+  fetchMeasures() {
+    fetch('/datas/measures.json')
+      .then(response => response.json())
+      .then((measures: Measure[]) => {
+          this.measures = measures;
+      })
+      .catch(error => {
+        console.error("Error fetching stylist:", error);
+      });
+  }
+  
 
   handleFormSubmit(data: any) {
     console.log('Données reçues du formulaire enfant :', data);
@@ -85,5 +100,6 @@ export class GarmentSpecialComponent {
     console.log('Received precommand from child:', updatedPrecommand);
     this.precommand = updatedPrecommand;
   }
+  
   
 }

@@ -34,7 +34,10 @@
     <div class="flex flex-col justify-center items-center w-full">
       <div class="flex flex-col py-4 lg:flex-row justify-between w-full">
       <div class="w-full lg:w-[48%] border bg-white shadow-md rounded-lg mb-6">
-        <app-personal-info (formSubmit)="handleFormSubmit($event)"></app-personal-info>
+        <app-personal-info 
+          [measures]="measures"
+          (formSubmit)="handleFormSubmit($event)">
+        </app-personal-info>
         <div class="flex flex-wrap gap-2 mt-4 p-4">
           <p>Stylist Availability : </p>
           <span
