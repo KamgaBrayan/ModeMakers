@@ -17,9 +17,9 @@ import { Product, Review } from '../garment/garment.model';
     CommonModule, 
     NavbarComponent, 
     BreadcrumbComponent, 
-    HeroComponent, 
-    CardComponent, 
-    SidebarFilterComponent, 
+    HeroComponent,       
+    CardComponent,        
+    SidebarFilterComponent,   
     SelectSortComponent,
     SignupComponent, 
   ],
@@ -29,7 +29,8 @@ import { Product, Review } from '../garment/garment.model';
 })
 export class StylistsComponent implements OnInit {
   stylists: Stylist[] = []; // Initialisé avec un tableau vide
-
+  reviews: Review[] = [];
+  products: Product[] = [];
   categories: string[] = ['Homme', 'Femme', 'Enfant'];
   specialties: string[] = ['Hair Stylist', 'Makeup Artist', 'Nail Technician'];
   filteredStylists: Stylist[] = [];
@@ -41,60 +42,57 @@ export class StylistsComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    // Chargez les stylistes depuis le fichier JSON à l'initialisation du composant
     fetch('/datas/stylists.json')
       .then(response => response.json())
       .then((data: Stylist[]) => {
-        this.stylists = data;
-        this.filteredStylists = [...this.stylists];
-        
-        // Précharger les notes
-        // this.stylists.forEach(async stylist => {
-        //   stylist.rating = await this.getRating(stylist.id);
-        // });
+        this.stylists = data; // Assurez-vous que les données sont bien récupérées et assignées à la variable stylists
+        this.filteredStylists = [...this.stylists]; // Initialiser le tableau des stylistes filtrés
       })
       .catch(error => {
         console.error("Erreur lors de la récupération des stylistes :", error);
       });
+      this.fetchProducts();
+      this.fetchReviews();
   }
-  
 
-  async fetchProducts(stylistId: number): Promise<Product[]> {
-    try {
-      const response = await fetch('/datas/products.json');
-      const data: Product[] = await response.json();
-      return data.filter(product => product.stylist.id === stylistId);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      return [];
-    }
+  fetchProducts(){
+    // Fetch products from the JSON file
+    fetch('/datas/products.json')
+      .then(response => response.json())
+      .then((data: Product[]) => {
+        this.products = data;
+        
+      })
+      .catch(error => {
+        console.error("Error fetching products:", error);
+      });
   }
-  
-  async fetchReviews(stylistId: number): Promise<Review[]> {
-    try {
-      const products = await this.fetchProducts(stylistId);
-      const response = await fetch('/datas/reviews.json');
-      const data: Review[] = await response.json();
-      return data.filter(review =>
-        products.some(product => review.product.product_id === product.id)
-      );
-    } catch (error) {
-      console.error("Error fetching reviews:", error);
-      return [];
-    }
+  fetchReviews() {
+    fetch('/datas/reviews.json') // Adjust the path as necessary
+      .then(response => response.json())
+      .then((data: Review[]) => {
+        this.reviews = data;
+      // Assign the fetched reviews to the component's array
+      })
+      .catch(error => {
+        console.error("Error fetching reviews:", error);
+      });
   }
-  
-  async getRating(stylistId: number): Promise<number> {
-    try {
-      const reviews = await this.fetchReviews(stylistId);
-      console.log(reviews);
-      if (reviews.length === 0) return 0; // Avoid division by zero
-      return reviews.reduce((acc, review) => acc + review.product.product_note, 0) / reviews.length;
-    } catch (error) {
-      console.error("Error calculating rating:", error);
-      return 0;
+
+  getRating(stylistId: number = 0) : number {
+    let reviews : Review[] = [];
+    let products : Product[] = [];
+    products = this.products.filter(product => product.stylist.id === stylistId);
+    for (let product of products){
+      for(let review of this.reviews){
+        if(review.product.product_id === product.id){
+          reviews.push(review); // Add the review to the array=
+        }
+      }
     }
+    return  reviews.reduce((acc, review) => acc + review.product.product_note, 0) / reviews.length;
   }
-  
 
   applyFilters(filters: { categories: string[]; specialties: string[] }): void {
     const { categories, specialties } = filters;
@@ -108,18 +106,19 @@ export class StylistsComponent implements OnInit {
   applySort(sortType: string) {
     this.selectedSort = sortType;
     if (sortType === 'popularity') {
-      this.filteredStylists = [...this.stylists].sort((a, b) => b.rating - a.rating);
+      this.filteredStylists = [...this.stylists].sort((a, b) => this.getRating(b.id) - this.getRating(a.id));
     } else if (sortType === 'trending') {
       this.filteredStylists = [...this.stylists].sort((a, b) => b.views - a.views);
+      
     }
   }
 
   // Méthode pour obtenir le texte dynamique à afficher pour le tri et les filtres
   getFilterText(): string {
-    const sortText = this.selectedSort === 'popularity' ? 'Les plus populaires' : 'Les plus tendances';
+    const sortText = this.selectedSort === 'popularity' ? 'Most Populars' : 'Most on trendind';
     
-    const categoriesText = this.selectedFilters.categories.length === this.categories.length ? 'Toute catégorie' : 'Catégories filtrées';
-    const specialtiesText = this.selectedFilters.specialties.length === this.specialties.length ? 'Toutes les spécialités' : 'Spécialités filtrées';
+    const categoriesText = this.selectedFilters.categories.length === this.categories.length ? 'All categories' : 'Filtred Categories';
+    const specialtiesText = this.selectedFilters.specialties.length === this.specialties.length ? 'All specialities' : 'Filtred Specialities';
     
     return `${sortText} / ${categoriesText} / ${specialtiesText}`;
   }

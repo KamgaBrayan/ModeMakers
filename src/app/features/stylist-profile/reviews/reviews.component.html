@@ -2,7 +2,7 @@
   <div class="">
     <!-- Conteneur de reviews avec défilement -->
     <div class="flex flex-row gap-4 w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-200 hover:scrollbar-thumb-gray-400 transition-all">
-      <div *ngFor="let review of reviews" class="review-card border p-4 rounded-lg shadow-lg w-[300px] flex-shrink-0 bg-white hover:bg-gray-100 transition-all">
+      <div *ngFor="let review of reviews" class="review-card border p-4 rounded-lg shadow-lg w-[290px] flex-shrink-0 bg-white hover:bg-gray-100 transition-all">
         <div class="flex justify-between">
           <span class="font-semibold text-lg text-gray-800">{{ review.user.user_name }}</span>
           <span class="text-sm text-gray-500">{{ review.date | date: 'shortDate' }}</span>

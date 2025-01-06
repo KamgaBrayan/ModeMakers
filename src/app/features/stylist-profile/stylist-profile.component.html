@@ -24,7 +24,7 @@
                 </span>
             </span>
             <div class="flex flex-row flex-wrap gap-4 max-h-[900px] overflow-y-auto">
-                <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+                <app-product-card *ngFor="let product of filteredProducts" [product]="product"></app-product-card>
             </div>
         </div>
     </section>

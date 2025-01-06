@@ -21,6 +21,14 @@
       {
         "id": 2,
         "type": "Metal"
+      },
+      {
+        "id": 3,
+        "type": "Wood"
+      },
+      {
+        "id": 4,
+        "type": "Laine"
       }
     ],
     "views": 40,
@@ -50,7 +58,7 @@
         "type": "Metal"
       }
     ],
-    "rating": 2,
+    "views": 10,
     "workforce": [1000, 2000, 3000]
   },
   {

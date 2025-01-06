@@ -38,14 +38,14 @@ export class StylistProfileComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     const id = this.route.snapshot.paramMap.get('id');
     this.fetchStylistById(id);
     this.fetchProducts();
     this.fetchReviews();
   }
 
-  fetchStylistById(id: string | null) {
+  async fetchStylistById(id: string | null): Promise<void> {
     // Charge les stylistes depuis le fichier JSON
     fetch('/datas/stylists.json')
       .then(response => response.json())
@@ -54,6 +54,7 @@ export class StylistProfileComponent implements OnInit {
         const stylist = stylists.find(stylist => stylist.id === Number(id));
         if (stylist) {
           this.stylist = stylist;
+          
         } else {
           console.error("Stylist not found");
         }
@@ -63,29 +64,26 @@ export class StylistProfileComponent implements OnInit {
       });
   }
 
-  fetchProducts() {
+  async fetchProducts(): Promise<void> {
     // Fetch products from the JSON file
     fetch('/datas/products.json')
       .then(response => response.json())
       .then((data: Product[]) => {
         // Filter products by stylist ID
-        // console.log(data);
         this.products = data.filter(product => product.stylist.id === this.stylist.id);
-        console.log(this.products[1].photos[0])
+        this.filteredProducts = [...this.products]; // Initialiser le tableau des produits filtrés
       })
       .catch(error => {
         console.error("Error fetching products:", error);
       });
   }
 
-  fetchReviews() {
-    let reviews_data = [];
+  async fetchReviews(): Promise<void> {
     fetch('/datas/reviews.json') // Adjust the path as necessary
       .then(response => response.json())
       .then((data: Review[]) => {
-        reviews_data = data;
         for (let product of this.products) {
-          for (let review of reviews_data){
+          for (let review of data){
             if(review.product.product_id === product.id){
               this.reviews.push(review); // Add the review to the array=
             }
@@ -98,20 +96,33 @@ export class StylistProfileComponent implements OnInit {
         console.error("Error fetching reviews:", error);
       });
   }
-  applySort(sortType: string) {
+
+  getProductRating(productId: number): number {
+    const productReviews = this.reviews.filter(review => review.product.product_id === productId);
+    if (productReviews.length > 0) {
+      return (
+        productReviews.reduce((acc, review) => acc + review.product.product_note, 0) /
+        productReviews.length
+      );
+    }
+    return 0; // Aucun avis pour ce produit
+  }
+
+  applySort(sortType: string): void {
     this.selectedSort = sortType;
     if (sortType === 'popularity') {
-      this.filteredProducts = [...this.products].sort((a, b) => b.rating - a.rating);
-      console.log(this.filteredProducts)
+      this.filteredProducts = [...this.products].sort(
+        (a, b) => this.getProductRating(b.id) - this.getProductRating(a.id)
+      );
     } else if (sortType === 'trending') {
       this.filteredProducts = [...this.products].sort((a, b) => b.views - a.views);
-      console.log(this.filteredProducts)
     }
   }
 
+
   // Méthode pour obtenir le texte dynamique à afficher pour le tri et les filtres
   getFilterText(): string {
-    const sortText = this.selectedSort === 'popularity' ? 'Les plus populaires' : 'Les plus tendances';
+    const sortText = this.selectedSort === 'popularity' ? 'Most popular' : 'Must on trending';
 
     return `${sortText}`;
   }
