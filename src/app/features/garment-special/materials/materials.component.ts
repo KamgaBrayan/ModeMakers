@@ -1,22 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Material } from '../garment-special';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Material, ReduceMaterial } from '../garment-special';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-interface ReduceMaterial{
-    name: string; 
-    photo: string;
-    price_per_square_meter: number 
-  }
-
 @Component({
-  selector: 'app-materials',
+  selector: 'app-materials-special',
   imports: [CommonModule, FormsModule],
   templateUrl: './materials.component.html',
   styleUrls: ['./materials.component.css']
 })
 export class MaterialsComponent implements OnInit {
   @Input() materials: Material[] = [];
+  @Output() selectedMaterialsChange = new EventEmitter<ReduceMaterial[]>();
+
   currentImageIndex: number[] = [];
   selectedMaterials: ReduceMaterial[] = [];
   materialName: string = '';
@@ -43,8 +39,10 @@ export class MaterialsComponent implements OnInit {
 
   selectMaterial(material: Material): void {
     const photo = material.photos[this.currentImageIndex[this.materials.indexOf(material)]];
-    if (!this.selectedMaterials.find((item) => item.name === material.name)) {
-      this.selectedMaterials.push({ name: material.name, photo, price_per_square_meter: material.price_per_square_meter });
+    if (!this.selectedMaterials.find(item => item.name === material.name)) {
+      const selectedMaterial = { name: material.name, photo, price_per_square_meter: material.price_per_square_meter };
+      this.selectedMaterials.push(selectedMaterial);
+      this.selectedMaterialsChange.emit(this.selectedMaterials); // Émet les matériaux sélectionnés
     }
   }
 
@@ -97,6 +95,7 @@ deselectMaterial(material: ReduceMaterial): void {
   const index = this.selectedMaterials.findIndex(item => item.name === material.name);
   if (index !== -1) {
     this.selectedMaterials.splice(index, 1); // Retirer le matériau de la liste
+    this.selectedMaterialsChange.emit(this.selectedMaterials)
   }
 }
 

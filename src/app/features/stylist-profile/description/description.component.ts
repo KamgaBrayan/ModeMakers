@@ -1,20 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { Stylist } from '../stylist-profile.model';
 
-interface Stylist {
-  name: string;
-  rating: number;
-  localisation: string;
-  phone: string;
-  biography: string;
-  category: string[];
-  specialty: string;
-  photos: string[];
-}
- 
 @Component({
   selector: 'app-description',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.css']
 })

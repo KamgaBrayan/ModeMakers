@@ -1,16 +1,17 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { Precommand, Product, Stylist } from '../garment-special';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-product-slide',
+  selector: 'app-product-slide-special',
   imports : [CommonModule, FormsModule],
   templateUrl: './product-slide.component.html',
   styleUrls: ['./product-slide.component.css']
 })
 export class ProductSlideComponent {
   @Input() stylist!: Stylist;
+  @Output() precommandChange = new EventEmitter<Precommand>(); // Événement pour notifier le parent
   precommand:Precommand={photos:[],name:''}; // Stocke les precommand.photos uploadées
   currentImageIndex: number = 0;
   @ViewChild('fileInput') fileInput!: ElementRef;
@@ -39,6 +40,7 @@ export class ProductSlideComponent {
         reader.onload = (e: ProgressEvent<FileReader>) => {
           if (e.target && e.target.result) {
             this.precommand.photos.push(e.target.result as string);
+            this.emitPrecommand();
           }
         };
         reader.readAsDataURL(file);
@@ -73,5 +75,8 @@ export class ProductSlideComponent {
 
   previousImage(): void {
     this.currentImageIndex = (this.currentImageIndex - 1 + this.precommand.photos.length) % this.precommand.photos.length;
+  }
+  private emitPrecommand(): void {
+    this.precommandChange.emit(this.precommand);
   }
 }

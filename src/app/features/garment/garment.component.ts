@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Material, Product, Review, Stylist } from './garment.model';
+import { Material, Product, ReduceMaterial, Review, Stylist } from './garment.model';
 import { NavbarComponent } from '../stylists/navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ProductSlideComponent } from './product-slide/product-slide.component';
@@ -9,6 +9,7 @@ import { MaterialsComponent } from './materials/materials.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 // import { MensurationsComponent } from './mensurations/mensurations.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
+import { SignupComponent } from "../stylists/signup/signup.component";
 
 @Component({
   selector: 'app-garment',
@@ -20,7 +21,7 @@ import { UserReviewsComponent } from './user-reviews/user-reviews.component';
     MaterialsComponent,
     PersonalInfoComponent,
     UserReviewsComponent,
-    // MensurationsComponent
+    SignupComponent
 ],
   templateUrl: './garment.component.html',
   styleUrls: ['./garment.component.css']
@@ -32,6 +33,9 @@ export class GarmentComponent {
   reviews: Review[] = [];
   rating: number = 0;
   images: string[] = [];
+  receivedPersonnalInfo: any = null;
+  selectedMaterials: ReduceMaterial[] = [];
+ 
  
   constructor(private route: ActivatedRoute) {}
 
@@ -127,6 +131,15 @@ export class GarmentComponent {
       .catch(error => {
         console.error("Error fetching reviews:", error);
       });
+  }
+  handleFormSubmit(data: any) {
+    console.log('Données reçues du formulaire enfant :', data);
+    this.receivedPersonnalInfo= data;
+  }
+
+  onSelectedMaterialsChange(selected: ReduceMaterial[]): void {
+    this.selectedMaterials = selected;
+    console.log('Materials selected:', selected);
   }
   
 }

@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Material, Precommand, Product, Review, Stylist } from './garment-special';
+import { Material, Precommand, ReduceMaterial, Stylist } from './garment-special';
 import { NavbarComponent } from '../stylists/navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ProductSlideComponent } from './product-slide/product-slide.component';
 import { MaterialsComponent } from './materials/materials.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { SignupComponent } from "../stylists/signup/signup.component";
+import { UserReviewsComponent } from "../garment/user-reviews/user-reviews.component";
 
 @Component({
   selector: 'app-garment',
@@ -17,7 +19,8 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
     ProductSlideComponent,
     MaterialsComponent,
     PersonalInfoComponent,
-    // MensurationsComponent
+    SignupComponent,
+    UserReviewsComponent
 ],
   templateUrl: './garment-special.component.html',
   styleUrls: ['./garment-special.component.css']
@@ -28,6 +31,9 @@ export class GarmentSpecialComponent {
   materials: Material[] = [];
   rating: number = 0;
   images: string[] = [];
+  receivedPersonnalInfo: any = null;
+  selectedMaterials: ReduceMaterial[] = [];
+  
  
   constructor(private route: ActivatedRoute) {}
 
@@ -64,6 +70,20 @@ export class GarmentSpecialComponent {
       .catch(error => {
         console.error("Error fetching materials:", error);
       });
+  }
+
+  handleFormSubmit(data: any) {
+    console.log('Données reçues du formulaire enfant :', data);
+    this.receivedPersonnalInfo= data;
+  }
+
+  onSelectedMaterialsChange(selected: ReduceMaterial[]): void {
+    this.selectedMaterials = selected;
+    console.log('Materials selected:', selected);
+  }
+  handlePrecommandChange(updatedPrecommand: Precommand): void {
+    console.log('Received precommand from child:', updatedPrecommand);
+    this.precommand = updatedPrecommand;
   }
   
 }

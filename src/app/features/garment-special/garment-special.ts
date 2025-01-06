@@ -88,8 +88,53 @@ export const  MeasureKey = [
   "seated_height",
   "crotch_length"
   ]
-
+  
+  export type  measureKey =  
+    "stature"
+    |"shoulder_circumference"
+    |"chest_circumference"
+    |"waist_circumference"
+    |"hip_circumference"
+    |"shoulder_height"
+    |"hip_height"
+    |"knee_height"
+    |"chest_spacing"
+    |"breast_height"
+    |"pelvis_height"
+    |"front_waist_length"
+    |"shoulder_length"
+    |"back_waist_length"
+    |"arm_length"
+    |"total_arm_length_bent"
+    |"wrist_circumference"
+    |"ankle_height"
+    |"seated_height"
+    |"crotch_length"
+    
+  export interface ReduceMaterial{
+    name: string; 
+    photo: string;
+    price_per_square_meter: number 
+  }
+  
   export interface Precommand{
     name: string;
     photos: string[];
+  }
+
+  export interface Garment{
+    productId: string;
+    materials:{
+      name: string; 
+      photo: string;
+      price_per_square_meter: number 
+    };
+    gender: 'male' | 'female'| 'other';
+    location: string;
+    specification: string;
+    deliveryType: 'standard' | 'advanced' | 'express' ;
+    measure:{
+      measureKey : measureKey;
+      measureValue : number
+    }
   }
