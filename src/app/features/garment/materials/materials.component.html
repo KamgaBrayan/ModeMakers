@@ -1,10 +1,10 @@
 <section class="flex flex-row relative overflow-x-auto overflow-y-hidden">
 
-    <div *ngFor="let material of materials; let i = index" class="material-card">
+    <div *ngFor="let material of materials; let i = index" class="material-card flex w-[300px] flex-col">
     <h2>{{ material.name }}</h2>
-    <div class="slider-container">
+    <div class="flex flex-col h-full w-full">
         
-        <div class="material-display w-[160px] flex flex-row justify-around w-full">
+        <div class="material-display w-[150px] flex flex-row justify-around">
             <button (click)="previousMaterial(i)" class="slider-button">&#10094;</button>
             <img *ngIf="material.photos.length > 0" 
                  [src]="material.photos[currentImageIndex[i]]" 

@@ -1,32 +1,77 @@
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Precommand, Product, Stylist } from '../garment-special';
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { Product, Review, Stylist } from '../garment-special';
+import { FormsModule } from '@angular/forms';
 
-@Component({ 
+@Component({
   selector: 'app-product-slide',
-  imports: [CommonModule],
+  imports : [CommonModule, FormsModule],
   templateUrl: './product-slide.component.html',
   styleUrls: ['./product-slide.component.css']
-}) 
-export class ProductSlideComponent { 
-  @Input() product!: Product;
+})
+export class ProductSlideComponent {
   @Input() stylist!: Stylist;
+  precommand:Precommand={photos:[],name:''}; // Stocke les precommand.photos uploadées
   currentImageIndex: number = 0;
-  @Input() rating: number = 0;
+  @ViewChild('fileInput') fileInput!: ElementRef;
   
-  ngOnInit(): void {
-    console.log(this.rating)
-  }
-  
-  nextImage() {
-    this.currentImageIndex = (this.currentImageIndex + 1) % this.product.photos.length;
+  // ngOnInit() {
+  // }
+
+  saveGarmentName() {
+    if (this.precommand.name.trim()) {
+      console.log('Garment Name Saved:', this.precommand.name);
+      // this.precommand.name = this.garmentName;
+    } else {
+      console.error('Garment name is empty!');
+    }
   }
 
-  previousImage() {
-    this.currentImageIndex = (this.currentImageIndex - 1 + this.product.photos.length) % this.product.photos.length;
+  triggerFileInput(): void {
+    this.fileInput.nativeElement.click();
   }
-  
-  getStarsArray(): number[] {
-    return Array(Math.round(this.rating)).fill(0);
+
+  onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      Array.from(input.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          if (e.target && e.target.result) {
+            this.precommand.photos.push(e.target.result as string);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    }
   }
-} 
+
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    if (event.dataTransfer?.files) {
+      Array.from(event.dataTransfer.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          if (e.target && e.target.result) {
+            this.precommand.photos.push(e.target.result as string);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+
+  nextImage(): void {
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.precommand.photos.length;
+  }
+
+  previousImage(): void {
+    this.currentImageIndex = (this.currentImageIndex - 1 + this.precommand.photos.length) % this.precommand.photos.length;
+  }
+}

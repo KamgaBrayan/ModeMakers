@@ -1,50 +1,73 @@
 <div class="relative w-full h-full">
-    <div class="w-full h-full p-4 border bg-white shadow-md rounded-lg ">
-
-        <div class="pb-4">
-            <h2 class="text-lg md:text-xl font-semibold py-2">Model</h2>
-            <div class="flex flex-row items-center justify-between">
-
-                <p class="product-price py-2">{{ product.name }} </p>
-                <span class="text-yellow-500">
-                    <ng-container *ngFor="let star of getStarsArray()">
-                        <span>★</span>
-                    </ng-container>
-                </span>
-            </div>
-        </div>
-
-        <div class=" w-full flex flex-row justify-around items-center">
-            <button class="arrow left" (click)="previousImage()">&#10094;</button>
-            <div class="w-[500px] ">
-                <div class="main-image">
-                    <img [src]="product.photos[currentImageIndex]" alt="Product Image" />
-                </div>
-
-                <div class="thumbnail-container">
-                    <img *ngFor="let image of product.photos; let i = index" [src]="image"
-                        [class.active]="i === currentImageIndex" (click)="currentImageIndex = i" alt="Thumbnail" />
-                </div>
-            </div>
-            <button class="arrow right" (click)="nextImage()">&#10095;</button>
-        </div>
-    <div>
-        <h1 class="font-bold text-2xl py-4 text-left">Workforce</h1>
+    <div class="w-full h-full p-4 border bg-white shadow-md rounded-lg">
+      <div class="pb-4">
+        <h2 class="text-lg md:text-xl font-semibold py-2">Model</h2>
+        <div class="flex items-center gap-4 mb-4">
+            <input
+              type="text"
+              [(ngModel)]="precommand.name"
+              placeholder="Enter garment name"
+              class="border rounded-lg p-2 w-3/4"
+            />
+            <button
+              (click)="saveGarmentName()"
+              class="bg-indigo-700 text-white px-4 py-2 rounded-lg hover:bg-indigo-800 transition-all"
+            >
+              Save
+            </button>
+          </div>
+  
+      <!-- Bouton d'upload au-dessus du cadre -->
+      <div class="flex justify-center mb-4">
+        <button
+          class="bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-indigo-800 transition-all"
+          (click)="triggerFileInput()"
+        >
+          <i class="fas fa-upload"></i>
+          Upload Images
+        </button>
+      </div>
+  
+      <div
+        class="main-image border-dashed border-2 border-gray-400 rounded-lg flex justify-center items-center cursor-pointer"
+        [class.h-64]="!precommand.photos.length"
+        [class.h-auto]="precommand.photos.length"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event)"
+        (click)="triggerFileInput()"
+      >
+        <ng-container *ngIf="!precommand.photos.length; else sliderContent">
+          <div class="flex flex-col items-center">
+            <i class="fas fa-upload text-4xl text-gray-400 mb-2"></i>
+            <p class="text-gray-600">Drop images here or click to upload</p>
+          </div>
+        </ng-container>
+        <ng-template #sliderContent>
+          <img [src]="precommand.photos[currentImageIndex]" alt="Uploaded Image" class="w-[500px] rounded-lg" />
+        </ng-template>
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileChange($event)"
+          multiple
+          class="hidden"
+          #fileInput
+        />
+      </div>
+  
+      <div class="thumbnail-container mt-4" *ngIf="precommand.photos.length">
+        <img
+          *ngFor="let image of precommand.photos; let i = index"
+          [src]="image"
+          [class.active]="i === currentImageIndex"
+          (click)="currentImageIndex = i"
+          alt="Thumbnail"
+          class="w-16 h-16 rounded-lg cursor-pointer m-1"
+        />
+      </div>
+  
+    
+      
     </div>
-    <ul>
-        <li class="flex flex-row w-full justify-between py-1">
-            <p><b>Standard (1mois):</b></p>
-            {{product.workforce[0]}} FrancsCFA
-        </li>
-        <li class="flex flex-row w-full justify-between py-1">
-            <p><b>Advanced (2 semaines):</b></p>
-            {{product.workforce[1]}} FrancsCFA
-        </li>
-        <li class="flex flex-row w-full justify-between py-1">
-            <p><b>Express (1 semaine):</b></p>
-            {{product.workforce[2]}} FrancsCFA
-        </li>
-    </ul>
-</div>
-
-</div>
+  </div>
+  

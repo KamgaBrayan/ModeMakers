@@ -88,3 +88,8 @@ export const  MeasureKey = [
   "seated_height",
   "crotch_length"
   ]
+
+  export interface Precommand{
+    name: string;
+    photos: string[];
+  }

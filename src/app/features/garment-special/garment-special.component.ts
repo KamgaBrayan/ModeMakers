@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Material, Product, Review, Stylist } from './garment-special';
+import { Material, Precommand, Product, Review, Stylist } from './garment-special';
 import { NavbarComponent } from '../stylists/navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ProductSlideComponent } from './product-slide/product-slide.component';
@@ -24,7 +24,7 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 }) 
 export class GarmentSpecialComponent {
   stylist!: Stylist;
-  product!: Product; // Initialize the product
+  precommand: Precommand = { photos: [], name: '' };
   materials: Material[] = [];
   rating: number = 0;
   images: string[] = [];
@@ -34,6 +34,7 @@ export class GarmentSpecialComponent {
   ngOnInit(): void {
     const stylist_id = this.route.snapshot.paramMap.get('id')
     this.fetchStylist(stylist_id ? parseInt(stylist_id) : 0);
+    this.fetchMaterials();
   }
   
 
@@ -55,16 +56,10 @@ export class GarmentSpecialComponent {
   }
 
   fetchMaterials() {
-    if (!this.product) {
-      console.error("Product not loaded, cannot fetch materials.");
-      return;
-    } 
-  
     fetch('/datas/materials.json')
       .then(response => response.json())
       .then((materials: Material[]) => {
         this.materials = materials;
-        // console.log(this.materials); // Log to confirm the filtered materials
       })
       .catch(error => {
         console.error("Error fetching materials:", error);
