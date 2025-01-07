@@ -11,6 +11,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 export class BreadcrumbComponent {
   id: string | null = null;
   constructor(private route: ActivatedRoute) {}
+  
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
   }

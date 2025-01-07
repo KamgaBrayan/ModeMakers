@@ -17,19 +17,8 @@
             </button>
           </div>
   
-      <!-- Bouton d'upload au-dessus du cadre -->
-      <div class="flex justify-center mb-4">
-        <button
-          class="bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-indigo-800 transition-all"
-          (click)="triggerFileInput()"
-        >
-          <i class="fas fa-upload"></i>
-          Upload Images
-        </button>
-      </div>
-  
       <div
-        class="main-image border-dashed border-2 border-gray-400 rounded-lg flex justify-center items-center cursor-pointer"
+        class="main-image mt-8 border-dashed border-2 border-gray-400 rounded-lg flex justify-center items-center cursor-pointer"
         [class.h-64]="!precommand.photos.length"
         [class.h-auto]="precommand.photos.length"
         (dragover)="onDragOver($event)"
