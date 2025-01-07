@@ -9,7 +9,7 @@ describe('ProductDetailComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [GarmentSpecialComponent]
-    })
+    }) 
     .compileComponents();
 
     fixture = TestBed.createComponent(GarmentSpecialComponent);

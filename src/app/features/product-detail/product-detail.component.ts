@@ -1,69 +1,82 @@
+import { Component, OnInit } from '@angular/core';
+import { Product } from '../../shared/models/product.interface';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Stylist } from '../stylists/stylist.model';
-import { Product } from './product-detail.model';
-import { NavbarComponent } from '../stylists/navbar/navbar.component';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { ProductSlideComponent } from './product-slide/product-slide.component';
+import { ProductService } from '../../core/services/product.service';
+import { NavbarComponent } from "../../shared/components/navbar/navbar.component";
+import { FooterComponent } from "../../shared/components/footer/footer.component";
 
 @Component({
   selector: 'app-product-detail',
-  imports: [CommonModule, NavbarComponent, BreadcrumbComponent, ProductSlideComponent],
+  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent],
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  styleUrl: './product-detail.component.css'
 })
-export class ProductDetailComponent {
-  stylist!: Stylist | undefined;
-  product!: Product; // Initialize the product
-  
+
+export class ProductDetailComponent implements OnInit {
+  product!: Product;
+  selectedImage: string = '';
   currentImageIndex: number = 0;
-  images: string[] = [];
+  isLoading: boolean = true;
+  currentWeek: string[] = ['LUN.', 'MAR.', 'MER.', 'JEU.', 'VEN.', 'SAM.', 'DIM.'];
+  selectedMaterial: number = 0;
 
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
 
-  constructor(private route: ActivatedRoute) {}
+  ngOnInit() {
+    this.loadProductData();
+    console.log('Produit chargé:', this.product);
+  }
 
-  ngOnInit(): void {
+  loadProductData(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.fetchProductById(id);
-      // Supposons que les images soient chargées depuis un modèle ou un service
-      this.images = this.product.photos; // Remplacez par votre source d'images
-  }
- 
-  fetchProductById(id: string | null) {
-    // Fetch products from the JSON file
-    fetch('/datas/products.json')
-      .then(response => response.json())
-      .then((products: Product[]) => {
-        // Find the product by its ID
-        const product = products.find(product => product.id === Number(id));
-        if (product) {
-          this.product = product;
-          console.log(product)
-          this.fetchStylist(product.stylist.id); // Fetch stylist using the product's stylist ID
-        } else {
-          console.error("Product not found");
-        }
-      })
-      .catch(error => {
-        console.error("Error fetching product:", error);
+    if (id) {
+      this.productService.getProductById(Number(id)).subscribe(product => {
+        this.product = product;
+        this.selectedImage = this.product.images[0];
+        this.currentImageIndex = 0;
+        this.isLoading = false;
+      }, error => {
+        console.error('Erreur lors de la récupération des données du produit:', error);
+        this.isLoading = false;
       });
+    }
   }
 
-  fetchStylist(stylistId: number) {
-    // Fetch stylists from the JSON file
-    fetch('/datas/stylists.json')
-      .then(response => response.json())
-      .then((stylists: Stylist[]) => {
-        // Find the stylist by their ID
-        this.stylist = stylists.find(stylist => stylist.id === stylistId);
-        if (!this.stylist) {
-          console.error("Stylist not found");
-        }
-        console.log(this.stylist)
-      })
-      .catch(error => {
-        console.error("Error fetching stylist:", error);
-      });
+  nextImage() {
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.product.images.length;
+    this.selectedImage = this.product.images[this.currentImageIndex];
+  }
+
+  previousImage() {
+    this.currentImageIndex = this.currentImageIndex === 0 ?
+      this.product.images.length - 1 : this.currentImageIndex - 1;
+    this.selectedImage = this.product.images[this.currentImageIndex];
+  }
+
+  selectImage(image: string, index: number) {
+    this.selectedImage = image;
+    this.currentImageIndex = index;
+  }
+
+
+  getPlanningData() {
+    const weeks = 4;
+    const days = this.currentWeek.length;
+    return Array(weeks).fill(null).map(() =>
+      Array(days).fill(null).map((_, index) => index === days - 1 ? 'unavailable' : 'available')
+    );
+  }
+
+  nextMaterial() {
+    this.selectedMaterial = (this.selectedMaterial + 1) % this.product.materials.length;
+  }
+
+  previousMaterial() {
+    this.selectedMaterial = this.selectedMaterial === 0 ?
+      this.product.materials.length - 1 : this.selectedMaterial - 1;
   }
 }

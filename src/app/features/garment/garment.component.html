@@ -1,6 +1,8 @@
+<app-navbar></app-navbar>
 <main class="px-4 md:px-8 lg:px-16">
-    <app-navbar></app-navbar>
-    
+<!-- <main class="px-4 md:px-8 lg:px-16" *ngIf="stylist"> -->
+   
+ 
     <!-- Breadcrumb Section -->
     <div class="py-2">
       <app-breadcrumb-garnment></app-breadcrumb-garnment>
@@ -15,7 +17,7 @@
     <section class="flex flex-col lg:flex-row lg:justify-between gap-4  pb-4">
       <!-- Product Slide Section -->
       <div class="h-[900px] w-full lg:w-[48%]">
-        <app-product-slide [product]="product" [stylist]="stylist" [rating]="rating"></app-product-slide>
+        <app-product-slide-command [product]="product" [stylist]="stylist" [rating]="rating"></app-product-slide-command>
       </div>
       
       <!-- Materials and Personal Info Section -->

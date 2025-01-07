@@ -1,0 +1,140 @@
+<app-navbar/>
+
+<div class="hero-banner">
+  <div class="hero-content">
+      <div class="hero-image">
+          <img src="https://img.freepik.com/photos-premium/petite-fille-africaine-souriant-portant-robe-coloree-fond-rose_279525-18629.jpg" alt="Fashion Model">
+      </div>
+      <div class="hero-text-container">
+          <div class="hero-text">
+              <h1>Trendy Styles..</h1>
+              <h2>Thousands Styles More!</h2>
+              <p>Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!</p>
+              <div class="hero-buttons">
+                  <button class="shop-btn">Shop collections <i class="fas fa-arrow-right"></i></button>
+                  <button class="how-it-works">
+                      <i class="fas fa-play"></i>
+                      See How It Works
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <aside class="sidebar">
+    <div class="filter-section">
+      <h3>Categories</h3>
+      <ul>
+        <li>
+          <input type="checkbox" id="women">
+          <label for="women">Women</label>
+        </li>
+        <li>
+          <input type="checkbox" id="men">
+          <label for="men">Men</label>
+        </li>
+        <li>
+          <input type="checkbox" id="accessories">
+          <label for="accessories">Accessories</label>
+        </li>
+      </ul>
+    </div>
+
+    <div class="filter-section">
+      <h3>Price Range</h3>
+      <div class="price-range">
+        <input type="range" min="0" max="1000" step="10">
+        <div class="price-inputs">
+          <input type="number" placeholder="Min">
+          <input type="number" placeholder="Max">
+        </div>
+      </div>
+    </div>
+
+    <!-- Évaluation -->
+    <div class="filter-section">
+      <h4>Évaluation</h4>
+      <div class="rating-filter">
+          <label>
+              <input type="checkbox">
+              <span class="stars">★★★★★</span>
+          </label>
+          <label>
+              <input type="checkbox">
+              <span class="stars">★★★★☆</span>
+          </label>
+          <label>
+              <input type="checkbox">
+              <span class="stars">★★★☆☆</span>
+          </label>
+    </div>
+  </div>
+
+  <!-- Couleurs -->
+  <div class="filter-section">
+      <h4>Couleurs</h4>
+      <div class="color-filter">
+          <label class="color-option">
+              <input type="checkbox">
+              <span class="color-dot" style="background-color: #000;"></span>
+              Noir
+          </label>
+          <label class="color-option">
+              <input type="checkbox">
+              <span class="color-dot" style="background-color: #fff; border: 1px solid #ddd;"></span>
+              Blanc
+          </label>
+          <label class="color-option">
+              <input type="checkbox">
+              <span class="color-dot" style="background-color: #ff0000;"></span>
+              Rouge
+          </label>
+          <label class="color-option">
+              <input type="checkbox">
+              <span class="color-dot" style="background-color: #0000ff;"></span>
+              Bleu
+          </label>
+      </div>
+  </div>
+  </aside>
+
+  <section class="products-section">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+      <div class="product-card" *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+        <a [routerLink]="['/products', product.id]">
+          <button class="favorite-btn" [class.active]="product.isFavorite" (click)="toggleFavorite(product)">
+            <i [class]="product.isFavorite ? 'fas fa-heart' : 'far fa-heart'"></i>
+          </button>
+          <img [src]="product.images[0]" [alt]="product.name">
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <span>{{ product.rating }}</span>
+              <span class="rating-count">({{ product.numberReviews }})</span>
+            </div>
+            <p class="price">${{ product.price }}</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="pagination-container">
+      <pagination-controls
+        (pageChange)="onPageChange($event)"
+        [responsive]="true"
+        [previousLabel]="'Previous'"
+        [nextLabel]="'Next'"
+        [screenReaderPaginationLabel]="'Pagination'"
+        [screenReaderPageLabel]="'page'"
+        [screenReaderCurrentLabel]="'You are on page'">
+      </pagination-controls>
+    </div>
+  </section>
+</div>
+
+<app-footer/>

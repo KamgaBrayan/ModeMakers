@@ -1,0 +1,96 @@
+<main class="">
+    <section class="flex flex-row relative overflow-x-auto h-[310px]">
+        <div *ngFor="let material of materials; let i = index" class="material-card flex w-[200px] h-[190px] flex-col">
+          <h2>{{ material.name }}</h2>
+          <div class="flex flex-col h-full w-full">
+            <div class="material-display w-[150px] flex flex-row justify-around">
+              <button (click)="previousMaterial(i)" class="slider-button">&#10094;</button>
+              <img *ngIf="material.photos.length > 0" 
+                   [src]="material.photos[currentImageIndex[i]]" 
+                   alt="Material Image" />
+              <button (click)="nextMaterial(i)" class="slider-button">&#10095;</button>
+            </div>
+            <div class="color-circles">
+              <div class="dots-container">
+                <span
+                  *ngFor="let photo of material.photos; let j = index"
+                  (click)="setImage(i, j)"
+                  class="dot"
+                  [class.active]="currentImageIndex[i] === j"
+                ></span>
+              </div>
+            </div>
+          </div>
+          
+    
+          <h2 class="mt-6">{{ material.price_per_square_meter }} FrCFA/m²</h2>
+    
+          <button 
+            class="select-button flex items-center justify-center gap-2 p-2 border rounded transition-colors mt-2"
+            [ngClass]="isSelected(material) ? 'bg-gray-500 cursor-not-allowed' : 'bg-green-500 hover:bg-green-600'"
+            [disabled]="isSelected(material)"
+            (click)="selectMaterial(material)">
+            <i class="fas" [ngClass]="isSelected(material)? 'fa-check-double' : 'fa-check'"></i>
+            {{ isSelected(material)? 'Selected' : 'Select' }}
+        </button>
+        </div>
+      </section>
+      
+      <!-- Section pour uploader un matériau -->
+      <section class="upload-materials mt-8">
+        <h2 class="font-bold text-lg">Matériaux en possession</h2>
+        
+        <!-- Zone de téléchargement -->
+        <div
+          class="upload-zone border-2 border-dashed rounded-lg p-4 text-center cursor-pointer"
+          (dragover)="onDragOver($event)"
+          (drop)="onDrop($event)"
+          (click)="fileInput.click()"
+        >
+          <p>Glissez et déposez une image ou cliquez pour télécharger.</p>
+          <input 
+            #fileInput 
+            type="file" 
+            class="hidden" 
+            (change)="onFileSelected($event)" 
+            accept="image/*" 
+          />
+        </div>
+      
+        <!-- Formulaire pour entrer le nom du matériau -->
+        <div class="mt-4">
+          <input 
+            type="text" 
+            [(ngModel)]="materialName" 
+            placeholder="Entrez le nom du matériau" 
+            class="border rounded p-2 w-full" 
+          />
+        </div>
+      
+        <!-- Bouton d'ajout -->
+        <button 
+          class="bg-indigo-700 text-white px-4 py-2 rounded mt-4 hover:bg-indigo-800 transition-colors cursor-pointer" 
+          [disabled]="!materialName || !uploadedImage"
+          (click)="addMaterial()"
+        >
+          Add a Material
+        </button>
+      </section>  
+      
+        <!-- Section pour les matériaux sélectionnés -->
+        <section class="w-full h-[300px] flex flex-row relative overflow-x-auto">
+            <div *ngFor="let selected of selectedMaterials" class="material-card flex  min-w-[170px] min-h-[170px] h-[170px] flex-col items-center justify-around">
+                <h3>{{ selected.name }}</h3>
+                <img [src]="selected.photo" alt="Selected Material" class="w-[90px] min-h-[90px] rounded-lg"/>
+                <h3>{{ selected.price_per_square_meter }} Franc CFA</h3>
+                <button 
+                class="select-button flex items-center justify-center gap-2 p-2 border rounded transition-colors mt-8 bg-red-500 hover:bg-red-600"
+                    (click)="deselectMaterial(selected)">
+                <i class="fas fa-times"></i> Deselect
+              </button>
+          
+              
+            </div>
+        </section>
+          
+    </main>

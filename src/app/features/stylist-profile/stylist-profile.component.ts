@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { DescriptionComponent } from './description/description.component';
-import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 import { CommonModule } from '@angular/common';
-import { SelectSortComponent } from './select-sort/select-sort.component';
-import { AvailabilityComponent } from './availability/availability.component';
-import { ReviewsComponent } from './reviews/reviews.component';
-import { Product, Stylist } from './stylist-profile.model';
-import { NavbarComponent } from '../stylists/navbar/navbar.component';
-import { SignupComponent } from "../stylists/signup/signup.component";
-import { Review } from './reviews/reviews.model';
+import { SelectSortComponent } from '../../shared/components/select-sort/select-sort.component';
+import { AvailabilityComponent } from '../../shared/components/availability/availability.component';
+import { ReviewsComponent } from '../../shared/components/reviews/reviews.component'
+import { SignupComponent } from "../../shared/components/signup/signup.component";
+import { DescriptionStylistComponent } from '../../shared/components/description-stylist/description-stylist.component';
+import { Stylist } from '../../shared/models/stylist.interface';
+import { Product } from '../../shared/models/product_.interface';
+import { Review } from '../../shared/models/review.interface';
+import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-stylist-profile',
   imports: [
-    CommonModule,
     NavbarComponent,
+    CommonModule,
     BreadcrumbComponent,
-    DescriptionComponent,
+    DescriptionStylistComponent,
     ProductCardComponent,
     SelectSortComponent,
     AvailabilityComponent,

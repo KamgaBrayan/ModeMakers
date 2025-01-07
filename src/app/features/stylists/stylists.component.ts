@@ -1,26 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarComponent } from "./navbar/navbar.component";
 import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
-import { HeroComponent } from "./hero/hero.component";
-import { CardComponent } from './card/card.component';
+import { HeroComponent } from "../../shared/components/hero/hero.component";
+import { StylistCardComponent } from '../../shared/components/stylist-card/stylist-card.component';
 import { CommonModule } from '@angular/common';
-import { SidebarFilterComponent } from './sidebar-filter/sidebar-filter.component';
-import { SelectSortComponent } from './select-sort/select-sort.component';
-import { Stylist } from './stylist.model';
-import { SignupComponent } from './signup/signup.component';
-import { Product, Review } from '../garment/garment.model';
+import { SidebarFilterComponent } from '../../shared/components/sidebar-filter/sidebar-filter.component';
+import { SignupComponent } from '../../shared/components/signup/signup.component';
+import { SelectSortComponent } from '../../shared/components/select-sort/select-sort.component';
+import { Stylist } from '../../shared/models/stylist.interface';
+import { Review } from '../../shared/models/review.interface';
+import { Product } from '../../shared/models/product_.interface';
+import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 
 
 @Component({
   selector: 'app-stylists',
   imports: [
+    NavbarComponent,
     CommonModule, 
-    NavbarComponent, 
     BreadcrumbComponent, 
     HeroComponent,       
-    CardComponent,        
+    StylistCardComponent,        
     SidebarFilterComponent,   
-    SelectSortComponent,
+    SelectSortComponent, 
     SignupComponent, 
   ],
   templateUrl: './stylists.component.html',

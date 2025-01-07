@@ -1,17 +1,19 @@
+<app-navbar></app-navbar>
 <main class="px-4">
-    <app-navbar></app-navbar>
     <div class="py-2">
       <app-breadcrumb-stylist-profile></app-breadcrumb-stylist-profile>
     </div>
     <div class="py-4">
-        <app-description [stylist]="stylist" [rating]="rating"></app-description> <!-- Pass stylist data -->
+        <app-description-stylist [stylist]="stylist" [rating]="rating"></app-description-stylist> <!-- Pass stylist data -->
     </div>
     <section class="flex gap-2 pb-4">  
         <div class="px-4">
             <span class="p-6">
                 <h3 class="font-bold text-lg p-4">Availability :</h3>
             </span>
-            <app-availability [daysAvailable]="stylist.calendar"></app-availability> <!-- Pass stylist's available days -->
+            <span *ngIf="stylist.calendar">
+                <app-availability [daysAvailable]="stylist.calendar"></app-availability> 
+            </span>
         </div>  
         <div>
             <span class="flex p-6 flex-row items-center justify-between">
@@ -20,7 +22,7 @@
                     <h1 class="text-md font-bold  p-4">{{ getFilterText() }}</h1>
                 </span>
                 <span class="flex flex-row items-center">
-                    <app-select-sort-product (sortChanged)="applySort($event)"></app-select-sort-product>
+                    <app-select-sort (sortChanged)="applySort($event)"></app-select-sort>
                 </span>
             </span>
             <div class="flex flex-row flex-wrap gap-4 max-h-[900px] overflow-y-auto">

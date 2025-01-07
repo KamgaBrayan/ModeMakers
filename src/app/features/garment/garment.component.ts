@@ -1,23 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Material, Measure, Product, ReduceMaterial, Review, Stylist } from './garment.model';
-import { NavbarComponent } from '../stylists/navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { ProductSlideComponent } from './product-slide/product-slide.component';
-import { MaterialsComponent } from './materials/materials.component';
-import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { PersonalInfoComponent } from '../../shared/components/personal-info/personal-info.component';
 // import { MensurationsComponent } from './mensurations/mensurations.component';
-import { UserReviewsComponent } from './user-reviews/user-reviews.component';
-import { SignupComponent } from "../stylists/signup/signup.component";
+import { UserReviewsComponent } from '../../shared/components/user-reviews/user-reviews.component';
+import { SignupComponent } from "../../shared/components/signup/signup.component";
+import { Stylist } from '../../shared/models/stylist.interface';
+import { Product } from '../../shared/models/product_.interface';
+import { Material, ReduceMaterial } from '../../shared/models/material.interface';
+import { Review } from '../../shared/models/review.interface';
+import { Measure } from '../../shared/models/measure.interface';
+import { MaterialsComponent } from '../../shared/components/materials/materials.component';
+import { ProductSlideCommandComponent } from './product-slide-command/product-slide-command.component';
+import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-garment',
   imports: [
+    NavbarComponent, 
     CommonModule,
-    NavbarComponent,
     BreadcrumbComponent,
-    ProductSlideComponent,
+    ProductSlideCommandComponent,
     MaterialsComponent,
     PersonalInfoComponent,
     UserReviewsComponent,
@@ -50,7 +54,7 @@ export class GarmentComponent {
       .catch(error => {
         console.error("Initialization failed:", error);
       });
-      
+      this.fetchStylist(Number(id));
       this.fetchReviews();
       this.fetchMeasures();
     

@@ -1,5 +1,5 @@
+<app-navbar></app-navbar>
 <main class="px-4">
-    <app-navbar></app-navbar>
     <div class="py-2">
         <app-breadcrumb-stylist></app-breadcrumb-stylist>
     </div>
@@ -28,11 +28,11 @@
                     <h1 class="text-md font-bold  p-4">{{ getFilterText() }}</h1>
                 </span>
                 <span class="flex flex-row items-center">
-                    <app-select-sort-stylist (sortChanged)="applySort($event)"></app-select-sort-stylist>
+                    <app-select-sort (sortChanged)="applySort($event)"></app-select-sort>
                 </span>
             </span>
             <div class="flex flex-row flex-wrap gap-4">
-                <app-card *ngFor="let stylist of filteredStylists" [stylist]="stylist" [rating]="getRating(stylist.id)"></app-card>
+                <app-stylist-card *ngFor="let stylist of filteredStylists" [stylist]="stylist" [rating]="getRating(stylist.id)"></app-stylist-card>
             </div>
         </div>
     </section>

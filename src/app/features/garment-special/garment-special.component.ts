@@ -1,25 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Material, Precommand, ReduceMaterial, Stylist } from './garment-special';
-import { NavbarComponent } from '../stylists/navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { ProductSlideComponent } from './product-slide/product-slide.component';
-import { MaterialsComponent } from './materials/materials.component';
-import { PersonalInfoComponent } from './personal-info/personal-info.component';
-import { SignupComponent } from "../stylists/signup/signup.component";
-import { UserReviewsComponent } from "../garment/user-reviews/user-reviews.component";
-import { Measure } from '../garment/garment.model';
+import { ProductSlideSpecialComponent } from './product-slide-garment/product-slide-garment.component';
+import { SignupComponent } from "../../shared/components/signup/signup.component";
+import { UserReviewsComponent } from "../../shared/components/user-reviews/user-reviews.component";
+import { MaterialsComponent } from '../../shared/components/materials/materials.component';
+import { Stylist } from '../../shared/models/stylist.interface';
+import { Precommand } from '../../shared/models/precommand.interface';
+import { Material, ReduceMaterial } from '../../shared/models/material.interface';
+import { Measure } from '../../shared/models/measure.interface';
+import { PersonalInfoComponent } from '../../shared/components/personal-info/personal-info.component';
+import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-garment',
   imports: [
-    CommonModule,
     NavbarComponent,
+    CommonModule,
     BreadcrumbComponent,
-    ProductSlideComponent,
+    ProductSlideSpecialComponent,
     MaterialsComponent,
-    PersonalInfoComponent,
+    PersonalInfoComponent, 
     SignupComponent,
     UserReviewsComponent
 ],
