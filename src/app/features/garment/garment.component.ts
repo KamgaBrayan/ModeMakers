@@ -35,7 +35,6 @@ export class GarmentComponent {
   images: string[] = [];
   measures: Measure[] = [];
   receivedPersonnalInfo: any = null;
-  receivedMeasures: Measure[] = [];
   selectedMaterials: ReduceMaterial[] = [];
  
  
