@@ -153,39 +153,69 @@
     "createdAt": "2024-03-10",
     "status": "enum(pending, canceled, confirmed)"
   },
-  "photos": ["assets/images/dress,jpg"],
-  "utils": [
-    {"name": "Satin", "type": "coton", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
-    {"name": "Microfiber", "type": "tissu", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
-    {"name": "Polyester", "type": "sik", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
-    {"name": "Cotton", "type": "coton", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1}
-  ],
-  "createdAt": "2024-03-10",
-  "updatedAt": "2024-03-10",
-  "day": 14,
-  "workforce": 15000,
-  "meseaure": ["Same structure as measure from GitHub"],
-  "user": {
-    "user_id": 1,
-    "user_name": "Gabriel Nomo",
-    "roles": ["ROLE_USER"]
-  },
-  "gender": "male",
-  "location": "test",
-  "specification": "description of the model",
-  "status": "enum(pending, reviewed, confirmed)",
-  "user": {
+  "preOrder": {
     "id": 1,
-    "roles": ["ROLE_STYLIST"],
-    "name": "John Doe",
-    "specialty": "Hair Stylist",
-    "photos": ["/images/stylists/stylist_1.jpg"],
-    "biography": "John is a talented hair stylist with over 10 years of experience in the industry. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam labore maxime aperiam alias commodi quisquam. Quos quibusdam autem, dolor, error cumque perferendis animi deleniti tenetur harum odio porro facere praesentium.",
-    "calendar": ["monday", "wednesday", "friday"],
-    "experience": "10 years of experience in cutting, coloring, and styling hair.",
-    "localisation": "Paris, France",
-    "phone": "0123456789",
-    "category": ["Homme", "Femme"]
+    "photos": ["assets/images/dress,jpg"],
+    "utils": [
+      {"name": "Satin", "type": "coton", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
+      {"name": "Microfiber", "type": "tissu", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
+      {"name": "Polyester", "type": "sik", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
+      {"name": "Cotton", "type": "coton", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1}
+    ],
+    "createdAt": "2024-03-10",
+    "updatedAt": "2024-03-10",
+    "day": 14,
+    "workforce": 15000,
+    "mesure": {
+      "id": 1,
+      "title": "titre de la mesure pour l'eregistrement",
+      "user": {
+        "user_id": 1,
+        "user_name": "Gabriel Nomo"
+      },
+      "stature": 1.75,
+      "shoulder_circumference": 105.5,
+      "chest_circumference": 95.0,
+      "waist_circumference": 85.0,
+      "hip_circumference": 98.0,
+      "shoulder_height": 120.0,
+      "hip_height": 90.0,
+      "knee_height": 55.0,
+      "chest_spacing": 18.0,
+      "breast_height": 105.0,
+      "pelvis_height": 100.0,
+      "front_waist_length": 40.0,
+      "shoulder_length": 45.0,
+      "back_waist_length": 50.0,
+      "arm_length": 60.0,
+      "total_arm_length_bent": 70.0,
+      "wrist_circumference": 18.0,
+      "ankle_height": 22.0,
+      "seated_height": 45.0,
+      "crotch_length": 30.0,
+      "date_measure": "2024-12-29T10:00:00Z"
+    },
+    "user": {
+      "id": 2,
+      "user_name": "Sophie Chen"
+    },
+    "gender": "male",
+    "location": "test",
+    "specification": "description of the model",
+    "status": "enum(pending, reviewed, confirmed)",
+    "user": {
+      "id": 1,
+      "roles": ["ROLE_STYLIST"],
+      "name": "John Doe",
+      "specialty": "Hair Stylist",
+      "photos": ["/images/stylists/stylist_1.jpg"],
+      "biography": "John is a talented hair stylist with over 10 years of experience in the industry. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam labore maxime aperiam alias commodi quisquam. Quos quibusdam autem, dolor, error cumque perferendis animi deleniti tenetur harum odio porro facere praesentium.",
+      "calendar": ["monday", "wednesday", "friday"],
+      "experience": "10 years of experience in cutting, coloring, and styling hair.",
+      "localisation": "Paris, France",
+      "phone": "0123456789",
+      "category": ["Homme", "Femme"]
+    }
   }
 }
 ```
@@ -397,6 +427,7 @@
 interface User {
   id: number;
   user_name: string;
+  roles: string[];
 }
 
 interface StylistUser {
@@ -432,10 +463,7 @@ interface Material {
 interface Measurement {
   id: number;
   title: string;
-  user: {
-    user_id: number;
-    user_name: string;
-  };
+  user: User;
   stature: number;
   shoulder_circumference: number;
   chest_circumference: number;
@@ -487,21 +515,26 @@ interface PreOrder {
   workforce: number;
   mesure: Measurement;
   user: User;
-  gender: string;
+  gender: 'male' | 'female';
   location: string;
   specification: string;
   status: 'pending' | 'reviewed' | 'confirmed';
 }
 
-interface Order extends Omit<PreOrder, 'mesure'> {
-  payment: {
-    id: number;
-    paymentMethod: string;
-    account: number;
-    createdAt: string;
-    status: 'pending' | 'canceled' | 'confirmed';
-  };
-  meseaure: Measurement[];
+interface Order {
+  id: number;
+  payment: Payment;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface Payment {
+  id: number;
+  paymentMethod: string;
+  account: number;
+  createdAt: string;
+  status: 'pending' | 'canceled' | 'confirmed';
+  preOrder: PreOrder;
 }
 
 interface Review {
@@ -527,10 +560,7 @@ interface Notification {
 
 interface Preferences {
   id: number;
-  user: {
-    user_id: number;
-    user_name: string;
-  };
+  user: User;
   product: Product[];
 }
 
