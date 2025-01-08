@@ -151,70 +151,70 @@
     "paymentMethod": "",
     "account": 20000,
     "createdAt": "2024-03-10",
-    "status": "enum(pending, canceled, confirmed)"
-  },
-  "preOrder": {
-    "id": 1,
-    "photos": ["assets/images/dress,jpg"],
-    "utils": [
-      {"name": "Satin", "type": "coton", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
-      {"name": "Microfiber", "type": "tissu", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
-      {"name": "Polyester", "type": "sik", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
-      {"name": "Cotton", "type": "coton", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1}
-    ],
-    "createdAt": "2024-03-10",
-    "updatedAt": "2024-03-10",
-    "day": 14,
-    "workforce": 15000,
-    "mesure": {
-      "id": 1,
-      "title": "titre de la mesure pour l'eregistrement",
-      "user": {
-        "user_id": 1,
-        "user_name": "Gabriel Nomo"
-      },
-      "stature": 1.75,
-      "shoulder_circumference": 105.5,
-      "chest_circumference": 95.0,
-      "waist_circumference": 85.0,
-      "hip_circumference": 98.0,
-      "shoulder_height": 120.0,
-      "hip_height": 90.0,
-      "knee_height": 55.0,
-      "chest_spacing": 18.0,
-      "breast_height": 105.0,
-      "pelvis_height": 100.0,
-      "front_waist_length": 40.0,
-      "shoulder_length": 45.0,
-      "back_waist_length": 50.0,
-      "arm_length": 60.0,
-      "total_arm_length_bent": 70.0,
-      "wrist_circumference": 18.0,
-      "ankle_height": 22.0,
-      "seated_height": 45.0,
-      "crotch_length": 30.0,
-      "date_measure": "2024-12-29T10:00:00Z"
-    },
-    "user": {
-      "id": 2,
-      "user_name": "Sophie Chen"
-    },
-    "gender": "male",
-    "location": "test",
-    "specification": "description of the model",
-    "status": "enum(pending, reviewed, confirmed)",
-    "user": {
-      "id": 1,
-      "roles": ["ROLE_STYLIST"],
-      "name": "John Doe",
-      "specialty": "Hair Stylist",
-      "photos": ["/images/stylists/stylist_1.jpg"],
-      "biography": "John is a talented hair stylist with over 10 years of experience in the industry. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam labore maxime aperiam alias commodi quisquam. Quos quibusdam autem, dolor, error cumque perferendis animi deleniti tenetur harum odio porro facere praesentium.",
-      "calendar": ["monday", "wednesday", "friday"],
-      "experience": "10 years of experience in cutting, coloring, and styling hair.",
-      "localisation": "Paris, France",
-      "phone": "0123456789",
-      "category": ["Homme", "Femme"]
+    "status": "enum(pending, canceled, confirmed)",
+    "preOrder": {
+        "id": 1,
+        "photos": ["assets/images/dress,jpg"],
+        "utils": [
+        {"name": "Satin", "type": "coton", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
+        {"name": "Microfiber", "type": "tissu", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
+        {"name": "Polyester", "type": "sik", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1},
+        {"name": "Cotton", "type": "coton", "photos": ["assets/images/products/dress4.jpg"], "price_per_square_meter": 1000, "quantity": 1}
+        ],
+        "createdAt": "2024-03-10",
+        "updatedAt": "2024-03-10",
+        "day": 14,
+        "workforce": 15000,
+        "mesure": {
+        "id": 1,
+        "title": "titre de la mesure pour l'eregistrement",
+        "user": {
+            "user_id": 1,
+            "user_name": "Gabriel Nomo"
+        },
+        "stature": 1.75,
+        "shoulder_circumference": 105.5,
+        "chest_circumference": 95.0,
+        "waist_circumference": 85.0,
+        "hip_circumference": 98.0,
+        "shoulder_height": 120.0,
+        "hip_height": 90.0,
+        "knee_height": 55.0,
+        "chest_spacing": 18.0,
+        "breast_height": 105.0,
+        "pelvis_height": 100.0,
+        "front_waist_length": 40.0,
+        "shoulder_length": 45.0,
+        "back_waist_length": 50.0,
+        "arm_length": 60.0,
+        "total_arm_length_bent": 70.0,
+        "wrist_circumference": 18.0,
+        "ankle_height": 22.0,
+        "seated_height": 45.0,
+        "crotch_length": 30.0,
+        "date_measure": "2024-12-29T10:00:00Z"
+        },
+        "user": {
+        "id": 2,
+        "user_name": "Sophie Chen"
+        },
+        "gender": "male",
+        "location": "test",
+        "specification": "description of the model",
+        "status": "enum(pending, reviewed, confirmed)",
+        "user": {
+        "id": 1,
+        "roles": ["ROLE_STYLIST"],
+        "name": "John Doe",
+        "specialty": "Hair Stylist",
+        "photos": ["/images/stylists/stylist_1.jpg"],
+        "biography": "John is a talented hair stylist with over 10 years of experience in the industry. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam labore maxime aperiam alias commodi quisquam. Quos quibusdam autem, dolor, error cumque perferendis animi deleniti tenetur harum odio porro facere praesentium.",
+        "calendar": ["monday", "wednesday", "friday"],
+        "experience": "10 years of experience in cutting, coloring, and styling hair.",
+        "localisation": "Paris, France",
+        "phone": "0123456789",
+        "category": ["Homme", "Femme"]
+        }
     }
   }
 }
@@ -418,6 +418,123 @@
     }
   ]
 }
+```
+
+# payment
+## Base routes
+
+```ts
+
+// Routes pour les paiements
+interface PaymentRoutes {
+  // Créer une intention de paiement
+  POST '/api/payments/create-intent': {
+    body: {
+      preOrderId: number;
+      amount: number;
+      currency: string;
+    };
+    response: {
+      clientSecret: string;
+      paymentIntentId: string;
+    };
+  };
+
+  // Confirmer un paiement
+  POST '/api/payments/confirm': {
+    body: {
+      paymentIntentId: string;
+      preOrderId: number;
+    };
+    response: {
+      status: 'confirmed';
+      payment: {
+        id: number;
+        status: 'confirmed';
+        createdAt: string;
+        amount: number;
+      };
+    };
+  };
+
+  // Annuler un paiement
+  POST '/api/payments/cancel': {
+    body: {
+      paymentIntentId: string;
+      preOrderId: number;
+    };
+    response: {
+      status: 'canceled';
+      payment: {
+        id: number;
+        status: 'canceled';
+        createdAt: string;
+      };
+    };
+  };
+
+  // Webhook Stripe pour les événements de paiement
+  POST '/api/payments/webhook': {
+    body: {
+      type: string; // 'payment_intent.succeeded' | 'payment_intent.canceled' etc.
+      data: {
+        object: {
+          id: string;
+          status: string;
+          metadata: {
+            preOrderId: string;
+          };
+        };
+      };
+    };
+    response: {
+      received: true;
+    };
+  };
+
+  // Récupérer le statut d'un paiement
+  GET '/api/payments/:paymentId': {
+    params: {
+      paymentId: string;
+    };
+    response: {
+      id: number;
+      status: 'pending' | 'canceled' | 'confirmed';
+      createdAt: string;
+      preOrder: {
+        id: number;
+        status: string;
+        // ... autres détails de la précommande
+      };
+    };
+  };
+
+  // Lister les paiements d'un utilisateur
+  GET '/api/payments': {
+    query: {
+      userId?: number;
+      status?: 'pending' | 'canceled' | 'confirmed';
+      page?: number;
+      limit?: number;
+    };
+    response: {
+      payments: Array<{
+        id: number;
+        status: string;
+        createdAt: string;
+        amount: number;
+        preOrder: {
+          id: number;
+          status: string;
+        };
+      }>;
+      total: number;
+      page: number;
+      totalPages: number;
+    };
+  };
+}
+
 ```
 
 # Interfaces
