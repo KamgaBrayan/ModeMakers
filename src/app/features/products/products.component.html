@@ -104,11 +104,8 @@
     <h2>Our Products</h2>
     <div class="product-grid">
       <div class="product-card" *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+        <img [src]="product.images[0]" [alt]="product.name">
         <a [routerLink]="['/products', product.id]">
-          <button class="favorite-btn" [class.active]="product.isFavorite" (click)="toggleFavorite(product)">
-            <i [class]="product.isFavorite ? 'fas fa-heart' : 'far fa-heart'"></i>
-          </button>
-          <img [src]="product.images[0]" [alt]="product.name">
           <div class="product-info">
             <h3>{{ product.name }}</h3>
             <div class="rating">

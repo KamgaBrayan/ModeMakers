@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../shared/models/product.interface';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../core/services/product.service';
 import { NavbarComponent } from "../../shared/components/navbar/navbar.component";
 import { FooterComponent } from "../../shared/components/footer/footer.component";
+import {Product} from '../../shared/models/product.model';
 
 @Component({
   selector: 'app-product-detail',
+  standalone: true,
   imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'

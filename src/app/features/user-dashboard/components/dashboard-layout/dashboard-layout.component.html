@@ -1,0 +1,63 @@
+<div class="min-h-screen bg-gray-50 flex">
+  <!-- Sidebar and Main Content Container -->
+  <div class="flex flex-1">
+    <!-- Sidebar -->
+    <div [class.w-64]="isSidebarOpen"
+         [class.w-16]="!isSidebarOpen"
+         class="h-screen fixed left-0 top-0 z-40 bg-white border-r transition-all duration-300 ease-in-out">
+      <div class="h-full px-3 py-4 relative">
+        <!-- Toggle Button -->
+        <button 
+          (click)="toggleSidebar()"
+          class="absolute -right-3 top-10 bg-[#3734A9] text-white p-1 rounded-full shadow-lg hover:bg-[#2d2a87] transition-all duration-300">
+          <svg [class.rotate-180]="!isSidebarOpen" class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <!-- Logo -->
+        <div class="flex items-center mb-8" [class.justify-center]="!isSidebarOpen">
+          <img [src]="currentUser.image" class="w-10 h-10 rounded-lg" [alt]="currentUser.name">
+          <span class="ml-3 text-xl font-bold text-[#3734A9] transition-opacity duration-300"
+                [class.opacity-0]="!isSidebarOpen"
+                [class.hidden]="!isSidebarOpen">
+            {{currentUser.name}}
+          </span>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="space-y-1">
+          @for (item of navItems; track item) {
+            <a [routerLink]="item.path"
+               routerLinkActive="bg-[#3734A9] text-white"
+               class="flex items-center px-4 py-3 text-sm font-medium rounded-lg hover:bg-gray-100 text-gray-900 group">
+              <i class="fas fa-{{item.icon}} mr-3 h-5 w-5"></i>
+              <span [class.hidden]="!isSidebarOpen">{{item.label}}</span>
+            </a>
+          }
+        </nav>
+
+        <!-- User Profile -->
+        <div class="absolute bottom-4 left-0 right-0 px-3">
+          <button (click)="logout()" 
+                  class="w-full flex items-center px-4 py-2 text-sm font-medium text-gray-900 rounded-lg hover:bg-gray-100">
+            <i class="fas fa-sign-out-alt mr-3 h-5 w-5"></i>
+            <span [class.hidden]="!isSidebarOpen">Déconnexion</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main [class.ml-64]="isSidebarOpen" [class.ml-16]="!isSidebarOpen" class="flex-1 p-4 sm:p-6 lg:p-8 transition-all duration-300">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <!-- Overlay -->
+  @if (isSidebarOpen) {
+    <div class="fixed inset-0 bg-gray-600 bg-opacity-75 z-20 lg:hidden"
+         (click)="toggleSidebar()">
+    </div>
+  }
+</div>

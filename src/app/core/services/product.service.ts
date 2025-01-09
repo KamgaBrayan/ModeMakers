@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from '../../shared/models/product.interface';
+import {Product} from '../../shared/models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,30 +10,54 @@ export class ProductService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/products';
 
-  getProducts(): Observable<Product[]> {
+  // get all products
+  getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl);
   }
 
-  toggleFavorite(product: Product): Observable<Product> {
-    return this.http.patch<Product>(`${this.apiUrl}/${product.id}`, {
-      isFavorite: !product.isFavorite
-    });
-  }
-
+  // create product
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiUrl, product);
   }
-  
+
+  // get product by id
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/${id}`);
   }
 
+  // update product
   updateProduct(product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.apiUrl}/${product.id}`, product);
   }
 
+  // delete product
   deleteProduct(id: number): Observable<Product> {
     return this.http.delete<Product>(`${this.apiUrl}/${id}`);
+  }
+
+  // Get products by category
+  getProductsByCategory(category: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/products?category=${category}`);
+  }
+
+  // Get products by gender
+  getProductsByGender(gender: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/products?gender=${gender}`);
+  }
+
+  // Get products by stylist
+  getProductsByStyliste(stylisteId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/products?stylisteId=${stylisteId}`);
+  }
+
+  // Get featured products
+  getFeaturedProducts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/products?featured=true`);
+  }
+
+  // Search products
+  searchProducts(query: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/products?q=${query}`);
   }
 
 }

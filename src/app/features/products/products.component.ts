@@ -1,12 +1,12 @@
-import { ProductService } from './../../core/services/product.service';
+import { ProductService } from '../../core/services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
-import { Product } from '../../shared/models/product.interface';
 import { RouterModule } from '@angular/router';
+import {Product} from '../../shared/models/product.model';
 
 @Component({
   selector: 'app-products',
@@ -28,13 +28,9 @@ export class ProductsComponent implements OnInit {
   }
 
   loadProducts(): void {
-    this.ProductService.getProducts().subscribe(
+    this.ProductService.getAllProducts().subscribe(
       products => this.products = products
     );
-  }
-
-  toggleFavorite(product: Product): void {
-    product.isFavorite = !product.isFavorite;
   }
 
   onPageChange(page: number): void {
