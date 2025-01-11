@@ -131,7 +131,7 @@ import {Product} from '../../shared/models/product.model';
                     </div>
                   </div>
                   <div class="product-price">
-                    ₦{{product.price.toLocaleString()}}
+                    {{product.delivery[0].price}} XAF
                   </div>
                 </div>
               </div>
@@ -419,6 +419,12 @@ export class DashproductsComponent implements OnInit {
     meanEvaluation: 0,
     note: 0,
     images: [],
+    delivery: [{
+      id: 0,
+      day: 0,
+      price: 0,
+      type: '',
+    }],
     stylist: {
       id: 0,
       name: '',
@@ -489,6 +495,12 @@ export class DashproductsComponent implements OnInit {
       meanEvaluation: 0,
       note: 0,
       images: [],
+      delivery: [{
+        id: 0,
+        day: 0,
+        price: 0,
+        type: '',
+      }],
       stylist: {
         id: 0,
         name: '',
