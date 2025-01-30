@@ -7,7 +7,6 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import {Product} from '../../shared/interfaces/product.interface';
-import { ShoppingCart } from 'lucide-react';
 
 @Component({
   selector: 'app-products',
