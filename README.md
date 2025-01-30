@@ -1,141 +1,134 @@
+# ModeMakers - Collaborative Angular Project
 
-# API Laravel - Guide d'installation et de configuration
+## Project Structure
 
-## Prérequis
+The project follows a modular and scalable architecture to facilitate collaborative development. Here's the detailed structure:
 
-Avant de commencer, assurez-vous d'avoir installé les outils suivants sur votre machine :
-- [Docker](https://www.docker.com/products/docker-desktop)
-- [Composer](https://getcomposer.org/)
-- [Node.js](https://nodejs.org/)
-- [PHP](https://www.php.net/)
-
-## Étapes d'installation
-
-### 1. Cloner le dépôt
-
-Commencez par cloner le projet depuis le dépôt Git et switcher vers la branche backend :
-
-```bash
-git clone https://github.com/KamgaBrayan/ModeMakers.git
-cd modeMakers
-git checkout backend
+```
+src/
+├── app/
+│   ├── core/                 # Singleton services, guards, interceptors
+│   │   ├── guards/          # Authentication and route guards
+│   │   ├── interceptors/    # HTTP interceptors
+│   │   └── services/        # Singleton services
+│   ├── shared/              # Shared components, pipes, directives
+│   │   ├── components/      # Reusable components
+│   │   ├── directives/      # Custom directives
+│   │   ├── pipes/           # Custom pipes
+│   │   └── models/          # Interfaces and types
+│   ├── features/            # Feature modules (Each team member's pages)
+│   │   └── [feature-name]/  # Each feature in its own folder
+│   └── utils/               # Utility functions and constants
 ```
 
-### 2. Installer les dépendances PHP
+## Development Guidelines
 
-Installez les dépendances PHP avec Composer :
+### 1. Default Page and Routing
+- The default page is the Home feature (`/`)
+- Each new feature should be added to the routing system with an intuitive route name in the file `app.routes.ts`
+- Example route naming:
+    - Products page: `/products`
+    - User profile: `/profile`
+    - About page: `/about`
 
-```bash
-composer install
-```
+### 2. Adding a New Feature
+1. Create your feature module in `features/[your-feature]`
+2. Add your route to `app.routes.ts`:
+   ```typescript
+   {
+     path: 'your-feature-name',  // Use kebab-case for multi-word routes
+     loadChildren: () => import('./features/your-feature/your-feature.module')
+       .then(m => m.YourFeatureModule)
+   }
+   ```
+3. Make your component standalone:
+   ```typescript
+   @Component({
+     standalone: true,
+     imports: [CommonModule],
+     // ... other component metadata
+   })
+   ```
 
-### 3. Configurer le fichier `.env`
+### 3. Creating New Components
+- All shared components should be placed in `shared/components/`
+- Feature-specific components go in their respective feature module folder
+- Use Angular CLI to generate components: `ng g c shared/components/[component-name]`
 
-Copiez le fichier `.env.example` et renommez-le en `.env` :
+### 4. Services
+- Global services go in `core/services/`
+- Feature-specific services go in their respective feature module
+- Use Angular CLI: `ng g s core/services/[service-name]`
 
-```bash
-cp .env.example .env
-```
-
-Ouvrez le fichier `.env` et configurez les informations suivantes :
-
-- **Base de données** : Assurez-vous que les paramètres de connexion à la base de données sont corrects. Par exemple :
-  ```env
-  DB_CONNECTION=mysql
-  DB_HOST=127.0.0.1
-  DB_PORT=3306
-  DB_DATABASE=nom_de_votre_base
-  DB_USERNAME=votre_utilisateur
-  DB_PASSWORD=votre_mot_de_passe
+### 5. Styling
+- Global styles in `styles.css`
+- Component-specific styles in their respective `.css` files
+- Follow BEM naming convention for CSS classes
+- Example:
+  ```css
+  .block {}
+  .block__element {}
+  .block--modifier {}
   ```
-Rassurez vous que vous avez lance votre serveur de base de donnees au port 3306 sinon configurez le bon port.
 
+### 6. Best Practices
+- Follow Angular style guide
+- Use TypeScript strict mode
+- Implement proper error handling
+- Write meaningful comments
+- Use lazy loading for feature modules
+- Keep components small and focused
+- Use shared components whenever possible
 
-- **Clé JWT** : Configurez la clé secrète pour JWT :
-  ```env
-  php artisan jwt:secret
-  ```
-  ceci generera une cle secrete a la mettra automatiquement dans la variable JWT_SECRET du fichier .env
+### 7. Git Workflow
+- Create feature branches from develop
+- Use conventional commits
+- Submit PRs for review
+- Resolve conflicts locally before pushing
+- Branch naming convention: `feature/page-name`
 
-### 4. Lancer Mailpit avec Docker
+## Creating a New Page (For Team Members)
 
-Mailpit est utilisé pour capturer et afficher les emails envoyés depuis l'application en local.
+1. Create your feature module:
+   ```bash
+   ng g module features/your-page --routing
+   ```
 
-```bash
-docker run -d -p 1025:1025 -p 8025:8025 axllent/mailpit
-```
+2. Create your component:
+   ```bash
+   ng g component features/your-page
+   ```
 
-- Vous pouvez accéder à l'interface Mailpit en ouvrant [http://localhost:8025](http://localhost:8025) dans votre navigateur.
+3. Update your feature routing module
+4. Add your route to app.routes.ts
+5. Implement your page using shared components when possible
 
-### 5. Générer la clé JWT
+## Getting Started
 
-Générez la clé secrète JWT avec la commande suivante :
+1. Clone the repository
+2. Run `npm install`
+3. Create a new branch for your feature: `git checkout -b feature/your-page`
+4. Follow the structure guidelines
+5. Submit PR when ready
 
-```bash
-php artisan jwt:secret
-```
+## Available Scripts
 
-Cela générera une clé secrète et la placera dans le fichier `.env` sous la variable `JWT_SECRET`.
+- `npm start`: Start development server
+- `npm run build`: Build production version
+- `npm test`: Run unit tests
+- `npm run lint`: Run linting
 
-### 6. Effectuer les migrations de la base de données
+## Contributing
 
-Exécutez les migrations pour créer les tables nécessaires dans la base de données :
+1. Create a branch from develop
+2. Implement your feature
+3. Follow the project structure
+4. Submit a Pull Request
+5. Wait for review and approval
 
-```bash
-php artisan migrate
-```
+## Need Help?
 
-### 7. Générer la documentation API avec Scribe
-
-Scribe est utilisé pour générer automatiquement la documentation de votre API à partir des annotations dans le code.
-
-- Générez la documentation de l'API :
-
-```bash
-php artisan scribe:generate
-```
-
-La documentation sera générée dans le dossier `public/docs`. Vous pouvez y accéder sur la route `/docs` de votre api une fois le serveur lance
-
-### 8. Démarrer le serveur Laravel
-
-Enfin, démarrez le serveur Laravel pour tester l'API :
-
-```bash
-php artisan serve
-```
-
-Votre API sera maintenant disponible à [http://localhost:8000](http://localhost:8000).
-
-vous pouvez  maintenant tester l'api en vous servants des consignes de la documentation.
-
-## Commandes utiles
-
-- **Exécuter les migrations** : `php artisan migrate`
-- **Exécuter les tests** : `php artisan test`
-- **Générer la clé JWT** : `php artisan jwt:secret`
-- **Générer la documentation API** : `php artisan scribe:generate`
-- **Démarrer le serveur Laravel** : `php artisan serve`
-
-## Dépannage
-
-- Si vous avez des problèmes avec les migrations, assurez-vous que votre base de données est correctement configurée dans le fichier `.env`.
-- Si vous avez des problèmes avec Mailpit, vérifiez que Docker fonctionne correctement et que les ports ne sont pas bloqués.
-
-
-
----
-
-Si vous avez des questions ou des problèmes, n'hésitez pas à me contacter.
----
-
-### Explication des étapes :
-1. **Installation des dépendances** : Vous devez d'abord installer les dépendances PHP via Composer.
-2. **Configuration du fichier `.env`** : Le fichier `.env` contient les configurations sensibles, comme les informations de la base de données et la clé JWT.
-3. **Mailpit avec Docker** : Mailpit est utilisé pour capturer les emails envoyés localement. Il est exécuté via Docker.
-4. **Génération de la clé JWT** : La clé JWT est générée pour la sécurisation des tokens d'authentification.
-5. **Migrations** : Les migrations sont exécutées pour créer la structure de la base de données.
-6. **Génération de la documentation API** : Scribe est utilisé pour générer la documentation de l'API automatiquement.
-7. **Démarrage du serveur Laravel** : Vous lancez le serveur Laravel pour tester l'API en local.
-
-Ce README fournit une documentation claire et logique pour que vos collaborateurs puissent configurer et utiliser votre API Laravel.
+- Check the Angular documentation
+- Consult with team lead
+- Review existing implementations
+- Check shared components before creating new ones
