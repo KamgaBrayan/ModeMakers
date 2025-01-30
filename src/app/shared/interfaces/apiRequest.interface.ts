@@ -1,3 +1,11 @@
+import {Delivery} from './delivery.interface';
+import {Material} from './material.interface';
+import {Product} from './product.interface';
+import {PreOrder} from './preOrder.interface';
+import {Order} from './order.interface';
+import {Review} from './review.interface';
+import {Measurement} from './measurement.interface';
+
 export interface ApiResponse<T> {
   data: T;
   status: number;

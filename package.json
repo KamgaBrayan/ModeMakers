@@ -27,6 +27,7 @@
     "chart.js": "^4.4.7",
     "express": "^4.18.2",
     "font-awesome": "^4.7.0",
+    "lucide-react": "^0.474.0",
     "ngx-pagination": "^6.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

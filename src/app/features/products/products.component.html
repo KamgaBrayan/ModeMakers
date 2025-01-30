@@ -1,126 +1,119 @@
-<app-navbar/>
+<app-navbar></app-navbar>
 
-<div class="hero-banner">
-  <div class="hero-content">
-      <div class="hero-image">
-          <img src="https://img.freepik.com/photos-premium/petite-fille-africaine-souriant-portant-robe-coloree-fond-rose_279525-18629.jpg" alt="Fashion Model">
+<div class="hero-banner bg-primary p-lg m-sm m-lg rounded-md overflow-hidden relative">
+  <div class="hero-content flex items-center justify-between gap-16 max-w-screen-xl mx-auto relative">
+    <div class="hero-image flex-1 relative z-2">
+      <img src="https://img.freepik.com/photos-premium/petite-fille-africaine-souriant-portant-robe-coloree-fond-rose_279525-18629.jpg" alt="Fashion Model" class="w-full h-112 object-cover rounded-full border-10 border-white/10">
+    </div>
+    <div class="hero-text-container flex-1 relative z-4 transform translate-x-40">
+      <div class="hero-text bg-primary-light p-xl text-dark relative clip-path-polygon-hero rounded-lg w-full">
+        <h1 class="font-playfair text-4xl mb-xs text-primary font-bold">Trendy Styles..</h1>
+        <h2 class="font-poppins text-3xl mb-md text-dark font-bold leading-tight">Thousands Styles More!</h2>
+        <p class="font-poppins text-sm mb-lg leading-relaxed text-gray-600">Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!</p>
+        <div class="hero-buttons flex gap-md">
+          <button class="shop-btn bg-primary text-white py-sm px-lg rounded-lg hover:bg-primary-dark transform transition">Shop collections <i class="fas fa-arrow-right"></i></button>
+          <button class="how-it-works bg-accent-red text-white py-sm px-lg rounded-lg hover:bg-accent-red-dark transform transition">
+            <i class="fas fa-play w-6 h-6 bg-white text-accent-red rounded-full flex items-center justify-center text-xs"></i> See How It Works
+          </button>
+        </div>
       </div>
-      <div class="hero-text-container">
-          <div class="hero-text">
-              <h1>Trendy Styles..</h1>
-              <h2>Thousands Styles More!</h2>
-              <p>Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!</p>
-              <div class="hero-buttons">
-                  <button class="shop-btn">Shop collections <i class="fas fa-arrow-right"></i></button>
-                  <button class="how-it-works">
-                      <i class="fas fa-play"></i>
-                      See How It Works
-                  </button>
-              </div>
-          </div>
-      </div>
+    </div>
   </div>
 </div>
 
-<div class="main-content">
-  <aside class="sidebar">
-    <div class="filter-section">
-      <h3>Categories</h3>
+<div class="main-content flex gap-lg px-lg py-8 max-w-screen-xl mx-auto">
+  <aside class="sidebar w-64">
+    <div class="filter-section bg-white p-md rounded-md mb-md">
+      <h3 class="mb-sm text-dark">Categories</h3>
       <ul>
-        <li>
-          <input type="checkbox" id="women">
+        <li class="flex items-center gap-xs mb-xs">
+          <input type="checkbox" id="women" class="form-checkbox">
           <label for="women">Women</label>
         </li>
-        <li>
-          <input type="checkbox" id="men">
+        <li class="flex items-center gap-xs mb-xs">
+          <input type="checkbox" id="men" class="form-checkbox">
           <label for="men">Men</label>
         </li>
-        <li>
-          <input type="checkbox" id="accessories">
+        <li class="flex items-center gap-xs mb-xs">
+          <input type="checkbox" id="accessories" class="form-checkbox">
           <label for="accessories">Accessories</label>
         </li>
       </ul>
     </div>
 
-    <div class="filter-section">
-      <h3>Price Range</h3>
+    <div class="filter-section bg-white p-md rounded-md mb-md">
+      <h3 class="mb-sm text-dark">Price Range</h3>
       <div class="price-range">
-        <input type="range" min="0" max="1000" step="10">
-        <div class="price-inputs">
-          <input type="number" placeholder="Min">
-          <input type="number" placeholder="Max">
+        <input type="range" min="0" max="1000" step="10" class="w-full mb-sm">
+        <div class="price-inputs flex gap-xs">
+          <input type="number" placeholder="Min" class="w-20 p-xs border rounded-sm">
+          <input type="number" placeholder="Max" class="w-20 p-xs border rounded-sm">
         </div>
       </div>
     </div>
 
-    <!-- Évaluation -->
-    <div class="filter-section">
-      <h4>Évaluation</h4>
-      <div class="rating-filter">
-          <label>
-              <input type="checkbox">
-              <span class="stars">★★★★★</span>
-          </label>
-          <label>
-              <input type="checkbox">
-              <span class="stars">★★★★☆</span>
-          </label>
-          <label>
-              <input type="checkbox">
-              <span class="stars">★★★☆☆</span>
-          </label>
-    </div>
-  </div>
-
-  <!-- Couleurs -->
-  <div class="filter-section">
-      <h4>Couleurs</h4>
-      <div class="color-filter">
-          <label class="color-option">
-              <input type="checkbox">
-              <span class="color-dot" style="background-color: #000;"></span>
-              Noir
-          </label>
-          <label class="color-option">
-              <input type="checkbox">
-              <span class="color-dot" style="background-color: #fff; border: 1px solid #ddd;"></span>
-              Blanc
-          </label>
-          <label class="color-option">
-              <input type="checkbox">
-              <span class="color-dot" style="background-color: #ff0000;"></span>
-              Rouge
-          </label>
-          <label class="color-option">
-              <input type="checkbox">
-              <span class="color-dot" style="background-color: #0000ff;"></span>
-              Bleu
-          </label>
+    <div class="filter-section bg-white p-md rounded-md mb-md">
+      <h4 class="mb-xs">Évaluation</h4>
+      <div class="rating-filter flex gap-8 mb-xs cursor-pointer">
+        <label><input type="checkbox"><span class="stars text-yellow-500">★★★★★</span></label>
+        <label><input type="checkbox"><span class="stars text-yellow-500">★★★★☆</span></label>
+        <label><input type="checkbox"><span class="stars text-yellow-500">★★★☆☆</span></label>
       </div>
-  </div>
+    </div>
+
+    <div class="filter-section bg-white p-md rounded-md mb-md">
+      <h4 class="mb-xs">Couleurs</h4>
+      <div class="color-filter grid grid-cols-1 gap-xs">
+        <label class="color-option flex items-center gap-xs cursor-pointer">
+          <input type="checkbox">
+          <span class="color-dot w-5 h-5 rounded-full" style="background-color: #000;"></span>
+          Noir
+        </label>
+        <label class="color-option flex items-center gap-xs cursor-pointer">
+          <input type="checkbox">
+          <span class="color-dot w-5 h-5 rounded-full border border-gray-300" style="background-color: #fff;"></span>
+          Blanc
+        </label>
+        <label class="color-option flex items-center gap-xs cursor-pointer">
+          <input type="checkbox">
+          <span class="color-dot w-5 h-5 rounded-full" style="background-color: #ff0000;"></span>
+          Rouge
+        </label>
+        <label class="color-option flex items-center gap-xs cursor-pointer">
+          <input type="checkbox">
+          <span class="color-dot w-5 h-5 rounded-full" style="background-color: #0000ff;"></span>
+          Bleu
+        </label>
+      </div>
+    </div>
   </aside>
 
-  <section class="products-section">
-    <h2>Our Products</h2>
+  <section class="products-section flex-1">
+    <h2 class="mb-lg text-dark text-2xl font-bold">Our Products</h2>
     <div class="product-grid">
-      <div class="product-card" *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
-        <img [src]="product.images[0]" [alt]="product.name">
-        <a [routerLink]="['/products', product.id]">
-          <div class="product-info">
-            <h3>{{ product.name }}</h3>
-            <div class="rating">
-              <i class="fas fa-star"></i>
-              <span>{{ product.rating }}</span>
-              <span class="rating-count">({{ product.numberReviews }})</span>
+      <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <img [src]="product.images[0]" alt="{{ product.name }}" class="w-full h-64 object-cover">
+            <div class="p-4">
+              <h3 class="text-xl font-semibold text-gray-800">{{ product.name }}</h3>
+              <p class="text-gray-600">Genre: {{ product.gender }}</p>
+              <p class="text-gray-600">Age: {{ product.age }}</p>
+              <p class="text-lg font-bold text-gray-800">{{ product.delivery[0].price }}</p>
             </div>
-            <p class="price">${{ product.price }}</p>
-            <button class="add-to-cart">Add to Cart</button>
+            <div class="p-4 flex justify-end">
+              <button class="bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L3.6 7H3m0 0l1.4 7m-1.4-7H1m14 6a3 3 0 100 6 3 3 0 000-6zm-7 3a3 3 0 100 6 3 3 0 000-6z" />
+                </svg>
+              </button>
+            </div>
           </div>
-        </a>
+        </div>
       </div>
     </div>
 
-    <div class="pagination-container">
+    <div class="pagination-container flex justify-center mt-8">
       <pagination-controls
         (pageChange)="onPageChange($event)"
         [responsive]="true"
@@ -134,4 +127,4 @@
   </section>
 </div>
 
-<app-footer/>
+<app-footer></app-footer>

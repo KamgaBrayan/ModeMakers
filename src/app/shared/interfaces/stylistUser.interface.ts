@@ -1,4 +1,4 @@
-interface StylistUser {
+ export interface StylistUser {
   id: number;
   name: string;
   roles: string[];

@@ -1,4 +1,6 @@
-interface Payment {
+import {PreOrder} from './preOrder.interface';
+
+export interface Payment {
   id: number;
   paymentMethod: string;
   account: number;

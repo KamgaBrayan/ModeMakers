@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {ApiResponse, CreateMaterial, UpdateMaterial} from '../../shared/interfaces/apiRequest.interface';
 import {HttpClient} from '@angular/common/http';
+import {Material} from '../../shared/interfaces/material.interface';
 
 const API_URL = 'http://localhost:3000/material';
 
@@ -12,12 +13,12 @@ export class MaterialService {
 
   constructor(private http: HttpClient) {}
 
-  getAllMaterials(): Observable<ApiResponse<Material[]>> {
-    return this.http.get<ApiResponse<Material[]>>(`${API_URL}`);
+  getAllMaterials(): Observable<Material[]> {
+    return this.http.get<Material[]>(`${API_URL}`);
   }
 
-  getMaterialById(id: number): Observable<ApiResponse<Material>> {
-    return this.http.get<ApiResponse<Material>>(`${API_URL}/${id}`);
+  getMaterialById(id: number): Observable<Material> {
+    return this.http.get<Material>(`${API_URL}/${id}`);
   }
   createMaterial(id: number, material: CreateMaterial): Observable<ApiResponse<Material>> {
     return this.http.put<ApiResponse<Material>>(`${API_URL}/${id}`, material);
@@ -27,7 +28,7 @@ export class MaterialService {
     return this.http.put<ApiResponse<Material>>(`${API_URL}/${id}`, material);
   }
 
-  deleteMaterial(id: number): Observable<ApiResponse<void>> {
-    return this.http.delete<ApiResponse<void>>(`${API_URL}/${id}`);
+  deleteMaterial(id: number): Observable<void> {
+    return this.http.delete<void>(`${API_URL}/${id}`);
   }
 }

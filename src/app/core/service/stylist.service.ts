@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {ApiResponse} from '../../shared/interfaces/apiRequest.interface';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {StylistUser} from '../../shared/interfaces/stylistUser.interface';
 
 const API_URL = 'http://localhost:3000/stylist';
 
@@ -12,12 +13,12 @@ export class StylistService {
 
   constructor(private http: HttpClient) {}
 
-  getAllStylists(): Observable<ApiResponse<StylistUser[]>> {
-    return this.http.get<ApiResponse<StylistUser[]>>(`${API_URL}`);
+  getAllStylists(): Observable<StylistUser[]> {
+    return this.http.get<StylistUser[]>(`${API_URL}`);
   }
 
-  getStylistById(id: number): Observable<ApiResponse<StylistUser>> {
-    return this.http.get<ApiResponse<StylistUser>>(`${API_URL}/${id}`);
+  getStylistById(id: number): Observable<StylistUser> {
+    return this.http.get<StylistUser>(`${API_URL}/${id}`);
   }
 
   updateStylist(id: number, stylist: Partial<StylistUser>): Observable<ApiResponse<StylistUser>> {

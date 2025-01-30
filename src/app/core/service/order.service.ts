@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {ApiResponse, CreateOrderRequest} from '../../shared/interfaces/apiRequest.interface';
 import {HttpClient} from '@angular/common/http';
+import {Order} from '../../shared/interfaces/order.interface';
 
 const API_URL = 'http://localhost:3000/order';
 
@@ -12,20 +13,20 @@ export class OrderService {
 
   constructor(private http: HttpClient) {}
 
-  getUserOrders(userId: number): Observable<ApiResponse<Order[]>> {
-    return this.http.get<ApiResponse<Order[]>>(`${API_URL}/user/${userId}`);
+  getUserOrders(userId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${API_URL}/user/${userId}`);
   }
 
-  getStylistOrders(stylistId: number): Observable<ApiResponse<Order[]>> {
-    return this.http.get<ApiResponse<Order[]>>(`${API_URL}/stylist/${stylistId}`);
+  getStylistOrders(stylistId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${API_URL}/stylist/${stylistId}`);
   }
 
   createOrder(order: CreateOrderRequest): Observable<ApiResponse<Order>> {
     return this.http.post<ApiResponse<Order>>(`${API_URL}`, order);
   }
 
-  getOrderById(id: number): Observable<ApiResponse<Order>> {
-    return this.http.get<ApiResponse<Order>>(`${API_URL}/${id}`);
+  getOrderById(id: number): Observable<Order> {
+    return this.http.get<Order>(`${API_URL}/${id}`);
   }
 
   printOrder(id: number): Observable<ApiResponse<any>> {
