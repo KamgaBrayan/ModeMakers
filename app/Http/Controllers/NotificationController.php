@@ -52,17 +52,45 @@ class NotificationController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
+        try {
+            $validated = $request->validate([
+            'user_id' => 'required|integer|exists:users,id',
             'content' => 'required|string',
             'date' => 'required|date',
-            'readed' => 'required|boolean',
-            'received' => 'required|boolean',
-        ]);
+            'readed' => 'boolean',
+            'received' => 'boolean',
+            ]);
 
-        $notification = Notification::create($validated);
+            $user = \App\Models\User::find($validated['user_id']);
+            if (!$user) {
+            return response()->json(['error' => 'User not found.'], 404);
+            }
 
-        return response()->json($notification, 201);
+            $notification = Notification::create($validated);
+
+            return response()->json([
+            'id' => $notification->id,
+            'content' => $notification->content,
+            'date' => $notification->date,
+            'readed' => $notification->readed,
+            'received' => $notification->received,
+            'user' => [
+                'user_id' => $user->id,
+                'email' => $user->email,
+                'role' => $user->role
+            ],
+            ], 201);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'message' => 'Erreur de validation',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Erreur lors de la création de la notification',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**

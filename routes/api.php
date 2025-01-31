@@ -29,18 +29,22 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/test-stripe', [StripeTestController::class, 'testStripe']);
     Route::post('/create-payment', [StripeTestController::class, 'createPayment']);
 
+
+
     // User Management Routes
     Route::prefix('user')->group(function () {
 
-        Route::middleware(['role:ROLE_STYLIST'])->group(function () {
-            Route::get('/', [UserController::class, 'index']);
-        });
-        
+        // Route::middleware(['role:ROLE_STYLIST'])->group(function () {
+        //     Route::get('/', [UserController::class, 'index']);
+        // });
+        Route::get('/', [UserController::class, 'index']);
         Route::get('/{id}', [UserController::class, 'show']);
         Route::post('/', [UserController::class, 'store']);
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
         Route::post('/{id}/profile-picture', [UserController::class, 'uploadProfilePicture']);
+        Route::get('/{id}/notifications', [NotificationController::class, 'show']);
+        Route::get('/{id}/measures', [MeasureController::class, 'show']);
     });
 
     // Measure Routes
@@ -86,13 +90,6 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/{id}', [ProductController::class, 'update'])->name('products.update');
         Route::delete('/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
     });
-
-
-  
-
-
-
-
 
     // Review Routes
     Route::prefix('review')->group(function () {
