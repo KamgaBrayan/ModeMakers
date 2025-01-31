@@ -1,51 +1,78 @@
-import { Component } from '@angular/core';
-
-interface Order {
-  id: number;
-  name: string;
-  stylist: string;
-  price: number;
-  status: 'en-attente' | 'termine' | 'en-cours' | 'accepte';
-  image: string;
-  description: string;
-}
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Order } from '../../../../shared/interfaces/order.interface';
+import { OrderService } from '../../../../core/service/order.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
-  selector: 'app-commandes',
-  templateUrl: './commandes.component.html',
+ selector: 'app-commandes',
+ templateUrl: './commandes.component.html',
+ imports: [CommonModule, NgxPaginationModule, FormsModule],
+ standalone: true,
 })
-export class CommandesComponent {
-  sortBy: 'popular' | 'recent' = 'popular';
-  orders: Order[] = [
-    {
-      id: 1,
-      name: 'Robe d\'été',
-      stylist: 'Marie Couture',
-      price: 159.99,
-      status: 'en-attente',
-      image: 'assets/dress-1.jpg',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq'
-    },
-    // Add more orders...
-  ];
+export class CommandesComponent implements OnInit {
+ sortBy: 'recent' | 'oldest' | 'price-high' | 'price-low' = 'recent';
+ orders: Order[] = [];
+ page: number = 1;
+ itemsPerPage: number = 12;
+ totalItems: number = 0;
 
-  getStatusClass(status: Order['status']): string {
-    const classes = {
-      'en-attente': 'bg-orange-100 text-orange-800',
-      'termine': 'bg-green-100 text-green-800',
-      'en-cours': 'bg-blue-100 text-blue-800',
-      'accepte': 'bg-pink-100 text-pink-800'
-    };
-    return classes[status];
-  }
+ constructor(private orderService: OrderService) {}
 
-  // Function to open the modal
-  openOrderDetailsModal() {
-    document.getElementById('orderDetailsModal')?.classList.remove('hidden');
-  }
+ ngOnInit(): void {
+   this.loadOrders();
+ }
 
-  // Function to close the modal
-  closeOrderDetailsModal() {
-    document.getElementById('orderDetailsModal')?.classList.add('hidden');
-  }
+ loadOrders(): void {
+   const id = 1;
+   this.orderService.getUserOrders().subscribe({
+     next: (orders) => {
+       this.orders = orders;
+       this.sortOrders();
+       this.totalItems = this.orders.length;
+     },
+     error: (err) => console.error("Error loading orders:", err)
+   });
+ }
+
+ sortOrders(): void {
+   switch (this.sortBy) {
+     case 'recent':
+       this.orders.sort((a, b) => 
+         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+       );
+       break;
+     case 'oldest':
+       this.orders.sort((a, b) => 
+         new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+       );
+       break;
+     case 'price-high':
+       this.orders.sort((a, b) => this.calculateTotal(b) - this.calculateTotal(a));
+       break;
+     case 'price-low':
+       this.orders.sort((a, b) => this.calculateTotal(a) - this.calculateTotal(b));
+       break;
+   }
+ }
+
+ calculateTotal(order: Order): number {
+   return order.payment.preOrder.utils.reduce(
+     (sum, util) => sum + (util.price_per_square_meter * util.quantity), 0
+   );
+ }
+
+ onSortChange(): void {
+   this.sortOrders();
+   this.page = 1;
+ }
+
+ openOrderDetailsModal(): void {
+   document.getElementById('orderDetailsModal')?.classList.remove('hidden');
+ }
+
+ closeOrderDetailsModal(): void {
+   document.getElementById('orderDetailsModal')?.classList.add('hidden');
+ }
 }

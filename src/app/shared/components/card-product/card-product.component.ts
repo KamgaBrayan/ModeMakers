@@ -8,7 +8,6 @@ import {ReactiveFormsModule} from "@angular/forms";
     selector: 'app-card-product',
     imports: [
         RouterLink,
-        NgForOf,
         ReactiveFormsModule
     ],
     templateUrl: './card-product.component.html',

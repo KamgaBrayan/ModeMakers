@@ -4,7 +4,7 @@ import {ApiResponse, CreateOrderRequest} from '../../shared/interfaces/apiReques
 import {HttpClient} from '@angular/common/http';
 import {Order} from '../../shared/interfaces/order.interface';
 
-const API_URL = 'http://localhost:3000/order';
+const API_URL = 'http://localhost:3001/orders';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,12 @@ export class OrderService {
 
   constructor(private http: HttpClient) {}
 
-  getUserOrders(userId: number): Observable<Order[]> {
-    return this.http.get<Order[]>(`${API_URL}/user/${userId}`);
+  // getUserOrders(userId: number): Observable<Order[]> {
+  //   return this.http.get<Order[]>(`${API_URL}/user/${userId}`);
+  // }
+
+  getUserOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${API_URL}`);
   }
 
   getStylistOrders(stylistId: number): Observable<Order[]> {
