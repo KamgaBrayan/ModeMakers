@@ -1241,7 +1241,11 @@ class BelongsToMany extends Relation
     /**
      * Touch all of the related models for the relationship.
      *
+<<<<<<< HEAD
+     * E.g.: Touch all role associated with this user.
+=======
      * E.g.: Touch all roles associated with this user.
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
      *
      * @return void
      */

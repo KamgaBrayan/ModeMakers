@@ -2,31 +2,16 @@
 
 namespace Database\Seeders;
 
-<<<<<<< HEAD
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-=======
->>>>>>> 3e178013eabe79748d3f6935c6713eae0666bb53
 use Illuminate\Database\Seeder;
 use App\Models\Material;
 
 class MaterialSeeder extends Seeder
 {
-<<<<<<< HEAD
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
-
-
-        for ($i = 0; $i < 10; $i++) {
-            Material::create([
-                'name' => "un nom",
-                'description' => "description test",
-                'price_per_square_meter' => "500",
-                'color' => "red",
-            ]);
-=======
     public function run()
     {
         $materials = [
@@ -74,7 +59,6 @@ class MaterialSeeder extends Seeder
 
         foreach ($materials as $material) {
             Material::create($material);
->>>>>>> 3e178013eabe79748d3f6935c6713eae0666bb53
         }
     }
 }

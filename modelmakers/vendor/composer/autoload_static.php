@@ -4,7 +4,11 @@
 
 namespace Composer\Autoload;
 
+<<<<<<< HEAD
+class ComposerStaticInit60dea965f007bcca6e5d7b130fdede25
+=======
 class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -341,8 +345,13 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         ),
         'Psr\\Http\\Message\\' => 
         array (
+<<<<<<< HEAD
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+=======
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
             1 => __DIR__ . '/..' . '/psr/http-message/src',
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -382,8 +391,13 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         ),
         'League\\Uri\\' => 
         array (
+<<<<<<< HEAD
+            0 => __DIR__ . '/..' . '/league/uri-interfaces',
+            1 => __DIR__ . '/..' . '/league/uri',
+=======
             0 => __DIR__ . '/..' . '/league/uri',
             1 => __DIR__ . '/..' . '/league/uri-interfaces',
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
         ),
         'League\\MimeTypeDetection\\' => 
         array (
@@ -522,6 +536,12 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
 
     public static $classMap = array (
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+<<<<<<< HEAD
+        'App\\Http\\Controllers\\StripeTestController' => __DIR__ . '/../..' . '/app/Http/Controllers/StripeTestController.php',
+        'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+=======
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -6940,9 +6960,15 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+<<<<<<< HEAD
+            $loader->prefixLengthsPsr4 = ComposerStaticInit60dea965f007bcca6e5d7b130fdede25::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit60dea965f007bcca6e5d7b130fdede25::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit60dea965f007bcca6e5d7b130fdede25::$classMap;
+=======
             $loader->prefixLengthsPsr4 = ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad::$classMap;
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
 
         }, null, ClassLoader::class);
     }
