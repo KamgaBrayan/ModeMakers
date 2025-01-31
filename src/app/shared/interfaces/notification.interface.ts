@@ -1,4 +1,4 @@
-interface Notification {
+export interface Notification {
   id: number;
   user: {
     user_id: number;

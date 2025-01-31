@@ -6,6 +6,7 @@ import {
   CreateMeasurementRequest, UpdateDelivery,
   UpdateMeasurementRequest
 } from '../../shared/interfaces/apiRequest.interface';
+import {Delivery} from '../../shared/interfaces/delivery.interface';
 
 const API_URL = 'http://localhost:3000';
 

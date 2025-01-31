@@ -27,9 +27,9 @@ src/
 - The default page is the Home feature (`/`)
 - Each new feature should be added to the routing system with an intuitive route name in the file `app.routes.ts`
 - Example route naming:
-  - Products page: `/products`
-  - User profile: `/profile`
-  - About page: `/about`
+    - Products page: `/products`
+    - User profile: `/profile`
+    - About page: `/about`
 
 ### 2. Adding a New Feature
 1. Create your feature module in `features/[your-feature]`

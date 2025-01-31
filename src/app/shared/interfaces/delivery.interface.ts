@@ -1,4 +1,4 @@
-interface Delivery {
+export interface Delivery {
   id: number;
   day: number;
   price: number;

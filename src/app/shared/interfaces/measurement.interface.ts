@@ -1,4 +1,6 @@
-interface Measurement {
+import {User} from './user.interface';
+
+export interface Measurement {
   id: number;
   title: string;
   user: User;

@@ -1,4 +1,4 @@
-import { ProductService } from '../../core/services/product.service';
+import { ProductService } from '../../core/service/product.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -6,35 +6,88 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { RouterModule } from '@angular/router';
-import {Product} from '../../shared/models/product.model';
+import {Product} from '../../shared/interfaces/product.interface';
+import {FormsModule} from "@angular/forms";
+import {CardProductComponent} from "../../shared/components/card-product/card-product.component";
 
 @Component({
   selector: 'app-products',
-  imports: [NavbarComponent, FooterComponent, CommonModule, NgxPaginationModule, RouterModule ],
+    imports: [NavbarComponent, FooterComponent, CommonModule, NgxPaginationModule, RouterModule,
+        FormsModule, CardProductComponent],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
   standalone: true
 })
 
 export class ProductsComponent implements OnInit {
-  products: Product[] = [];
-  currentPage: number = 1;
-  itemsPerPage: number = 6;
+    products: Product[] = [];
+    filteredProducts: Product[] = [];
+    currentPage = 1;
+    itemsPerPage = 9;
 
-  constructor(private http: HttpClient, private ProductService: ProductService) {}
+    uniqueCategories: string[] = [];
+    uniqueGenders: string[] = [];
+    uniqueAges: string[] = [];
+    priceRange = { min: 0, max: 0 };
 
-  ngOnInit() {
-    this.loadProducts();
-  }
+    selectedFilters = {
+        categories: {} as { [key: string]: boolean },
+        genders: {} as { [key: string]: boolean },
+        ages: {} as { [key: string]: boolean },
+        ratings: {} as { [key: number]: boolean },
+        price: 0
+    };
 
-  loadProducts(): void {
-    this.ProductService.getAllProducts().subscribe(
-      products => this.products = products
-    );
-  }
+    constructor(private productService: ProductService) {}
 
-  onPageChange(page: number): void {
-    this.currentPage = page;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+    ngOnInit() {
+        this.loadProducts();
+    }
+
+    loadProducts(): void {
+        this.productService.getAllProducts().subscribe(products => {
+            this.products = products;
+            this.filteredProducts = products;
+            this.initializeFilters();
+        });
+    }
+
+    initializeFilters(): void {
+        // Extract unique values and initialize filters
+        this.uniqueCategories = [...new Set(this.products.map(p => p.category))];
+        this.uniqueGenders = [...new Set(this.products.map(p => p.gender))];
+        this.uniqueAges = [...new Set(this.products.map(p => p.age))];
+
+        // Initialize price range
+        const prices = this.products.map(p => p.delivery[0].price);
+        this.priceRange.min = Math.min(...prices);
+        this.priceRange.max = Math.max(...prices);
+        this.selectedFilters.price = this.priceRange.max;
+    }
+
+    applyFilters(): void {
+        this.filteredProducts = this.products.filter(product => {
+            // Check if any filter is selected
+            const categorySelected = Object.values(this.selectedFilters.categories).some(v => v);
+            const genderSelected = Object.values(this.selectedFilters.genders).some(v => v);
+            const ageSelected = Object.values(this.selectedFilters.ages).some(v => v);
+            const ratingSelected = Object.values(this.selectedFilters.ratings).some(v => v);
+
+            // Apply filters only if they are selected
+            const categoryMatch = !categorySelected || this.selectedFilters.categories[product.category];
+            const genderMatch = !genderSelected || this.selectedFilters.genders[product.gender];
+            const ageMatch = !ageSelected || this.selectedFilters.ages[product.age];
+            const priceMatch = product.delivery[0].price <= this.selectedFilters.price;
+            const ratingMatch = !ratingSelected || this.selectedFilters.ratings[Math.floor(product.rating)];
+
+            return categoryMatch && genderMatch && ageMatch && priceMatch && ratingMatch;
+        });
+
+        this.currentPage = 1;
+    }
+
+    onPageChange(page: number): void {
+        this.currentPage = page;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 }

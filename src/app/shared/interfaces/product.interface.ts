@@ -1,4 +1,8 @@
-interface Product {
+import {Delivery} from './delivery.interface';
+import {Material} from './material.interface';
+import {StylistUser} from './stylistUser.interface';
+
+export interface Product {
   id: number;
   name: string;
   gender: string;
