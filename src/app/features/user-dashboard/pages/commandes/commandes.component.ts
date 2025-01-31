@@ -17,6 +17,10 @@ export class CommandesComponent implements OnInit {
  page: number = 1;
  itemsPerPage: number = 12;
  totalItems: number = 0;
+ selectedOrder: Order | null = null;
+ isModalOpen: boolean = false; 
+ currentPhotoIndex: number = 0;
+
 
  constructor(private orderService: OrderService) {}
 
@@ -48,10 +52,10 @@ export class CommandesComponent implements OnInit {
          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
        );
        break;
-     case 'price-high':
+     case 'price-low':
        this.orders.sort((a, b) => this.calculateTotal(b) - this.calculateTotal(a));
        break;
-     case 'price-low':
+     case 'price-high':
        this.orders.sort((a, b) => this.calculateTotal(a) - this.calculateTotal(b));
        break;
    }
@@ -68,11 +72,65 @@ export class CommandesComponent implements OnInit {
    this.page = 1;
  }
 
- openOrderDetailsModal(): void {
-   document.getElementById('orderDetailsModal')?.classList.remove('hidden');
- }
+ openOrderDetailsModal(orderId: number): void {
+  this.orderService.getOrderById(orderId).subscribe({
+    next: (order) => {
+      this.selectedOrder = order;
+      this.isModalOpen = true; // Ouvre le modal
+    },
+    error: (err) =>
+      console.error('Erreur lors du chargement de la commande:', err),
+  });
+}
 
- closeOrderDetailsModal(): void {
-   document.getElementById('orderDetailsModal')?.classList.add('hidden');
- }
+
+closeOrderDetailsModal(): void {
+  this.isModalOpen = false; // Ferme le modal
+  this.selectedOrder = null; // Réinitialise la commande sélectionnée
+}
+
+// Fonction pour passer à la photo suivante
+nextPhoto(): void {
+  if (this.selectedOrder && this.selectedOrder.payment.preOrder.photos.length > 0) {
+    this.currentPhotoIndex = (this.currentPhotoIndex + 1) % this.selectedOrder.payment.preOrder.photos.length;
+  }
+}
+
+ // Fonction pour revenir à la photo précédente
+ previousPhoto(): void {
+  if (this.selectedOrder && this.selectedOrder.payment.preOrder.photos.length > 0) {
+    this.currentPhotoIndex =
+      (this.currentPhotoIndex - 1 + this.selectedOrder.payment.preOrder.photos.length) %
+      this.selectedOrder.payment.preOrder.photos.length;
+  }
+}
+
+ // Fonction pour définir une photo spécifique
+ setCurrentPhoto(index: number): void {
+  if (this.selectedOrder && index >= 0 && index < this.selectedOrder.payment.preOrder.photos.length) {
+    this.currentPhotoIndex = index;
+  }
+}
+
+// Méthode pour calculer le total matériel
+calculateTotalMaterial(): number {
+  if (this.selectedOrder) {
+    return this.selectedOrder.payment.preOrder.utils.reduce(
+      (total, util) => total + (util.price_per_square_meter * util.quantity),
+      0
+    );
+  }
+  return 0;
+}
+
+// Méthode pour calculer le prix total de la commande
+calculateTotalOrder(): number {
+  if (this.selectedOrder) {
+    const totalMaterial = this.calculateTotalMaterial();
+    const workforce = this.selectedOrder.payment.preOrder.workforce;
+    return totalMaterial + workforce;
+  }
+  return 0;
+}
+
 }
