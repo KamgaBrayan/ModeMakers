@@ -14,18 +14,19 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('roles', ['ROLE_USER', 'ROLE_STYLIST']);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profil_picture')->nullable();
-            $table->enum('roles', ['ROLE_USER', 'ROLE_STYLIST']);
+            $table->string('phone')->nullable();
             $table->json('photos')->nullable();
             $table->integer('note')->nullable();
             $table->text('bibliography')->nullable();
             $table->json('calendar')->nullable();
             $table->string('specialty')->nullable();
             $table->string('experience')->nullable();
-
+            $table->string('localisation')->nullable();
             $table->json('preferences_id')->nullable();
             $table->json('measures_id')->nullable();
             
