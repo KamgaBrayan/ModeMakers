@@ -19,7 +19,7 @@ class UserController extends Controller
      *      "name": "Gabriel Nomo",
      *      "email": "gabriel@example.com",
      *      "profil_picture": "profile1.jpg",
-     *      "roles": ["ROLE_STYLIST"],
+     *      "role": ["ROLE_STYLIST"],
      *      "photos": ["photo1.jpg", "photo2.jpg"],
      *      "note": 5,
      *      "bibliography": "Some biography text.",
@@ -56,7 +56,7 @@ class UserController extends Controller
      *      "name": "Gabriel Nomo",
      *      "email": "gabriel@example.com",
      *      "profil_picture": "profile1.jpg",
-     *      "roles": ["ROLE_STYLIST"],
+     *      "role": ["ROLE_STYLIST"],
      *      "photos": ["photo1.jpg", "photo2.jpg"],
      *      "note": 5,
      *      "bibliography": "Some biography text.",
@@ -89,7 +89,7 @@ class UserController extends Controller
      * @bodyParam name string required The name of the user.
      * @bodyParam email string required The email of the user.
      * @bodyParam password string required The password of the user.
-     * @bodyParam roles string required The user role (ROLE_USER or ROLE_STYLIST).
+     * @bodyParam role string required The user role (ROLE_USER or ROLE_STYLIST).
      * @bodyParam photos array optional User's photos.
      * @bodyParam note integer optional User's rating.
      * @bodyParam bibliography string optional User's biography.
@@ -113,15 +113,15 @@ class UserController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'roles' => 'required|in:ROLE_USER,ROLE_STYLIST',
+            'role' => 'required|in:ROLE_USER,ROLE_STYLIST',
             'photos' => 'nullable|array',
             'note' => 'nullable|integer',
             'bibliography' => 'nullable|string',
             'calendar' => 'nullable|array',
             'preferences_id' => 'nullable|array',
             'measures_id' => 'nullable|array',
-            'specialty' => 'required_if:roles,ROLE_STYLIST',
-            'experience' => 'required_if:roles,ROLE_STYLIST'
+            // 'specialty' => 'required_if:role,ROLE_STYLIST',
+            // 'experience' => 'required_if:role,ROLE_STYLIST'
         ]);
 
         $user = User::create($validated);
@@ -150,15 +150,15 @@ class UserController extends Controller
             'name' => 'sometimes|string',
             'email' => 'sometimes|email|unique:users,email,'.$id,
             'password' => 'sometimes|min:6',
-            'roles' => 'sometimes|in:ROLE_USER,ROLE_STYLIST',
+            'role' => 'sometimes|in:ROLE_USER,ROLE_STYLIST',
             'photos' => 'nullable|array',
             'note' => 'nullable|integer',
             'bibliography' => 'nullable|string',
             'calendar' => 'nullable|array',
             'preferences_id' => 'nullable|array',
             'measures_id' => 'nullable|array',
-            'specialty' => 'required_if:roles,ROLE_STYLIST',
-            'experience' => 'required_if:roles,ROLE_STYLIST'
+            // 'specialty' => 'required_if:role,ROLE_STYLIST',
+            // 'experience' => 'required_if:role,ROLE_STYLIST'
         ]);
 
         $user->update($validated);

@@ -5,7 +5,7 @@
 ### 1. `User`
 - `id` (PK)
 - `user_name`
-- `roles` (array)
+- `role` (array)
 
 **Relations :**
 - 1:N avec `PreOrder` (un utilisateur peut avoir plusieurs précommandes)

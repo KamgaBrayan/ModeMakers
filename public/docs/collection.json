@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "ModeMakers API",
-        "_postman_id": "ba87c347-dd06-4f9d-ae15-cb70c6de695f",
+        "_postman_id": "fa3765ad-2e92-4c52-906e-af2df6b2c5e6",
         "description": "documentation for modeMakers api",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -214,6 +214,34 @@
             "description": "",
             "item": [
                 {
+                    "name": "GET api\/test-role",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/test-role",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/test-role"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
                     "name": "POST api\/sendEmail",
                     "request": {
                         "url": {
@@ -235,7 +263,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"lindgren.lola@example.com\",\"subject\":\"non\",\"body\":\"ut\"}"
+                            "raw": "{\"to\":\"laverne.armstrong@example.org\",\"subject\":\"harum\",\"body\":\"voluptatibus\"}"
                         },
                         "description": "",
                         "auth": {
@@ -380,7 +408,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aliquam",
+                                    "value": "et",
                                     "description": "The ID of the review."
                                 }
                             ]
@@ -446,7 +474,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"pariatur\",\"product_id\":\"quod\",\"comment\":\"illo\"}"
+                            "raw": "{\"user_id\":\"fuga\",\"product_id\":\"porro\",\"comment\":\"facilis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -467,7 +495,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "vero",
+                                    "value": "et",
                                     "description": "The ID of the review."
                                 }
                             ]
@@ -485,7 +513,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"comment\":\"laboriosam\"}"
+                            "raw": "{\"comment\":\"nihil\"}"
                         },
                         "description": "",
                         "auth": {
@@ -506,7 +534,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "illum",
                                     "description": "The ID of the review."
                                 }
                             ]
@@ -813,7 +841,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "17",
                                     "description": "The ID of the measure."
                                 }
                             ]
@@ -872,7 +900,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":6,\"stature\":\"eveniet\",\"shoulder_circumference\":\"quasi\",\"chest_circumference\":\"minima\",\"waist_circumference\":\"odit\",\"hip_circumference\":\"officiis\",\"shoulder_height\":\"et\",\"hip_height\":\"nulla\",\"knee_height\":\"asperiores\",\"chest_spacing\":\"quia\",\"breast_height\":\"quam\",\"pelvis_height\":\"et\",\"front_waist_length\":\"labore\",\"shoulder_length\":\"voluptate\",\"back_waist_length\":\"voluptatem\",\"arm_length\":\"corrupti\",\"total_arm_length_bent\":\"asperiores\",\"wrist_circumference\":\"et\",\"ankle_height\":\"et\",\"seated_height\":\"est\",\"crotch_length\":\"odit\",\"date_measure\":\"quisquam\"}"
+                            "raw": "{\"user_id\":10,\"stature\":\"est\",\"shoulder_circumference\":\"debitis\",\"chest_circumference\":\"sit\",\"waist_circumference\":\"aut\",\"hip_circumference\":\"inventore\",\"shoulder_height\":\"quaerat\",\"hip_height\":\"qui\",\"knee_height\":\"accusantium\",\"chest_spacing\":\"iure\",\"breast_height\":\"eum\",\"pelvis_height\":\"nesciunt\",\"front_waist_length\":\"non\",\"shoulder_length\":\"aut\",\"back_waist_length\":\"autem\",\"arm_length\":\"incidunt\",\"total_arm_length_bent\":\"voluptatem\",\"wrist_circumference\":\"dolor\",\"ankle_height\":\"dolorem\",\"seated_height\":\"nobis\",\"crotch_length\":\"quisquam\",\"date_measure\":\"consequuntur\"}"
                         },
                         "description": "",
                         "auth": {
@@ -900,7 +928,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "13",
                                     "description": "The ID of the measure.\n[Similar bodyParam documentation as store method]"
                                 }
                             ]
@@ -918,7 +946,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"rem\",\"stature\":10828.0327597,\"shoulder_circumference\":1052679.03153,\"chest_circumference\":21.147613669,\"waist_circumference\":5.4,\"hip_circumference\":4098,\"shoulder_height\":120097791,\"hip_height\":314063193.4865319,\"knee_height\":0.529395,\"chest_spacing\":311501489.50753206,\"breast_height\":2157061.41872,\"pelvis_height\":1.7,\"front_waist_length\":415059.7409,\"shoulder_length\":1082198.06872,\"back_waist_length\":4095529.17,\"arm_length\":6.42200771,\"total_arm_length_bent\":151,\"wrist_circumference\":271762601.03759,\"ankle_height\":48971062.61568827,\"seated_height\":20856655.9966233,\"crotch_length\":1.9157,\"date_measure\":\"2024-12-31T19:49:40\"}"
+                            "raw": "{\"user_id\":\"sed\",\"stature\":81.459033,\"shoulder_circumference\":257,\"chest_circumference\":74453.069,\"waist_circumference\":2956.36,\"hip_circumference\":0.526174,\"shoulder_height\":20481.06,\"hip_height\":352056121.95,\"knee_height\":9576.43208,\"chest_spacing\":305.55335,\"breast_height\":589.4449037,\"pelvis_height\":3506.30704,\"front_waist_length\":1.2048,\"shoulder_length\":33327.24774996,\"back_waist_length\":16949449.051083904,\"arm_length\":274355148.9331324,\"total_arm_length_bent\":261489675.7688,\"wrist_circumference\":1847.01194283,\"ankle_height\":40.2,\"seated_height\":302.13258251,\"crotch_length\":298282723.16868,\"date_measure\":\"2025-01-31T20:14:48\"}"
                         },
                         "description": "",
                         "auth": {
@@ -946,7 +974,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "3",
                                     "description": "The ID of the measure."
                                 }
                             ]
@@ -1043,7 +1071,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quis",
+                                    "value": "animi",
                                     "description": "The ID of the notification."
                                 }
                             ]
@@ -1109,7 +1137,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"velit\",\"content\":\"ratione\",\"date\":\"2024-12-31T19:49:41\",\"readed\":true,\"received\":false}"
+                            "raw": "{\"user_id\":\"cum\",\"content\":\"deserunt\",\"date\":\"2025-01-31T20:14:48\",\"readed\":true,\"received\":false}"
                         },
                         "description": "Store a newly created notification in the database.",
                         "auth": {
@@ -1130,7 +1158,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dolorum",
+                                    "value": "necessitatibus",
                                     "description": "The ID of the notification."
                                 }
                             ]
@@ -1148,7 +1176,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"alias\",\"content\":\"non\",\"date\":\"2024-12-31T19:49:41\",\"readed\":true,\"received\":false}"
+                            "raw": "{\"user_id\":\"architecto\",\"content\":\"nam\",\"date\":\"2025-01-31T20:14:48\",\"readed\":false,\"received\":false}"
                         },
                         "description": "Modify an existing notification by ID.",
                         "auth": {
@@ -1169,7 +1197,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "corrupti",
+                                    "value": "veniam",
                                     "description": "The ID of the notification."
                                 }
                             ]
@@ -1345,7 +1373,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":20,\"order_date\":\"2024-12-31T19:49:41\",\"status\":\"sunt\",\"total_cost\":15018288.256196,\"payment_method\":\"omnis\",\"time_limit\":\"2024-12-31T19:49:41\"}"
+                            "raw": "{\"user_id\":17,\"order_date\":\"2025-01-31T20:14:48\",\"status\":\"praesentium\",\"total_cost\":20.430204,\"payment_method\":\"nostrum\",\"time_limit\":\"2025-01-31T20:14:48\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1470,7 +1498,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "illum",
                                     "description": "The ID of the payment."
                                 }
                             ]
@@ -1536,7 +1564,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderId\":\"illum\",\"payment_cost\":3531603.8746361,\"payment_date\":\"2024-12-31T19:49:41\",\"payment_method\":\"est\",\"status\":\"accusantium\"}"
+                            "raw": "{\"orderId\":\"quia\",\"payment_cost\":20.961580403,\"payment_date\":\"2025-01-31T20:14:48\",\"payment_method\":\"accusantium\",\"status\":\"architecto\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1557,7 +1585,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "eligendi",
+                                    "value": "fugiat",
                                     "description": "The ID of the payment."
                                 }
                             ]
@@ -1575,7 +1603,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderId\":\"ut\",\"payment_cost\":1.2,\"payment_date\":\"2024-12-31T19:49:41\",\"payment_method\":\"alias\",\"status\":\"perferendis\"}"
+                            "raw": "{\"orderId\":\"eos\",\"payment_cost\":6190133.163,\"payment_date\":\"2025-01-31T20:14:48\",\"payment_method\":\"ducimus\",\"status\":\"eius\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1596,7 +1624,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "est",
+                                    "value": "et",
                                     "description": "The ID of the payment."
                                 }
                             ]
@@ -1679,7 +1707,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "17",
                                     "description": "The ID of the preference."
                                 }
                             ]
@@ -1784,7 +1812,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "10",
                                     "description": "The ID of the preference."
                                 }
                             ]
@@ -1957,7 +1985,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "17",
+                                    "value": "7",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -2023,7 +2051,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"odio\",\"gender\":\"dicta\",\"age\":\"itaque\",\"category\":\"facere\",\"photos\":[\"minima\"],\"description\":\"Et omnis vel consectetur.\",\"price\":349995.481256,\"stylist_id\":1,\"material_id\":19}"
+                            "raw": "{\"name\":\"est\",\"gender\":\"aliquid\",\"age\":\"suscipit\",\"category\":\"error\",\"photos\":[\"voluptates\"],\"description\":\"Sed magnam tempore accusantium veritatis temporibus.\",\"price\":64224.8,\"stylist_id\":15,\"material_id\":2}"
                         },
                         "description": "Add a new product.",
                         "auth": {
@@ -2044,7 +2072,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "2",
+                                    "value": "11",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -2062,7 +2090,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"expedita\",\"gender\":\"aspernatur\",\"age\":\"consequatur\",\"category\":\"incidunt\",\"description\":\"Et animi nulla eos et dolores quasi quia.\",\"price\":2}"
+                            "raw": "{\"name\":\"aut\",\"gender\":\"in\",\"age\":\"nemo\",\"category\":\"et\",\"description\":\"Nesciunt accusantium sed omnis nobis molestias molestiae quas quae.\",\"price\":54}"
                         },
                         "description": "Modify an existing product by ID.",
                         "auth": {
@@ -2083,7 +2111,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "9",
+                                    "value": "12",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -2143,7 +2171,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n [{\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo\",\n     \"email\": \"gabriel@example.com\",\n     \"profil_picture\": \"profile1.jpg\",\n     \"roles\": [\"ROLE_STYLIST\"],\n     \"photos\": [\"photo1.jpg\", \"photo2.jpg\"],\n     \"note\": 5,\n     \"bibliography\": \"Some biography text.\",\n     \"calendar\": [\"monday\", \"thursday\",\"sunday\"],\n     \"preferences_id\": [1, 2],\n     \"measures_id\": [101, 102],\n     \"specialty\": \"clothes\",\n     \"experience\": \"5 years in stylism\"\n }]\n}",
+                            "body": "{\n [{\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo\",\n     \"email\": \"gabriel@example.com\",\n     \"profil_picture\": \"profile1.jpg\",\n     \"role\": [\"ROLE_STYLIST\"],\n     \"photos\": [\"photo1.jpg\", \"photo2.jpg\"],\n     \"note\": 5,\n     \"bibliography\": \"Some biography text.\",\n     \"calendar\": [\"monday\", \"thursday\",\"sunday\"],\n     \"preferences_id\": [1, 2],\n     \"measures_id\": [101, 102],\n     \"specialty\": \"clothes\",\n     \"experience\": \"5 years in stylism\"\n }]\n}",
                             "name": ""
                         },
                         {
@@ -2166,7 +2194,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "4",
+                                    "value": "18",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -2192,7 +2220,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n {\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo\",\n     \"email\": \"gabriel@example.com\",\n     \"profil_picture\": \"profile1.jpg\",\n     \"roles\": [\"ROLE_STYLIST\"],\n     \"photos\": [\"photo1.jpg\", \"photo2.jpg\"],\n     \"note\": 5,\n     \"bibliography\": \"Some biography text.\",\n     \"calendar\": [\"monday\", \"thursday\",\"sunday\"],\n     \"preferences_id\": [1, 2],\n     \"measures_id\": [101, 102],\n     \"specialty\": \"clothes\",\n     \"experience\": \"5 years in stylism\"\n }\n}",
+                            "body": "{\n {\n     \"id\": 1,\n     \"name\": \"Gabriel Nomo\",\n     \"email\": \"gabriel@example.com\",\n     \"profil_picture\": \"profile1.jpg\",\n     \"role\": [\"ROLE_STYLIST\"],\n     \"photos\": [\"photo1.jpg\", \"photo2.jpg\"],\n     \"note\": 5,\n     \"bibliography\": \"Some biography text.\",\n     \"calendar\": [\"monday\", \"thursday\",\"sunday\"],\n     \"preferences_id\": [1, 2],\n     \"measures_id\": [101, 102],\n     \"specialty\": \"clothes\",\n     \"experience\": \"5 years in stylism\"\n }\n}",
                             "name": ""
                         },
                         {
@@ -2225,7 +2253,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"velit\",\"email\":\"heaney.jeffery@example.org\",\"password\":\"q9lO`lK?YYo.cm\\\"\",\"roles\":\"perferendis\",\"photos\":[\"ut\"],\"note\":3,\"bibliography\":\"eveniet\",\"calendar\":[\"sapiente\"],\"preferences_id\":[\"quo\"],\"measures_id\":[\"aut\"],\"specialty\":\"dolorem\",\"experience\":\"deserunt\"}"
+                            "raw": "{\"name\":\"consequatur\",\"email\":\"kuhic.brenden@example.org\",\"password\":\"u6@sTZs.Yp&FPT4\",\"role\":\"sit\",\"photos\":[\"iusto\"],\"note\":4,\"bibliography\":\"sit\",\"calendar\":[\"voluptas\"],\"preferences_id\":[\"fugiat\"],\"measures_id\":[\"ullam\"],\"specialty\":\"consequatur\",\"experience\":\"modi\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2253,7 +2281,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "19",
+                                    "value": "11",
                                     "description": "The ID of the user.\n[Similar bodyParam documentation as store method]"
                                 }
                             ]
@@ -2271,7 +2299,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"omnis\",\"password\":\";!3VRIt\\\"UzrA')V'5\",\"roles\":\"ROLE_USER\",\"note\":3,\"bibliography\":\"dolores\"}"
+                            "raw": "{\"name\":\"maiores\",\"password\":\"FFV1`0x^7)pCoN*u;b\",\"role\":\"ROLE_STYLIST\",\"note\":15,\"bibliography\":\"occaecati\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2342,7 +2370,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "natus",
+                                    "value": "aut",
                                     "description": "The ID of the user."
                                 }
                             ]

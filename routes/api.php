@@ -15,12 +15,15 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 
 
-
 // Authentication Routes
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
+    Route::get('/test-role', function () {
+        return "Accès autorisé pour stylist";
+    })->middleware('can:test roles');
+    
     Route::post('auth/logout', [AuthController::class, 'logout']);
     Route::get('auth/profile', [AuthController::class, 'profile']);
 
