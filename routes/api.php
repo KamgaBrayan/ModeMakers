@@ -31,7 +31,11 @@ Route::middleware('auth:api')->group(function () {
 
     // User Management Routes
     Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'index']);
+
+        Route::middleware(['role:ROLE_STYLIST'])->group(function () {
+            Route::get('/', [UserController::class, 'index']);
+        });
+        
         Route::get('/{id}', [UserController::class, 'show']);
         Route::post('/', [UserController::class, 'store']);
         Route::put('/{id}', [UserController::class, 'update']);
@@ -82,6 +86,13 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/{id}', [ProductController::class, 'update'])->name('products.update');
         Route::delete('/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
     });
+
+
+  
+
+
+
+
 
     // Review Routes
     Route::prefix('review')->group(function () {
