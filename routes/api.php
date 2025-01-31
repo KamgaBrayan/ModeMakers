@@ -20,7 +20,15 @@ use App\Http\Controllers\PaymentController;
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/login', [AuthController::class, 'login']);
 
+<<<<<<< HEAD
 /*Route::middleware('auth:api')->group(function () {*/
+=======
+// Public Product Routes
+Route::get('products', [ProductController::class, 'index'])->name('products.index');
+Route::get('products/{id}', [ProductController::class, 'show'])->name('products.show');
+
+Route::middleware('auth:api')->group(function () {
+>>>>>>> 3e178013eabe79748d3f6935c6713eae0666bb53
     Route::post('auth/logout', [AuthController::class, 'logout']);
     Route::get('auth/profile', [AuthController::class, 'profile']);
 
@@ -31,8 +39,10 @@ Route::post('auth/login', [AuthController::class, 'login']);
 
     // User Management Routes
     Route::prefix('user')->group(function () {
-        /*Route::get('/', [UserController::class, 'index']);*/
-        Route::get('/', [UserController::class, 'getUsers']);
+
+        Route::middleware(['role:ROLE_STYLIST'])->group(function () {
+            Route::get('/', [UserController::class, 'index']);
+        });
         Route::get('/{id}', [UserController::class, 'show']);
         Route::post('/', [UserController::class, 'store']);
         Route::put('/{id}', [UserController::class, 'update']);
@@ -76,10 +86,8 @@ Route::post('auth/login', [AuthController::class, 'login']);
         Route::delete('/{id}', [MaterialController::class, 'destroy']);
     });
 
-    // Product Routes
+    // Product Routes (Protected)
     Route::prefix('products')->group(function () {
-        Route::get('/', [ProductController::class, 'index'])->name('products.index');
-        Route::get('/{id}', [ProductController::class, 'show'])->name('products.show');
         Route::post('/', [ProductController::class, 'store'])->name('products.store');
         Route::put('/{id}', [ProductController::class, 'update'])->name('products.update');
         Route::delete('/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
@@ -113,6 +121,10 @@ Route::post('auth/login', [AuthController::class, 'login']);
     });
 
 
+<<<<<<< HEAD
 
 /*});*/
 
+=======
+});
+>>>>>>> 3e178013eabe79748d3f6935c6713eae0666bb53

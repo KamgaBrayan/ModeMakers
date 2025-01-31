@@ -16,11 +16,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+<<<<<<< HEAD
         /*User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
 
+=======
+>>>>>>> 3e178013eabe79748d3f6935c6713eae0666bb53
         $this->call([
             UserSeeder::class,
         ]);*/
@@ -60,6 +63,15 @@ class DatabaseSeeder extends Seeder
             'experience' => '10 ans',
             'localisation' => 'Paris, France',
         ]);
+
+        $this->call(MaterialSeeder::class);
+        $this->call(DeliverySeeder::class);
+        $this->call(ProductSeeder::class);
+        
     }
+<<<<<<< HEAD
 
 }
+=======
+}
+>>>>>>> 3e178013eabe79748d3f6935c6713eae0666bb53

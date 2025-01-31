@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
             $table->string('status');
             $table->decimal('total_cost', 8, 2);
             $table->string('payment_method');
-            $table->timestamp('time_limit');
+            $table->timestamp('time_limit')->nullable();
             $table->timestamps();
         });
     }

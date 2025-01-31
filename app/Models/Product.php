@@ -11,8 +11,7 @@ class Product extends Model
 
     protected $fillable = [
         'name', 'gender', 'age', 'note', 'category', 'photos', 'disponibilite',
-        'mean_evalue', 'description', 'price', 'price_per_square_metter',
-        'duree', 'couleur', 'stylist_id', 'material_id'
+        'mean_evalue', 'description', 'price', 'duree', 'couleur', 'stylist_id'
     ];
 
     protected $casts = [
@@ -21,11 +20,13 @@ class Product extends Model
 
     public function stylist()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'stylist_id');
     }
 
-    public function material()
+    public function materials()
     {
-        return $this->belongsTo(Material::class);
+        return $this->belongsToMany(Material::class, 'product_material')
+                    ->withPivot('price_per_square_metter')
+                    ->withTimestamps();
     }
 }
