@@ -10,17 +10,34 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'commandId',
-        'payment_cost',
-        'payment_date',
-        'payment_method',
-        'status',
+        'pre_order_id',
+        'amount',
+        'currency',
+        'payment_intent_id',
+        'client_secret',
+        'status'
     ];
 
-    protected $dates = ['payment_date'];
+    protected $casts = [
+        'amount' => 'decimal:2',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
 
-    public function command()
+    public function preOrder()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'pre_order_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOneThrough(
+            User::class,
+            Order::class,
+            'id', // Clé étrangère sur orders
+            'id', // Clé primaire sur users
+            'pre_order_id', // Clé locale sur payments
+            'user_id' // Clé étrangère sur orders
+        );
     }
 }

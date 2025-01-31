@@ -14,27 +14,27 @@ class AuthController extends Controller
 {
     /**
      * Authenticates a user and provides an access token.
-     * 
+     *
      * @group Authentication
-     * 
+     *
      * @bodyParam email string required The user's email address. Example: gabriel@example.com
      * @bodyParam password string required The user's password. Example: password123
-     * 
+     *
      * @response 200 {
      *  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
      *  "token_type": "bearer",
      *  "expires_in": 3600
      * }
-     * 
+     *
      * @response 401 {
      *  "error": "Invalid credentials"
      * }
-     * 
+     *
      * @response 500 {
      *  "error": "Could not create token"
      * }
      */
-    public function login(Request $request)
+    public function login(Request $request): \Illuminate\Http\JsonResponse
     {
         $credentials = $request->only('email', 'password');
 
@@ -49,20 +49,20 @@ class AuthController extends Controller
         return response()->json([
             'token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => JWTAuth::factory()->getTTL() * 60, 
+            'expires_in' => JWTAuth::factory()->getTTL() * 60,
         ]);
     }
 
     /**
      * Registers a new user and provides a JWT token upon success.
-     * 
+     *
      * @group Authentication
-     * 
+     *
      * @bodyParam name string required The user's full name. Example: gabriel
      * @bodyParam email string required The user's email address. Example: gabriel@example.com
      * @bodyParam password string required The user's password. Example: password123
      * @bodyParam password_confirmation string required The user's password confirmation. Example: password123
-     * 
+     *
      * @response 201 {
      *  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
      *  "token_type": "bearer",
@@ -73,19 +73,19 @@ class AuthController extends Controller
      *      "email": "gabriel@example.com"
      *  }
      * }
-     * 
+     *
      * @response 400 {
      *  "error": "Validation error",
      *  "details": {
      *      "email": "The email field is required."
      *  }
      * }
-     * 
+     *
      * @response 500 {
      *  "error": "An unexpected error occurred. Please try again later."
      * }
      */
-    public function register(Request $request)
+    public function register(Request $request): \Illuminate\Http\JsonResponse
     {
         try {
             // Validation
@@ -94,14 +94,14 @@ class AuthController extends Controller
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:6',
             ]);
-    
+
             // Création de l'utilisateur
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
-    
+
             // Création du token
             try {
                 $token = JWTAuth::fromUser($user);
@@ -111,7 +111,7 @@ class AuthController extends Controller
                     'error' => $e->getMessage()
                 ], 500);
             }
-    
+
             // Réponse
             return response()->json([
                 'user' => $user,
@@ -119,13 +119,13 @@ class AuthController extends Controller
                 'token_type' => 'bearer',
                 'expires_in' => JWTAuth::factory()->getTTL() * 60,
             ], 201);
-    
+
         } catch (\Exception $e) {
             // En cas d'erreur, on supprime l'utilisateur créé
             if (isset($user)) {
                 $user->delete();
             }
-            
+
             return response()->json([
                 'message' => 'Registration failed',
                 'error' => $e->getMessage()
@@ -135,20 +135,20 @@ class AuthController extends Controller
 
     /**
      * Fetches the profile of the authenticated user.
-     * 
+     *
      * @group Authentication
-     * 
+     *
      * @response 200 {
      *  "id": 1,
      *  "name": "gabriel",
      *  "email": "gabriel@example.com",
      *  "profile_picture_url": "http://localhost/storage/profile_pictures/gabriel.jpg"
      * }
-     * 
+     *
      * @response 401 {
      *  "error": "Token expired"
      * }
-     * 
+     *
      * @response 404 {
      *  "error": "User not found"
      * }
@@ -176,13 +176,13 @@ class AuthController extends Controller
 
     /**
      * Logs out the authenticated user by invalidating their access token.
-     * 
+     *
      * @group Authentication
-     * 
+     *
      * @response 200 {
      *  "message": "Successfully logged out."
      * }
-     * 
+     *
      * @response 401 {
      *  "error": "Invalid or missing token."
      * }

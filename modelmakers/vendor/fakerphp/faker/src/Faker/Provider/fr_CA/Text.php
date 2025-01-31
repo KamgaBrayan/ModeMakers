@@ -242,7 +242,11 @@ III
   Acabris! Acabras! Acabram
   Fais-nous voyager par-dessus les montagnes
 
+<<<<<<< HEAD
 À peine avions-nous prononcé les dernières parole que nous sentîmes
+=======
+À peine avions-nous prononcé les dernières paroles que nous sentîmes
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
 le canot s'élever dans l'air à une hauteur de cinq ou six cents
 pieds. Il me semblait que j'étais léger comme une plume et au
 commandement de Baptiste, nous commençâmes à nager comme des possédés
@@ -356,7 +360,11 @@ certain d'y rencontrer nos blondes.
 --Allons chez Batissette!
 
 Et nous retournâmes au canot, tout en nous mettant mutuellement en
+<<<<<<< HEAD
 garde sur le danger qu'il y avait de prononcer certaines parole et
+=======
+garde sur le danger qu'il y avait de prononcer certaines paroles et
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
 de prendre un coup de trop, car il fallait reprendre la route des
 chantiers et y arriver avant six heures du matin, sans quoi nous
 étions flambés comme des carcajous, et le diable nous emportait au
@@ -376,7 +384,11 @@ notre canot derrière les tas de bourdillons qui bordaient la rive,
 car la glace avait refoulé, cette année-là.
 
 --Maintenant, nous répéta Baptiste, pas de bêtises, les amis, et
+<<<<<<< HEAD
 attention à vos parole. Dansons comme des perdus, mais pas un seul
+=======
+attention à vos paroles. Dansons comme des perdus, mais pas un seul
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
 verre de Molson, ni de jamaïque, vous m'entendez! Et au premier
 signe, suivez-moi tous, car il faudra repartir sans attirer
 l'attention.
@@ -489,7 +501,11 @@ autres compagnons qui avaient aussi peur que moi, et nous nous jetons
 tous sur Baptiste que nous terrassons, sans lui faire de mal, et que
 nous plaçons ensuite au fond du canot,--après l'avoir ligoté comme un
 bout de saucisse et lui avoir mis un bâillon pour l'empêcher de
+<<<<<<< HEAD
 prononcer des parole dangereuses, lorsque nous serions en l'air. Et:
+=======
+prononcer des paroles dangereuses, lorsque nous serions en l'air. Et:
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
 
   Acabris! Acabras! Acabram!
 
@@ -1628,7 +1644,11 @@ souffrait d'une pleurésie mortelle et qu'il l'allait appeler le
 prêtre au plus tôt.
 
 Le bon curé apporta le viatique au moribond qui gémissait dans le
+<<<<<<< HEAD
 délire et qui balbutiait des parole incompréhensibles. Macloune
+=======
+délire et qui balbutiait des paroles incompréhensibles. Macloune
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
 reconnut cependant le prêtre qui priait à ses côtés et il expira
 en jetant sur lui un regard de doux reproche et d'inexprimable
 désespérance et en murmurant le nom de Marichette.

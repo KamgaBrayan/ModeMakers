@@ -14,6 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'create-payment',
         'confirm-payment',
+        'user',
         // Ajoutez d'autres routes ici si nécessaire
     ];
 }

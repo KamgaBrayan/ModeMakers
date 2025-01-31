@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\OrderDTO;
+use App\DTO\PaymentDTO;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -43,14 +45,68 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order = Order::with('user')->find($id);
+
+        $order = Order::with(['user', 'products', 'payment', 'stylist'])
+            ->findOrFail($id);
 
         if (!$order) {
-            return response()->json(['error' => 'Order not found.'], 404);
+
+            return response()->json(['error' => 'Order not found'], 404);
         }
 
-        return response()->json($order, 200);
+
+        $response = [
+            'id' => $order->id,
+            'payment' => [
+                'id' => $order->id,
+                'paymentMethod' => $order->payment_method,
+                'account' => $order->total_cost,
+                'createdAt' => $order->created_at->toDateString(),
+                'status' => $order->status,
+            ],
+            'photos' => $order->products ? $order->products->pluck('photos')->flatten() : [],
+            'utils' => $order->products ?->map(function ($product) {
+                return [
+                    'name' => $product->name,
+                    'type' => $product->material->type,
+                    'photos' => $product->photos,
+                    'price_per_square_meter' => $product->price_per_square_metter,
+                    'quantity' => 1,
+                ];
+            }),
+            'createdAt' => $order->created_at->toDateString(),
+            'updatedAt' => $order->updated_at->toDateString(),
+            'day' => $order->created_at->day,
+            'workforce' => $order->workforce, // assuming workforce is part of Order model
+            'meseaure' => $order->user->measures ?->toArray(), // Assuming the measures relationship
+            'user' => [
+                'user_id' => $order->user->id,
+                'user_name' => $order->user->name,
+                'roles' => $order->user->roles,
+            ],
+            'gender' => $order->user->gender, // Assuming gender is part of user
+            'location' => $order->user->location, // Assuming location is part of user
+            'specification' => $order->product ?->description, // assuming a product has description
+            'status' => $order->status, // You may need to map the status to its enum values
+            'stylist' => [
+                'id' => $order->stylist_id, // assuming a relationship with stylist
+                'roles' => $order->stylist ?->roles,
+                'name' => $order->stylist ?->name,
+                'specialty' => $order->stylist ?->specialty,
+                'photos' => $order->stylist ?->photos,
+                'biography' => $order->stylist ?->biography,
+                'calendar' => $order->stylist ?->calendar,
+                'experience' => $order->stylist ?->experience,
+                'localisation' => $order->stylist ?->localisation,
+                'phone' => $order->stylist ?->phone,
+                'category' => $order->stylist ?->category,
+            ]
+        ];
+
+        return response()->json($response);
     }
+
+
 
     /**
      * Store a newly created order.
@@ -76,6 +132,7 @@ class OrderController extends Controller
     {
         $validated = $request->validate([
             'user_id' => 'required|integer|exists:users,id',
+            'stylist_id'  => 'required|integer|exists:users,id',
             'order_date' => 'required|date',
             'status' => 'required|string',
             'total_cost' => 'required|numeric',

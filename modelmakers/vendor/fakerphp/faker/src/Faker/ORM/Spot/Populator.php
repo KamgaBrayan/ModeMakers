@@ -30,7 +30,11 @@ class Populator
      * @param int    $number                 The number of entities to populate
      * @param array  $customColumnFormatters
      * @param array  $customModifiers
+<<<<<<< HEAD
      * @param bool   $useExistingData        Should we use existing rows (e.g. role) to populate relations?
+=======
+     * @param bool   $useExistingData        Should we use existing rows (e.g. roles) to populate relations?
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
      */
     public function addEntity(
         $entityName,

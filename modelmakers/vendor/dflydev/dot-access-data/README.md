@@ -67,18 +67,30 @@ $data = new Data([
         'hewey' => [
             'username' => 'hman',
             'password' => 'HPASS',
+<<<<<<< HEAD
             'role'    => ['web'],
+=======
+            'roles'    => ['web'],
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
         ],
         'dewey' => [
             'username' => 'dman',
             'password' => 'D---S',
+<<<<<<< HEAD
             'role'    => ['web', 'db'],
+=======
+            'roles'    => ['web', 'db'],
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
             'nick'     => 'dewey dman',
         ],
         'lewey' => [
             'username' => 'lman',
             'password' => 'LP@$$',
+<<<<<<< HEAD
             'role'    => ['db'],
+=======
+            'roles'    => ['db'],
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
         ],
     ],
 ]);
@@ -88,7 +100,11 @@ $username = $data->get('hosts.hewey.username');
 // HPASS
 $password = $data->get('hosts.hewey.password');
 // ['web']
+<<<<<<< HEAD
 $role = $data->get('hosts.hewey.role');
+=======
+$roles = $data->get('hosts.hewey.roles');
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
 // dewey dman
 $nick = $data->get('hosts.dewey.nick');
 // Unknown
@@ -101,18 +117,31 @@ $username = $dewey->get('username');
 // D---S
 $password = $dewey->get('password');
 // ['web', 'db']
+<<<<<<< HEAD
 $role = $dewey->get('role');
+=======
+$roles = $dewey->get('roles');
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
 
 // No more lewey
 $data->remove('hosts.lewey');
 
+<<<<<<< HEAD
 // Add DB to hewey's role
 $data->append('hosts.hewey.role', 'db');
+=======
+// Add DB to hewey's roles
+$data->append('hosts.hewey.roles', 'db');
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
 
 $data->set('hosts.april', [
     'username' => 'aman',
     'password' => '@---S',
+<<<<<<< HEAD
     'role'    => ['web'],
+=======
+    'roles'    => ['web'],
+>>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
 ]);
 
 // Check if a key exists (true to this case)
