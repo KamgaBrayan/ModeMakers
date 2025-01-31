@@ -118,10 +118,5 @@ Route::middleware('auth:api')->group(function () {
     });
 
 
-<<<<<<< HEAD
-
-/*});*/
-
-=======
 });
->>>>>>> 3e178013eabe79748d3f6935c6713eae0666bb53
+
