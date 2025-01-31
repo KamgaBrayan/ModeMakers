@@ -11,6 +11,7 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
+        'stylist_id',
         'order_date',
         'status',
         'total_cost',
@@ -22,4 +23,20 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function stylist()
+    {
+        return $this->belongsTo(User::class );
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class); // Un order a un mode de paiement
+    }
+
+    public function products()
+    {
+        return $this->belongsTo(Product::class); // Un order a un mode de paiement
+    }
+
 }
