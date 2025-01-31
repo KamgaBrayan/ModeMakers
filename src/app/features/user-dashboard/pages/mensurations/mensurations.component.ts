@@ -1,8 +1,6 @@
-// mensurations.component.ts
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup , FormsModule} from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 
 interface PersonalInfo {
   name: string;
@@ -49,7 +47,7 @@ interface IMensuration {
       <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold">Mes Mensurations</h1>
         <button 
-          (click)="addNewMeasurement()"
+          (click)="openAddMeasurementModal()"
           class="bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
           <span>Add a New Measurement</span>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,21 +84,7 @@ interface IMensuration {
                   <input type="text" formControlName="name" 
                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                 </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Age</label>
-                  <input type="number" formControlName="age"
-                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Sexe</label>
-                  <input type="text" formControlName="sex"
-                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Poids (kg)</label>
-                  <input type="number" formControlName="weight"
-                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
+                <!-- Other personal info inputs -->
               </div>
             </div>
 
@@ -134,11 +118,158 @@ interface IMensuration {
           </form>
         </div>
       </div>
+
+      <!-- Add Measurement Modal -->
+      <div *ngIf="isAddMeasurementModalOpen" 
+           class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto">
+        <div class="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Add New Measurement</h2>
+            <button 
+              (click)="closeAddMeasurementModal()"
+              class="text-gray-500 hover:text-gray-700">
+              ✕
+            </button>
+          </div>
+
+          <!-- Toggle for Measurement Method -->
+          <div class="mb-4 flex justify-center">
+            <div class="bg-gray-100 rounded-full p-1 flex">
+              <button 
+                (click)="measurementMethod = 'manual'"
+                [class]="measurementMethod === 'manual' ? 'bg-indigo-600 text-white' : 'text-gray-600'"
+                class="px-4 py-2 rounded-full transition-colors">
+                Manual Input
+              </button>
+              <button 
+                (click)="measurementMethod = 'ai'"
+                [class]="measurementMethod === 'ai' ? 'bg-indigo-600 text-white' : 'text-gray-600'"
+                class="px-4 py-2 rounded-full transition-colors">
+                AI Measurement
+              </button>
+            </div>
+          </div>
+
+          <!-- Measurement Input Container -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left Side: Manual Input OR File Drop -->
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <ng-container *ngIf="measurementMethod === 'manual'">
+                <form [formGroup]="addMeasurementForm" class="space-y-6">
+                  <!-- Personal Information Section -->
+                  <div class="border-b pb-4">
+                    <h3 class="text-lg font-semibold mb-4">Personal Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" formGroupName="personalInfo">
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" formControlName="name" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                      </div>
+                      <!-- Other personal info inputs -->
+                    </div>
+                  </div>
+
+                  <!-- Measurements Section -->
+                  <div formGroupName="measurements">
+                    <h3 class="text-lg font-semibold mb-4">Measurements</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div *ngFor="let field of measurementFields">
+                        <label class="block text-sm font-medium text-gray-700">
+                          {{formatLabel(field)}}
+                        </label>
+                        <div class="mt-1 flex rounded-md shadow-sm">
+                          <input type="number" [formControlName]="field"
+                                 class="block w-full rounded-md border-gray-300 shadow-sm">
+                          <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500">
+                            cm
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </ng-container>
+
+              <!-- AI Measurement File Drop -->
+              <ng-container *ngIf="measurementMethod === 'ai'">
+                <div class="border-2 border-dashed border-gray-300 p-6 text-center">
+                  <input 
+                    type="file" 
+                    #fileInput 
+                    (change)="onFileDropped($event)"
+                    accept="image/*" 
+                    class="hidden"
+                  >
+                  <button 
+                    (click)="fileInput.click()"
+                    class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg">
+                    Drop Image or Click to Upload
+                  </button>
+                  <p class="mt-2 text-gray-500">Supports JPG, PNG, WEBP</p>
+                </div>
+              </ng-container>
+            </div>
+
+            <!-- Right Side: Measurement Guide / AI Results -->
+            <div class="bg-white p-4 rounded-lg">
+              <ng-container *ngIf="measurementMethod === 'manual'">
+                <h3 class="text-lg font-semibold mb-4">Measurement Guide</h3>
+                <img 
+                  src="/api/placeholder/400/300" 
+                  alt="Measurement Guide" 
+                  class="w-full rounded-lg mb-4"
+                />
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li>• Wear tight-fitting clothes</li>
+                  <li>• Stand straight with feet together</li>
+                  <li>• Keep measuring tape parallel to ground</li>
+                  <li>• Breathe normally during measurements</li>
+                </ul>
+              </ng-container>
+
+              <ng-container *ngIf="measurementMethod === 'ai'">
+                <h3 class="text-lg font-semibold mb-4">AI Measurement Results</h3>
+                <div *ngIf="aiMeasurementResults" class="space-y-2">
+                  <div *ngFor="let measurement of aiMeasurementResults | keyvalue">
+                    <label class="block text-sm font-medium text-gray-700">
+                      {{formatLabel(measurement.key)}}
+                    </label>
+                    <input 
+                      type="number" 
+                      [value]="measurement.value" 
+                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                      readonly
+                    >
+                  </div>
+                </div>
+                <p *ngIf="!aiMeasurementResults" class="text-gray-500 text-center">
+                  Upload an image to get AI measurements
+                </p>
+              </ng-container>
+            </div>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="mt-6 flex justify-end space-x-4">
+            <button 
+              (click)="closeAddMeasurementModal()"
+              class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">
+              Cancel
+            </button>
+            <button 
+              (click)="saveNewMeasurement()"
+              class="px-4 py-2 bg-indigo-600 text-white rounded-lg">
+              Save Measurement
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   `
 })
 export class MensurationsComponent {
   measurementForm!: FormGroup;
+  addMeasurementForm!: FormGroup;
   savedMeasurements: IMensuration[] = [
     {
       id: 1,
@@ -182,12 +313,32 @@ export class MensurationsComponent {
     'ankle_height', 'seated_height', 'crotch_length'
   ];
 
+  // New properties for modal
+  isAddMeasurementModalOpen = false;
+  measurementMethod: 'manual' | 'ai' = 'manual';
+  aiMeasurementResults: MeasurementValues | null = null;
+
   constructor(private fb: FormBuilder) {
-    this.initForm();
+    this.initForms();
   }
 
-  initForm(): void {
+  initForms(): void {
     this.measurementForm = this.fb.group({
+      personalInfo: this.fb.group({
+        name: [''],
+        age: [null],
+        sex: [''],
+        weight: [null]
+      }),
+      measurements: this.fb.group(
+        this.measurementFields.reduce((acc, field) => ({
+          ...acc,
+          [field]: [null]
+        }), {})
+      )
+    });
+
+    this.addMeasurementForm = this.fb.group({
       personalInfo: this.fb.group({
         name: [''],
         age: [null],
@@ -203,6 +354,8 @@ export class MensurationsComponent {
     });
   }
 
+  // Continuing from the previous code...
+
   selectPerson(person: IMensuration): void {
     this.selectedPerson = { ...person };
     this.measurementForm.patchValue({
@@ -211,22 +364,10 @@ export class MensurationsComponent {
     });
   }
 
-  addNewMeasurement(): void {
-    const newPerson: IMensuration = {
-      id: this.savedMeasurements.length + 1,
-      personalInfo: {
-        name: 'Nouvelle Personne',
-        age: 25,
-        sex: '',
-        weight: 70
-      },
-      measurements: this.measurementFields.reduce((acc, field) => ({
-        ...acc,
-        [field]: 0
-      }), {}) as MeasurementValues
-    };
-    this.savedMeasurements.push(newPerson);
-    this.selectPerson(newPerson);
+  formatLabel(field: string): string {
+    return field.split('_').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
   }
 
   saveMeasurements(): void {
@@ -243,9 +384,68 @@ export class MensurationsComponent {
     }
   }
 
-  formatLabel(field: string): string {
-    return field.split('_').map(word => 
-      word.charAt(0).toUpperCase() + word.slice(1)
-    ).join(' ');
+  openAddMeasurementModal(): void {
+    this.isAddMeasurementModalOpen = true;
+    this.measurementMethod = 'manual';
+    this.aiMeasurementResults = null;
+    this.addMeasurementForm.reset(); // Use the new form for resetting
+  }
+
+  closeAddMeasurementModal(): void {
+    this.isAddMeasurementModalOpen = false;
+  }
+
+  onFileDropped(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      // Simulate AI measurement API call
+      // In a real scenario, you would call your actual AI measurement API
+      this.aiMeasurementResults = {
+        stature: 170,
+        shoulder_circumference: 100,
+        chest_circumference: 90,
+        waist_circumference: 80,
+        hip_circumference: 95,
+        shoulder_height: 140,
+        hip_height: 85,
+        knee_height: 45,
+        chest_spacing: 35,
+        breast_height: 120,
+        pelvis_height: 90,
+        front_waist_length: 45,
+        shoulder_length: 40,
+        back_waist_length: 42,
+        arm_length: 60,
+        total_arm_length_bent: 65,
+        wrist_circumference: 16,
+        ankle_height: 10,
+        seated_height: 85,
+        crotch_length: 70
+      };
+    }
+  }
+
+  saveNewMeasurement(): void {
+    const formValues = this.measurementMethod === 'manual' 
+      ? this.addMeasurementForm.value 
+      : { 
+          personalInfo: {
+            name: 'AI Measurement',
+            age: null,
+            sex: '',
+            weight: null
+          },
+          measurements: this.aiMeasurementResults 
+        };
+
+    const newPerson: IMensuration = {
+      id: this.savedMeasurements.length + 1,
+      personalInfo: formValues.personalInfo,
+      measurements: formValues.measurements
+    };
+
+    this.savedMeasurements.push(newPerson);
+    this.selectPerson(newPerson);
+    this.closeAddMeasurementModal();
   }
 }
