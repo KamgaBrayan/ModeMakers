@@ -1,578 +1,451 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MeasurementService, Measurement } from '../../../../core/services/measurement.service';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
-import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
+
+interface PersonalInfo {
+  name: string;
+  age: number;
+  sex: string;
+  weight: number;
+}
+
+interface MeasurementValues {
+  stature: number;
+  shoulder_circumference: number;
+  chest_circumference: number;
+  waist_circumference: number;
+  hip_circumference: number;
+  shoulder_height: number;
+  hip_height: number;
+  knee_height: number;
+  chest_spacing: number;
+  breast_height: number;
+  pelvis_height: number;
+  front_waist_length: number;
+  shoulder_length: number;
+  back_waist_length: number;
+  arm_length: number;
+  total_arm_length_bent: number;
+  wrist_circumference: number;
+  ankle_height: number;
+  seated_height: number;
+  crotch_length: number;
+}
+
+interface IMensuration {
+  id: number;
+  personalInfo: PersonalInfo;
+  measurements: MeasurementValues;
+}
 
 @Component({
   selector: 'app-mensurations',
-  standalone: true,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [
-    CommonModule, 
-    FormsModule, 
-    ReactiveFormsModule, 
-    MatTabsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatCardModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatFormFieldModule,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   template: `
-    <div class="measurements-container">
-      <mat-tab-group class="measurement-tabs">
-        <mat-tab label="My Measurements">
-          <div class="measurements-content">
-            <div class="header-actions">
-              <h1>My Measurements</h1>
-              <button mat-raised-button color="primary" (click)="showForm = true" *ngIf="!showForm">
-                <mat-icon>add</mat-icon>
-                New Measurement
+    <div class="container mx-auto p-6">
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">Mes Mensurations</h1>
+        <button 
+          (click)="openAddMeasurementModal()"
+          class="bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+          <span>Add a New Measurement</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Main Content -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Left Side - Saved Measurements -->
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <h2 class="text-lg font-semibold mb-4">Mensurations enregistrées</h2>
+          <div class="space-y-2">
+            <div *ngFor="let person of savedMeasurements" 
+                 (click)="selectPerson(person)"
+                 [class.bg-indigo-50]="selectedPerson?.id === person.id"
+                 class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-gray-50">
+              <div class="w-8 h-8 bg-gray-300 rounded-full mr-3"></div>
+              <span>{{person.personalInfo.name}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side - Measurement Form -->
+        <div class="bg-white p-4 rounded-lg" *ngIf="selectedPerson">
+          <form [formGroup]="measurementForm" class="space-y-6">
+            <!-- Personal Information Section -->
+            <div class="border-b pb-4">
+              <h3 class="text-lg font-semibold mb-4">Informations Personnelles</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4" formGroupName="personalInfo">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700">Nom</label>
+                  <input type="text" formControlName="name" 
+                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                <!-- Other personal info inputs -->
+              </div>
+            </div>
+
+            <!-- Measurements Section -->
+            <div formGroupName="measurements">
+              <h3 class="text-lg font-semibold mb-4">Mensurations</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div *ngFor="let field of measurementFields">
+                  <label class="block text-sm font-medium text-gray-700">
+                    {{formatLabel(field)}}
+                  </label>
+                  <div class="mt-1 flex rounded-md shadow-sm">
+                    <input type="number" [formControlName]="field"
+                           class="block w-full rounded-md border-gray-300 shadow-sm">
+                    <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500">
+                      cm
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Save Button -->
+            <div class="flex justify-end">
+              <button 
+                (click)="saveMeasurements()"
+                class="bg-indigo-600 text-white px-4 py-2 rounded-lg">
+                Sauvegarder
               </button>
             </div>
+          </form>
+        </div>
+      </div>
 
-            <!-- Measurement Form -->
-            <mat-card *ngIf="showForm" class="measurement-form-card">
-              <mat-card-header>
-                <mat-card-title>{{ editingMeasurement ? 'Edit' : 'New' }} Measurement</mat-card-title>
-              </mat-card-header>
-              <mat-card-content>
-                <form [formGroup]="measurementForm" (ngSubmit)="onSubmit()" class="measurement-form">
-                  <div class="form-row">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Title</mat-label>
-                      <input matInput formControlName="title" placeholder="e.g., My Summer Measurements">
-                    </mat-form-field>
+      <!-- Add Measurement Modal -->
+      <div *ngIf="isAddMeasurementModalOpen" 
+           class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto">
+        <div class="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Add New Measurement</h2>
+            <button 
+              (click)="closeAddMeasurementModal()"
+              class="text-gray-500 hover:text-gray-700">
+              ✕
+            </button>
+          </div>
+
+          <!-- Toggle for Measurement Method -->
+          <div class="mb-4 flex justify-center">
+            <div class="bg-gray-100 rounded-full p-1 flex">
+              <button 
+                (click)="measurementMethod = 'manual'"
+                [class]="measurementMethod === 'manual' ? 'bg-indigo-600 text-white' : 'text-gray-600'"
+                class="px-4 py-2 rounded-full transition-colors">
+                Manual Input
+              </button>
+              <button 
+                (click)="measurementMethod = 'ai'"
+                [class]="measurementMethod === 'ai' ? 'bg-indigo-600 text-white' : 'text-gray-600'"
+                class="px-4 py-2 rounded-full transition-colors">
+                AI Measurement
+              </button>
+            </div>
+          </div>
+
+          <!-- Measurement Input Container -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left Side: Manual Input OR File Drop -->
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <ng-container *ngIf="measurementMethod === 'manual'">
+                <form [formGroup]="addMeasurementForm" class="space-y-6">
+                  <!-- Personal Information Section -->
+                  <div class="border-b pb-4">
+                    <h3 class="text-lg font-semibold mb-4">Personal Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" formGroupName="personalInfo">
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" formControlName="name" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                      </div>
+                      <!-- Other personal info inputs -->
+                    </div>
                   </div>
 
-                  <div class="form-grid">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Stature (m)</mat-label>
-                      <input matInput type="number" formControlName="stature" step="0.01">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Shoulder Circumference (cm)</mat-label>
-                      <input matInput type="number" formControlName="shoulder_circumference" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Chest Circumference (cm)</mat-label>
-                      <input matInput type="number" formControlName="chest_circumference" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Waist Circumference (cm)</mat-label>
-                      <input matInput type="number" formControlName="waist_circumference" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Hip Circumference (cm)</mat-label>
-                      <input matInput type="number" formControlName="hip_circumference" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Shoulder Height (cm)</mat-label>
-                      <input matInput type="number" formControlName="shoulder_height" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Hip Height (cm)</mat-label>
-                      <input matInput type="number" formControlName="hip_height" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Knee Height (cm)</mat-label>
-                      <input matInput type="number" formControlName="knee_height" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Chest Spacing (cm)</mat-label>
-                      <input matInput type="number" formControlName="chest_spacing" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Breast Height (cm)</mat-label>
-                      <input matInput type="number" formControlName="breast_height" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Pelvis Height (cm)</mat-label>
-                      <input matInput type="number" formControlName="pelvis_height" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Front Waist Length (cm)</mat-label>
-                      <input matInput type="number" formControlName="front_waist_length" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Shoulder Length (cm)</mat-label>
-                      <input matInput type="number" formControlName="shoulder_length" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Back Waist Length (cm)</mat-label>
-                      <input matInput type="number" formControlName="back_waist_length" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Arm Length (cm)</mat-label>
-                      <input matInput type="number" formControlName="arm_length" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Total Arm Length Bent (cm)</mat-label>
-                      <input matInput type="number" formControlName="total_arm_length_bent" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Wrist Circumference (cm)</mat-label>
-                      <input matInput type="number" formControlName="wrist_circumference" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Ankle Height (cm)</mat-label>
-                      <input matInput type="number" formControlName="ankle_height" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Seated Height (cm)</mat-label>
-                      <input matInput type="number" formControlName="seated_height" step="0.1">
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline">
-                      <mat-label>Crotch Length (cm)</mat-label>
-                      <input matInput type="number" formControlName="crotch_length" step="0.1">
-                    </mat-form-field>
-                  </div>
-
-                  <div class="form-actions">
-                    <button mat-button type="button" (click)="cancelForm()">Cancel</button>
-                    <button mat-raised-button color="primary" type="submit">
-                      {{ editingMeasurement ? 'Update' : 'Save' }}
-                    </button>
+                  <!-- Measurements Section -->
+                  <div formGroupName="measurements">
+                    <h3 class="text-lg font-semibold mb-4">Measurements</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div *ngFor="let field of measurementFields">
+                        <label class="block text-sm font-medium text-gray-700">
+                          {{formatLabel(field)}}
+                        </label>
+                        <div class="mt-1 flex rounded-md shadow-sm">
+                          <input type="number" [formControlName]="field"
+                                 class="block w-full rounded-md border-gray-300 shadow-sm">
+                          <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500">
+                            cm
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </form>
-              </mat-card-content>
-            </mat-card>
+              </ng-container>
 
-            <!-- Measurements List -->
-            <div class="measurements-grid">
-              <mat-card *ngFor="let measurement of measurements" class="measurement-card">
-                <mat-card-header>
-                  <mat-card-title>{{measurement.title}}</mat-card-title>
-                  <mat-card-subtitle>{{measurement.date_measure | date}}</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                  <div class="measurement-details">
-                    <div class="detail-item">
-                      <span>Stature</span>
-                      <span>{{measurement.stature}}m</span>
-                    </div>
-                    <div class="detail-item">
-                      <span>Chest</span>
-                      <span>{{measurement.chest_circumference}}cm</span>
-                    </div>
-                    <div class="detail-item">
-                      <span>Waist</span>
-                      <span>{{measurement.waist_circumference}}cm</span>
-                    </div>
-                    <div class="detail-item">
-                      <span>Hip</span>
-                      <span>{{measurement.hip_circumference}}cm</span>
-                    </div>
+              <!-- AI Measurement File Drop -->
+              <ng-container *ngIf="measurementMethod === 'ai'">
+                <div class="border-2 border-dashed border-gray-300 p-6 text-center">
+                  <input 
+                    type="file" 
+                    #fileInput 
+                    (change)="onFileDropped($event)"
+                    accept="image/*" 
+                    class="hidden"
+                  >
+                  <button 
+                    (click)="fileInput.click()"
+                    class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg">
+                    Drop Image or Click to Upload
+                  </button>
+                  <p class="mt-2 text-gray-500">Supports JPG, PNG, WEBP</p>
+                </div>
+              </ng-container>
+            </div>
+
+            <!-- Right Side: Measurement Guide / AI Results -->
+            <div class="bg-white p-4 rounded-lg">
+              <ng-container *ngIf="measurementMethod === 'manual'">
+                <h3 class="text-lg font-semibold mb-4">Measurement Guide</h3>
+                <img 
+                  src="/api/placeholder/400/300" 
+                  alt="Measurement Guide" 
+                  class="w-full rounded-lg mb-4"
+                />
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li>• Wear tight-fitting clothes</li>
+                  <li>• Stand straight with feet together</li>
+                  <li>• Keep measuring tape parallel to ground</li>
+                  <li>• Breathe normally during measurements</li>
+                </ul>
+              </ng-container>
+
+              <ng-container *ngIf="measurementMethod === 'ai'">
+                <h3 class="text-lg font-semibold mb-4">AI Measurement Results</h3>
+                <div *ngIf="aiMeasurementResults" class="space-y-2">
+                  <div *ngFor="let measurement of aiMeasurementResults | keyvalue">
+                    <label class="block text-sm font-medium text-gray-700">
+                      {{formatLabel(measurement.key)}}
+                    </label>
+                    <input 
+                      type="number" 
+                      [value]="measurement.value" 
+                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                      readonly
+                    >
                   </div>
-                </mat-card-content>
-                <mat-card-actions align="end">
-                  <button mat-icon-button color="primary" (click)="editMeasurement(measurement)">
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                  <button mat-icon-button color="warn" (click)="deleteMeasurement(measurement.id)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </mat-card-actions>
-              </mat-card>
-            </div>
-            <div *ngIf="isLoading" class="loading-overlay">
-              <mat-progress-spinner diameter="24"></mat-progress-spinner>
-            </div>
-            <div *ngIf="error" class="error-message">
-              {{ error }}
+                </div>
+                <p *ngIf="!aiMeasurementResults" class="text-gray-500 text-center">
+                  Upload an image to get AI measurements
+                </p>
+              </ng-container>
             </div>
           </div>
-        </mat-tab>
 
-        <mat-tab label="AI Measurement">
-          <div class="ai-measurement-content">
-            <mat-card class="ai-upload-card">
-              <mat-card-header>
-                <mat-card-title>Get Measurements from Photo</mat-card-title>
-                <mat-card-subtitle>Upload a full-body photo to get your measurements using AI</mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content>
-                <div class="upload-area" 
-                     (dragover)="onDragOver($event)" 
-                     (drop)="onDrop($event)"
-                     [class.dragover]="isDragging">
-                  <mat-icon>cloud_upload</mat-icon>
-                  <p>Drag and drop your photo here or</p>
-                  <button mat-raised-button color="primary" (click)="fileInput.click()">
-                    Choose File
-                  </button>
-                  <input #fileInput type="file" (change)="onFileSelected($event)" hidden accept="image/*">
-                </div>
-                <div *ngIf="selectedImage" class="preview-area">
-                  <img [src]="selectedImage" alt="Preview">
-                  <button mat-raised-button color="primary" (click)="processImage()">
-                    Get Measurements
-                  </button>
-                </div>
-              </mat-card-content>
-            </mat-card>
+          <!-- Modal Footer -->
+          <div class="mt-6 flex justify-end space-x-4">
+            <button 
+              (click)="closeAddMeasurementModal()"
+              class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">
+              Cancel
+            </button>
+            <button 
+              (click)="saveNewMeasurement()"
+              class="px-4 py-2 bg-indigo-600 text-white rounded-lg">
+              Save Measurement
+            </button>
           </div>
-        </mat-tab>
-      </mat-tab-group>
+        </div>
+      </div>
     </div>
-  `,
-  styles: [`
-    .measurements-container {
-      padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .header-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-
-    .header-actions h1 {
-      font-size: 2rem;
-      font-weight: 500;
-      margin: 0;
-    }
-
-    .measurement-form-card {
-      margin-bottom: 2rem;
-    }
-
-    .measurement-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-
-    .form-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .measurements-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .measurement-card {
-      transition: transform 0.2s;
-    }
-
-    .measurement-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .measurement-details {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-
-    .detail-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem;
-      background-color: rgba(0, 0, 0, 0.03);
-      border-radius: 4px;
-    }
-
-    .ai-measurement-content {
-      padding: 2rem;
-    }
-
-    .ai-upload-card {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .upload-area {
-      border: 2px dashed #ccc;
-      border-radius: 8px;
-      padding: 2rem;
-      text-align: center;
-      margin: 2rem 0;
-      transition: all 0.3s;
-    }
-
-    .upload-area.dragover {
-      border-color: primary;
-      background-color: rgba(0, 0, 0, 0.03);
-    }
-
-    .upload-area mat-icon {
-      font-size: 48px;
-      width: 48px;
-      height: 48px;
-      margin-bottom: 1rem;
-      color: #666;
-    }
-
-    .preview-area {
-      text-align: center;
-    }
-
-    .preview-area img {
-      max-width: 100%;
-      max-height: 400px;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-    }
-
-    .loading-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .error-message {
-      color: red;
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-top: 1rem;
-    }
-  `]
+  `
 })
-export class MensurationsComponent implements OnInit {
+export class MensurationsComponent {
   measurementForm!: FormGroup;
-  measurements: Measurement[] = [];
-  showForm = false;
-  editingMeasurement: Measurement | null = null;
-  selectedImage: string | null = null;
-  isDragging = false;
-  isLoading = false;
-  error: string | null = null;
-
-  constructor(
-    private fb: FormBuilder,
-    private measurementService: MeasurementService,
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog
-  ) {
-    this.initForm();
-  }
-
-  private initForm(): void {
-    this.measurementForm = this.fb.group({
-      title: ['', Validators.required],
-      stature: ['', [Validators.required, Validators.min(0)]],
-      shoulder_circumference: ['', [Validators.required, Validators.min(0)]],
-      chest_circumference: ['', [Validators.required, Validators.min(0)]],
-      waist_circumference: ['', [Validators.required, Validators.min(0)]],
-      hip_circumference: ['', [Validators.required, Validators.min(0)]],
-      shoulder_height: ['', [Validators.required, Validators.min(0)]],
-      hip_height: ['', [Validators.required, Validators.min(0)]],
-      knee_height: ['', [Validators.required, Validators.min(0)]],
-      chest_spacing: ['', [Validators.required, Validators.min(0)]],
-      breast_height: ['', [Validators.required, Validators.min(0)]],
-      pelvis_height: ['', [Validators.required, Validators.min(0)]],
-      front_waist_length: ['', [Validators.required, Validators.min(0)]],
-      shoulder_length: ['', [Validators.required, Validators.min(0)]],
-      back_waist_length: ['', [Validators.required, Validators.min(0)]],
-      arm_length: ['', [Validators.required, Validators.min(0)]],
-      total_arm_length_bent: ['', [Validators.required, Validators.min(0)]],
-      wrist_circumference: ['', [Validators.required, Validators.min(0)]],
-      ankle_height: ['', [Validators.required, Validators.min(0)]],
-      seated_height: ['', [Validators.required, Validators.min(0)]],
-      crotch_length: ['', [Validators.required, Validators.min(0)]]
-    });
-  }
-
-  ngOnInit() {
-    this.loadMeasurements();
-  }
-
-  loadMeasurements() {
-    this.isLoading = true;
-    this.error = null;
-    // Hardcoded user ID for now - in a real app this would come from an auth service
-    const userId = 1;
-    
-    this.measurementService.getMeasurementsByUserId(userId).subscribe({
-      next: (measurements) => {
-        this.measurements = measurements;
-        this.isLoading = false;
+  addMeasurementForm!: FormGroup;
+  savedMeasurements: IMensuration[] = [
+    {
+      id: 1,
+      personalInfo: {
+        name: 'Moi (default)',
+        age: 25,
+        sex: 'M',
+        weight: 70
       },
-      error: (error) => {
-        console.error('Error loading measurements:', error);
-        this.error = 'Failed to load measurements. Please try again later.';
-        this.isLoading = false;
-        this.snackBar.open(this.error, 'Close', { duration: 5000 });
+      measurements: {
+        stature: 170,
+        shoulder_circumference: 100,
+        chest_circumference: 90,
+        waist_circumference: 80,
+        hip_circumference: 95,
+        shoulder_height: 140,
+        hip_height: 85,
+        knee_height: 45,
+        chest_spacing: 35,
+        breast_height: 120,
+        pelvis_height: 90,
+        front_waist_length: 45,
+        shoulder_length: 40,
+        back_waist_length: 42,
+        arm_length: 60,
+        total_arm_length_bent: 65,
+        wrist_circumference: 16,
+        ankle_height: 10,
+        seated_height: 85,
+        crotch_length: 70
       }
+    }
+  ];
+
+  selectedPerson: IMensuration | null = null;
+  measurementFields: string[] = [
+    'stature', 'shoulder_circumference', 'chest_circumference', 'waist_circumference',
+    'hip_circumference', 'shoulder_height', 'hip_height', 'knee_height', 'chest_spacing',
+    'breast_height', 'pelvis_height', 'front_waist_length', 'shoulder_length',
+    'back_waist_length', 'arm_length', 'total_arm_length_bent', 'wrist_circumference',
+    'ankle_height', 'seated_height', 'crotch_length'
+  ];
+
+  // New properties for modal
+  isAddMeasurementModalOpen = false;
+  measurementMethod: 'manual' | 'ai' = 'manual';
+  aiMeasurementResults: MeasurementValues | null = null;
+
+  constructor(private fb: FormBuilder) {
+    this.initForms();
+  }
+
+  initForms(): void {
+    this.measurementForm = this.fb.group({
+      personalInfo: this.fb.group({
+        name: [''],
+        age: [null],
+        sex: [''],
+        weight: [null]
+      }),
+      measurements: this.fb.group(
+        this.measurementFields.reduce((acc, field) => ({
+          ...acc,
+          [field]: [null]
+        }), {})
+      )
+    });
+
+    this.addMeasurementForm = this.fb.group({
+      personalInfo: this.fb.group({
+        name: [''],
+        age: [null],
+        sex: [''],
+        weight: [null]
+      }),
+      measurements: this.fb.group(
+        this.measurementFields.reduce((acc, field) => ({
+          ...acc,
+          [field]: [null]
+        }), {})
+      )
     });
   }
 
-  onSubmit() {
-    if (this.measurementForm.valid) {
-      const formValue = this.measurementForm.value;
-      const measurement = {
-        ...formValue,
-        user: {
-          user_id: 1, // Hardcoded for now
-          user_name: 'John Doe', // Hardcoded for now
-          roles: ['user']
-        },
-        date_measure: new Date().toISOString()
+  // Continuing from the previous code...
+
+  selectPerson(person: IMensuration): void {
+    this.selectedPerson = { ...person };
+    this.measurementForm.patchValue({
+      personalInfo: person.personalInfo,
+      measurements: person.measurements
+    });
+  }
+
+  formatLabel(field: string): string {
+    return field.split('_').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
+  }
+
+  saveMeasurements(): void {
+    if (this.selectedPerson && this.measurementForm.valid) {
+      const updatedMeasurement = {
+        ...this.selectedPerson,
+        personalInfo: this.measurementForm.value.personalInfo,
+        measurements: this.measurementForm.value.measurements
       };
-
-      if (this.editingMeasurement) {
-        this.measurementService.updateMeasurement(this.editingMeasurement.id, measurement).subscribe({
-          next: (updatedMeasurement) => {
-            const index = this.measurements.findIndex(m => m.id === updatedMeasurement.id);
-            if (index !== -1) {
-              this.measurements[index] = updatedMeasurement;
-            }
-            this.snackBar.open('Measurement updated successfully!', 'Close', { duration: 3000 });
-            this.cancelForm();
-          },
-          error: (error) => {
-            console.error('Error updating measurement:', error);
-            this.snackBar.open('Failed to update measurement. Please try again.', 'Close', { duration: 5000 });
-          }
-        });
-      } else {
-        this.measurementService.createMeasurement(measurement).subscribe({
-          next: (newMeasurement) => {
-            this.measurements.push(newMeasurement);
-            this.snackBar.open('Measurement added successfully!', 'Close', { duration: 3000 });
-            this.cancelForm();
-          },
-          error: (error) => {
-            console.error('Error creating measurement:', error);
-            this.snackBar.open('Failed to create measurement. Please try again.', 'Close', { duration: 5000 });
-          }
-        });
+      const index = this.savedMeasurements.findIndex(m => m.id === this.selectedPerson?.id);
+      if (index !== -1) {
+        this.savedMeasurements[index] = updatedMeasurement;
       }
-    } else {
-      this.snackBar.open('Please fill in all required fields correctly.', 'Close', { duration: 5000 });
     }
   }
 
-  editMeasurement(measurement: Measurement) {
-    this.editingMeasurement = measurement;
-    this.measurementForm.patchValue(measurement);
-    this.showForm = true;
+  openAddMeasurementModal(): void {
+    this.isAddMeasurementModalOpen = true;
+    this.measurementMethod = 'manual';
+    this.aiMeasurementResults = null;
+    this.addMeasurementForm.reset(); // Use the new form for resetting
   }
 
-  deleteMeasurement(id: number) {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: {
-        title: 'Delete Measurement',
-        message: 'Are you sure you want to delete this measurement?'
-      }
-    });
+  closeAddMeasurementModal(): void {
+    this.isAddMeasurementModalOpen = false;
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.measurementService.deleteMeasurement(id).subscribe({
-          next: () => {
-            this.measurements = this.measurements.filter(m => m.id !== id);
-            this.snackBar.open('Measurement deleted successfully!', 'Close', { duration: 3000 });
+  onFileDropped(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      // Simulate AI measurement API call
+      // In a real scenario, you would call your actual AI measurement API
+      this.aiMeasurementResults = {
+        stature: 170,
+        shoulder_circumference: 100,
+        chest_circumference: 90,
+        waist_circumference: 80,
+        hip_circumference: 95,
+        shoulder_height: 140,
+        hip_height: 85,
+        knee_height: 45,
+        chest_spacing: 35,
+        breast_height: 120,
+        pelvis_height: 90,
+        front_waist_length: 45,
+        shoulder_length: 40,
+        back_waist_length: 42,
+        arm_length: 60,
+        total_arm_length_bent: 65,
+        wrist_circumference: 16,
+        ankle_height: 10,
+        seated_height: 85,
+        crotch_length: 70
+      };
+    }
+  }
+
+  saveNewMeasurement(): void {
+    const formValues = this.measurementMethod === 'manual' 
+      ? this.addMeasurementForm.value 
+      : { 
+          personalInfo: {
+            name: 'AI Measurement',
+            age: null,
+            sex: '',
+            weight: null
           },
-          error: (error) => {
-            console.error('Error deleting measurement:', error);
-            this.snackBar.open('Failed to delete measurement. Please try again.', 'Close', { duration: 5000 });
-          }
-        });
-      }
-    });
-  }
+          measurements: this.aiMeasurementResults 
+        };
 
-  cancelForm() {
-    this.showForm = false;
-    this.editingMeasurement = null;
-    this.measurementForm.reset();
-  }
-
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.isDragging = true;
-  }
-
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.isDragging = false;
-    const files = event.dataTransfer?.files;
-    if (files && files.length > 0) {
-      this.handleFile(files[0]);
-    }
-  }
-
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.handleFile(input.files[0]);
-    }
-  }
-
-  private handleFile(file: File) {
-    if (!file.type.startsWith('image/')) {
-      this.snackBar.open('Please select an image file.', 'Close', { duration: 3000 });
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (e: ProgressEvent<FileReader>) => {
-      this.selectedImage = e.target?.result as string;
+    const newPerson: IMensuration = {
+      id: this.savedMeasurements.length + 1,
+      personalInfo: formValues.personalInfo,
+      measurements: formValues.measurements
     };
-    reader.readAsDataURL(file);
-  }
 
-  processImage() {
-    if (!this.selectedImage) {
-      this.snackBar.open('Please select an image first.', 'Close', { duration: 3000 });
-      return;
-    }
-    // TODO: Implement AI measurement processing
-    this.snackBar.open('AI measurement processing coming soon!', 'Close', { duration: 3000 });
+    this.savedMeasurements.push(newPerson);
+    this.selectPerson(newPerson);
+    this.closeAddMeasurementModal();
   }
 }
