@@ -8,9 +8,9 @@ import { Product } from '../../shared/models/product.model';
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = 'http://localhost:3000';
-  private productsUrl = 'http://localhost:3000/products';
-  private ordersUrl = 'http://localhost:3000/orders';
+  private apiUrl = 'http://localhost:3001';
+  private productsUrl = 'http://localhost:3001/products';
+  private ordersUrl = 'http://localhost:3001/orders';
 
   constructor(private http: HttpClient) {}
 

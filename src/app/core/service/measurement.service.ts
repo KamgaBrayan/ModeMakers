@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Measurement} from '../../shared/interfaces/measurement.interface';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3001';
 
 @Injectable({
   providedIn: 'root'

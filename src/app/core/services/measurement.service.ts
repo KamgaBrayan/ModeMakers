@@ -38,7 +38,7 @@ export interface Measurement {
   providedIn: 'root'
 })
 export class MeasurementService {
-  private apiUrl = 'http://localhost:3000';  // JSON Server default URL
+  private apiUrl = 'http://localhost:3001';  // JSON Server default URL
 
   constructor(private http: HttpClient) {}
 

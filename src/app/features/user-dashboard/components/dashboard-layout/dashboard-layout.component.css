@@ -33,11 +33,11 @@ header .nav a:hover {
 }
 
 .sidebar .nav a:hover {
-  background-color: #f1f1f1;
+  background-color: bg-indigo-800
 }
 
 .sidebar .nav a.active {
-  background-color: #3734A9;
+  background-color: bg-indigo-700;
   color: #ffffff;
 }
 

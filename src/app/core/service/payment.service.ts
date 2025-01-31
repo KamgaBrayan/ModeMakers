@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {ApiResponse} from '../../shared/interfaces/apiRequest.interface';
 import {Payment} from '../../shared/interfaces/payment.interface';
 
-const API_URL = 'http://localhost:3000/payment';
+const API_URL = 'http://localhost:3001/payment';
 
 @Injectable({
   providedIn: 'root'

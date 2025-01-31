@@ -4,7 +4,7 @@ import {ApiResponse, CreateOrderRequest} from '../../shared/interfaces/apiReques
 import {HttpClient} from '@angular/common/http';
 import {Order} from '../../shared/interfaces/order.interface';
 
-const API_URL = 'http://localhost:3000/order';
+const API_URL = 'http://localhost:3001/order';
 
 @Injectable({
   providedIn: 'root'
