@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             'name' => 'Stylist Test',
             'email' => 'stylist@example.com',
             'password' => Hash::make('password'),
-            'profil_picture' => null,
+           'profil_picture' => null,
             'photos' => json_encode(["profile1.jpg"]),
             'note' => 5,
             'bibliography' => "Styliste professionnel avec 10 ans d'expérience",
