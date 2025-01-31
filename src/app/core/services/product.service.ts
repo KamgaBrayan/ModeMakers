@@ -37,27 +37,27 @@ export class ProductService {
 
   // Get products by category
   getProductsByCategory(category: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/products?category=${category}`);
+    return this.http.get<any[]>(`${this.apiUrl}/?category=${category}`);
   }
 
   // Get products by gender
   getProductsByGender(gender: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/products?gender=${gender}`);
+    return this.http.get<any[]>(`${this.apiUrl}/?gender=${gender}`);
   }
 
   // Get products by stylist
   getProductsByStyliste(stylisteId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/products?stylisteId=${stylisteId}`);
+    return this.http.get<any[]>(`${this.apiUrl}/?stylisteId=${stylisteId}`);
   }
 
   // Get featured products
   getFeaturedProducts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/products?featured=true`);
+    return this.http.get<any[]>(`${this.apiUrl}/?featured=true`);
   }
 
   // Search products
   searchProducts(query: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/products?q=${query}`);
+    return this.http.get<any[]>(`${this.apiUrl}/?q=${query}`);
   }
 
 }

@@ -21,7 +21,7 @@ export interface Product {
     image: string;
   };
   materials: Material[];
-  delivery?: {
+  delivery: {
     id: number;
     day: number;
     price: number;

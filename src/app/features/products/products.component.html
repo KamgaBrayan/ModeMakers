@@ -1,137 +1,141 @@
-<app-navbar/>
+<app-navbar></app-navbar>
 
-<div class="hero-banner">
-  <div class="hero-content">
-      <div class="hero-image">
-          <img src="https://img.freepik.com/photos-premium/petite-fille-africaine-souriant-portant-robe-coloree-fond-rose_279525-18629.jpg" alt="Fashion Model">
-      </div>
-      <div class="hero-text-container">
-          <div class="hero-text">
-              <h1>Trendy Styles..</h1>
-              <h2>Thousands Styles More!</h2>
-              <p>Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!</p>
-              <div class="hero-buttons">
-                  <button class="shop-btn">Shop collections <i class="fas fa-arrow-right"></i></button>
-                  <button class="how-it-works">
-                      <i class="fas fa-play"></i>
-                      See How It Works
-                  </button>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-
-<div class="main-content">
-  <aside class="sidebar">
-    <div class="filter-section">
-      <h3>Categories</h3>
-      <ul>
-        <li>
-          <input type="checkbox" id="women">
-          <label for="women">Women</label>
-        </li>
-        <li>
-          <input type="checkbox" id="men">
-          <label for="men">Men</label>
-        </li>
-        <li>
-          <input type="checkbox" id="accessories">
-          <label for="accessories">Accessories</label>
-        </li>
-      </ul>
-    </div>
-
-    <div class="filter-section">
-      <h3>Price Range</h3>
-      <div class="price-range">
-        <input type="range" min="0" max="1000" step="10">
-        <div class="price-inputs">
-          <input type="number" placeholder="Min">
-          <input type="number" placeholder="Max">
+<div class="hero-banner bg-primary p-lg m-sm m-lg rounded-md overflow-hidden relative">
+    <div class="hero-content flex items-center justify-between gap-16 max-w-screen-xl mx-auto relative">
+        <div class="hero-image flex-1 relative z-2">
+            <img src="https://img.freepik.com/photos-premium/petite-fille-africaine-souriant-portant-robe-coloree-fond-rose_279525-18629.jpg" alt="Fashion Model" class="w-full h-112 object-cover rounded-full border-10 border-white/10">
         </div>
-      </div>
-    </div>
-
-    <!-- Évaluation -->
-    <div class="filter-section">
-      <h4>Évaluation</h4>
-      <div class="rating-filter">
-          <label>
-              <input type="checkbox">
-              <span class="stars">★★★★★</span>
-          </label>
-          <label>
-              <input type="checkbox">
-              <span class="stars">★★★★☆</span>
-          </label>
-          <label>
-              <input type="checkbox">
-              <span class="stars">★★★☆☆</span>
-          </label>
-    </div>
-  </div>
-
-  <!-- Couleurs -->
-  <div class="filter-section">
-      <h4>Couleurs</h4>
-      <div class="color-filter">
-          <label class="color-option">
-              <input type="checkbox">
-              <span class="color-dot" style="background-color: #000;"></span>
-              Noir
-          </label>
-          <label class="color-option">
-              <input type="checkbox">
-              <span class="color-dot" style="background-color: #fff; border: 1px solid #ddd;"></span>
-              Blanc
-          </label>
-          <label class="color-option">
-              <input type="checkbox">
-              <span class="color-dot" style="background-color: #ff0000;"></span>
-              Rouge
-          </label>
-          <label class="color-option">
-              <input type="checkbox">
-              <span class="color-dot" style="background-color: #0000ff;"></span>
-              Bleu
-          </label>
-      </div>
-  </div>
-  </aside>
-
-  <section class="products-section">
-    <h2>Our Products</h2>
-    <div class="product-grid">
-      <div class="product-card" *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
-        <img [src]="product.images[0]" [alt]="product.name">
-        <a [routerLink]="['/products', product.id]">
-          <div class="product-info">
-            <h3>{{ product.name }}</h3>
-            <div class="rating">
-              <i class="fas fa-star"></i>
-              <span>{{ product.rating }}</span>
-              <span class="rating-count">({{ product.numberReviews }})</span>
+        <div class="hero-text-container flex-1 relative z-4 transform translate-x-40">
+            <div class="hero-text bg-primary-light p-xl text-dark relative clip-path-polygon-hero rounded-lg w-full">
+                <h1 class="font-playfair text-4xl mb-xs text-primary font-bold">Trendy Styles..</h1>
+                <h2 class="font-poppins text-3xl mb-md text-dark font-bold leading-tight">Thousands Styles More!</h2>
+                <p class="font-poppins text-sm mb-lg leading-relaxed text-gray-600">Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!</p>
+                <div class="hero-buttons flex gap-md">
+                    <button class="shop-btn bg-primary text-white py-sm px-lg rounded-lg hover:bg-primary-dark transform transition">Shop collections <i class="fas fa-arrow-right"></i></button>
+                    <button class="how-it-works bg-accent-red text-white py-sm px-lg rounded-lg hover:bg-accent-red-dark transform transition">
+                        <i class="fas fa-play w-6 h-6 bg-white text-accent-red rounded-full flex items-center justify-center text-xs"></i> See How It Works
+                    </button>
+                </div>
             </div>
-            <p class="price">${{ product.price }}</p>
-            <button class="add-to-cart">Add to Cart</button>
-          </div>
-        </a>
-      </div>
+        </div>
     </div>
-
-    <div class="pagination-container">
-      <pagination-controls
-        (pageChange)="onPageChange($event)"
-        [responsive]="true"
-        [previousLabel]="'Previous'"
-        [nextLabel]="'Next'"
-        [screenReaderPaginationLabel]="'Pagination'"
-        [screenReaderPageLabel]="'page'"
-        [screenReaderCurrentLabel]="'You are on page'">
-      </pagination-controls>
-    </div>
-  </section>
 </div>
 
-<app-footer/>
+<div class="flex gap-8 px-8 py-8 max-w-screen-xl mx-auto">
+    <!-- Sidebar Filters -->
+    <aside class="w-64">
+        <!-- Categories -->
+        <div class="bg-white p-4 rounded-md mb-4">
+            <h3 class="mb-2 text-lg font-semibold">Categories</h3>
+            <div class="space-y-2">
+                <div *ngFor="let category of uniqueCategories" class="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        [id]="category"
+                        [(ngModel)]="selectedFilters.categories[category]"
+                        (change)="applyFilters()"
+                        class="rounded border-gray-300"
+                    >
+                    <label [for]="category" class="text-sm">{{ category }}</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gender -->
+        <div class="bg-white p-4 rounded-md mb-4">
+            <h3 class="mb-2 text-lg font-semibold">Genre</h3>
+            <div class="space-y-2">
+                <div *ngFor="let gender of uniqueGenders" class="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        [id]="gender"
+                        [(ngModel)]="selectedFilters.genders[gender]"
+                        (change)="applyFilters()"
+                        class="rounded border-gray-300"
+                    >
+                    <label [for]="gender" class="text-sm">{{ gender }}</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Age Range -->
+        <div class="bg-white p-4 rounded-md mb-4">
+            <h3 class="mb-2 text-lg font-semibold">Age</h3>
+            <div class="space-y-2">
+                <div *ngFor="let age of uniqueAges" class="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        [id]="age"
+                        [(ngModel)]="selectedFilters.ages[age]"
+                        (change)="applyFilters()"
+                        class="rounded border-gray-300"
+                    >
+                    <label [for]="age" class="text-sm">{{ age }}</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Price Range -->
+        <div class="bg-white p-4 rounded-md mb-4">
+            <h3 class="mb-2 text-lg font-semibold">Price Range</h3>
+            <div class="space-y-4">
+                <input
+                    type="range"
+                    [min]="priceRange.min"
+                    [max]="priceRange.max"
+                    [(ngModel)]="selectedFilters.price"
+                    (change)="applyFilters()"
+                    class="w-full"
+                >
+                <div class="flex justify-between text-sm">
+                    <span>{{ priceRange.min }} XAF</span>
+                    <span>{{ selectedFilters.price }} XAF</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rating -->
+        <div class="bg-white p-4 rounded-md mb-4">
+            <h3 class="mb-2 text-lg font-semibold">Rating</h3>
+            <div class="space-y-2">
+                <div *ngFor="let rating of [5,4,3,2,1]" class="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        [id]="'rating-'+rating"
+                        [(ngModel)]="selectedFilters.ratings[rating]"
+                        (change)="applyFilters()"
+                        class="rounded border-gray-300"
+                    >
+                    <label [for]="'rating-'+rating" class="flex text-yellow-400">
+                        <span *ngFor="let star of [].constructor(rating)">★</span>
+                        <span *ngFor="let star of [].constructor(5-rating)" class="text-gray-300">★</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Products Grid -->
+    <section class="flex-1">
+        <h2 class="mb-8 text-2xl font-bold">Our Products</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <app-card-product
+                *ngFor="let product of filteredProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
+                [product]="product"
+                [productId]="product.id"
+            ></app-card-product>
+        </div>
+
+        <div class="flex justify-center mt-8 ">
+            <pagination-controls
+                (pageChange)="onPageChange($event)"
+                [responsive]="true"
+                [previousLabel]="'Previous'"
+                [nextLabel]="'Next'"
+                class="pagination-controls"
+            ></pagination-controls>
+        </div>
+    </section>
+</div>
+
+<app-footer></app-footer>

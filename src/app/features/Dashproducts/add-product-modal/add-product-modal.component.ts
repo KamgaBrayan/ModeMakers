@@ -13,7 +13,7 @@ import { Product } from '../../../shared/models/product.model';
         <div class="mt-3">
           <div class="flex justify-between items-center mb-4">
             <h3 class="text-2xl font-medium leading-6 text-gray-900">Add New Model</h3>
-            <button 
+            <button
               (click)="onClose()"
               class="text-gray-500 hover:text-gray-700">
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,7 +56,7 @@ import { Product } from '../../../shared/models/product.model';
               <div class="basic-info">
                 <div class="form-group">
                   <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
-                  <input 
+                  <input
                     type="text"
                     [(ngModel)]="newProduct.name"
                     name="name"
@@ -66,7 +66,7 @@ import { Product } from '../../../shared/models/product.model';
 
                 <div class="form-group">
                   <label class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-                  <textarea 
+                  <textarea
                     [(ngModel)]="newProduct.description"
                     name="description"
                     required
@@ -115,7 +115,7 @@ import { Product } from '../../../shared/models/product.model';
 
                   <div class="form-group">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Color</label>
-                    <input 
+                    <input
                       type="text"
                       [(ngModel)]="newProduct.color"
                       name="color"
@@ -128,8 +128,8 @@ import { Product } from '../../../shared/models/product.model';
                   <div class="form-group">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Price (XAF)</label>
                     <div class="price-input-container">
-                      
-                      <input 
+
+                      <input
                         type="number"
                         [(ngModel)]="newProduct.price"
                         name="price"
@@ -142,8 +142,8 @@ import { Product } from '../../../shared/models/product.model';
                   <div class="form-group">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Price per Meter (XAF)</label>
                     <div class="price-input-container">
-                  
-                      <input 
+
+                      <input
                         type="number"
                         [(ngModel)]="newProduct.pricePerMeter"
                         name="pricePerMeter"
@@ -163,7 +163,7 @@ import { Product } from '../../../shared/models/product.model';
                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label class="block text-gray-700 text-sm font-bold mb-2">Days</label>
-                          <input 
+                          <input
                             type="number"
                             [(ngModel)]="standardDays"
                             name="standardDays"
@@ -174,8 +174,8 @@ import { Product } from '../../../shared/models/product.model';
                         <div>
                           <label class="block text-gray-700 text-sm font-bold mb-2">Price (XAF)</label>
                           <div class="price-input-container">
-                            
-                            <input 
+
+                            <input
                               type="number"
                               [(ngModel)]="standardPrice"
                               name="standardPrice"
@@ -193,7 +193,7 @@ import { Product } from '../../../shared/models/product.model';
                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label class="block text-gray-700 text-sm font-bold mb-2">Days</label>
-                          <input 
+                          <input
                             type="number"
                             [(ngModel)]="fastDays"
                             name="fastDays"
@@ -204,8 +204,8 @@ import { Product } from '../../../shared/models/product.model';
                         <div>
                           <label class="block text-gray-700 text-sm font-bold mb-2">Price (XAF)</label>
                           <div class="price-input-container">
-                            
-                            <input 
+
+                            <input
                               type="number"
                               [(ngModel)]="fastPrice"
                               name="fastPrice"
@@ -223,7 +223,7 @@ import { Product } from '../../../shared/models/product.model';
                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label class="block text-gray-700 text-sm font-bold mb-2">Days</label>
-                          <input 
+                          <input
                             type="number"
                             [(ngModel)]="expressDays"
                             name="expressDays"
@@ -234,8 +234,8 @@ import { Product } from '../../../shared/models/product.model';
                         <div>
                           <label class="block text-gray-700 text-sm font-bold mb-2">Price (XAF)</label>
                           <div class="price-input-container">
-                            
-                            <input 
+
+                            <input
                               type="number"
                               [(ngModel)]="expressPrice"
                               name="expressPrice"
@@ -266,7 +266,7 @@ import { Product } from '../../../shared/models/product.model';
                         <!-- Material Name -->
                         <div>
                           <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
-                          <input 
+                          <input
                             type="text"
                             [(ngModel)]="material.name"
                             [name]="'materialName' + i"
@@ -277,7 +277,7 @@ import { Product } from '../../../shared/models/product.model';
                         <!-- Material Type -->
                         <div>
                           <label class="block text-gray-700 text-sm font-bold mb-2">Type</label>
-                          <select 
+                          <select
                             [(ngModel)]="material.type"
                             [name]="'materialType' + i"
                             class="form-input">
@@ -295,7 +295,7 @@ import { Product } from '../../../shared/models/product.model';
                         <!-- Material Color -->
                         <div>
                           <label class="block text-gray-700 text-sm font-bold mb-2">Color</label>
-                          <input 
+                          <input
                             type="text"
                             [(ngModel)]="material.color"
                             [name]="'materialColor' + i"
@@ -307,8 +307,8 @@ import { Product } from '../../../shared/models/product.model';
                         <div>
                           <label class="block text-gray-700 text-sm font-bold mb-2">Price per Meter (XAF)</label>
                           <div class="price-input-container">
-                            
-                            <input 
+
+                            <input
                               type="number"
                               [(ngModel)]="material.pricePerMeter"
                               [name]="'materialPrice' + i"
@@ -340,7 +340,7 @@ import { Product } from '../../../shared/models/product.model';
                         </div>
                       </div>
                     </div>
-                    <button 
+                    <button
                       type="button"
                       (click)="addMaterial()"
                       *ngIf="materials.length < 5"
@@ -395,7 +395,7 @@ import { Product } from '../../../shared/models/product.model';
     .modal-overlay {
       @apply z-[1000];
     }
-    
+
     .modal-container {
       @apply w-[95%] max-w-5xl max-h-[90vh] overflow-y-auto z-[1001];
     }
@@ -458,7 +458,7 @@ import { Product } from '../../../shared/models/product.model';
 
     .currency-symbol {
       @apply absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500;
-      
+
     }
 
     .material-item {
@@ -521,6 +521,12 @@ export class AddProductModalComponent {
     meanEvaluation: 0,
     note: 0,
     images: [],
+    delivery: [{
+      id: 0,
+      day: 0,
+      price: 0,
+      type: '',
+    }],
     stylist: {
       id: 0,
       name: '',
@@ -592,7 +598,7 @@ export class AddProductModalComponent {
       this.newProduct.materials = [...this.materials];
       this.saveProduct.emit(this.newProduct);
       this.closeModal.emit();
-      
+
       // Reset the form
       this.materials = [{
         name: '',
@@ -601,7 +607,7 @@ export class AddProductModalComponent {
         pricePerMeter: 0,
         images: []
       }];
-      
+
       // Reset delivery options
       this.standardDays = 14;
       this.standardPrice = 0;
@@ -609,7 +615,7 @@ export class AddProductModalComponent {
       this.fastPrice = 0;
       this.expressDays = 3;
       this.expressPrice = 0;
-      
+
       this.newProduct = {
         id: 0,
         name: '',
@@ -625,6 +631,12 @@ export class AddProductModalComponent {
         meanEvaluation: 0,
         note: 0,
         images: [],
+        delivery: [{
+          id: 0,
+          day: 0,
+          price: 0,
+          type: '',
+        }],
         stylist: {
           id: 0,
           name: '',
