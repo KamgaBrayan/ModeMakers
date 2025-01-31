@@ -1,9 +1,9 @@
-
 # API Laravel - Guide d'installation et de configuration
 
 ## Prérequis
 
 Avant de commencer, assurez-vous d'avoir installé les outils suivants sur votre machine :
+
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Composer](https://getcomposer.org/)
 - [Node.js](https://nodejs.org/)
@@ -48,13 +48,14 @@ Ouvrez le fichier `.env` et configurez les informations suivantes :
   DB_USERNAME=votre_utilisateur
   DB_PASSWORD=votre_mot_de_passe
   ```
-Rassurez vous que vous avez lance votre serveur de base de donnees au port 3306 sinon configurez le bon port.
 
+Rassurez vous que vous avez lance votre serveur de base de donnees au port 3306 sinon configurez le bon port.
 
 - **Clé JWT** : Configurez la clé secrète pour JWT :
   ```env
   php artisan jwt:secret
   ```
+
   ceci generera une cle secrete a la mettra automatiquement dans la variable JWT_SECRET du fichier .env
 
 ### 4. Lancer Mailpit avec Docker
@@ -122,14 +123,13 @@ vous pouvez  maintenant tester l'api en vous servants des consignes de la docume
 - Si vous avez des problèmes avec les migrations, assurez-vous que votre base de données est correctement configurée dans le fichier `.env`.
 - Si vous avez des problèmes avec Mailpit, vérifiez que Docker fonctionne correctement et que les ports ne sont pas bloqués.
 
-
-
 ---
 
 Si vous avez des questions ou des problèmes, n'hésitez pas à me contacter.
----
+-----------------------------------------------------------------------------
 
 ### Explication des étapes :
+
 1. **Installation des dépendances** : Vous devez d'abord installer les dépendances PHP via Composer.
 2. **Configuration du fichier `.env`** : Le fichier `.env` contient les configurations sensibles, comme les informations de la base de données et la clé JWT.
 3. **Mailpit avec Docker** : Mailpit est utilisé pour capturer les emails envoyés localement. Il est exécuté via Docker.

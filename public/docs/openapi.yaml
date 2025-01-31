@@ -302,17 +302,17 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: lindgren.lola@example.com
+                  example: archibald.miller@example.org
                   nullable: false
                 subject:
                   type: string
                   description: ''
-                  example: non
+                  example: eum
                   nullable: false
                 body:
                   type: string
                   description: ''
-                  example: ut
+                  example: et
                   nullable: false
               required:
                 - to
@@ -391,17 +391,17 @@ paths:
                 user_id:
                   type: string
                   description: 'The <code>id</code> of an existing record in the users table.'
-                  example: pariatur
+                  example: ea
                   nullable: false
                 product_id:
                   type: string
                   description: 'The <code>id</code> of an existing record in the products table.'
-                  example: quod
+                  example: qui
                   nullable: false
                 comment:
                   type: string
                   description: ''
-                  example: illo
+                  example: omnis
                   nullable: false
               required:
                 - user_id
@@ -458,7 +458,7 @@ paths:
                 comment:
                   type: string
                   description: ''
-                  example: laboriosam
+                  example: ea
                   nullable: false
       security: []
     delete:
@@ -475,7 +475,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the review.'
-        example: aliquam
+        example: mollitia
         required: true
         schema:
           type: string
@@ -738,112 +738,112 @@ paths:
                 user_id:
                   type: integer
                   description: 'The ID of the user.'
-                  example: 6
+                  example: 4
                   nullable: false
                 stature:
                   type: numeric
                   description: 'The stature of the user.'
-                  example: eveniet
+                  example: minus
                   nullable: false
                 shoulder_circumference:
                   type: numeric
                   description: 'The shoulder circumference.'
-                  example: quasi
+                  example: eum
                   nullable: false
                 chest_circumference:
                   type: numeric
                   description: 'The chest circumference.'
-                  example: minima
+                  example: ad
                   nullable: false
                 waist_circumference:
                   type: numeric
                   description: 'The waist circumference.'
-                  example: odit
+                  example: eos
                   nullable: false
                 hip_circumference:
                   type: numeric
                   description: 'The hip circumference.'
-                  example: officiis
+                  example: iusto
                   nullable: false
                 shoulder_height:
                   type: numeric
                   description: 'The shoulder height.'
-                  example: et
+                  example: quam
                   nullable: false
                 hip_height:
                   type: numeric
                   description: 'The hip height.'
-                  example: nulla
+                  example: eius
                   nullable: false
                 knee_height:
                   type: numeric
                   description: 'The knee height.'
-                  example: asperiores
+                  example: facilis
                   nullable: false
                 chest_spacing:
                   type: numeric
                   description: 'The chest spacing.'
-                  example: quia
+                  example: tempore
                   nullable: false
                 breast_height:
                   type: numeric
                   description: 'The breast height.'
-                  example: quam
+                  example: ut
                   nullable: false
                 pelvis_height:
                   type: numeric
                   description: 'The pelvis height.'
-                  example: et
+                  example: molestias
                   nullable: false
                 front_waist_length:
                   type: numeric
                   description: 'The front waist length.'
-                  example: labore
+                  example: et
                   nullable: false
                 shoulder_length:
                   type: numeric
                   description: 'The shoulder length.'
-                  example: voluptate
+                  example: aliquam
                   nullable: false
                 back_waist_length:
                   type: numeric
                   description: 'The back waist length.'
-                  example: voluptatem
+                  example: esse
                   nullable: false
                 arm_length:
                   type: numeric
                   description: 'The arm length.'
-                  example: corrupti
+                  example: id
                   nullable: false
                 total_arm_length_bent:
                   type: numeric
                   description: 'The total arm length bent.'
-                  example: asperiores
+                  example: vitae
                   nullable: false
                 wrist_circumference:
                   type: numeric
                   description: 'The wrist circumference.'
-                  example: et
+                  example: excepturi
                   nullable: false
                 ankle_height:
                   type: numeric
                   description: 'The ankle height.'
-                  example: et
+                  example: aut
                   nullable: false
                 seated_height:
                   type: numeric
                   description: 'The seated height.'
-                  example: est
+                  example: cupiditate
                   nullable: false
                 crotch_length:
                   type: numeric
                   description: 'The crotch length.'
-                  example: odit
+                  example: eveniet
                   nullable: false
                 date_measure:
                   type: date
                   description: 'The date of the measurement.'
-                  example: quisquam
+                  example: laboriosam
                   nullable: false
               required:
                 - user_id
@@ -931,112 +931,112 @@ paths:
                 user_id:
                   type: string
                   description: 'The <code>id</code> of an existing record in the users table.'
-                  example: rem
+                  example: quo
                   nullable: false
                 stature:
                   type: number
                   description: ''
-                  example: 10828.0327597
+                  example: 1923246.161
                   nullable: false
                 shoulder_circumference:
                   type: number
                   description: ''
-                  example: 1052679.03153
+                  example: 0.15
                   nullable: false
                 chest_circumference:
                   type: number
                   description: ''
-                  example: 21.147613669
+                  example: 0.0
                   nullable: false
                 waist_circumference:
                   type: number
                   description: ''
-                  example: 5.4
+                  example: 594868.31290516
                   nullable: false
                 hip_circumference:
                   type: number
                   description: ''
-                  example: 4098.0
+                  example: 33.63
                   nullable: false
                 shoulder_height:
                   type: number
                   description: ''
-                  example: 120097791.0
+                  example: 3.93331
                   nullable: false
                 hip_height:
                   type: number
                   description: ''
-                  example: 314063193.48653
+                  example: 20920.39509
                   nullable: false
                 knee_height:
                   type: number
                   description: ''
-                  example: 0.529395
+                  example: 1.053817
                   nullable: false
                 chest_spacing:
                   type: number
                   description: ''
-                  example: 311501489.50753
+                  example: 46997538.107
                   nullable: false
                 breast_height:
                   type: number
                   description: ''
-                  example: 2157061.41872
+                  example: 160082.0
                   nullable: false
                 pelvis_height:
                   type: number
                   description: ''
-                  example: 1.7
+                  example: 67152688.443
                   nullable: false
                 front_waist_length:
                   type: number
                   description: ''
-                  example: 415059.7409
+                  example: 13679.8689
                   nullable: false
                 shoulder_length:
                   type: number
                   description: ''
-                  example: 1082198.06872
+                  example: 450.2
                   nullable: false
                 back_waist_length:
                   type: number
                   description: ''
-                  example: 4095529.17
+                  example: 30465.81269
                   nullable: false
                 arm_length:
                   type: number
                   description: ''
-                  example: 6.42200771
+                  example: 3320808.3639
                   nullable: false
                 total_arm_length_bent:
                   type: number
                   description: ''
-                  example: 151.0
+                  example: 79023606.3
                   nullable: false
                 wrist_circumference:
                   type: number
                   description: ''
-                  example: 271762601.03759
+                  example: 0.2127445
                   nullable: false
                 ankle_height:
                   type: number
                   description: ''
-                  example: 48971062.615688
+                  example: 40.377499589
                   nullable: false
                 seated_height:
                   type: number
                   description: ''
-                  example: 20856655.996623
+                  example: 574792847.0144
                   nullable: false
                 crotch_length:
                   type: number
                   description: ''
-                  example: 1.9157
+                  example: 30388.646415502
                   nullable: false
                 date_measure:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-12-31T19:49:40'
+                  example: '2025-01-14T14:27:05'
                   nullable: false
               required:
                 - user_id
@@ -1078,7 +1078,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the measure.'
-        example: 1
+        example: 6
         required: true
         schema:
           type: integer
@@ -1122,17 +1122,17 @@ paths:
                 user_id:
                   type: string
                   description: 'The <code>id</code> of an existing record in the users table.'
-                  example: velit
+                  example: inventore
                   nullable: false
                 content:
                   type: string
                   description: ''
-                  example: ratione
+                  example: optio
                   nullable: false
                 date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-12-31T19:49:41'
+                  example: '2025-01-14T14:27:05'
                   nullable: false
                 readed:
                   type: boolean
@@ -1191,27 +1191,27 @@ paths:
                 user_id:
                   type: string
                   description: 'The <code>id</code> of an existing record in the users table.'
-                  example: alias
+                  example: a
                   nullable: false
                 content:
                   type: string
                   description: ''
-                  example: non
+                  example: expedita
                   nullable: false
                 date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-12-31T19:49:41'
+                  example: '2025-01-14T14:27:05'
                   nullable: false
                 readed:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
                   nullable: false
                 received:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                   nullable: false
               required:
                 - user_id
@@ -1234,7 +1234,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the notification.'
-        example: quis
+        example: amet
         required: true
         schema:
           type: string
@@ -1470,27 +1470,27 @@ paths:
                 order_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-12-31T19:49:41'
+                  example: '2025-01-14T14:27:05'
                   nullable: false
                 status:
                   type: string
                   description: ''
-                  example: sunt
+                  example: expedita
                   nullable: false
                 total_cost:
                   type: number
                   description: ''
-                  example: 15018288.256196
+                  example: 26.58622879
                   nullable: false
                 payment_method:
                   type: string
                   description: ''
-                  example: omnis
+                  example: libero
                   nullable: false
                 time_limit:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-12-31T19:49:41'
+                  example: '2025-01-14T14:27:05'
                   nullable: false
       security: []
     delete:
@@ -1563,27 +1563,27 @@ paths:
                 orderId:
                   type: string
                   description: 'The <code>id</code> of an existing record in the orders table.'
-                  example: illum
+                  example: dolores
                   nullable: false
                 payment_cost:
                   type: number
                   description: ''
-                  example: 3531603.8746361
+                  example: 75609.16635
                   nullable: false
                 payment_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-12-31T19:49:41'
+                  example: '2025-01-14T14:27:05'
                   nullable: false
                 payment_method:
                   type: string
                   description: ''
-                  example: est
+                  example: debitis
                   nullable: false
                 status:
                   type: string
                   description: ''
-                  example: accusantium
+                  example: architecto
                   nullable: false
               required:
                 - orderId
@@ -1632,27 +1632,27 @@ paths:
                 orderId:
                   type: string
                   description: 'The <code>id</code> of an existing record in the orders table.'
-                  example: ut
+                  example: commodi
                   nullable: false
                 payment_cost:
                   type: number
                   description: ''
-                  example: 1.2
+                  example: 15040419.002563
                   nullable: false
                 payment_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-12-31T19:49:41'
+                  example: '2025-01-14T14:27:05'
                   nullable: false
                 payment_method:
                   type: string
                   description: ''
-                  example: alias
+                  example: voluptatem
                   nullable: false
                 status:
                   type: string
                   description: ''
-                  example: perferendis
+                  example: rem
                   nullable: false
               required:
                 - orderId
@@ -1675,7 +1675,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the payment.'
-        example: aut
+        example: explicabo
         required: true
         schema:
           type: string
@@ -2171,7 +2171,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the preference.'
-        example: 7
+        example: 9
         required: true
         schema:
           type: integer
@@ -2215,39 +2215,39 @@ paths:
                 name:
                   type: string
                   description: 'The name of the product.'
-                  example: odio
+                  example: hic
                   nullable: false
                 gender:
                   type: string
                   description: 'The gender category of the product.'
-                  example: dicta
+                  example: aut
                   nullable: false
                 age:
                   type: string
                   description: 'The age range of the product.'
-                  example: itaque
+                  example: nihil
                   nullable: false
                 category:
                   type: string
                   description: 'The category of the product.'
-                  example: facere
+                  example: delectus
                   nullable: false
                 photos:
                   type: array
                   description: "URLs of the product's photos."
                   example:
-                    - minima
+                    - non
                   items:
                     type: string
                 description:
                   type: string
                   description: 'The description of the product.'
-                  example: 'Et omnis vel consectetur.'
+                  example: 'Et suscipit nisi cupiditate.'
                   nullable: false
                 price:
                   type: number
                   description: 'The price of the product.'
-                  example: 349995.481256
+                  example: 2291.1052
                   nullable: false
                 stylist_id:
                   type: integer
@@ -2257,7 +2257,7 @@ paths:
                 material_id:
                   type: integer
                   description: 'The ID of the material.'
-                  example: 19
+                  example: 1
                   nullable: false
               required:
                 - name
@@ -2310,22 +2310,22 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: expedita
+                  example: cum
                   nullable: false
                 gender:
                   type: string
                   description: ''
-                  example: aspernatur
+                  example: dolor
                   nullable: false
                 age:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: maiores
                   nullable: false
                 category:
                   type: string
                   description: ''
-                  example: incidunt
+                  example: et
                   nullable: false
                 photos:
                   type: object
@@ -2336,12 +2336,12 @@ paths:
                 description:
                   type: string
                   description: ''
-                  example: 'Et animi nulla eos et dolores quasi quia.'
+                  example: 'Accusamus aut magni dicta architecto eos at.'
                   nullable: false
                 price:
                   type: number
                   description: 'Must be at least 0.'
-                  example: 2
+                  example: 13
                   nullable: false
                 stylist_id:
                   type: string
@@ -2368,7 +2368,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the product.'
-        example: 17
+        example: 6
         required: true
         schema:
           type: integer
@@ -2434,46 +2434,46 @@ paths:
                 name:
                   type: string
                   description: 'The name of the user.'
-                  example: velit
+                  example: voluptatem
                   nullable: false
                 email:
                   type: string
                   description: 'The email of the user.'
-                  example: heaney.jeffery@example.org
+                  example: turner.stephania@example.net
                   nullable: false
                 password:
                   type: string
                   description: 'The password of the user.'
-                  example: 'q9lO`lK?YYo.cm"'
+                  example: "EbLR4^g!DRp[U'%Lw^x"
                   nullable: false
                 roles:
                   type: string
                   description: 'The user role (ROLE_USER or ROLE_STYLIST).'
-                  example: perferendis
+                  example: aliquid
                   nullable: false
                 photos:
                   type: array
                   description: "optional User's photos."
                   example:
-                    - ut
+                    - eos
                   items:
                     type: string
                     nullable: true
                 note:
                   type: integer
                   description: "optional User's rating."
-                  example: 3
+                  example: 6
                   nullable: true
                 bibliography:
                   type: string
                   description: "optional User's biography."
-                  example: eveniet
+                  example: animi
                   nullable: true
                 calendar:
                   type: array
                   description: "optional User's availability."
                   example:
-                    - sapiente
+                    - excepturi
                   items:
                     type: string
                     nullable: true
@@ -2481,7 +2481,7 @@ paths:
                   type: array
                   description: "optional User's preferences IDs."
                   example:
-                    - quo
+                    - dignissimos
                   items:
                     type: string
                     nullable: true
@@ -2489,19 +2489,19 @@ paths:
                   type: array
                   description: "optional User's measures IDs."
                   example:
-                    - aut
+                    - rem
                   items:
                     type: string
                     nullable: true
                 specialty:
                   type: string
                   description: 'optional required for stylists.'
-                  example: dolorem
+                  example: voluptas
                   nullable: false
                 experience:
                   type: string
                   description: 'optional required for stylists.'
-                  example: deserunt
+                  example: aliquam
                   nullable: false
               required:
                 - name
@@ -2571,7 +2571,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: omnis
+                  example: accusamus
                   nullable: false
                 email:
                   type: string
@@ -2581,7 +2581,7 @@ paths:
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: ";!3VRIt\"UzrA')V'5"
+                  example: 'U{IsVb*#"'
                   nullable: false
                 roles:
                   type: string
@@ -2600,12 +2600,12 @@ paths:
                 note:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 13
                   nullable: true
                 bibliography:
                   type: string
                   description: ''
-                  example: dolores
+                  example: quo
                   nullable: true
                 calendar:
                   type: object
@@ -2662,7 +2662,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the user.'
-        example: 4
+        example: 1
         required: true
         schema:
           type: integer
@@ -2711,7 +2711,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the user.'
-        example: natus
+        example: corporis
         required: true
         schema:
           type: string

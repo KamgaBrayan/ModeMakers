@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "ModeMakers API",
-        "_postman_id": "ba87c347-dd06-4f9d-ae15-cb70c6de695f",
+        "_postman_id": "e48b46e9-c85e-461a-ab83-f6757a151846",
         "description": "documentation for modeMakers api",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -235,7 +235,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"lindgren.lola@example.com\",\"subject\":\"non\",\"body\":\"ut\"}"
+                            "raw": "{\"to\":\"archibald.miller@example.org\",\"subject\":\"eum\",\"body\":\"et\"}"
                         },
                         "description": "",
                         "auth": {
@@ -380,7 +380,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aliquam",
+                                    "value": "mollitia",
                                     "description": "The ID of the review."
                                 }
                             ]
@@ -446,7 +446,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"pariatur\",\"product_id\":\"quod\",\"comment\":\"illo\"}"
+                            "raw": "{\"user_id\":\"ea\",\"product_id\":\"qui\",\"comment\":\"omnis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -467,7 +467,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "vero",
+                                    "value": "consequatur",
                                     "description": "The ID of the review."
                                 }
                             ]
@@ -485,7 +485,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"comment\":\"laboriosam\"}"
+                            "raw": "{\"comment\":\"ea\"}"
                         },
                         "description": "",
                         "auth": {
@@ -506,7 +506,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "cumque",
                                     "description": "The ID of the review."
                                 }
                             ]
@@ -813,7 +813,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "6",
                                     "description": "The ID of the measure."
                                 }
                             ]
@@ -872,7 +872,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":6,\"stature\":\"eveniet\",\"shoulder_circumference\":\"quasi\",\"chest_circumference\":\"minima\",\"waist_circumference\":\"odit\",\"hip_circumference\":\"officiis\",\"shoulder_height\":\"et\",\"hip_height\":\"nulla\",\"knee_height\":\"asperiores\",\"chest_spacing\":\"quia\",\"breast_height\":\"quam\",\"pelvis_height\":\"et\",\"front_waist_length\":\"labore\",\"shoulder_length\":\"voluptate\",\"back_waist_length\":\"voluptatem\",\"arm_length\":\"corrupti\",\"total_arm_length_bent\":\"asperiores\",\"wrist_circumference\":\"et\",\"ankle_height\":\"et\",\"seated_height\":\"est\",\"crotch_length\":\"odit\",\"date_measure\":\"quisquam\"}"
+                            "raw": "{\"user_id\":4,\"stature\":\"minus\",\"shoulder_circumference\":\"eum\",\"chest_circumference\":\"ad\",\"waist_circumference\":\"eos\",\"hip_circumference\":\"iusto\",\"shoulder_height\":\"quam\",\"hip_height\":\"eius\",\"knee_height\":\"facilis\",\"chest_spacing\":\"tempore\",\"breast_height\":\"ut\",\"pelvis_height\":\"molestias\",\"front_waist_length\":\"et\",\"shoulder_length\":\"aliquam\",\"back_waist_length\":\"esse\",\"arm_length\":\"id\",\"total_arm_length_bent\":\"vitae\",\"wrist_circumference\":\"excepturi\",\"ankle_height\":\"aut\",\"seated_height\":\"cupiditate\",\"crotch_length\":\"eveniet\",\"date_measure\":\"laboriosam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -900,7 +900,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "9",
                                     "description": "The ID of the measure.\n[Similar bodyParam documentation as store method]"
                                 }
                             ]
@@ -918,7 +918,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"rem\",\"stature\":10828.0327597,\"shoulder_circumference\":1052679.03153,\"chest_circumference\":21.147613669,\"waist_circumference\":5.4,\"hip_circumference\":4098,\"shoulder_height\":120097791,\"hip_height\":314063193.4865319,\"knee_height\":0.529395,\"chest_spacing\":311501489.50753206,\"breast_height\":2157061.41872,\"pelvis_height\":1.7,\"front_waist_length\":415059.7409,\"shoulder_length\":1082198.06872,\"back_waist_length\":4095529.17,\"arm_length\":6.42200771,\"total_arm_length_bent\":151,\"wrist_circumference\":271762601.03759,\"ankle_height\":48971062.61568827,\"seated_height\":20856655.9966233,\"crotch_length\":1.9157,\"date_measure\":\"2024-12-31T19:49:40\"}"
+                            "raw": "{\"user_id\":\"quo\",\"stature\":1923246.161,\"shoulder_circumference\":0.15,\"chest_circumference\":0,\"waist_circumference\":594868.31290516,\"hip_circumference\":33.63,\"shoulder_height\":3.93331,\"hip_height\":20920.39509,\"knee_height\":1.053817,\"chest_spacing\":46997538.107,\"breast_height\":160082,\"pelvis_height\":67152688.443,\"front_waist_length\":13679.8689,\"shoulder_length\":450.2,\"back_waist_length\":30465.81269,\"arm_length\":3320808.3639,\"total_arm_length_bent\":79023606.3,\"wrist_circumference\":0.2127445,\"ankle_height\":40.377499589,\"seated_height\":574792847.0144,\"crotch_length\":30388.646415502,\"date_measure\":\"2025-01-14T14:27:05\"}"
                         },
                         "description": "",
                         "auth": {
@@ -946,7 +946,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "13",
                                     "description": "The ID of the measure."
                                 }
                             ]
@@ -1043,7 +1043,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quis",
+                                    "value": "amet",
                                     "description": "The ID of the notification."
                                 }
                             ]
@@ -1109,7 +1109,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"velit\",\"content\":\"ratione\",\"date\":\"2024-12-31T19:49:41\",\"readed\":true,\"received\":false}"
+                            "raw": "{\"user_id\":\"inventore\",\"content\":\"optio\",\"date\":\"2025-01-14T14:27:05\",\"readed\":true,\"received\":false}"
                         },
                         "description": "Store a newly created notification in the database.",
                         "auth": {
@@ -1130,7 +1130,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dolorum",
+                                    "value": "minima",
                                     "description": "The ID of the notification."
                                 }
                             ]
@@ -1148,7 +1148,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"alias\",\"content\":\"non\",\"date\":\"2024-12-31T19:49:41\",\"readed\":true,\"received\":false}"
+                            "raw": "{\"user_id\":\"a\",\"content\":\"expedita\",\"date\":\"2025-01-14T14:27:05\",\"readed\":false,\"received\":true}"
                         },
                         "description": "Modify an existing notification by ID.",
                         "auth": {
@@ -1169,7 +1169,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "corrupti",
+                                    "value": "et",
                                     "description": "The ID of the notification."
                                 }
                             ]
@@ -1345,7 +1345,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":20,\"order_date\":\"2024-12-31T19:49:41\",\"status\":\"sunt\",\"total_cost\":15018288.256196,\"payment_method\":\"omnis\",\"time_limit\":\"2024-12-31T19:49:41\"}"
+                            "raw": "{\"user_id\":20,\"order_date\":\"2025-01-14T14:27:05\",\"status\":\"expedita\",\"total_cost\":26.58622879,\"payment_method\":\"libero\",\"time_limit\":\"2025-01-14T14:27:05\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1470,7 +1470,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "explicabo",
                                     "description": "The ID of the payment."
                                 }
                             ]
@@ -1536,7 +1536,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderId\":\"illum\",\"payment_cost\":3531603.8746361,\"payment_date\":\"2024-12-31T19:49:41\",\"payment_method\":\"est\",\"status\":\"accusantium\"}"
+                            "raw": "{\"orderId\":\"dolores\",\"payment_cost\":75609.16635,\"payment_date\":\"2025-01-14T14:27:05\",\"payment_method\":\"debitis\",\"status\":\"architecto\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1557,7 +1557,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "eligendi",
+                                    "value": "dolores",
                                     "description": "The ID of the payment."
                                 }
                             ]
@@ -1575,7 +1575,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderId\":\"ut\",\"payment_cost\":1.2,\"payment_date\":\"2024-12-31T19:49:41\",\"payment_method\":\"alias\",\"status\":\"perferendis\"}"
+                            "raw": "{\"orderId\":\"commodi\",\"payment_cost\":15040419.002563076,\"payment_date\":\"2025-01-14T14:27:05\",\"payment_method\":\"voluptatem\",\"status\":\"rem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1596,7 +1596,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "est",
+                                    "value": "sed",
                                     "description": "The ID of the payment."
                                 }
                             ]
@@ -1679,7 +1679,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "9",
                                     "description": "The ID of the preference."
                                 }
                             ]
@@ -1784,7 +1784,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "10",
                                     "description": "The ID of the preference."
                                 }
                             ]
@@ -1848,7 +1848,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "2",
+                                    "value": "17",
                                     "description": "The ID of the preference."
                                 }
                             ]
@@ -1957,7 +1957,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "17",
+                                    "value": "6",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -2023,7 +2023,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"odio\",\"gender\":\"dicta\",\"age\":\"itaque\",\"category\":\"facere\",\"photos\":[\"minima\"],\"description\":\"Et omnis vel consectetur.\",\"price\":349995.481256,\"stylist_id\":1,\"material_id\":19}"
+                            "raw": "{\"name\":\"hic\",\"gender\":\"aut\",\"age\":\"nihil\",\"category\":\"delectus\",\"photos\":[\"non\"],\"description\":\"Et suscipit nisi cupiditate.\",\"price\":2291.1052,\"stylist_id\":1,\"material_id\":1}"
                         },
                         "description": "Add a new product.",
                         "auth": {
@@ -2044,7 +2044,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "2",
+                                    "value": "16",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -2062,7 +2062,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"expedita\",\"gender\":\"aspernatur\",\"age\":\"consequatur\",\"category\":\"incidunt\",\"description\":\"Et animi nulla eos et dolores quasi quia.\",\"price\":2}"
+                            "raw": "{\"name\":\"cum\",\"gender\":\"dolor\",\"age\":\"maiores\",\"category\":\"et\",\"description\":\"Accusamus aut magni dicta architecto eos at.\",\"price\":13}"
                         },
                         "description": "Modify an existing product by ID.",
                         "auth": {
@@ -2083,7 +2083,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "9",
+                                    "value": "10",
                                     "description": "The ID of the product."
                                 }
                             ]
@@ -2166,7 +2166,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "4",
+                                    "value": "1",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -2225,7 +2225,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"velit\",\"email\":\"heaney.jeffery@example.org\",\"password\":\"q9lO`lK?YYo.cm\\\"\",\"roles\":\"perferendis\",\"photos\":[\"ut\"],\"note\":3,\"bibliography\":\"eveniet\",\"calendar\":[\"sapiente\"],\"preferences_id\":[\"quo\"],\"measures_id\":[\"aut\"],\"specialty\":\"dolorem\",\"experience\":\"deserunt\"}"
+                            "raw": "{\"name\":\"voluptatem\",\"email\":\"turner.stephania@example.net\",\"password\":\"EbLR4^g!DRp[U'%Lw^x\",\"roles\":\"aliquid\",\"photos\":[\"eos\"],\"note\":6,\"bibliography\":\"animi\",\"calendar\":[\"excepturi\"],\"preferences_id\":[\"dignissimos\"],\"measures_id\":[\"rem\"],\"specialty\":\"voluptas\",\"experience\":\"aliquam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2253,7 +2253,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "19",
+                                    "value": "13",
                                     "description": "The ID of the user.\n[Similar bodyParam documentation as store method]"
                                 }
                             ]
@@ -2271,7 +2271,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"omnis\",\"password\":\";!3VRIt\\\"UzrA')V'5\",\"roles\":\"ROLE_USER\",\"note\":3,\"bibliography\":\"dolores\"}"
+                            "raw": "{\"name\":\"accusamus\",\"password\":\"U{IsVb*#\\\"\",\"roles\":\"ROLE_USER\",\"note\":13,\"bibliography\":\"quo\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2299,7 +2299,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "10",
+                                    "value": "15",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -2342,7 +2342,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "natus",
+                                    "value": "corporis",
                                     "description": "The ID of the user."
                                 }
                             ]
