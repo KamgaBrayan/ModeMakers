@@ -20,15 +20,12 @@ use App\Http\Controllers\PaymentController;
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/login', [AuthController::class, 'login']);
 
-<<<<<<< HEAD
-/*Route::middleware('auth:api')->group(function () {*/
-=======
 // Public Product Routes
 Route::get('products', [ProductController::class, 'index'])->name('products.index');
 Route::get('products/{id}', [ProductController::class, 'show'])->name('products.show');
 
 Route::middleware('auth:api')->group(function () {
->>>>>>> 3e178013eabe79748d3f6935c6713eae0666bb53
+
     Route::post('auth/logout', [AuthController::class, 'logout']);
     Route::get('auth/profile', [AuthController::class, 'profile']);
 
