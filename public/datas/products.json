@@ -1,0 +1,199 @@
+[
+  {
+    "id": 1,
+    "name": "Luxury Haircut Kit",
+    "gender": "male",
+    "age": "Adults",
+    "category": "Hair Care",
+    "photos": ["/images/products/product_1.png", "/images/products/product_10.webp"],
+    "description": "A professional hair styling kit for men, including clippers and accessories.",
+    "price": 45.0,
+    "price_per_square_metter": 15.0,
+    "stylist": {
+      "id": 1,
+      "name": "John Doe"
+    },
+    "material": [
+      {
+        "id": 1,
+        "type": "Plastic"
+      },
+      {
+        "id": 2,
+        "type": "Metal"
+      },
+      {
+        "id": 3,
+        "type": "Wood"
+      },
+      {
+        "id": 4,
+        "type": "Laine"
+      }
+    ],
+    "views": 40,
+    "workforce": [1000, 2000, 3000]
+  },
+  {
+    "id": 2,
+    "name": "Men's Grooming Kit",
+    "gender": "male",
+    "age": "Adults",
+    "category": "Grooming",
+    "photos": ["/images/products/product_2.webp", "/images/products/product_10.webp"],
+    "description": "A grooming kit tailored for men, featuring shaving essentials and aftershave.",
+    "price": 60.0,
+    "price_per_square_metter": 20.0,
+    "stylist": {
+      "id": 1,
+      "name": "John Doe"
+    },
+    "material": [
+      {
+        "id": 1,
+        "type": "Plastic"
+      },
+      {
+        "id": 2,
+        "type": "Metal"
+      }
+    ],
+    "views": 10,
+    "workforce": [1000, 2000, 3000]
+  },
+  {
+    "id": 3,
+    "name": "Beard Care Set",
+    "gender": "male",
+    "age": "Adults",
+    "category": "Beard Care",
+    "photos": ["/images/products/product_3.webp", "/images/products/product_10.webp"],
+    "description": "A complete set for beard maintenance, including oils, combs, and scissors.",
+    "price": 35.0,
+    "price_per_square_metter": 10.0,
+    "stylist": {
+      "id": 1,
+      "name": "John Doe"
+    },
+    "material": [
+      {
+        "id": 1,
+        "type": "Plastic"
+      },
+      {
+        "id": 2,
+        "type": "Metal"
+      }
+    ],
+    "views": 60,
+    "workforce": [1000, 2000, 3000]
+  },
+  {
+    "id": 4,
+    "name": "Bridal Makeup Kit",
+    "gender": "female",
+    "age": "Adults",
+    "category": "Makeup",
+    "photos": ["/images/products/product_4.webp", "/images/products/product_10.webp"],
+    "description": "Complete makeup set for brides, including foundation, eye shadow, and lip color.",
+    "price": 85.0,
+    "price_per_square_metter": 30.0,
+    "stylist": {
+      "id": 2,
+      "name": "Jane Smith"
+    },
+    "material": [
+      {
+        "id": 1,
+        "type": "Plastic"
+      },
+      {
+        "id": 2,
+        "type": "Metal"
+      }
+    ],
+    "views": 90,
+    "workforce": [1000, 2000, 3000]
+  },
+  {
+    "id": 5,
+    "name": "Everyday Lipstick Set",
+    "gender": "female",
+    "age": "Adults",
+    "category": "Makeup",
+    "photos": ["/images/products/product_5.webp", "/images/products/product_10.webp"],
+    "description": "A set of everyday lipsticks in various shades, perfect for daily wear.",
+    "price": 25.0,
+    "price_per_square_metter": 15.0,
+    "stylist": {
+      "id": 2,
+      "name": "Jane Smith"
+    },
+    "material": [
+      {
+        "id": 1,
+        "type": "Plastic"
+      },
+      {
+        "id": 2,
+        "type": "Metal"
+      }
+    ],
+    "views": 10,
+    "workforce": [1000, 2000, 3000]
+  },
+  {
+    "id": 6,
+    "name": "Makeup Removal Kit",
+    "gender": "female",
+    "age": "Adults",
+    "category": "Makeup Removal",
+    "photos": ["/images/products/product_6.webp", "/images/products/product_10.webp"],
+    "description": "A complete set to remove makeup gently and effectively.",
+    "price": 40.0,
+    "price_per_square_metter": 18.0,
+    "stylist": {
+      "id": 2,
+      "name": "Jane Smith"
+    },
+    "material": [
+      {
+        "id": 1,
+        "type": "Plastic"
+      },
+      {
+        "id": 2,
+        "type": "Metal"
+      }
+    ],
+    "views": 90,
+    "workforce": [1000, 2000, 3000]
+  },
+  {
+    "id": 7,
+    "name": "Nail Art Collection",
+    "gender": "female",
+    "age": "Adults",
+    "category": "Nail Care",
+    "photos": ["/images/products/product_7.webp", "/images/products/product_10.webp"],
+    "description": "A collection of premium nail art supplies, including nail polishes and brushes.",
+    "price": 50.0,
+    "price_per_square_metter": 25.0,
+    "stylist": {
+      "id": 3,
+      "name": "Emily Johnson"
+    },
+    "material": [
+      {
+        "id": 1,
+        "type": "Plastic"
+      },
+      {
+        "id": 2,
+        "type": "Metal"
+      }
+    ],
+    "views": 100,
+    "workforce": [1000, 2000, 3000]
+  }
+]

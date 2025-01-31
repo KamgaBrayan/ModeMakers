@@ -1,130 +1,141 @@
 <app-navbar></app-navbar>
 
 <div class="hero-banner bg-primary p-lg m-sm m-lg rounded-md overflow-hidden relative">
-  <div class="hero-content flex items-center justify-between gap-16 max-w-screen-xl mx-auto relative">
-    <div class="hero-image flex-1 relative z-2">
-      <img src="https://img.freepik.com/photos-premium/petite-fille-africaine-souriant-portant-robe-coloree-fond-rose_279525-18629.jpg" alt="Fashion Model" class="w-full h-112 object-cover rounded-full border-10 border-white/10">
-    </div>
-    <div class="hero-text-container flex-1 relative z-4 transform translate-x-40">
-      <div class="hero-text bg-primary-light p-xl text-dark relative clip-path-polygon-hero rounded-lg w-full">
-        <h1 class="font-playfair text-4xl mb-xs text-primary font-bold">Trendy Styles..</h1>
-        <h2 class="font-poppins text-3xl mb-md text-dark font-bold leading-tight">Thousands Styles More!</h2>
-        <p class="font-poppins text-sm mb-lg leading-relaxed text-gray-600">Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!</p>
-        <div class="hero-buttons flex gap-md">
-          <button class="shop-btn bg-primary text-white py-sm px-lg rounded-lg hover:bg-primary-dark transform transition">Shop collections <i class="fas fa-arrow-right"></i></button>
-          <button class="how-it-works bg-accent-red text-white py-sm px-lg rounded-lg hover:bg-accent-red-dark transform transition">
-            <i class="fas fa-play w-6 h-6 bg-white text-accent-red rounded-full flex items-center justify-center text-xs"></i> See How It Works
-          </button>
+    <div class="hero-content flex items-center justify-between gap-16 max-w-screen-xl mx-auto relative">
+        <div class="hero-image flex-1 relative z-2">
+            <img src="https://img.freepik.com/photos-premium/petite-fille-africaine-souriant-portant-robe-coloree-fond-rose_279525-18629.jpg" alt="Fashion Model" class="w-full h-112 object-cover rounded-full border-10 border-white/10">
         </div>
-      </div>
+        <div class="hero-text-container flex-1 relative z-4 transform translate-x-40">
+            <div class="hero-text bg-primary-light p-xl text-dark relative clip-path-polygon-hero rounded-lg w-full">
+                <h1 class="font-playfair text-4xl mb-xs text-primary font-bold">Trendy Styles..</h1>
+                <h2 class="font-poppins text-3xl mb-md text-dark font-bold leading-tight">Thousands Styles More!</h2>
+                <p class="font-poppins text-sm mb-lg leading-relaxed text-gray-600">Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!</p>
+                <div class="hero-buttons flex gap-md">
+                    <button class="shop-btn bg-primary text-white py-sm px-lg rounded-lg hover:bg-primary-dark transform transition">Shop collections <i class="fas fa-arrow-right"></i></button>
+                    <button class="how-it-works bg-accent-red text-white py-sm px-lg rounded-lg hover:bg-accent-red-dark transform transition">
+                        <i class="fas fa-play w-6 h-6 bg-white text-accent-red rounded-full flex items-center justify-center text-xs"></i> See How It Works
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
-<div class="main-content flex gap-lg px-lg py-8 max-w-screen-xl mx-auto">
-  <aside class="sidebar w-64">
-    <div class="filter-section bg-white p-md rounded-md mb-md">
-      <h3 class="mb-sm text-dark">Categories</h3>
-      <ul>
-        <li class="flex items-center gap-xs mb-xs">
-          <input type="checkbox" id="women" class="form-checkbox">
-          <label for="women">Women</label>
-        </li>
-        <li class="flex items-center gap-xs mb-xs">
-          <input type="checkbox" id="men" class="form-checkbox">
-          <label for="men">Men</label>
-        </li>
-        <li class="flex items-center gap-xs mb-xs">
-          <input type="checkbox" id="accessories" class="form-checkbox">
-          <label for="accessories">Accessories</label>
-        </li>
-      </ul>
-    </div>
-
-    <div class="filter-section bg-white p-md rounded-md mb-md">
-      <h3 class="mb-sm text-dark">Price Range</h3>
-      <div class="price-range">
-        <input type="range" min="0" max="1000" step="10" class="w-full mb-sm">
-        <div class="price-inputs flex gap-xs">
-          <input type="number" placeholder="Min" class="w-20 p-xs border rounded-sm">
-          <input type="number" placeholder="Max" class="w-20 p-xs border rounded-sm">
-        </div>
-      </div>
-    </div>
-
-    <div class="filter-section bg-white p-md rounded-md mb-md">
-      <h4 class="mb-xs">Évaluation</h4>
-      <div class="rating-filter flex gap-8 mb-xs cursor-pointer">
-        <label><input type="checkbox"><span class="stars text-yellow-500">★★★★★</span></label>
-        <label><input type="checkbox"><span class="stars text-yellow-500">★★★★☆</span></label>
-        <label><input type="checkbox"><span class="stars text-yellow-500">★★★☆☆</span></label>
-      </div>
-    </div>
-
-    <div class="filter-section bg-white p-md rounded-md mb-md">
-      <h4 class="mb-xs">Couleurs</h4>
-      <div class="color-filter grid grid-cols-1 gap-xs">
-        <label class="color-option flex items-center gap-xs cursor-pointer">
-          <input type="checkbox">
-          <span class="color-dot w-5 h-5 rounded-full" style="background-color: #000;"></span>
-          Noir
-        </label>
-        <label class="color-option flex items-center gap-xs cursor-pointer">
-          <input type="checkbox">
-          <span class="color-dot w-5 h-5 rounded-full border border-gray-300" style="background-color: #fff;"></span>
-          Blanc
-        </label>
-        <label class="color-option flex items-center gap-xs cursor-pointer">
-          <input type="checkbox">
-          <span class="color-dot w-5 h-5 rounded-full" style="background-color: #ff0000;"></span>
-          Rouge
-        </label>
-        <label class="color-option flex items-center gap-xs cursor-pointer">
-          <input type="checkbox">
-          <span class="color-dot w-5 h-5 rounded-full" style="background-color: #0000ff;"></span>
-          Bleu
-        </label>
-      </div>
-    </div>
-  </aside>
-
-  <section class="products-section flex-1">
-    <h2 class="mb-lg text-dark text-2xl font-bold">Our Products</h2>
-    <div class="product-grid">
-      <div class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" class="bg-white shadow-lg rounded-lg overflow-hidden">
-            <img [src]="product.images[0]" alt="{{ product.name }}" class="w-full h-64 object-cover">
-            <div class="p-4">
-              <h3 class="text-xl font-semibold text-gray-800">{{ product.name }}</h3>
-              <p class="text-gray-600">Genre: {{ product.gender }}</p>
-              <p class="text-gray-600">Age: {{ product.age }}</p>
-              <p class="text-lg font-bold text-gray-800">{{ product.delivery[0].price }}</p>
+<div class="flex gap-8 px-8 py-8 max-w-screen-xl mx-auto">
+    <!-- Sidebar Filters -->
+    <aside class="w-64">
+        <!-- Categories -->
+        <div class="bg-white p-4 rounded-md mb-4">
+            <h3 class="mb-2 text-lg font-semibold">Categories</h3>
+            <div class="space-y-2">
+                <div *ngFor="let category of uniqueCategories" class="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        [id]="category"
+                        [(ngModel)]="selectedFilters.categories[category]"
+                        (change)="applyFilters()"
+                        class="rounded border-gray-300"
+                    >
+                    <label [for]="category" class="text-sm">{{ category }}</label>
+                </div>
             </div>
-            <div class="p-4 flex justify-end">
-              <button class="bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L3.6 7H3m0 0l1.4 7m-1.4-7H1m14 6a3 3 0 100 6 3 3 0 000-6zm-7 3a3 3 0 100 6 3 3 0 000-6z" />
-                </svg>
-              </button>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="pagination-container flex justify-center mt-8">
-      <pagination-controls
-        (pageChange)="onPageChange($event)"
-        [responsive]="true"
-        [previousLabel]="'Previous'"
-        [nextLabel]="'Next'"
-        [screenReaderPaginationLabel]="'Pagination'"
-        [screenReaderPageLabel]="'page'"
-        [screenReaderCurrentLabel]="'You are on page'">
-      </pagination-controls>
-    </div>
-  </section>
+        <!-- Gender -->
+        <div class="bg-white p-4 rounded-md mb-4">
+            <h3 class="mb-2 text-lg font-semibold">Genre</h3>
+            <div class="space-y-2">
+                <div *ngFor="let gender of uniqueGenders" class="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        [id]="gender"
+                        [(ngModel)]="selectedFilters.genders[gender]"
+                        (change)="applyFilters()"
+                        class="rounded border-gray-300"
+                    >
+                    <label [for]="gender" class="text-sm">{{ gender }}</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Age Range -->
+        <div class="bg-white p-4 rounded-md mb-4">
+            <h3 class="mb-2 text-lg font-semibold">Age</h3>
+            <div class="space-y-2">
+                <div *ngFor="let age of uniqueAges" class="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        [id]="age"
+                        [(ngModel)]="selectedFilters.ages[age]"
+                        (change)="applyFilters()"
+                        class="rounded border-gray-300"
+                    >
+                    <label [for]="age" class="text-sm">{{ age }}</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Price Range -->
+        <div class="bg-white p-4 rounded-md mb-4">
+            <h3 class="mb-2 text-lg font-semibold">Price Range</h3>
+            <div class="space-y-4">
+                <input
+                    type="range"
+                    [min]="priceRange.min"
+                    [max]="priceRange.max"
+                    [(ngModel)]="selectedFilters.price"
+                    (change)="applyFilters()"
+                    class="w-full"
+                >
+                <div class="flex justify-between text-sm">
+                    <span>{{ priceRange.min }} XAF</span>
+                    <span>{{ selectedFilters.price }} XAF</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rating -->
+        <div class="bg-white p-4 rounded-md mb-4">
+            <h3 class="mb-2 text-lg font-semibold">Rating</h3>
+            <div class="space-y-2">
+                <div *ngFor="let rating of [5,4,3,2,1]" class="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        [id]="'rating-'+rating"
+                        [(ngModel)]="selectedFilters.ratings[rating]"
+                        (change)="applyFilters()"
+                        class="rounded border-gray-300"
+                    >
+                    <label [for]="'rating-'+rating" class="flex text-yellow-400">
+                        <span *ngFor="let star of [].constructor(rating)">★</span>
+                        <span *ngFor="let star of [].constructor(5-rating)" class="text-gray-300">★</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Products Grid -->
+    <section class="flex-1">
+        <h2 class="mb-8 text-2xl font-bold">Our Products</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <app-card-product
+                *ngFor="let product of filteredProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
+                [product]="product"
+                [productId]="product.id"
+            ></app-card-product>
+        </div>
+
+        <div class="flex justify-center mt-8 ">
+            <pagination-controls
+                (pageChange)="onPageChange($event)"
+                [responsive]="true"
+                [previousLabel]="'Previous'"
+                [nextLabel]="'Next'"
+                class="pagination-controls"
+            ></pagination-controls>
+        </div>
+    </section>
 </div>
 
 <app-footer></app-footer>

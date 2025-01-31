@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "user": {
+            "user_id": 1,
+            "user_name": "Gabriel Nomo"
+        },
+        "stature": 1.75,
+        "shoulder_circumference": 105.5,
+        "chest_circumference": 95.0,
+        "waist_circumference": 85.0,
+        "hip_circumference": 98.0,
+        "shoulder_height": 120.0,
+        "hip_height": 90.0,
+        "knee_height": 55.0,
+        "chest_spacing": 18.0,
+        "breast_height": 105.0,
+        "pelvis_height": 100.0,
+        "front_waist_length": 40.0,
+        "shoulder_length": 45.0,
+        "back_waist_length": 50.0,
+        "arm_length": 60.0,
+        "total_arm_length_bent": 70.0,
+        "wrist_circumference": 18.0,
+        "ankle_height": 22.0,
+        "seated_height": 45.0,
+        "crotch_length": 30.0,
+        "date_measure": "2024-12-29T10:00:00Z"
+    }
+]
