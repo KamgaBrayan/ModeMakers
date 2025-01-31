@@ -21,6 +21,7 @@ export class DashboardLayoutComponent {
     { path: '/user-dashboard/profil', icon: 'user', label: 'Profil' },
     { path: '/user-dashboard/favoris', icon: 'heart', label: 'Favoris' },
     { path: '/user-dashboard/commandes', icon: 'shopping-bag', label: 'Commandes' },
+    { path: '/user-dashboard/precommandes', icon: 'shopping-bag', label: 'Pré-commandes' },
     { path: '/user-dashboard/notifications', icon: 'bell', label: 'Notifications' },
     { path: '/user-dashboard/mensurations', icon: 'ruler', label: 'Mensurations' },
   ];
