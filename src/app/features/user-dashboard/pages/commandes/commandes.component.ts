@@ -1,8 +1,4 @@
-// commandes.component.ts
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
-
 
 interface Order {
   id: number;
@@ -17,9 +13,6 @@ interface Order {
 @Component({
   selector: 'app-commandes',
   templateUrl: './commandes.component.html',
-  imports: [
-    NgFor // Import any necessary modules or components
-   ]
 })
 export class CommandesComponent {
   sortBy: 'popular' | 'recent' = 'popular';
@@ -46,5 +39,13 @@ export class CommandesComponent {
     return classes[status];
   }
 
-  
+  // Function to open the modal
+  openOrderDetailsModal() {
+    document.getElementById('orderDetailsModal')?.classList.remove('hidden');
+  }
+
+  // Function to close the modal
+  closeOrderDetailsModal() {
+    document.getElementById('orderDetailsModal')?.classList.add('hidden');
+  }
 }
