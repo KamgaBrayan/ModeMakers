@@ -23,7 +23,7 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'profil_picture',
-        'role',
+        'roles',
         'photos',
         'note',
         'bibliography',
@@ -31,7 +31,7 @@ class User extends Authenticatable implements JWTSubject
         'preferences_id',
         'measures_id',
         'specialty',
-        'experience',
+        'experience'
     ];
 
     /**
