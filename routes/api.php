@@ -20,7 +20,7 @@ use App\Http\Controllers\PaymentController;
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/login', [AuthController::class, 'login']);
 
-Route::middleware('auth:api')->group(function () {
+/*Route::middleware('auth:api')->group(function () {*/
     Route::post('auth/logout', [AuthController::class, 'logout']);
     Route::get('auth/profile', [AuthController::class, 'profile']);
 
@@ -94,23 +94,23 @@ Route::middleware('auth:api')->group(function () {
 
     //Orders routes
     Route::prefix('order')->group(function () {
-        Route::get('/', [OrderController::class, 'index']); 
-        Route::get('/{id}', [OrderController::class, 'show']); 
-        Route::post('/', [OrderController::class, 'store']); 
-        Route::put('/{id}', [OrderController::class, 'update']); 
-        Route::delete('/{id}', [OrderController::class, 'destroy']); 
+        Route::get('/', [OrderController::class, 'index']);
+        Route::get('/{id}', [OrderController::class, 'show']);
+        Route::post('/', [OrderController::class, 'store']);
+        Route::put('/{id}', [OrderController::class, 'update']);
+        Route::delete('/{id}', [OrderController::class, 'destroy']);
     });
 
     // Payments routes
     Route::prefix('payment')->group(function () {
-        Route::get('/', [PaymentController::class, 'index']);  
-        Route::get('/{id}', [PaymentController::class, 'show']);  
-        Route::post('/', [PaymentController::class, 'store']);  
-        Route::put('/{id}', [PaymentController::class, 'update']);  
-        Route::delete('/{id}', [PaymentController::class, 'destroy']);  
+        Route::get('/', [PaymentController::class, 'index']);
+        Route::get('/{id}', [PaymentController::class, 'show']);
+        Route::post('/', [PaymentController::class, 'store']);
+        Route::put('/{id}', [PaymentController::class, 'update']);
+        Route::delete('/{id}', [PaymentController::class, 'destroy']);
     });
 
-    
 
-});
+
+/*});*/
 

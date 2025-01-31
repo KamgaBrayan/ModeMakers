@@ -10,9 +10,9 @@ class UserController extends Controller
 {
     /**
      * List Users
-     * 
+     *
      * @group User Management
-     * 
+     *
      * @response 200 {
      *  [{
      *      "id": 1,
@@ -30,7 +30,7 @@ class UserController extends Controller
      *      "experience": "5 years in stylism"
      *  }]
      * }
-     * 
+     *
      * @response 401 {
      *  "error": {
      *      "code": 401,
@@ -45,11 +45,11 @@ class UserController extends Controller
 
     /**
      * Get User
-     * 
+     *
      * @group User Management
-     * 
+     *
      * @urlParam id integer required The ID of the user.
-     * 
+     *
      * @response 200 {
      *  {
      *      "id": 1,
@@ -67,7 +67,7 @@ class UserController extends Controller
      *      "experience": "5 years in stylism"
      *  }
      * }
-     * 
+     *
      * @response 404 {
      *  "error": {
      *      "code": 404,
@@ -83,9 +83,9 @@ class UserController extends Controller
 
     /**
      * Create User
-     * 
+     *
      * @group User Management
-     * 
+     *
      * @bodyParam name string required The name of the user.
      * @bodyParam email string required The email of the user.
      * @bodyParam password string required The password of the user.
@@ -98,7 +98,7 @@ class UserController extends Controller
      * @bodyParam measures_id array optional User's measures IDs.
      * @bodyParam specialty string optional required for stylists.
      * @bodyParam experience string optional required for stylists.
-     * 
+     *
      * @response 201 scenario="Created" {
      *  {
      *      "id": 1,
@@ -130,12 +130,12 @@ class UserController extends Controller
 
     /**
      * Update User
-     * 
+     *
      * @group User Management
-     * 
+     *
      * @urlParam id integer required The ID of the user.
      * [Similar bodyParam documentation as store method]
-     * 
+     *
      * @response 200 {
      *   {
      *      "id": 1,
@@ -167,11 +167,11 @@ class UserController extends Controller
 
     /**
      * Delete User
-     * 
+     *
      * @group User Management
-     * 
+     *
      * @urlParam id integer required The ID of the user.
-     * 
+     *
      * @response 200 {
      *  "message": "User successfully deleted"
      * }
@@ -185,11 +185,11 @@ class UserController extends Controller
 
     /**
      * Upload Profile Picture
-     * 
+     *
      * @group User Management
-     * 
+     *
      * @bodyParam profile_picture file required The profile picture to upload.
-     * 
+     *
      * @response 200 {
      *  "message": "Profile picture updated successfully",
      *  "profile_picture_url": "profile1.jpg"
@@ -229,5 +229,11 @@ class UserController extends Controller
 
         return response()->json(['error' => 'No file uploaded'], 400);
     }
-    
+
+    public function getAllUsers()
+    {
+        
+    }
+
+
 }
