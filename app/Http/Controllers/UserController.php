@@ -230,9 +230,14 @@ class UserController extends Controller
         return response()->json(['error' => 'No file uploaded'], 400);
     }
 
-    public function getAllUsers()
+    public function getUsers(Request $request)
     {
-        
+        $perPage = $request->input('page', 10);
+
+
+        $users = User::paginate($perPage);
+
+        return response()->json($users);
     }
 
 

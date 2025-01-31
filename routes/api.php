@@ -31,12 +31,14 @@ Route::post('auth/login', [AuthController::class, 'login']);
 
     // User Management Routes
     Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'index']);
+        /*Route::get('/', [UserController::class, 'index']);*/
+        Route::get('/', [UserController::class, 'getUsers']);
         Route::get('/{id}', [UserController::class, 'show']);
         Route::post('/', [UserController::class, 'store']);
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
         Route::post('/{id}/profile-picture', [UserController::class, 'uploadProfilePicture']);
+
     });
 
     // Measure Routes

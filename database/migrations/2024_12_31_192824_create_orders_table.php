@@ -10,6 +10,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('stylist_id')->constrained('users')->nullable();
             $table->timestamp('order_date');
             $table->string('status');
             $table->decimal('total_cost', 8, 2);
