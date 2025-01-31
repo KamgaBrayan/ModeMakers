@@ -1,0 +1,16 @@
+/* Additional styles if needed */
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+/* Optional: Improve scrolling for modal */
+.overflow-y-auto {
+  max-height: 100vh;
+  overflow-y: auto;
+}

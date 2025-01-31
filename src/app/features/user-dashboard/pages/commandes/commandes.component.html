@@ -13,6 +13,15 @@
         <h1 class="text-2xl font-bold text-gray-900">Mes Commandes</h1>
         <p class="text-sm text-gray-500 mt-1">Gérez et suivez vos commandes en cours</p>
       </div>
+
+      <button 
+       
+          class="bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+          <span>Create a command</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+        </button>
       
       <div class="flex gap-3 w-full sm:w-auto">
         <div class="relative flex-1 sm:flex-initial">
@@ -90,8 +99,9 @@
             <div class="flex justify-between items-start">
               <div>
                 <h2 class="text-xl font-bold text-gray-900">Détails de la commande</h2>
-                <p class="text-sm text-gray-500 mt-1">Informations complètes de votre précommande</p>
+                <p class="text-sm text-gray-500 mt-1">Informations complètes de votre commande</p>
               </div>
+              
               <button (click)="closeOrderDetailsModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
                 <i class="fas fa-times text-2xl"></i>
               </button>
@@ -108,9 +118,7 @@
             <button (click)="closeOrderDetailsModal()" class="px-4 py-2 text-gray-600 hover:bg-gray-200 rounded-lg transition-colors">
               Fermer
             </button>
-            <button class="px-4 py-2 bg-[#3734A9] text-white rounded-lg hover:bg-[#2d2b8a] transition-colors">
-              Télécharger le PDF
-            </button>
+           
           </div>
         </div>
       </div>
