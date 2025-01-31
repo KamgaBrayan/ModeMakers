@@ -12,17 +12,17 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PaymentController;
-
-
+//use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\StripePaymentController;
 
 // Authentication Routes
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/login', [AuthController::class, 'login']);
 
 // Public Product Routes
-Route::get('products', [ProductController::class, 'index'])->name('products.index');
-Route::get('products/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::get('product', [ProductController::class, 'index']);
+Route::get('product/{id}', [ProductController::class, 'show']);
+Route::get('stylists/{id}/products', [ProductController::class, 'getByStylist']);
 
 Route::middleware('auth:api')->group(function () {
     Route::post('auth/logout', [AuthController::class, 'logout']);
@@ -82,12 +82,10 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [MaterialController::class, 'destroy']);
     });
 
-    // Product Routes (Protected)
-    Route::prefix('products')->group(function () {
-        Route::post('/', [ProductController::class, 'store'])->name('products.store');
-        Route::put('/{id}', [ProductController::class, 'update'])->name('products.update');
-        Route::delete('/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
-    });
+    // Protected Product Routes
+    Route::post('product', [ProductController::class, 'store']);
+    Route::put('product/{id}', [ProductController::class, 'update']);
+    Route::delete('product/{id}', [ProductController::class, 'destroy']);
 
     // Review Routes
     Route::prefix('review')->group(function () {
@@ -107,15 +105,23 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [OrderController::class, 'destroy']); 
     });
 
-    // Payments routes
-    Route::prefix('payment')->group(function () {
-        Route::get('/', [PaymentController::class, 'index']);  
-        Route::get('/{id}', [PaymentController::class, 'show']);  
-        Route::post('/', [PaymentController::class, 'store']);  
-        Route::put('/{id}', [PaymentController::class, 'update']);  
-        Route::delete('/{id}', [PaymentController::class, 'destroy']);  
-    });
+    // // Payments routes
+    // Route::prefix('payment')->group(function () {
+    //     Route::get('/', [PaymentController::class, 'index']);  
+    //     Route::get('/{id}', [PaymentController::class, 'show']);  
+    //     Route::post('/', [PaymentController::class, 'store']);  
+    //     Route::put('/{id}', [PaymentController::class, 'update']);  
+    //     Route::delete('/{id}', [PaymentController::class, 'destroy']);  
+    // });
 
-    
+    // Routes pour les paiements Stripe
+    Route::prefix('payments')->group(function () {
+        Route::post('/create-intent', [StripePaymentController::class, 'createIntent']);
+        Route::post('/confirm', [StripePaymentController::class, 'confirm']);
+        Route::post('/cancel', [StripePaymentController::class, 'cancel']);
+        Route::post('/webhook', [StripePaymentController::class, 'webhook']);
+        Route::get('/{paymentId}', [StripePaymentController::class, 'show']);
+        Route::get('/', [StripePaymentController::class, 'index']);
+    });
 
 });

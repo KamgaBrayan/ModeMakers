@@ -182,6 +182,40 @@ class ProductController extends Controller
         return response()->json(['message' => 'Product successfully deleted.'], 200);
     }
 
+    /**
+     * Get Products by Stylist ID
+     * 
+     * Retrieve all products created by a specific stylist.
+     * 
+     * @urlParam id integer required The ID of the stylist.
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getByStylist($id)
+    {
+        // Vérifier si le styliste existe et a le bon rôle
+        $stylist = \App\Models\User::where('id', $id)
+                                 ->where('role', 'ROLE_STYLIST')
+                                 ->first();
+
+        if (!$stylist) {
+            return response()->json(['error' => 'Stylist not found.'], 404);
+        }
+
+        $products = Product::with(['stylist', 'materials'])
+                         ->where('stylist_id', $id)
+                         ->get();
+        
+        $deliveries = \App\Models\Delivery::all();
+
+        return response()->json(
+            $products->map(function ($product) use ($deliveries) {
+                return $this->formatProductResponse($product, $deliveries);
+            }), 
+            200
+        );
+    }
+
     private function formatProductResponse($product, $deliveries)
     {
         $user = $product->stylist;
