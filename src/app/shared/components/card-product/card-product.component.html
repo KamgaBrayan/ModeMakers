@@ -1,0 +1,32 @@
+<div class="w-full max-w-sm bg-white rounded-lg overflow-hidden shadow-lg">
+    <div class="relative">
+        <img [src]="product.images[0]" [alt]="product.name" class="w-full h-72 object-cover" />
+        <button class="absolute bottom-1 right-1">
+            <button class="bg-indigo-500 text-white p-3 rounded-full hover:bg-indigo-600 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L3.6 7H3m0 0l1.4 7m-1.4-7H1m14 6a3 3 0 100 6 3 3 0 000-6zm-7 3a3 3 0 100 6 3 3 0 000-6z" />
+                </svg>
+            </button>
+        </button>
+        <label class="flex text-yellow-400 absolute top-2 right-2">
+            <span class="font-medium mb-2 text-lg"> ★ {{product.rating.toPrecision(2) }}</span>
+        </label>
+    </div>
+    <div class="p-4 h-[120px]">
+        <div>
+            <a [routerLink]="['/products', product.id]">
+                <h3 class="text-lg font-medium mb-2 line-clamp-2 hover:text-indigo-600">{{ product.name }}</h3>
+            </a>
+        </div>
+        <div class="flex items-center text-gray-600 text-sm mb-2">
+            <span>Genre: {{ product.gender }}</span>
+            <span class="mx-6">•</span>
+            <span>Age: {{ product.age }}</span>
+        </div>
+        <div class="flex space-x-20">
+            <p class="font-bold text-lg">{{ product.delivery[0].price }} XAF</p>
+            <p class="font-bold text-lg">{{ product.delivery[0].type }}</p>
+        </div>
+    </div>
+</div>
+
