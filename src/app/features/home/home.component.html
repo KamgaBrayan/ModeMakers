@@ -11,15 +11,15 @@
             <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
                 Une plateforme qui connecte les stylistes professionnels avec ceux qui cherchent à exprimer leur personnalité à travers la mode.
             </p>
-            <div class="flex justify-center space-x-4">
-                <a [routerLink]="['/products']"
-                   class="bg-white text-indigo-600 cursor-pointer px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors">
+            <div class="flex justify-center space-x-4 cursor-pointer mb-5">
+                <button [routerLink]="['/products']"
+                   class="bg-white text-indigo-600 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors">
                     Découvrir
-                </a>
-                <a [routerLink]="['/register']"
+                </button>
+                <button [routerLink]="['/register']"
                    class="border-2 border-white cursor-pointer text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-indigo-600 transition-colors">
                     S'inscrire
-                </a>
+                </button>
             </div>
         </div>
     </div>
