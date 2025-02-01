@@ -11,24 +11,26 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-mensurations',
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [
-    CommonModule, 
-    FormsModule, 
-    ReactiveFormsModule, 
-    MatTabsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatCardModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatFormFieldModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatTabsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule,
+        MatCardModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatProgressSpinner,
+    ],
   template: `
     <div class="measurements-container">
       <mat-tab-group class="measurement-tabs">
@@ -222,8 +224,8 @@ import { ConfirmDialogComponent } from '../../../../shared/components/confirm-di
                 <mat-card-subtitle>Upload a full-body photo to get your measurements using AI</mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <div class="upload-area" 
-                     (dragover)="onDragOver($event)" 
+                <div class="upload-area"
+                     (dragover)="onDragOver($event)"
                      (drop)="onDrop($event)"
                      [class.dragover]="isDragging">
                   <mat-icon>cloud_upload</mat-icon>
@@ -337,7 +339,7 @@ import { ConfirmDialogComponent } from '../../../../shared/components/confirm-di
     }
 
     .upload-area.dragover {
-      border-color: primary;
+      border-color: var(--primary-color);
       background-color: rgba(0, 0, 0, 0.03);
     }
 
@@ -434,7 +436,7 @@ export class MensurationsComponent implements OnInit {
     this.error = null;
     // Hardcoded user ID for now - in a real app this would come from an auth service
     const userId = 1;
-    
+
     this.measurementService.getMeasurementsByUserId(userId).subscribe({
       next: (measurements) => {
         this.measurements = measurements;

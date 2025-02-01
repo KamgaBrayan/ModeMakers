@@ -1,14 +1,34 @@
+<app-alert></app-alert>
+
 <div class="w-full max-w-sm bg-white rounded-lg overflow-hidden shadow-lg">
     <div class="relative">
         <img [src]="product.images[0]" [alt]="product.name" class="w-full h-72 object-cover" />
+        <button class="absolute top-2 right-2">
+            <button
+                (click)="toggleFavorite()"
+                class="p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors duration-200"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     [class.text-red-500]="isFavorite"
+                     [class.text-gray-400]="!isFavorite"
+                     fill="currentColor"
+                     viewBox="0 0 24 24"
+                     class="w-6 h-6">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </button>
+        </button>
         <button class="absolute bottom-1 right-1">
-            <button class="bg-indigo-500 text-white p-3 rounded-full hover:bg-indigo-600 transition">
+            <button
+                (click)="addToCart()"
+                class="bg-indigo-500 text-white p-3 rounded-full hover:bg-indigo-600 transition"
+            >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L3.6 7H3m0 0l1.4 7m-1.4-7H1m14 6a3 3 0 100 6 3 3 0 000-6zm-7 3a3 3 0 100 6 3 3 0 000-6z" />
                 </svg>
             </button>
         </button>
-        <label class="flex text-yellow-400 absolute top-2 right-2">
+        <label class="flex text-yellow-400 absolute top-2 left-2">
             <span class="font-medium mb-2 text-lg"> ★ {{product.rating.toPrecision(2) }}</span>
         </label>
     </div>
@@ -23,9 +43,9 @@
             <span class="mx-6">•</span>
             <span>Age: {{ product.age }}</span>
         </div>
-        <div class="flex space-x-20">
+        <div class="flex space-x-2">
+            <p class="font-bold text-lg">{{ product.delivery[0].type }} : </p>
             <p class="font-bold text-lg">{{ product.delivery[0].price }} XAF</p>
-            <p class="font-bold text-lg">{{ product.delivery[0].type }}</p>
         </div>
     </div>
 </div>

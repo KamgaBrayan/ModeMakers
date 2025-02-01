@@ -11,19 +11,25 @@ import { GarmentSpecialComponent } from './features/garment-special/garment-spec
 import { StylistProfileComponent } from './features/stylist-profile/stylist-profile.component';
 import {HomeComponent} from './features/home/home.component';
 import {DashproductsComponent} from './features/Dashproducts/Dashproducts.component';
+import {CartsComponent} from "./features/carts/carts.component";
+import {OutfitsDetailsComponent} from "./features/outfits-details/outfits-details.component";
+import {RegisterComponent} from "./features/register/register.component";
+import {LoginComponent} from "./features/login/login.component";
 export const routes: Routes = [
   { path: 'products', component: ProductsComponent },
-  { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'products/:id', component: OutfitsDetailsComponent },
   { path: 'contact', component: ContactComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartsComponent },
   {path:'stylists', component : StylistsComponent},
   {path: 'stylists/:id',component: StylistProfileComponent},
   {path: 'garment/:id',component: GarmentComponent},
   {path: 'Dashproducts',component: DashproductsComponent},
   {path: 'garment-special/:id',component: GarmentSpecialComponent},
+    {path: 'register',component: RegisterComponent},
+    {path: 'login',component: LoginComponent},
   {
     path: 'dashboard',
     loadChildren: () => import('./features/dashboard/dashboard.routes').then(m => m.DASHBOARD_ROUTES)

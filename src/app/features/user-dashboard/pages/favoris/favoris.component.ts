@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { FavoritesService, Product } from '../../../../core/services/favorites.service';
+import { FavoritesService} from '../../../../core/service/favorites.service';
+import {CardProductComponent} from "../../../../shared/components/card-product/card-product.component";
+import {Product} from "../../../../shared/interfaces/product.interface";
 
 @Component({
   selector: 'app-favoris',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CardProductComponent],
   template: `
     <div class="p-6">
       <div class="flex justify-between items-center mb-8">
@@ -34,12 +36,12 @@ import { FavoritesService, Product } from '../../../../core/services/favorites.s
               <h3 class="font-medium mb-3">Gender</h3>
               <div class="space-y-2">
                 <label class="flex items-center">
-                  <input type="checkbox" [(ngModel)]="filters.gender.male" 
+                  <input type="checkbox" [(ngModel)]="filters.gender.male"
                          class="form-checkbox text-indigo-600 rounded">
                   <span class="ml-2">Male</span>
                 </label>
                 <label class="flex items-center">
-                  <input type="checkbox" [(ngModel)]="filters.gender.female" 
+                  <input type="checkbox" [(ngModel)]="filters.gender.female"
                          class="form-checkbox text-indigo-600 rounded">
                   <span class="ml-2">Female</span>
                 </label>
@@ -51,12 +53,12 @@ import { FavoritesService, Product } from '../../../../core/services/favorites.s
               <h3 class="font-medium mb-3">Age group</h3>
               <div class="space-y-2">
                 <label class="flex items-center">
-                  <input type="checkbox" [(ngModel)]="filters.age.adult" 
+                  <input type="checkbox" [(ngModel)]="filters.age.adult"
                          class="form-checkbox text-indigo-600 rounded">
                   <span class="ml-2">Adult</span>
                 </label>
                 <label class="flex items-center">
-                  <input type="checkbox" [(ngModel)]="filters.age.children" 
+                  <input type="checkbox" [(ngModel)]="filters.age.children"
                          class="form-checkbox text-indigo-600 rounded">
                   <span class="ml-2">Children</span>
                 </label>
@@ -68,11 +70,11 @@ import { FavoritesService, Product } from '../../../../core/services/favorites.s
               <h3 class="font-medium mb-3">Price Range</h3>
               <div class="flex gap-4">
                 <div class="flex-1">
-                  <input type="number" [(ngModel)]="filters.price.min" 
+                  <input type="number" [(ngModel)]="filters.price.min"
                          placeholder="Min" class="w-full px-3 py-2 border rounded-md">
                 </div>
                 <div class="flex-1">
-                  <input type="number" [(ngModel)]="filters.price.max" 
+                  <input type="number" [(ngModel)]="filters.price.max"
                          placeholder="Max" class="w-full px-3 py-2 border rounded-md">
                 </div>
               </div>
@@ -83,24 +85,24 @@ import { FavoritesService, Product } from '../../../../core/services/favorites.s
               <h3 class="font-medium mb-3">Size</h3>
               <div class="space-y-2">
                 <label class="flex items-center">
-                  <input type="checkbox" [(ngModel)]="filters.size.small" 
+                  <input type="checkbox" [(ngModel)]="filters.size.small"
                          class="form-checkbox text-indigo-600 rounded">
                   <span class="ml-2">Small</span>
                 </label>
                 <label class="flex items-center">
-                  <input type="checkbox" [(ngModel)]="filters.size.medium" 
+                  <input type="checkbox" [(ngModel)]="filters.size.medium"
                          class="form-checkbox text-indigo-600 rounded">
                   <span class="ml-2">Medium</span>
                 </label>
                 <label class="flex items-center">
-                  <input type="checkbox" [(ngModel)]="filters.size.large" 
+                  <input type="checkbox" [(ngModel)]="filters.size.large"
                          class="form-checkbox text-indigo-600 rounded">
                   <span class="ml-2">Large</span>
                 </label>
               </div>
             </div>
 
-            <button (click)="applyFilters()" 
+            <button (click)="applyFilters()"
                     class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition-colors">
               Apply Filters
             </button>
@@ -109,48 +111,18 @@ import { FavoritesService, Product } from '../../../../core/services/favorites.s
 
         <!-- Products Grid -->
         <div class="flex-1">
-          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            <div *ngFor="let product of filteredProducts" 
-                 class="bg-white rounded-lg shadow-sm overflow-hidden group">
-              <div class="relative aspect-square overflow-hidden">
-                <img [src]="product.images[0]"
-                     [alt]="product.name"
-                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                <button (click)="removeFromFavorites(product.id)" 
-                        class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-red-50">
-                  <i class="bi bi-heart-fill text-red-500"></i>
-                </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+              <div *ngIf="favorites.length === 0" class="text-center py-8 mt-4">
+                  <h2 class="text-2xl font-semibold text-gray-600 mb-2">No Favorites Found</h2>
+                  <p class="text-gray-500">Try adjusting your filters or add some products to your favorites!</p>
               </div>
 
-              <div class="p-4">
-                <h3 class="font-semibold text-lg">{{product.name}}</h3>
-                <div class="flex gap-2 text-sm text-gray-600 mt-1">
-                  <span>{{product.gender}}</span>
-                  <span>•</span>
-                  <span>{{product.age}}</span>
-                </div>
-                <div class="mt-2 flex items-center justify-between">
-                  <div class="flex items-center">
-                    <i class="bi bi-star-fill text-yellow-400 mr-1"></i>
-                    <span class="font-medium">{{product.rating}}</span>
-                  </div>
-                  <span [class]="product.isAvailable ? 
-                                'bg-green-100 text-green-800' : 
-                                'bg-red-100 text-red-800'" 
-                        class="px-2 py-1 rounded-full text-xs font-medium">
-                    {{product.isAvailable ? 'In Stock' : 'Out of Stock'}}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Empty State -->
-          <div *ngIf="filteredProducts.length === 0" 
-               class="text-center py-12">
-            <i class="bi bi-heart text-6xl text-gray-300 mb-4"></i>
-            <h2 class="text-2xl font-semibold text-gray-600 mb-2">No Favorites Found</h2>
-            <p class="text-gray-500">Try adjusting your filters or add some products to your favorites!</p>
+              <app-card-product
+                  *ngFor="let product of favorites"
+                  [product]="product"
+                  [productId]="product.id">
+              </app-card-product>
           </div>
         </div>
       </div>
@@ -161,6 +133,7 @@ export class FavorisComponent implements OnInit {
   favoriteProducts: Product[] = [];
   filteredProducts: Product[] = [];
   sortBy = 'popular';
+  favorites: Product[] = [];
   filters = {
     gender: { male: false, female: false },
     age: { adult: false, children: false },
@@ -170,27 +143,23 @@ export class FavorisComponent implements OnInit {
 
   constructor(private favoritesService: FavoritesService) {}
 
-  ngOnInit() {
-    const userId = 2; // In a real app, get from auth service
-    this.loadFavorites(userId);
-  }
+    ngOnInit() {
+        this.loadFavorites();
+    }
 
-  loadFavorites(userId: number) {
-    this.favoritesService.getFavoritesByUserId(userId)
-      .subscribe(favorites => {
-        if (favorites) {
-          this.favoriteProducts = favorites.product;
+  loadFavorites() {
+      this.favoritesService.getFavorites().subscribe(favorites => {
+          this.favorites = favorites;
           this.applyFilters();
-        }
-      });
+      })
   }
 
   applyFilters() {
-    let filtered = [...this.favoriteProducts];
+    let filtered = [...this.favorites];
 
     // Apply gender filter
     if (this.filters.gender.male || this.filters.gender.female) {
-      filtered = filtered.filter(p => 
+      filtered = filtered.filter(p =>
         (this.filters.gender.male && p.gender.toLowerCase() === 'male') ||
         (this.filters.gender.female && p.gender.toLowerCase() === 'female')
       );
@@ -198,7 +167,7 @@ export class FavorisComponent implements OnInit {
 
     // Apply age filter
     if (this.filters.age.adult || this.filters.age.children) {
-      filtered = filtered.filter(p => 
+      filtered = filtered.filter(p =>
         (this.filters.age.adult && p.age.toLowerCase().includes('adult')) ||
         (this.filters.age.children && p.age.toLowerCase().includes('children'))
       );
@@ -227,15 +196,6 @@ export class FavorisComponent implements OnInit {
         break;
     }
 
-    this.filteredProducts = filtered;
-  }
-
-  removeFromFavorites(productId: number) {
-    const userId = 2; // In a real app, get from auth service
-    this.favoritesService.removeFromFavorites(userId, productId)
-      .subscribe(() => {
-        this.favoriteProducts = this.favoriteProducts.filter(p => p.id !== productId);
-        this.applyFilters();
-      });
+    this.favorites = filtered;
   }
 }
