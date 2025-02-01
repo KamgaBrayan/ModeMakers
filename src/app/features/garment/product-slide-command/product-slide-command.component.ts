@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Product } from '../../../shared/models/product_.interface';
-import { Stylist } from '../../../shared/models/stylist.interface';
+import { Product } from '../../../shared/interfaces/product.interface';
+import { StylistUser } from '../../../shared/interfaces/stylistUser.interface';
 
 @Component({ 
   selector: 'app-product-slide-command',
@@ -11,20 +11,20 @@ import { Stylist } from '../../../shared/models/stylist.interface';
 }) 
 export class ProductSlideCommandComponent { 
   @Input() product!: Product;
-  @Input() stylist!: Stylist;
+  @Input() stylist!: StylistUser;
   currentImageIndex: number = 0;
   @Input() rating: number = 0;
   
   ngOnInit(): void {
-    console.log(this.rating)
+    console.log(this.product.images)
   }
   
   nextImage() {
-    this.currentImageIndex = (this.currentImageIndex + 1) % this.product.photos.length;
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.product.images.length;
   }
 
   previousImage() {
-    this.currentImageIndex = (this.currentImageIndex - 1 + this.product.photos.length) % this.product.photos.length;
+    this.currentImageIndex = (this.currentImageIndex - 1 + this.product.images.length) % this.product.images.length;
   }
   
   getStarsArray(): number[] {

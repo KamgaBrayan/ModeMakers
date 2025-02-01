@@ -16,6 +16,7 @@ import { Measurement } from '../../shared/interfaces/measurement.interface';
 import { ProductService } from '../../core/service/product.service';
 import { ReviewService } from '../../core/service/review.service';
 import { Material } from '../../shared/interfaces/material.interface';
+import { Measure } from '../../shared/models/measure.interface';
 
 @Component({
   selector: 'app-garment',
@@ -39,7 +40,7 @@ export class GarmentComponent {
   reviews: Review[] = [];
   rating: number = 0;
   images: string[] = [];
-  measures: Measurement[] = [];
+  measures: Measure[] = [];
   receivedPersonnalInfo: any = null;
   selectedMaterials: ReduceMaterial[] = [];
  
@@ -54,6 +55,7 @@ export class GarmentComponent {
       this.product = product;
       this.stylist= product.user;
       this.images= product.images;
+      // console.log(this.images)
       this.materials = product.materials;
       this.reviewService.getAllReviews().subscribe(reviews => {
         for(let review of reviews){
