@@ -4,7 +4,7 @@ import {ApiResponse, CreateMaterial, UpdateMaterial} from '../../shared/interfac
 import {HttpClient} from '@angular/common/http';
 import {Material} from '../../shared/interfaces/material.interface';
 
-const API_URL = 'http://localhost:3001/material';
+const API_URL = 'http://localhost:3000/material';
 
 @Injectable({
   providedIn: 'root'

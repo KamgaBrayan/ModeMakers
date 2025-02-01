@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {StylistUser} from '../../shared/interfaces/stylistUser.interface';
 
-const API_URL = 'http://localhost:3001/stylist';
+const API_URL = 'http://localhost:3000/stylist';
 
 @Injectable({
   providedIn: 'root'

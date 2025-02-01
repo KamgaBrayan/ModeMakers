@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {ApiResponse, CreateProductRequest, UpdateProductRequest} from '../../shared/interfaces/apiRequest.interface';
 import {Product} from '../../shared/interfaces/product.interface';
 
-const API_URL = 'http://localhost:3001/products';
+const API_URL = 'http://localhost:3000/products';
 
 @Injectable({
   providedIn: 'root'

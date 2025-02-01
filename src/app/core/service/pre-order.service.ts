@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {PreOrder} from '../../shared/interfaces/preOrder.interface';
 
 
-const API_URL = 'http://localhost:3001/';
+const API_URL = 'http://localhost:3000/';
 
 @Injectable({
   providedIn: 'root'
