@@ -1,0 +1,286 @@
+<app-navbar></app-navbar>
+
+<div class="container mx-auto px-4 py-8">
+    <!-- Progress Steps -->
+    <div class="mb-8">
+        <div class="flex justify-between items-center">
+            <div *ngFor="let step of steps; let i = index" class="flex items-center">
+                <div [class]="getStepClass(i)">
+                    <i [class]="step.icon"></i>
+                </div>
+                <div *ngIf="i < steps.length - 1" class="hidden md:block w-4 h-2 mx-2 bg-gray-200">
+                    <div class="h-full transition-all duration-500"
+                         [class.bg-indigo-600]="currentStep > i + 1"
+                         [class.bg-gray-200]="currentStep <= i + 1"
+                         [style.width]="currentStep > i ? '100%' : '0%'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert -->
+    <div *ngIf="alert.show"
+         class="mb-4 p-4 rounded-lg border"
+         [class.bg-green-50]="alert.type === 'success'"
+         [class.border-green-200]="alert.type === 'success'"
+         [class.bg-red-50]="alert.type === 'error'"
+         [class.border-red-200]="alert.type === 'error'">
+        {{ alert.message }}
+    </div>
+
+    <!-- Main Content -->
+    <ng-container [ngSwitch]="currentStep">
+        <!-- Step 1: Cart -->
+        <div *ngSwitchCase="1" class="space-y-6">
+            <div *ngIf="cartItems.length === 0" class="text-center py-12">
+                <p class="text-gray-500">Votre panier est vide</p>
+                <a routerLink="/products" class="text-indigo-600 hover:text-indigo-800 mt-4 inline-block">
+                    Continuer vos achats
+                </a>
+            </div>
+
+            <div *ngIf="cartItems.length > 0" class="bg-white rounded-lg shadow overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Produit</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Prix</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Delivery Type</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stylist</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Quantité</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                    <tr *ngFor="let item of cartItems">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <img [src]="item.product.images[0]" [alt]="item.product.name"
+                                     class="w-16 h-16 object-cover rounded">
+                                <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">{{ item.product.name }}</div>
+                                    <div class="text-sm text-gray-500">{{ item.product.category }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            {{ getDeliveryPrice(item) | number:'1.0-0' }} XAF
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <div>
+                                    <div class="text-sm font-medium text-gray-900">{{ item.product.delivery[0].type }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <div>
+                                    <div class="text-sm font-medium text-gray-900">{{ item.product.user.name }}</div>
+                                    <div class="text-sm text-gray-500">{{ item.product.user.phone }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2">
+                                <button (click)="updateQuantity(item.product, item.quantity - 1)"
+                                        class="p-1 rounded-md hover:bg-gray-100"
+                                        [disabled]="item.quantity <= 1">
+                                    -
+                                </button>
+                                <span class="w-8 text-center">{{ item.quantity }}</span>
+                                <button (click)="updateQuantity(item.product, item.quantity + 1)"
+                                        class="p-1 rounded-md hover:bg-gray-100">
+                                    +
+                                </button>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            {{ getItemTotal(item) | number:'1.0-0' }} XAF
+                        </td>
+                        <td class="px-6 py-4">
+                            <button (click)="removeFromCart(item.product)"
+                                    class="text-red-500 hover:text-red-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="3" class="px-6 py-4 text-right font-medium">Total</td>
+                        <td class="px-6 py-4 text-gray-900 font-medium">
+                            {{ total | number:'1.0-0' }} XAF
+                        </td>
+                        <td></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- Après la table du panier mais toujours dans le *ngSwitchCase="1" -->
+            <div *ngIf="cartItems.length > 0" class="mt-6 bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold mb-4">Détails de livraison des produits</h3>
+
+                <div class="space-y-4">
+                    <div *ngFor="let item of cartItems" class="flex items-start gap-4 p-4 border rounded-lg">
+                        <!-- Image du produit -->
+                        <img [src]="item.product.images[0]"
+                             [alt]="item.product.name"
+                             class="w-24 h-24 object-cover rounded-md">
+
+                        <!-- Informations du produit -->
+                        <div class="flex-grow">
+                            <h4 class="font-medium">{{ item.product.name }}</h4>
+                            <p class="text-sm text-gray-600">Quantité: {{ item.quantity }}</p>
+
+                            <!-- Sélection du type de livraison -->
+                            <div class="mt-2">
+                                <label class="block text-sm font-medium text-gray-700">Type de livraison</label>
+                                <div class="mt-2 space-y-2">
+                                    <div *ngFor="let delivery of item.product.delivery"
+                                         class="flex items-center gap-2">
+                                        <input type="radio"
+                                               [id]="'delivery-' + item.product.id + '-' + delivery.type"
+                                               [name]="'delivery-' + item.product.id"
+                                               [checked]="getSelectedDeliveryType(item) === delivery.type"
+                                               (change)="updateDeliveryType(item, delivery)"
+                                               class="h-4 w-4 text-blue-600">
+                                        <label [for]="'delivery-' + item.product.id + '-' + delivery.type"
+                                               class="text-sm text-gray-900">
+                                            {{ delivery.type | titlecase }} -
+                                            {{ delivery.price | number:'1.0-0' }} XAF
+                                            ({{ delivery.day }} jour<ng-container *ngIf="delivery.day > 1">s</ng-container>)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Prix total pour ce produit -->
+                        <div class="text-right">
+                            <p class="text-sm text-gray-600">Total</p>
+                            <p class="font-medium">{{ getItemTotal(item) | number:'1.0-0' }} XAF</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total général -->
+                <div class="mt-6 border-t pt-4">
+                    <div class="flex justify-between items-center">
+                        <span class="font-medium">Total des produits</span>
+                        <span class="font-medium">{{ getSubTotal() | number:'1.0-0' }} XAF</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <span class="font-medium">commission</span>
+                        <span class="font-medium">{{ getDeliveryTotal() | number:'1.0-0' }} XAF</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-2 text-lg font-bold">
+                        <span>Total</span>
+                        <span>{{ getTotal() | number:'1.0-0' }} XAF</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Shipping -->
+        <div *ngSwitchCase="2" class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-6">Informations de Livraison</h2>
+            <form [formGroup]="shippingForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Nom</label>
+                        <input formControlName="lastName" type="text"
+                               class="w-full border rounded-md p-2" placeholder="Votre nom">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Prénom</label>
+                        <input formControlName="firstName" type="text"
+                               class="w-full border rounded-md p-2" placeholder="Votre prénom">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Adresse</label>
+                    <input formControlName="address" type="text"
+                           class="w-full border rounded-md p-2" placeholder="Votre adresse">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Ville</label>
+                        <input formControlName="city" type="text"
+                               class="w-full border rounded-md p-2" placeholder="Votre ville">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Téléphone</label>
+                        <input formControlName="phone" type="tel"
+                               class="w-full border rounded-md p-2" placeholder="Numéro de téléphone">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 3: Payment -->
+        <div *ngSwitchCase="3" class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-6">Paiement</h2>
+            <form [formGroup]="paymentForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Méthode de paiement</label>
+                    <select formControlName="paymentMethod" class="w-full border rounded-md p-2">
+                        <option value="momo">Mobile Money</option>
+                        <option value="om">Orange Money</option>
+                        <option value="card">Carte bancaire</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Numéro</label>
+                    <input formControlName="paymentNumber" type="text"
+                           class="w-full border rounded-md p-2"
+                           placeholder="Numéro de téléphone ou de carte">
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 4: Confirmation -->
+        <div *ngSwitchCase="4" class="bg-white rounded-lg shadow-md p-6 text-center">
+            <i class="fas fa-check-circle text-green-500 text-5xl mb-4"></i>
+            <h2 class="text-2xl font-semibold">Commande Confirmée</h2>
+            <p class="text-gray-600 mb-6">Votre commande a été traitée avec succès</p>
+            <div class="space-y-2">
+                <button routerLink="/profile/orders"
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
+                    Voir mes commandes
+                </button>
+                <button routerLink="/products"
+                        class="w-full border border-gray-300 py-2 px-4 rounded-md hover:bg-gray-50">
+                    Continuer mes achats
+                </button>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- Loading Overlay -->
+    <div *ngIf="isLoading" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+            <p class="mt-4 text-gray-700">Traitement en cours...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex justify-between mt-8">
+        <button *ngIf="currentStep > 1"
+                (click)="previousStep()"
+                class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
+            Retour
+        </button>
+        <button *ngIf="currentStep < 4"
+                (click)="nextStep()"
+                [disabled]="isLoading"
+                class="ml-auto px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50">
+            {{ currentStep === 3 ? 'Confirmer' : 'Continuer' }}
+        </button>
+    </div>
+</div>
+
+<app-footer></app-footer>

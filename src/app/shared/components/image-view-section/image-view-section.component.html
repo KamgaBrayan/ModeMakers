@@ -1,0 +1,53 @@
+<div class="relative w-full h-full">
+    <div class="bg-white p-6 rounded-lg shadow-sm h-full">
+        <!-- Navigation buttons -->
+        <div class="hidden lg:block">
+            <button (click)="previousImage()" class="absolute left-[-40px] top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button (click)="nextImage()" class="absolute right-[-40px] top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Main image container -->
+        <div class="mb-6 aspect-[4/5] w-full">
+            <img
+                [src]="images[currentImageIndex]"
+                [alt]="'Image principale ' + (currentImageIndex + 1)"
+                class="w-full h-full object-cover object-center rounded-lg"
+            >
+        </div>
+
+        <!-- Product info - visible seulement sur mobile -->
+        <div class="mb-6 lg:hidden">
+            <h2 class="text-xl font-semibold">A - shaped gown</h2>
+            <div class="text-sm text-gray-600 mt-1 flex gap-4">
+                <span>Gender: Female</span>
+                <span>Age: Ranges</span>
+            </div>
+            <p class="text-lg font-bold mt-2 text-blue-800">N8,900,000</p>
+        </div>
+
+        <!-- Thumbnails grid -->
+        <div class="grid grid-cols-4 gap-3">
+            <div *ngFor="let image of images; let i = index"
+                 (click)="selectImage(i)"
+                 class="bg-pink-50 p-1.5 rounded-lg transition-all cursor-pointer aspect-[4/5]"
+                 [class.ring-2]="i === currentImageIndex"
+                 [class.ring-pink-200]="i === currentImageIndex"
+                 [class.hover:ring-2]="i !== currentImageIndex"
+                 [class.hover:ring-pink-200]="i !== currentImageIndex">
+                <img
+                    [src]="image"
+                    [alt]="'Vue ' + (i + 1)"
+                    class="w-full h-full object-cover object-center rounded-lg"
+                >
+            </div>
+        </div>
+    </div>
+</div>

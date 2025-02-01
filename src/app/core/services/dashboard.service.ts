@@ -53,7 +53,7 @@ export class DashboardService {
   }
 
   getRecentOrders(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + '/precommands')
+    return this.http.get<any[]>(this.apiUrl + '/preOrders')
       .pipe(
         map(precommands =>
           precommands

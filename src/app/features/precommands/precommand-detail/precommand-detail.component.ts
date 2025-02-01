@@ -387,7 +387,7 @@ export class PrecommandDetailComponent implements OnInit {
     // Update the precommand
     if (this.precommand?.id) {
       this.precommandsService.updatePrecommand(this.precommand.id, confirmedPrecommand).subscribe({
-        next: () => this.router.navigate(['/precommands']),
+        next: () => this.router.navigate(['/preOrders']),
         error: (error) => console.error('Error confirming precommand:', error)
       });
     }
@@ -401,13 +401,13 @@ export class PrecommandDetailComponent implements OnInit {
       };
       
       this.precommandsService.updatePrecommand(this.precommand.id, updatedPrecommand).subscribe({
-        next: () => this.router.navigate(['/precommands']),
+        next: () => this.router.navigate(['/preOrders']),
         error: (error) => console.error('Error rejecting precommand:', error)
       });
     }
   }
 
   goBack() {
-    this.router.navigate(['/precommands']);
+    this.router.navigate(['/preOrders']);
   }
 }

@@ -7,7 +7,7 @@
          class="h-screen fixed left-0 top-0 z-40 bg-white border-r transition-all duration-300 ease-in-out">
       <div class="h-full px-3 py-4 relative">
         <!-- Toggle Button -->
-        <button 
+        <button
           (click)="toggleSidebar()"
           class="absolute -right-3 top-10 bg-[#3734A9] text-white p-1 rounded-full shadow-lg hover:bg-[#2d2a87] transition-all duration-300">
           <svg [class.rotate-180]="!isSidebarOpen" class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -39,7 +39,12 @@
 
         <!-- User Profile -->
         <div class="absolute bottom-4 left-0 right-0 px-3">
-          <button (click)="logout()" 
+            <button [routerLink]="['/']"
+                    class="w-full flex items-center px-4 py-2 text-sm font-medium text-gray-900 rounded-lg hover:bg-gray-100">
+                <i class="fas fa-sign-out-alt mr-3 h-5 w-5"></i>
+                <span [class.hidden]="!isSidebarOpen">Back to Shop</span>
+            </button>
+          <button (click)="logout()"
                   class="w-full flex items-center px-4 py-2 text-sm font-medium text-gray-900 rounded-lg hover:bg-gray-100">
             <i class="fas fa-sign-out-alt mr-3 h-5 w-5"></i>
             <span [class.hidden]="!isSidebarOpen">Déconnexion</span>

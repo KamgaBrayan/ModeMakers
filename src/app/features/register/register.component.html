@@ -1,0 +1,90 @@
+<!-- register.component.html -->
+<div class="min-h-screen flex flex-col md:flex-row">
+    <!-- Image Section -->
+    <div class="w-full md:w-1/2 bg-cover bg-center hidden md:block">
+        <img src="assets/images/banner.jpg" alt="Fashion background"
+             class="w-full h-full object-cover" />
+    </div>
+
+    <!-- Form Section -->
+    <div class="w-full md:w-1/2 p-8 flex items-center justify-center bg-white">
+        <div class="w-full max-w-md">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Créer un compte</h2>
+
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
+                <!-- User Type Selection -->
+                <div class="flex space-x-4 mb-6">
+                    <div *ngFor="let type of userTypes" class="flex-1">
+                        <input type="radio" [value]="type" formControlName="userType"
+                               [id]="type" class="hidden peer">
+                        <label [for]="type"
+                               class="block w-full p-3 text-center rounded-lg border-2 cursor-pointer
+                          transition-colors peer-checked:bg-blue-500 peer-checked:text-white
+                          hover:bg-gray-50">
+                            {{type | titlecase}}
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Name Fields -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Prénom</label>
+                        <input type="text" formControlName="firstName"
+                               class="block w-full px-4 py-3 rounded-lg border-2 border-gray-200
+                          focus:border-blue-500 focus:ring-blue-500 text-base
+                          placeholder-gray-400 shadow-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nom</label>
+                        <input type="text" formControlName="lastName"
+                               class="block w-full px-4 py-3 rounded-lg border-2 border-gray-200
+                          focus:border-blue-500 focus:ring-blue-500 text-base
+                          placeholder-gray-400 shadow-sm">
+                    </div>
+                </div>
+
+                <!-- Email Field -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" formControlName="email"
+                           class="block w-full px-4 py-3 rounded-lg border-2 border-gray-200
+                        focus:border-blue-500 focus:ring-blue-500 text-base
+                        placeholder-gray-400 shadow-sm">
+                </div>
+
+                <!-- Password Fields -->
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Mot de passe</label>
+                        <input type="password" formControlName="password"
+                               class="block w-full px-4 py-3 rounded-lg border-2 border-gray-200
+                          focus:border-blue-500 focus:ring-blue-500 text-base
+                          placeholder-gray-400 shadow-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Confirmer le mot de passe</label>
+                        <input type="password" formControlName="confirmPassword"
+                               class="block w-full px-4 py-3 rounded-lg border-2 border-gray-200
+                          focus:border-blue-500 focus:ring-blue-500 text-base
+                          placeholder-gray-400 shadow-sm">
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                        class="w-full py-4 px-4 text-white bg-blue-500 hover:bg-blue-600
+                       rounded-lg transition-colors focus:outline-none focus:ring-2
+                       focus:ring-blue-500 focus:ring-offset-2 text-base font-medium">
+                    S'inscrire
+                </button>
+            </form>
+
+            <!-- Login Link -->
+            <p class="mt-6 text-center text-gray-600">
+                Déjà inscrit?
+                <a routerLink="/login" class="text-blue-500 hover:text-blue-600">Se connecter</a>
+            </p>
+        </div>
+    </div>
+</div>

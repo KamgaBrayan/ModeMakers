@@ -13,34 +13,34 @@ export class PrecommandsService {
 
   // Get all precommands
   getAllPrecommands(): Observable<Precommand[]> {
-    return this.http.get<Precommand[]>(`${this.apiUrl}/precommands`);
+    return this.http.get<Precommand[]>(`${this.apiUrl}/preOrders`);
   }
 
   // Get precommand by ID
   getPrecommandById(id: number): Observable<Precommand> {
-    return this.http.get<Precommand>(`${this.apiUrl}/precommands/${id}`);
+    return this.http.get<Precommand>(`${this.apiUrl}/preOrders/${id}`);
   }
 
   // Get precommands by status
   getPrecommandsByStatus(status: string): Observable<Precommand[]> {
-    return this.http.get<Precommand[]>(`${this.apiUrl}/precommands?status=${status}`);
+    return this.http.get<Precommand[]>(`${this.apiUrl}/preOrders?status=${status}`);
   }
 
   // Create new precommand
   createPrecommand(precommand: Precommand): Observable<Precommand> {
     const validatedPrecommand = this.validatePriceFields(precommand);
-    return this.http.post<Precommand>(`${this.apiUrl}/precommands`, validatedPrecommand);
+    return this.http.post<Precommand>(`${this.apiUrl}/preOrders`, validatedPrecommand);
   }
 
   // Update precommand
   updatePrecommand(id: number, precommand: Partial<Precommand>): Observable<Precommand> {
     const validatedPrecommand = this.validatePriceFields(precommand);
-    return this.http.put<Precommand>(`${this.apiUrl}/precommands/${id}`, validatedPrecommand);
+    return this.http.put<Precommand>(`${this.apiUrl}/preOrders/${id}`, validatedPrecommand);
   }
 
   // Delete precommand
   deletePrecommand(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/precommands/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/preOrders/${id}`);
   }
 
   validatePriceFields(precommand: any): any {

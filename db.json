@@ -1,38 +1,169 @@
 {
-    "measures": [
-      {
-        "id": 1,
-        "user": {
-          "id": 101,
-          "user_name": "john_doe",
-          "roles": ["admin", "editor"]
-        },
-        "measurements": {
-          "shoulder_length": 45,
-          "head_circumference": 57,
-          "arm_length": 65,
-          "chest_circumference": 100,
-          "underbust_circumference": 85,
-          "waist_circumference": 80,
-          "iliac_crest_circumference": 88,
-          "hip_circumference": 95,
-          "thigh_circumference": 55,
-          "knee_circumference": 40,
-          "calf_circumference": 38,
-          "ankle_circumference": 25,
-          "biceps_circumference": 32,
-          "elbow_circumference": 28,
-          "forearm_circumference": 26,
-          "wrist_circumference": 18,
-          "wrist_to_elbow_length": 30,
-          "knee_to_ankle_length": 42,
-          "inseam_length": 80,
-          "outseam_length": 105,
-          "total_height": 180,
-          "front_body_length": 55,
-          "back_body_length": 57
-        }
+  "measures": [
+    {
+      "id": 1,
+      "user": {
+        "id": 101,
+        "user_name": "john_doe",
+        "roles": ["admin", "editor"]
+      },
+      "measurements": {
+        "shoulder_length": 45,
+        "head_circumference": 57,
+        "arm_length": 65,
+        "chest_circumference": 100,
+        "underbust_circumference": 85,
+        "waist_circumference": 80,
+        "iliac_crest_circumference": 88,
+        "hip_circumference": 95,
+        "thigh_circumference": 55,
+        "knee_circumference": 40,
+        "calf_circumference": 38,
+        "ankle_circumference": 25,
+        "biceps_circumference": 32,
+        "elbow_circumference": 28,
+        "forearm_circumference": 26,
+        "wrist_circumference": 18,
+        "wrist_to_elbow_length": 30,
+        "knee_to_ankle_length": 42,
+        "inseam_length": 80,
+        "outseam_length": 105,
+        "total_height": 180,
+        "front_body_length": 55,
+        "back_body_length": 57
       }
-      
-    ]
-  }
+    },
+    {
+      "id": 2,
+      "user": {
+        "id": 102,
+        "user_name": "jane_smith",
+        "roles": ["editor"]
+      },
+      "measurements": {
+        "shoulder_length": 42,
+        "head_circumference": 55,
+        "arm_length": 62,
+        "chest_circumference": 95,
+        "underbust_circumference": 80,
+        "waist_circumference": 75,
+        "iliac_crest_circumference": 85,
+        "hip_circumference": 92,
+        "thigh_circumference": 52,
+        "knee_circumference": 38,
+        "calf_circumference": 36,
+        "ankle_circumference": 23,
+        "biceps_circumference": 30,
+        "elbow_circumference": 26,
+        "forearm_circumference": 25,
+        "wrist_circumference": 17,
+        "wrist_to_elbow_length": 28,
+        "knee_to_ankle_length": 40,
+        "inseam_length": 78,
+        "outseam_length": 103,
+        "total_height": 175,
+        "front_body_length": 53,
+        "back_body_length": 55
+      }
+    },
+    {
+      "id": 3,
+      "user": {
+        "id": 103,
+        "user_name": "michael_brown",
+        "roles": ["user"]
+      },
+      "measurements": {
+        "shoulder_length": 47,
+        "head_circumference": 58,
+        "arm_length": 67,
+        "chest_circumference": 105,
+        "underbust_circumference": 88,
+        "waist_circumference": 83,
+        "iliac_crest_circumference": 90,
+        "hip_circumference": 98,
+        "thigh_circumference": 58,
+        "knee_circumference": 42,
+        "calf_circumference": 39,
+        "ankle_circumference": 26,
+        "biceps_circumference": 34,
+        "elbow_circumference": 29,
+        "forearm_circumference": 27,
+        "wrist_circumference": 19,
+        "wrist_to_elbow_length": 31,
+        "knee_to_ankle_length": 43,
+        "inseam_length": 82,
+        "outseam_length": 108,
+        "total_height": 185,
+        "front_body_length": 56,
+        "back_body_length": 58
+      }
+    },
+    {
+      "id": 4,
+      "user": {
+        "id": 104,
+        "user_name": "sarah_lee",
+        "roles": ["user"]
+      },
+      "measurements": {
+        "shoulder_length": 40,
+        "head_circumference": 54,
+        "arm_length": 60,
+        "chest_circumference": 90,
+        "underbust_circumference": 78,
+        "waist_circumference": 70,
+        "iliac_crest_circumference": 82,
+        "hip_circumference": 88,
+        "thigh_circumference": 50,
+        "knee_circumference": 37,
+        "calf_circumference": 35,
+        "ankle_circumference": 22,
+        "biceps_circumference": 28,
+        "elbow_circumference": 25,
+        "forearm_circumference": 24,
+        "wrist_circumference": 16,
+        "wrist_to_elbow_length": 27,
+        "knee_to_ankle_length": 39,
+        "inseam_length": 76,
+        "outseam_length": 100,
+        "total_height": 170,
+        "front_body_length": 52,
+        "back_body_length": 54
+      }
+    },
+    {
+      "id": 5,
+      "user": {
+        "id": 105,
+        "user_name": "david_white",
+        "roles": ["admin"]
+      },
+      "measurements": {
+        "shoulder_length": 46,
+        "head_circumference": 56,
+        "arm_length": 66,
+        "chest_circumference": 102,
+        "underbust_circumference": 86,
+        "waist_circumference": 82,
+        "iliac_crest_circumference": 89,
+        "hip_circumference": 96,
+        "thigh_circumference": 56,
+        "knee_circumference": 41,
+        "calf_circumference": 37,
+        "ankle_circumference": 24,
+        "biceps_circumference": 33,
+        "elbow_circumference": 28,
+        "forearm_circumference": 26,
+        "wrist_circumference": 18,
+        "wrist_to_elbow_length": 30,
+        "knee_to_ankle_length": 42,
+        "inseam_length": 81,
+        "outseam_length": 106,
+        "total_height": 182,
+        "front_body_length": 55,
+        "back_body_length": 57
+      }
+    }
+  ]
+}

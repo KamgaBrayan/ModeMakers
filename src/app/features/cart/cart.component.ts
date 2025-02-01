@@ -3,7 +3,6 @@ import { NavbarComponent } from "../../shared/components/navbar/navbar.component
 import { FooterComponent } from "../../shared/components/footer/footer.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from "../../shared/components/header/header.component";
 
 interface CartItem {
   image: string;
@@ -16,10 +15,11 @@ interface CartItem {
 }
 
 @Component({
-  selector: 'app-carts',
-  imports: [NavbarComponent, FooterComponent, CommonModule, ReactiveFormsModule, HeaderComponent],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
+    selector: 'app-carts',
+    imports: [NavbarComponent, FooterComponent, CommonModule, ReactiveFormsModule],
+    templateUrl: './cart.component.html',
+    standalone: true,
+    styleUrl: './cart.component.css'
 })
 
 export class CartComponent implements OnInit {
