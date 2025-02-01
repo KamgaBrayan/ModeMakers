@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DashboardService } from '../../../../core/services/dashboard.service';
+import { ProductService } from '../../../../core/service/product.service';
+import { Product } from '../../../../shared/interfaces/product.interface';
+import { ApiResponse } from '../../../../shared/interfaces/apiRequest.interface';
 
 @Component({
   selector: 'app-top-selling-models',
@@ -54,7 +56,7 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
                 <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
-                      <img [src]="product.image" class="h-10 w-10 rounded-full" alt="{{ product.name }}">
+                      <img [src]="product.images[0]" class="h-10 w-10 rounded-full" alt="{{ product.name }}">
                     </div>
                     <div class="ml-3">
                       <p class="text-gray-900 dark:text-white whitespace-no-wrap">
@@ -64,17 +66,17 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
                   </div>
                 </td>
                 <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {{ product.sales }}
+                  {{ product.rating }}
                 </td>
                 <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   {{ product.category }}
                 </td>
                 <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  XAF {{ product.price }}
+                  XAF {{ product.delivery[0].price }}
                 </td>
                 <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <span [class]="product.stockStatus === 'In Stock' ? 'bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300'">
-                    {{ product.stockStatus }}
+                  <span [class]="product.isAvailable ? 'bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300'">
+                    {{ product.isAvailable ? 'In Stock' : 'Out of Stock' }}
                   </span>
                 </td>
               </tr>
@@ -116,28 +118,40 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
   `
 })
 export class TopSellingModelsComponent implements OnInit {
-  products: any[] = [];
+  products: Product[] = [];
   currentPage = 1;
   pageSize = 5;
   totalItems = 0;
   currentFilter = 'all';
   stockFilter = 'all';
-  Math = Math; // Make Math available in template
+  Math = Math;
+  loading = false;
+  error: string | null = null;
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.loadProducts();
   }
 
   loadProducts() {
-    this.dashboardService.getTopSellingModels(this.currentPage, this.pageSize).subscribe(
-      products => {
-        this.products = products;
-        // For demo purposes, set total items to a reasonable number
-        this.totalItems = 20;
+    this.loading = true;
+    this.productService.getTopSellingModels(this.currentPage, this.pageSize).subscribe({
+      next: (response: ApiResponse<Product[]>) => {
+        if (response.success) {
+          this.products = response.data;
+          this.totalItems = response.data.length;
+        } else {
+          this.error = response.message || 'Error loading products';
+        }
+        this.loading = false;
+      },
+      error: (error) => {
+        this.error = 'Error loading products';
+        this.loading = false;
+        console.error('Error:', error);
       }
-    );
+    });
   }
 
   applyFilter() {
@@ -153,7 +167,8 @@ export class TopSellingModelsComponent implements OnInit {
   }
 
   nextPage() {
-    if (this.currentPage * this.pageSize < this.totalItems) {
+    const maxPage = Math.ceil(this.totalItems / this.pageSize);
+    if (this.currentPage < maxPage) {
       this.currentPage++;
       this.loadProducts();
     }

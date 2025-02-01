@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { FavoritesService, Product } from '../../../../core/services/favorites.service';
+import { Product } from '../../../../shared/interfaces/product.interface';
+import { ProductService } from '../../../../core/service/product.service';
 
 @Component({
   selector: 'app-favoris',
@@ -168,7 +169,7 @@ export class FavorisComponent implements OnInit {
     size: { small: false, medium: false, large: false }
   };
 
-  constructor(private favoritesService: FavoritesService) {}
+  constructor(private favorites: ProductService) {}
 
   ngOnInit() {
     const userId = 2; // In a real app, get from auth service
@@ -176,10 +177,10 @@ export class FavorisComponent implements OnInit {
   }
 
   loadFavorites(userId: number) {
-    this.favoritesService.getFavoritesByUserId(userId)
+    this.favorites.getFavoriteProducts(userId)
       .subscribe(favorites => {
         if (favorites) {
-          this.favoriteProducts = favorites.product;
+          this.favoriteProducts = favorites.data;
           this.applyFilters();
         }
       });
@@ -232,7 +233,7 @@ export class FavorisComponent implements OnInit {
 
   removeFromFavorites(productId: number) {
     const userId = 2; // In a real app, get from auth service
-    this.favoritesService.removeFromFavorites(userId, productId)
+    this.favorites.removeFromFavorites(userId, productId)
       .subscribe(() => {
         this.favoriteProducts = this.favoriteProducts.filter(p => p.id !== productId);
         this.applyFilters();

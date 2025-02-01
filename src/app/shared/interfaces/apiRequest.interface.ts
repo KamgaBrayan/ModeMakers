@@ -7,6 +7,7 @@ import {Review} from './review.interface';
 import {Measurement} from './measurement.interface';
 
 export interface ApiResponse<T> {
+  success: boolean;
   data: T;
   status: number;
   message?: string;

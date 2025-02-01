@@ -18,3 +18,16 @@ export interface Product {
   materials: Material[];
   user: StylistUser;
 }
+
+export interface LocationSales {
+  location: string;
+  sales: number;
+  percentage: number;
+}
+
+export interface ApiResponse<T> {
+  success: boolean;
+  status: number;
+  message: string;
+  data: T;
+}

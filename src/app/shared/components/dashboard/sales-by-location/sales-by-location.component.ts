@@ -1,43 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardService } from '../../../../core/services/dashboard.service';
+import { ProductService } from '../../../../core/service/product.service';
+import { ApiResponse } from '../../../../shared/interfaces/apiRequest.interface';
+
+interface LocationSales {
+  location: string;
+  sales: number;
+  percentage: number;
+}
 
 @Component({
   selector: 'app-sales-by-location',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="sales-by-location">
-      <div class="header">
-        <h3 class="title">Sales by Location</h3>
-        <div class="filters">
-          <button class="filter-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
-            </svg>
-            Filters
-          </button>
+    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+      <div class="px-4 py-5 sm:p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">
+            Sales by Location
+          </h3>
+          <div class="flex items-center space-x-2">
+            <button class="text-sm text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300">
+              View all
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="loading" class="flex justify-center items-center py-8">
+          <div class="text-gray-500">Loading sales data...</div>
+        </div>
+
+        <div *ngIf="error" class="text-red-500 text-center py-4">{{ error }}</div>
+
+        <div *ngIf="!loading && !error" class="flow-root">
+          <div class="sales-list">
+            <div class="location-item" *ngFor="let location of salesByLocation">
+              <div class="location-info">
+                <div class="location-name">{{location.location}}</div>
+                <div class="location-sales">{{location.sales | number}} sales</div>
+              </div>
+              <div class="progress-bar">
+                <div class="progress" [style.width.%]="location.percentage"></div>
+              </div>
+              <div class="percentage">{{location.percentage}}%</div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="sales-list" *ngIf="!loading; else loadingTemplate">
-        <div class="location-item" *ngFor="let location of salesByLocation">
-          <div class="location-info">
-            <div class="location-name">{{location.location}}</div>
-            <div class="location-sales">{{location.sales | number}} sales</div>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" [style.width.%]="location.percentage"></div>
-          </div>
-          <div class="percentage">{{location.percentage}}%</div>
-        </div>
-      </div>
-
-      <ng-template #loadingTemplate>
-        <div class="loading">Loading sales data...</div>
-      </ng-template>
-
-      <div class="error-message" *ngIf="error">{{error}}</div>
     </div>
   `,
   styles: [`
@@ -127,29 +137,14 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
       color: #1f2937;
       text-align: right;
     }
-
-    .loading {
-      text-align: center;
-      padding: 2rem;
-      color: #6b7280;
-    }
-
-    .error-message {
-      text-align: center;
-      padding: 1rem;
-      color: #dc2626;
-      background: #fee2e2;
-      border-radius: 0.375rem;
-      margin-top: 1rem;
-    }
   `]
 })
 export class SalesByLocationComponent implements OnInit {
-  salesByLocation: any[] = [];
+  salesByLocation: LocationSales[] = [];
   loading = true;
   error: string | null = null;
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.loadSalesByLocation();
@@ -157,9 +152,13 @@ export class SalesByLocationComponent implements OnInit {
 
   loadSalesByLocation() {
     this.loading = true;
-    this.dashboardService.getSalesByLocation().subscribe({
-      next: (data) => {
-        this.salesByLocation = data;
+    this.productService.getSalesByLocation().subscribe({
+      next: (response: ApiResponse<LocationSales[]>) => {
+        if (response.success) {
+          this.salesByLocation = response.data;
+        } else {
+          this.error = response.message || 'Error loading sales by location';
+        }
         this.loading = false;
       },
       error: (error) => {

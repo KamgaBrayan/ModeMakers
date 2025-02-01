@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DashboardService } from '../../../../core/services/dashboard.service';
+import { OrderService } from '../../../../core/service/order.service';
+import { Order } from '../../../../shared/interfaces/order.interface';
+import { ApiResponse } from '../../../../shared/interfaces/apiRequest.interface';
 
 @Component({
   selector: 'app-recent-orders',
@@ -42,36 +44,35 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let order of orders" class="text-gray-700 dark:text-gray-100">
-                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">#{{ order.id }}</td>
+              <tr *ngFor="let order of filteredOrders" class="text-gray-700 dark:text-gray-100">
+                <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  #{{ order.id }}
+                </td>
                 <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <div class="flex items-center">
-                    <div class="flex-shrink-0 w-10 h-10">
-                      <img class="w-10 h-10 rounded-full" [src]="order.payment.preOrder.photos[0]" alt="Product image">
-                    </div>
                     <div class="ml-3">
                       <p class="text-gray-900 dark:text-white whitespace-no-wrap">
-                        {{ order.payment.preOrder.user.user_name }}
+                        {{ order.user.user_name }}
                       </p>
                       <p class="text-gray-600 dark:text-gray-400 whitespace-no-wrap">
-                        {{ order.payment.preOrder.specification }}
+                        Specifications of the order
                       </p>
                     </div>
                   </div>
                 </td>
                 <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  XAF {{ order.payment.account }}
+                  XAF {{ order.payment.total }}
                 </td>
                 <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {{ order.payment.paymentMethod }}
+                  {{ order.payment.method }}
                 </td>
                 <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <span [class]="getStatusClass(order.payment.status)">
-                    {{ order.payment.status }}
+                  <span [class]="getStatusClass(order.status)">
+                    {{ order.status }}
                   </span>
                 </td>
                 <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {{ order.payment.createdAt | date:'mediumDate' }}
+                  {{ order.createdAt | date:'mediumDate' }}
                 </td>
               </tr>
             </tbody>
@@ -110,6 +111,7 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
       </div>
     </div>
   `,
+  
   styles: [`
     .relative {
       position: relative;
@@ -620,60 +622,76 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
   `]
 })
 export class RecentOrdersComponent implements OnInit {
-  orders: any[] = [];
+  orders: Order[] = [];
+  filteredOrders: Order[] = [];
   currentPage = 1;
   pageSize = 5;
   totalItems = 0;
   statusFilter = 'all';
   paymentMethodFilter = 'all';
   Math = Math;
+  loading = false;
+  error: string | null = null;
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private orderService: OrderService) {}
 
   ngOnInit() {
     this.loadOrders();
   }
 
   loadOrders() {
-    this.dashboardService.getRecentOrdersWithPagination(this.currentPage, this.pageSize).subscribe(
-      orders => {
-        this.orders = orders;
-        // For demo purposes, set total items to a reasonable number
-        this.totalItems = 20;
+    this.loading = true;
+    this.orderService.getRecentOrders(this.pageSize).subscribe({
+      next: (response: ApiResponse<Order[]>) => {
+        if (response.success) {
+          this.orders = response.data;
+          this.applyFilter();
+          this.totalItems = response.data.length;
+        } else {
+          this.error = response.message || 'Error loading orders';
+        }
+        this.loading = false;
+      },
+      error: (error) => {
+        this.error = 'Error loading orders';
+        this.loading = false;
+        console.error('Error:', error);
       }
-    );
+    });
   }
 
   getStatusClass(status: string): string {
-    const baseClasses = 'text-xs font-medium mr-2 px-2.5 py-0.5 rounded';
     switch (status.toLowerCase()) {
-      case 'confirmed':
-        return `bg-green-100 text-green-800 ${baseClasses} dark:bg-green-900 dark:text-green-300`;
       case 'pending':
-        return `bg-yellow-100 text-yellow-800 ${baseClasses} dark:bg-yellow-900 dark:text-yellow-300`;
+        return 'bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300';
+      case 'confirmed':
+        return 'bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300';
       case 'canceled':
-        return `bg-red-100 text-red-800 ${baseClasses} dark:bg-red-900 dark:text-red-300`;
+        return 'bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300';
       default:
-        return `bg-gray-100 text-gray-800 ${baseClasses} dark:bg-gray-700 dark:text-gray-300`;
+        return 'bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300';
     }
   }
 
   applyFilter() {
+    this.filteredOrders = this.orderService.filterOrders(this.orders, {
+      status: this.statusFilter === 'all' ? undefined : this.statusFilter,
+      paymentMethod: this.paymentMethodFilter === 'all' ? undefined : this.paymentMethodFilter
+    });
+    this.totalItems = this.filteredOrders.length;
     this.currentPage = 1;
-    this.loadOrders();
   }
 
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.loadOrders();
     }
   }
 
   nextPage() {
-    if (this.currentPage * this.pageSize < this.totalItems) {
+    const maxPage = Math.ceil(this.totalItems / this.pageSize);
+    if (this.currentPage < maxPage) {
       this.currentPage++;
-      this.loadOrders();
     }
   }
 }

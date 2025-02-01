@@ -1,8 +1,31 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Chart } from 'chart.js/auto';
+import { OrderService } from '../../../../core/service/order.service';
+import { ApiResponse } from '../../../../shared/interfaces/apiRequest.interface';
+
+interface OrderStats {
+  totalOrders: number;
+  totalRevenue: number;
+  averageOrderValue: number;
+  completionRate: number;
+  monthlyStats: Array<{
+    month: string;
+    revenue: number;
+    orders: number;
+  }>;
+}
+
+interface OrderStatsResponse {
+  data: OrderStats;
+  success: boolean;
+  message: string;
+}
 
 @Component({
   selector: 'app-stats-chart',
+  standalone: true,
+  imports: [CommonModule],
   template: `
     <div class="bg-white p-6 rounded-xl shadow-sm">
       <div class="flex justify-between items-center mb-4">
@@ -14,37 +37,79 @@ import { Chart } from 'chart.js/auto';
           </span>
           <span class="flex items-center">
             <span class="w-3 h-3 rounded-full bg-orange-500 mr-1"></span>
-            <span class="text-sm text-gray-600">Sales</span>
+            <span class="text-sm text-gray-600">Orders</span>
           </span>
         </div>
       </div>
-      <canvas id="statsChart"></canvas>
+      <div *ngIf="loading" class="flex justify-center items-center h-64">
+        <div class="text-gray-500">Loading statistics...</div>
+      </div>
+      <div *ngIf="error" class="text-red-500 text-center p-4">{{ error }}</div>
+      <canvas *ngIf="!loading && !error" id="statsChart"></canvas>
     </div>
   `
 })
-export class StatsChartComponent implements AfterViewInit {
-  ngAfterViewInit() {
-    this.createChart();
+export class StatsChartComponent implements AfterViewInit, OnInit {
+  loading = true;
+  error: string | null = null;
+  private chart: Chart | null = null;
+
+  constructor(private orderService: OrderService) {}
+
+  ngOnInit() {
+    //this.loadStatistics();
   }
 
-  createChart() {
+  ngAfterViewInit() {
+    // Chart will be created after data is loaded
+  }
+/*
+  loadStatistics() {
+    this.loading = true;
+    this.orderService.getOrderStats().subscribe({
+      next: (response: OrderStatsResponse) => {
+        if (response.success) {
+          this.createChart(response.data);
+        } else {
+          this.error = response.message || 'Error loading statistics';
+        }
+        this.loading = false;
+      },
+      error: (error) => {
+        this.error = 'Error loading statistics';
+        this.loading = false;
+        console.error('Error:', error);
+      }
+    });
+  }
+*/
+
+  createChart(data: OrderStats) {
     if (typeof window !== 'undefined') {
       const ctx = document.getElementById('statsChart') as HTMLCanvasElement;
-      new Chart(ctx, {
+      if (this.chart) {
+        this.chart.destroy();
+      }
+
+      const months = data.monthlyStats.map(stat => stat.month);
+      const revenue = data.monthlyStats.map(stat => stat.revenue);
+      const orders = data.monthlyStats.map(stat => stat.orders);
+
+      this.chart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          labels: months,
           datasets: [
             {
               label: 'Revenue',
-              data: [1000, 1200, 900, 1600, 1200, 1500, 1300, 1800, 1400, 1100, 1700, 1500],
+              data: revenue,
               borderColor: 'rgb(147, 51, 234)',
               tension: 0.4,
               fill: false
             },
             {
-              label: 'Sales',
-              data: [800, 1000, 1100, 1300, 1000, 1200, 1100, 1400, 1200, 900, 1500, 1300],
+              label: 'Orders',
+              data: orders,
               borderColor: 'rgb(249, 115, 22)',
               tension: 0.4,
               fill: false
@@ -62,8 +127,7 @@ export class StatsChartComponent implements AfterViewInit {
             y: {
               beginAtZero: true,
               grid: {
-                display: true,
-                color: '#f3f4f6'
+                color: 'rgba(0, 0, 0, 0.1)'
               }
             },
             x: {
