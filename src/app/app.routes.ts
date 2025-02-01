@@ -4,7 +4,6 @@ import { ProductDetailComponent } from './features/product-detail/product-detail
 import { NotFoundComponent } from './features/not-found/not-found.component';
 import { ContactComponent } from './features/contact/contact.component';
 import { AboutComponent } from './features/about/about.component';
-import { CartComponent } from './features/cart/cart.component';
 import { StylistsComponent } from './features/stylists/stylists.component';
 import { GarmentComponent } from './features/garment/garment.component';
 import { GarmentSpecialComponent } from './features/garment-special/garment-special.component';
@@ -12,14 +11,13 @@ import { StylistProfileComponent } from './features/stylist-profile/stylist-prof
 import {HomeComponent} from './features/home/home.component';
 import {DashproductsComponent} from './features/Dashproducts/Dashproducts.component';
 import {CartsComponent} from "./features/carts/carts.component";
-import {OutfitsDetailsComponent} from "./features/outfits-details/outfits-details.component";
 import {RegisterComponent} from "./features/register/register.component";
 import {LoginComponent} from "./features/login/login.component";
 export const routes: Routes = [
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'products', component: ProductsComponent },
-  { path: 'products/:id', component: OutfitsDetailsComponent },
+  { path: 'products/:id', component: ProductDetailComponent },
   { path: 'contact', component: ContactComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'cart', component: CartsComponent },

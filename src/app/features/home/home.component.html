@@ -1,24 +1,137 @@
 <app-navbar/>
 
-<div class="home-container">
-  <div class="content">
-    <h1>{{ title }}</h1>
-    <p class="subtitle">Your Fashion Journey Starts Here</p>
-    <div class="feature-cards">
-      <div class="card">
-        <h3>Design</h3>
-        <p>Create stunning fashion designs</p>
-      </div>
-      <div class="card">
-        <h3>Collaborate</h3>
-        <p>Work with other designers</p>
-      </div>
-      <div class="card">
-        <h3>Share</h3>
-        <p>Share your creations with the world</p>
-      </div>
+<!-- src/app/pages/landing/landing.component.html -->
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Découvrez Votre Style Unique
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                Une plateforme qui connecte les stylistes professionnels avec ceux qui cherchent à exprimer leur personnalité à travers la mode.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a [routerLink]="['/products']"
+                   class="bg-white text-indigo-600 cursor-pointer px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors">
+                    Découvrir
+                </a>
+                <a [routerLink]="['/register']"
+                   class="border-2 border-white cursor-pointer text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-indigo-600 transition-colors">
+                    S'inscrire
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+
+    <!-- Curved bottom -->
+    <div class="absolute bottom-0 w-full">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 30L60 25C120 20 240 10 360 15C480 20 600 40 720 45C840 50 960 40 1080 35C1200 30 1320 30 1380 30L1440 30V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V30Z"
+                  fill="white"/>
+        </svg>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div *ngFor="let stat of stats" class="p-6">
+                <p class="text-4xl font-bold text-indigo-600">{{ stat.number }}</p>
+                <p class="text-gray-600 mt-2">{{ stat.label }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Pourquoi Nous Choisir</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Nous offrons une expérience unique qui combine expertise en mode, technologie et service personnalisé.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-6 bg-white rounded-xl shadow-sm">
+                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Stylistes Professionnels</h3>
+                <p class="text-gray-600">Accédez à un réseau de stylistes qualifiés prêts à vous conseiller.</p>
+            </div>
+
+            <div class="p-6 bg-white rounded-xl shadow-sm">
+                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Livraison Rapide</h3>
+                <p class="text-gray-600">Service de livraison efficace pour recevoir vos articles rapidement.</p>
+            </div>
+
+            <div class="p-6 bg-white rounded-xl shadow-sm">
+                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Qualité Garantie</h3>
+                <p class="text-gray-600">Tous nos produits sont soigneusement sélectionnés pour leur qualité.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section id="products" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Nos Produits Populaires</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Découvrez notre sélection de produits tendance choisis par nos stylistes.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div *ngFor="let product of products" class="flex justify-center">
+                <app-card-product
+                    [product]="product"
+                    [productId]="product.id">
+                </app-card-product>
+            </div>
+        </div>
+        <div class="flex justify-center mt-8">
+            <button
+                    [routerLink]="['/products']"
+                    class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                View More
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-indigo-600 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">
+            Prêt à Transformer Votre Style ?
+        </h2>
+        <p class="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
+            Rejoignez notre communauté et découvrez votre style unique avec l'aide de nos stylistes professionnels.
+        </p>
+        <a routerLink="/register"
+           class="inline-block bg-white text-indigo-600 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors">
+            Commencer Maintenant
+        </a>
+    </div>
+</section>
+
 
 <app-footer/>
