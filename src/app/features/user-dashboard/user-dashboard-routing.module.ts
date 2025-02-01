@@ -4,6 +4,7 @@ import { DashboardLayoutComponent } from './components/dashboard-layout/dashboar
 import { MensurationsComponent } from './pages/mensurations/mensurations.component';
 import { FavorisComponent } from './pages/favoris/favoris.component';
 import { CommandesComponent } from './pages/commandes/commandes.component';
+import { PrecommandesComponent } from './pages/precommandes/precommandes.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { ProfilComponent } from './pages/profil/profil.component';
 import { CreateCommandComponent } from './pages/create-command/create-command.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: 'favoris', component: FavorisComponent },
       { path: 'commandes', component: CommandesComponent },
       { path: 'notifications', component: NotificationsComponent },
-      { path: 'create-command', component: CreateCommandComponent }
+      { path: 'create-command', component: CreateCommandComponent },
+      { path: 'precommandes', component: PrecommandesComponent }
     ]
   }
 ];

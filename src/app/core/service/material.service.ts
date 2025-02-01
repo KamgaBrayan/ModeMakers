@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import {ApiResponse, CreateMaterial, UpdateMaterial} from '../../shared/interfaces/apiRequest.interface';
-import {HttpClient} from '@angular/common/http';
-import {Material} from '../../shared/interfaces/material.interface';
+import { Observable } from 'rxjs';
+import { ApiResponse, CreateMaterial, UpdateMaterial } from '../../shared/interfaces/apiRequest.interface';
+import { HttpClient } from '@angular/common/http';
+import { Material } from '../../shared/interfaces/material.interface';
 
-const API_URL = 'http://localhost:3000/material';
+const API_URL = 'http://localhost:3001/material';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MaterialService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllMaterials(): Observable<Material[]> {
     return this.http.get<Material[]>(`${API_URL}`);

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {ApiResponse, CreateProductRequest, UpdateProductRequest} from '../../shared/interfaces/apiRequest.interface';
-import {Product} from '../../shared/interfaces/product.interface';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ApiResponse, CreateProductRequest, UpdateProductRequest } from '../../shared/interfaces/apiRequest.interface';
+import { Product } from '../../shared/interfaces/product.interface';
 
-const API_URL = 'http://localhost:3000/products';
+const API_URL = 'http://localhost:3001/products';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}`);

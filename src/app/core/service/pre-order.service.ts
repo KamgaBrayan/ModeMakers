@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import {ApiResponse, CreatePreOrderRequest, UpdatePreOrderRequest} from '../../shared/interfaces/apiRequest.interface';
-import {HttpClient} from '@angular/common/http';
-import {PreOrder} from '../../shared/interfaces/preOrder.interface';
+import { Observable } from 'rxjs';
+import { ApiResponse, CreatePreOrderRequest, UpdatePreOrderRequest } from '../../shared/interfaces/apiRequest.interface';
+import { HttpClient } from '@angular/common/http';
+import { PreOrder } from '../../shared/interfaces/preOrder.interface';
 
 
-const API_URL = 'http://localhost:3000/preorder';
+const API_URL = 'http://localhost:3001';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,14 @@ const API_URL = 'http://localhost:3000/preorder';
 
 export class PreOrderService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getUserPreOrders(userId: number): Observable<PreOrder[]> {
-    return this.http.get<PreOrder[]>(`${API_URL}/user/${userId}`);
+    return this.http.get<PreOrder[]>(`${API_URL}/${userId}/orders`);
+  }
+
+  getPreOrders(): Observable<PreOrder[]> {
+    return this.http.get<PreOrder[]>(`${API_URL}/preOrders`);
   }
 
   getStylistPreOrders(stylistId: number): Observable<PreOrder[]> {
@@ -35,7 +39,7 @@ export class PreOrderService {
     return this.http.patch<ApiResponse<PreOrder>>(`${API_URL}/${id}`, preOrder);
   }
 
-  deletePreOrder(id: number): Observable<void> {
+  cancelPreOrder(id: number): Observable<void> {
     return this.http.delete<void>(`${API_URL}/${id}`);
   }
 

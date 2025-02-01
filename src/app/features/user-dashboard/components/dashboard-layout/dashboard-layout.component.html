@@ -29,8 +29,8 @@
         <nav class="space-y-1">
           @for (item of navItems; track item) {
             <a [routerLink]="item.path"
-               routerLinkActive="bg-[#3734A9] text-white"
-               class="flex items-center px-4 py-3 text-sm font-medium rounded-lg hover:bg-gray-100 text-gray-900 group">
+               routerLinkActive="bg-indigo-700 text-white"
+               class="flex items-center px-4 py-3 text-sm font-medium rounded-lg hover:bg-indigo-300 text-gray-900 group">
               <i class="fas fa-{{item.icon}} mr-3 h-5 w-5"></i>
               <span [class.hidden]="!isSidebarOpen">{{item.label}}</span>
             </a>

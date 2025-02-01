@@ -8,10 +8,12 @@ import { AvailabilityComponent } from '../../shared/components/availability/avai
 import { ReviewsComponent } from '../../shared/components/reviews/reviews.component'
 import { SignupComponent } from "../../shared/components/signup/signup.component";
 import { DescriptionStylistComponent } from '../../shared/components/description-stylist/description-stylist.component';
-import { Stylist } from '../../shared/models/stylist.interface';
-import { Product } from '../../shared/models/product_.interface';
-import { Review } from '../../shared/models/review.interface';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
+import { StylistService } from '../../core/service/stylist.service';
+import { ReviewService } from '../../core/service/review.service';
+import { StylistUser } from '../../shared/interfaces/stylistUser.interface';
+import { Product } from '../../shared/interfaces/product.interface';
+import { Review } from '../../shared/interfaces/review.interface';
 
 @Component({
   selector: 'app-stylist-profile',
@@ -25,88 +27,63 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
     AvailabilityComponent,
     ReviewsComponent,
     SignupComponent
-],
+  ],
   templateUrl: './stylist-profile.component.html',
   styleUrls: ['./stylist-profile.component.css']
 })
 export class StylistProfileComponent implements OnInit {
-  stylist!: Stylist;
+  stylist!: StylistUser;
   products: Product[] = []; // Initialize the products array
   selectedSort: string = 'popularity';  // Par défaut, tri par popularité
   filteredProducts: Product[] = [];
   reviews: Review[] = [];
+  stylistReviews: Review[] = [];
   rating: number = 0;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute,
+    private stylistService: StylistService,
+    private reviewService: ReviewService) { }
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.fetchStylistById(id);
-    this.fetchProducts();
-    this.fetchReviews();
-  }
+    this.stylistService.getStylistById(Number(id)).subscribe(stylist => {
+    this.stylist = stylist;
+    this.filteredProducts = stylist.products;
+    this.products = this.stylist.products;
+      console.log(this.products)
 
-  async fetchStylistById(id: string | null): Promise<void> {
-    // Charge les stylistes depuis le fichier JSON
-    fetch('/datas/stylists.json')
-      .then(response => response.json())
-      .then((stylists: Stylist[]) => {
-        // Trouver le styliste par son ID
-        const stylist = stylists.find(stylist => stylist.id === Number(id));
-        if (stylist) {
-          this.stylist = stylist;
-          
-        } else {
-          console.error("Stylist not found");
-        }
-      })
-      .catch(error => {
-        console.error("Erreur lors de la récupération du styliste :", error);
-      });
-  }
+    for (let product of this.stylist.products) {
+      for (let review of this.getProductReviews(product.id)) {
+        this.stylistReviews.push(review);
+      }
+    }
 
-  async fetchProducts(): Promise<void> {
-    // Fetch products from the JSON file
-    fetch('/datas/products.json')
-      .then(response => response.json())
-      .then((data: Product[]) => {
-        // Filter products by stylist ID
-        this.products = data.filter(product => product.stylist.id === this.stylist.id);
-        this.filteredProducts = [...this.products]; // Initialiser le tableau des produits filtrés
-      })
-      .catch(error => {
-        console.error("Error fetching products:", error);
-      });
-  }
+    this.rating = this.products ? this.products.reduce((acc, product) => acc + product.rating, 0) / this.products.length : 0;
+    });
+    this.reviewService.getAllReviews().subscribe(reviews => {
+      this.reviews = reviews;
+    });
 
-  async fetchReviews(): Promise<void> {
-    fetch('/datas/reviews.json') // Adjust the path as necessary
-      .then(response => response.json())
-      .then((data: Review[]) => {
-        for (let product of this.products) {
-          for (let review of data){
-            if(review.product.product_id === product.id){
-              this.reviews.push(review); // Add the review to the array=
-            }
-          }
-        }
-        this.rating = this.reviews.reduce((acc, review) => acc + review.product.product_note, 0) / this.reviews.length;
-         // Assign the fetched reviews to the component's array
-      })
-      .catch(error => {
-        console.error("Error fetching reviews:", error);
-      });
+    
   }
-
   getProductRating(productId: number): number {
-    const productReviews = this.reviews.filter(review => review.product.product_id === productId);
+    let productReviews = this.getProductReviews(productId);
     if (productReviews.length > 0) {
       return (
-        productReviews.reduce((acc, review) => acc + review.product.product_note, 0) /
+        productReviews.reduce((acc, review) => acc + review.product.rating, 0) /
         productReviews.length
       );
     }
     return 0; // Aucun avis pour ce produit
+  }
+  getProductReviews(productId: number): Review[] {
+    let reviews: Review[] = [];
+    for (let review of this.reviews) {
+      if (review.product.id === productId) {
+        reviews.push(review)
+      }
+    }
+    return reviews
   }
 
   applySort(sortType: string): void {
@@ -116,8 +93,9 @@ export class StylistProfileComponent implements OnInit {
         (a, b) => this.getProductRating(b.id) - this.getProductRating(a.id)
       );
     } else if (sortType === 'trending') {
-      this.filteredProducts = [...this.products].sort((a, b) => b.views - a.views);
+      this.filteredProducts = [...this.products].sort((a, b) => this.getProductReviews(b.id).length - this.getProductReviews(a.id).length);
     }
+    console.log(this.filteredProducts)
   }
 
 

@@ -1,0 +1,131 @@
+.measurements-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .header-actions h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .measurement-form-card {
+    margin-bottom: 2rem;
+  }
+
+  .measurement-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .measurements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .measurement-card {
+    transition: transform 0.2s;
+  }
+
+  .measurement-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .measurement-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+  }
+
+  .ai-measurement-content {
+    padding: 2rem;
+  }
+
+  .ai-upload-card {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    margin: 2rem 0;
+    transition: all 0.3s;
+  }
+
+  .upload-area.dragover {
+    border-color: primary;
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .upload-area mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    color: #666;
+  }
+
+  .preview-area {
+    text-align: center;
+  }
+
+  .preview-area img {
+    max-width: 100%;
+    max-height: 400px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+  }
+
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+  }

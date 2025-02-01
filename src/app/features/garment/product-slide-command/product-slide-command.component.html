@@ -18,11 +18,11 @@
             <button class="arrow left" (click)="previousImage()">&#10094;</button>
             <div class="w-[500px] ">
                 <div class="main-image">
-                    <img [src]="product.photos[currentImageIndex]" alt="Product Image" />
+                    <img [src]="product.images[currentImageIndex]" alt="Product Image" />
                 </div>
 
                 <div class="thumbnail-container">
-                    <img *ngFor="let image of product.photos; let i = index" [src]="image"
+                    <img *ngFor="let image of product.images; let i = index" [src]="image"
                         [class.active]="i === currentImageIndex" (click)="currentImageIndex = i" alt="Thumbnail" />
                 </div>
             </div>
@@ -34,15 +34,15 @@
     <ul>
         <li class="flex flex-row w-full justify-between py-1">
             <p><b>Standard (1mois):</b></p>
-            {{product.workforce[0]}} FrancsCFA
+            {{product.delivery[0].price}} FrancsCFA
         </li>
         <li class="flex flex-row w-full justify-between py-1">
             <p><b>Advanced (2 semaines):</b></p>
-            {{product.workforce[1]}} FrancsCFA
+            {{product.delivery[1].price}} FrancsCFA
         </li>
         <li class="flex flex-row w-full justify-between py-1">
             <p><b>Express (1 semaine):</b></p>
-            {{product.workforce[2]}} FrancsCFA
+            {{product.delivery[3].price}} FrancsCFA
         </li>
     </ul>
 </div>

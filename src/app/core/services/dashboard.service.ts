@@ -8,11 +8,11 @@ import { Product } from '../../shared/models/product.model';
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = 'http://localhost:3000';
-  private productsUrl = 'http://localhost:3000/products';
-  private ordersUrl = 'http://localhost:3000/orders';
+  private apiUrl = 'http://localhost:3001';
+  private productsUrl = 'http://localhost:3001/products';
+  private ordersUrl = 'http://localhost:3001/orders';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getTopSellingProducts(): Observable<TopSellingModel[]> {
     return this.http.get<Product[]>(this.apiUrl + '/products')
@@ -53,9 +53,9 @@ export class DashboardService {
   }
 
   getRecentOrders(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + '/precommands')
+    return this.http.get<any[]>(this.apiUrl + '/preOrders')
       .pipe(
-        map(precommands => 
+        map(precommands =>
           precommands
             .sort((a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime())
             .slice(0, 5)
@@ -71,7 +71,7 @@ export class DashboardService {
     return this.http.get<any[]>(this.ordersUrl).pipe(
       map(orders => {
         // Sort orders by date (most recent first)
-        return orders.sort((a: any, b: any) => 
+        return orders.sort((a: any, b: any) =>
           new Date(b.payment.createdAt).getTime() - new Date(a.payment.createdAt).getTime()
         );
       }),
@@ -89,7 +89,7 @@ export class DashboardService {
         map(products => {
           const locations = ['North', 'South', 'East', 'West', 'Central'];
           const totalSales = products.reduce((sum, p) => sum + (p.numberReviews || 0), 0);
-          
+
           return locations.map(location => {
             const sales = Math.floor(Math.random() * 1000);
             return {

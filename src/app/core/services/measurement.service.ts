@@ -38,9 +38,9 @@ export interface Measurement {
   providedIn: 'root'
 })
 export class MeasurementService {
-  private apiUrl = 'http://localhost:3000';  // JSON Server default URL
+  private apiUrl = 'http://localhost:3001';  // JSON Server default URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getMeasurementsByUserId(userId: number): Observable<Measurement[]> {
     return this.http.get<Measurement[]>(`${this.apiUrl}/measurements`)

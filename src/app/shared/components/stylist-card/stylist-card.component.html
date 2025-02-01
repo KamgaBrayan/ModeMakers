@@ -1,10 +1,10 @@
-<div class="border p-4 rounded shadow-md w-[280px] h-[380px] flex flex-col  items-center" >
-    <div class="w-[230px] h-[260px] overflow-hidden rounded-md flex justify-center items-center">
+<div class="border p-4 rounded shadow-md w-[250px] h-[350px] flex flex-col  items-center" >
+    <div class="w-[230px] h-[280px] overflow-hidden rounded-md flex justify-center items-center">
         <img src={{stylist.photos[0]}} alt="profile of stylist" class="w-full">
     </div>
     <div class="flex flex-row justify-between w-full p-2">
-        <h2 class="text-xl font-bold">{{ stylist.name }}</h2>
-        <span class="text-yellow-500" *ngIf="rating">
+        <h2 class="text-sm font-bold">{{ stylist.name }}</h2>
+        <span class="text-yellow-500 text-xl" *ngIf="rating">
             <ng-container *ngFor="let star of getStarsArray()">
                 <span>★</span>
             </ng-container>

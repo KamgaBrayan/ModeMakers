@@ -1,40 +1,346 @@
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-  <div class="flex justify-between items-center mb-6">
-    <h1 class="text-2xl font-bold text-gray-900">Mes Commandes</h1>
-    <div class="relative">
-      <select
-              class="appearance-none bg-white border border-gray-300 rounded-lg pl-3 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#3734A9]">
-        <option value="popular">Sort by: Popular</option>
-        <option value="recent">Sort by: Recent</option>
-      </select>
-    </div>
-  </div>
+<body class="bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">Mes Commandes</h1>
+        <p class="text-sm text-gray-500 mt-1">Gérez et suivez vos commandes en cours</p>
+      </div>
 
-  <div class="space-y-4">
-    <div *ngFor="let order of orders"
-         class="bg-white rounded-lg border hover:shadow-lg transition-shadow">
-      <div class="p-4 flex items-start gap-4">
-        <img [src]="order.image" [alt]="order.name"
-             class="w-24 h-24 object-cover rounded-lg flex-shrink-0">
 
-        <div class="flex-1 min-w-0">
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="text-lg font-medium text-gray-900">{{order.name}}</h3>
-              <p class="text-sm text-gray-600">Chez <span class="font-medium">{{order.stylist}}</span></p>
-            </div>
-            <div class="text-right">
-              <span class="text-lg font-medium text-gray-900">{{order.price }}</span>
-              <div class="mt-2">
-                <span [class]="'px-3 py-1 rounded-full text-sm font-medium ' + getStatusClass(order.status)">
-                  {{order.status}}
-                </span>
-              </div>
-            </div>
+
+      <div class="flex gap-3 w-full sm:w-auto">
+        <div class="relative flex-1 sm:flex-initial">
+          <select [(ngModel)]="sortBy" (change)="onSortChange()"
+            class="w-full sm:w-auto appearance-none bg-white border border-gray-300 rounded-lg pl-3 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#3734A9] hover:border-gray-400 transition-colors">
+            <option value="recent">recent</option>
+            <option value="oldest">Oldest</option>
+            <option value="price-high">Increasing price</option>
+            <option value="price-low">Decreasing price</option>
+          </select>
+          <div class="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2">
+            <i class="fas fa-chevron-down text-gray-400"></i>
           </div>
-          <p class="mt-2 text-sm text-gray-600">{{order.description}}</p>
         </div>
       </div>
     </div>
-  </div>
-</div>
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Card 1 -->
+      <div (click)="openOrderDetailsModal(order.id)" *ngFor="let order of orders | paginate: { itemsPerPage: 12, currentPage: page, totalItems: totalItems }"
+        class="bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-200 flex flex-col">
+        <div class="relative">
+          <img [src]="order.payment.preOrder.photos[0]" alt="Service de coiffure"
+            class="w-full h-48 object-cover rounded-t-xl">
+        </div>
+
+        <div class="p-4 flex-1">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">Coupe et Brushing</h3>
+              <span class="text-base text-[#3734A9]"> workforce : {{order.payment.preOrder.workforce}} XAF</span>
+              <p class="text-sm text-gray-600 mt-1">Design by: <span class="font-medium text-gray-900">Sarah
+                  Coiffure</span></p>
+
+            </div>
+
+          </div>
+
+          <div class="mt-3 space-y-2">
+            <div class="flex items-center text-sm text-gray-500">
+              <i class="far fa-calendar mr-2"></i>
+              {{order.updatedAt}}
+            </div>
+
+          </div>
+        </div>
+
+        <div class="p-4 bg-gray-50 border-t flex justify-between items-center rounded-b-xl">
+          <button (click)="openOrderDetailsModal(order.id)"
+            class="text-sm font-medium text-[#3734A9] hover:text-[#2d2b8a] transition-colors">
+            <i class="far fa-eye mr-2"></i>
+            Détails
+          </button>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-8 ">
+        <pagination-controls (pageChange)="page = $event" previousLabel="Précédent" nextLabel="Suivant">
+        </pagination-controls>
+      </div>
+
+
+    </div>
+
+
+    
+    
+    <!-- Modal -->
+      <div id="orderDetailsModal" *ngIf="isModalOpen"
+      class="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-md transition-all duration-300">
+      <div class="min-h-screen px-4 flex items-center justify-center">
+          <div class="bg-white rounded-3xl shadow-2xl w-full max-w-5xl transform transition-all duration-300 animate-modal-entry">
+              <!-- En-tête -->
+              <div class="flex justify-between items-center px-8 py-6 border-b border-gray-100">
+                  <div class="space-y-1">
+                      <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Détails de la commande</h2>
+                      <p class="text-sm text-gray-500">Référence: #{{ selectedOrder?.payment?.id }}</p>
+                  </div>
+                  <button (click)="closeOrderDetailsModal()" 
+                          class="rounded-full p-2.5 text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                  </button>
+              </div>
+
+              <!-- Corps du modal -->
+              <div class="px-8 py-6 space-y-8 max-h-[calc(100vh-200px)] overflow-y-auto custom-scrollbar" *ngIf="selectedOrder">
+                  <!-- Carrousel de Photos -->
+                  <section class="space-y-4">
+                      <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+                          <svg class="w-5 h-5 mr-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                          Vêtement
+                      </h3>
+                      <div class="relative">
+                          <!-- Image principale -->
+                          <div class="aspect-[4/3] max-w-2xl mx-auto rounded-2xl overflow-hidden bg-gray-100">
+                              <img [src]="selectedOrder.payment.preOrder.photos[currentPhotoIndex]" 
+                                  alt="Vêtement"
+                                  class="w-full h-full object-contain">
+                          </div>
+                          
+                          <!-- Boutons de navigation -->
+                          <button *ngIf="selectedOrder.payment.preOrder.photos.length > 1"
+                                  (click)="previousPhoto()"
+                                  class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg text-gray-800 transition-all duration-200">
+                              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                              </svg>
+                          </button>
+                          <button *ngIf="selectedOrder.payment.preOrder.photos.length > 1"
+                                  (click)="nextPhoto()"
+                                  class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg text-gray-800 transition-all duration-200">
+                              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                              </svg>
+                          </button>
+
+                          <!-- Indicateurs -->
+                          <div class="absolute -bottom-4 left-0 right-0 flex justify-center gap-2">
+                              <button *ngFor="let photo of selectedOrder.payment.preOrder.photos; let i = index"
+                                      (click)="setCurrentPhoto(i)"
+                                      class="w-2 h-2 rounded-full transition-all duration-200"
+                                      [class.bg-gray-900]="i === currentPhotoIndex"
+                                      [class.bg-gray-300]="i !== currentPhotoIndex">
+                              </button>
+                          </div>
+                      </div>
+                  </section>
+
+                  <!-- Section Matériel avec scroll horizontal -->
+                  <section class="space-y-4">
+                      <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+                          <svg class="w-5 h-5 mr-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                          </svg>
+                          Matériel utilisé
+                      </h3>
+                      <div class="relative">
+                          <div class="overflow-x-auto pb-4 custom-scrollbar-x">
+                              <div class="flex gap-4" style="min-width: min-content">
+                                  <div *ngFor="let util of selectedOrder.payment.preOrder.utils" 
+                                      class="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300"
+                                      style="width: 280px; flex-shrink: 0;">
+                                      <div class="aspect-[4/3] rounded-lg overflow-hidden mb-4">
+                                          <img [src]="util.photos[0]" alt="Matériel" 
+                                              class="w-full h-full object-cover">
+                                      </div>
+                                      <h4 class="font-medium text-gray-900 mb-2">{{ util.name }}</h4>
+                                      <div class="space-y-2">
+                                          <div class="flex items-center text-sm text-gray-600">
+                                              <span class="w-24">Type:</span>
+                                              <span class="font-medium text-gray-900">{{ util.type }}</span>
+                                          </div>
+                                          <div class="flex items-center text-sm text-gray-600">
+                                              <span class="w-24">Quantité:</span>
+                                              <span class="font-medium text-gray-900">{{ util.quantity }}</span>
+                                          </div>
+                                          <div class="flex items-center text-sm text-gray-600">
+                                              <span class="w-24">Prix/m²:</span>
+                                              <span class="font-medium text-gray-900">{{ util.price_per_square_meter }} XAF</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Section Total Matériel -->
+                        <section class="bg-gray-50 rounded-2xl p-6 space-y-4">
+                          <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+                            <svg class="w-5 h-5 mr-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Total Matériel
+                          </h3>
+                          <div class="flex justify-between items-center bg-white p-3 rounded-lg">
+                            <span class="text-gray-600">Coût total des matériaux</span>
+                            <span class="font-medium text-gray-900">{{ calculateTotalMaterial() }} XAF</span>
+                          </div>
+                        </section>
+                  </section>
+
+                  <!-- Grid Info -->
+                  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      <!-- Détails commande -->
+                      <section class="bg-gray-50 rounded-2xl p-6 space-y-4">
+                          <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+                              <svg class="w-5 h-5 mr-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                              </svg>
+                              Détails de la commande
+                          </h3>
+                          <div class="space-y-4">
+                              <div class="flex justify-between items-center bg-white p-3 rounded-lg">
+                                  <span class="text-gray-600">Main d'œuvre</span>
+                                  <span class="font-medium text-gray-900">{{ selectedOrder.payment.preOrder.workforce }} XAF</span>
+                              </div>
+                              <div class="flex justify-between items-center bg-white p-3 rounded-lg">
+                                  <span class="text-gray-600">Nombre de jours</span>
+                                  <span class="font-medium text-gray-900">{{ selectedOrder.payment.preOrder.day }}</span>
+                              </div>
+                              <div class="bg-white p-4 rounded-lg">
+                                  <div class="text-gray-600 mb-2">Spécifications</div>
+                                  <div class="prose prose-sm max-w-none text-gray-900">
+                                      {{ selectedOrder.payment.preOrder.specification }}
+                                  </div>
+                              </div>
+                          </div>
+                      </section>
+
+                      <!-- Styliste -->
+                      <section class="bg-gray-50 rounded-2xl p-6 space-y-4">
+                          <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+                              <svg class="w-5 h-5 mr-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                              </svg>
+                              Styliste
+                          </h3>
+                          <div class="space-y-4">
+                              <div class="flex justify-between items-center bg-white p-3 rounded-lg">
+                                  <span class="text-gray-600">Nom</span>
+                                  <span class="font-medium text-gray-900">{{ selectedOrder.payment.preOrder.user.user_name }}</span>
+                              </div>
+                              <div class="flex justify-between items-center bg-white p-3 rounded-lg">
+                                  <span class="text-gray-600">Téléphone</span>
+                                  <span class="font-medium text-gray-900"></span>
+                              </div>
+                              <div class="flex justify-between items-center bg-white p-3 rounded-lg">
+                                  <span class="text-gray-600">Localisation</span>
+                                  <span class="font-medium text-gray-900">{{ selectedOrder.payment.preOrder.location }}</span>
+                              </div>
+                          </div>
+                      </section>
+                  </div>
+
+                  <!-- Mesures -->
+                  <section class="bg-gray-50 rounded-2xl p-6 space-y-4">
+                      <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+                          <svg class="w-5 h-5 mr-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                    d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                          </svg>
+                          Mesures
+                      </h3>
+                  </section>
+                    <!-- Section Prix Total de la Commande -->
+                  <section class="bg-gray-50 rounded-2xl p-6 space-y-4">
+                    <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+                      <svg class="w-5 h-5 mr-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                              d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      Prix Total de la Commande
+                    </h3>
+                    <div class="flex justify-between items-center bg-white p-3 rounded-lg">
+                      <span class="text-gray-600">Coût total (Matériel + Main d'œuvre)</span>
+                      <span class="text-4xl text-[#3734A9] ">{{ calculateTotalOrder() }} XAF</span>
+                    </div>
+                  </section>
+              </div>
+
+              <!-- Footer -->
+              <div class="px-8 py-6 border-t border-gray-100 flex justify-end">
+                  <button (click)="closeOrderDetailsModal()" 
+                          class="px-6 py-2.5 text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                      Fermer
+                  </button>
+              </div>
+          </div>
+      </div>
+    </div>
+ </div>
+<style>
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 20px;
+}
+
+.custom-scrollbar-x::-webkit-scrollbar {
+    height: 8px;
+}
+
+.custom-scrollbar-x::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar-x::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 20px;
+}
+
+@keyframes modal-entry {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-modal-entry {
+  animation: modal-entry 0.3s ease-out;
+}
+ 
+</style>
+  
+
+  <script>
+   
+  function openOrderDetailsModal() {
+      document.getElementById('orderDetailsModal').classList.remove('hidden');
+    }
+
+    function closeOrderDetailsModal() {
+      document.getElementById('orderDetailsModal').classList.add('hidden');
+    }
+  </script>
+
+ 
