@@ -144,9 +144,6 @@
   "stylists": [
     {
       "id": 1,
-
-      "name": "Leona Marks",
-
       "products":[
         {
           "id": 1,
@@ -694,7 +691,7 @@
         }
       }
     ],
->>>>>>> 210a2827ab2cc87bcfd0558881ed1d6b56fee2d0
+
       "roles": [
         "ROLE_STYLIST"
       ],
@@ -747,38 +744,6 @@
     },
     {
       "id": 3,
-<<<<<<< HEAD
-      "name": "Leon Kirlin",
-      "roles": [
-        "ROLE_STYLIST"
-      ],
-      "specialty": "Traditional Wear",
-      "photos": [
-        "https://avatars.githubusercontent.com/u/51061834",
-        "https://avatars.githubusercontent.com/u/7033910",
-        "https://avatars.githubusercontent.com/u/37420606"
-      ],
-      "biography": "Aut comminor delicate consequuntur. Deinde corrupti suffragium copiose absque a adeo cotidie consectetur coepi. Angelus impedit sonitus atqui.\nDeleniti ceno ater campana. Tener amo artificiose theologus ullus. Corporis tepesco statua fugiat convoco.",
-      "calendar": [
-        "saturday",
-        "wednesday",
-        "monday",
-        "sunday",
-        "tuesday",
-        "friday"
-      ],
-      "experience": "13 years of experience in fashion design",
-      "localisation": "North Leonie, Kuwait",
-      "phone": "921.587.6114",
-      "category": [
-        "Femme",
-        "Homme"
-      ]
-    },
-    {
-      "id": 4,
-      "name": "Simon Kub Jr.",
-=======
       "name": "Mr. Clark Gislason-Reichel III",
       "products":[
         {
@@ -975,7 +940,6 @@
           }
         }
       ],
->>>>>>> 210a2827ab2cc87bcfd0558881ed1d6b56fee2d0
       "roles": [
         "ROLE_STYLIST"
       ],
@@ -1000,10 +964,6 @@
       ]
     },
     {
-<<<<<<< HEAD
-      "id": 5,
-      "name": "Hope Parker",
-=======
       "id": 4,
       "name": "Mr. Austin Kuhic",
       "products":[
@@ -1629,7 +1589,6 @@
         }
       }
     ],
->>>>>>> 210a2827ab2cc87bcfd0558881ed1d6b56fee2d0
       "roles": [
         "ROLE_STYLIST"
       ],
@@ -1656,9 +1615,6 @@
     },
     {
       "id": 6,
-<<<<<<< HEAD
-      "name": "Johnnie Bartoletti",
-=======
       "name": "Linda Dooley",
       "products":[
         {
@@ -1837,7 +1793,6 @@
           }
         }
       ],
->>>>>>> 210a2827ab2cc87bcfd0558881ed1d6b56fee2d0
       "roles": [
         "ROLE_STYLIST"
       ],
@@ -1894,9 +1849,8 @@
     },
     {
       "id": 8,
-<<<<<<< HEAD
-      "name": "Inez Huels",
-=======
+
+
       "name": "Vincent Larson",
       "products":[
         {
@@ -4687,7 +4641,7 @@
           }
         }
       ],
->>>>>>> 210a2827ab2cc87bcfd0558881ed1d6b56fee2d0
+
       "roles": [
         "ROLE_STYLIST"
       ],
@@ -4715,10 +4669,6 @@
       ]
     },
     {
-<<<<<<< HEAD
-      "id": 9,
-      "name": "Ms. Naomi Harber",
-=======
       "id": 20,
       "name": "Betsy Klocko",
       "products":[
@@ -4932,7 +4882,6 @@
           }
         }
       ],
->>>>>>> 210a2827ab2cc87bcfd0558881ed1d6b56fee2d0
       "roles": [
         "ROLE_STYLIST"
       ],
