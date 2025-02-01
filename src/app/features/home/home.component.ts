@@ -10,7 +10,7 @@ import {RouterLink} from "@angular/router";
 @Component({
   selector: 'app-home',
   standalone: true,
-    imports: [CommonModule, NavbarComponent, FooterComponent, CardProductComponent, RouterLink],
+    imports: [CommonModule, FooterComponent, CardProductComponent, RouterLink, NavbarComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
