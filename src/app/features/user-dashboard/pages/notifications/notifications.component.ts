@@ -16,6 +16,7 @@ export class NotificationsComponent implements OnInit {
   filteredNotifications: Notification[] = [];
   selectedFilter: 'all' | 'read' | 'unread' = 'all';
   expandedNotifications = new Set<number>(); // Gérer l'expansion des notifications
+  showFeedback: boolean = false;
 
   constructor(private notificationService: NotificationService) {}
 
@@ -66,6 +67,10 @@ export class NotificationsComponent implements OnInit {
   deleteNotification(id: number): void {
     this.notifications = this.notifications.filter((n) => n.id !== id);
     this.applyFilter();
+    this.showFeedback = true;
+    setTimeout(() => {
+      this.showFeedback = false;
+    },3000);
   }
 
   toggleExpand(id: number): void {
