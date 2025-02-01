@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Stylist } from '../../models/stylist.interface';
+import { StylistUser } from '../../interfaces/stylistUser.interface';
+import { ReviewService } from '../../../core/service/review.service';
+import { ProductService } from '../../../core/service/product.service';
+import { Product } from '../../interfaces/product.interface';
+import { Review } from '../../interfaces/review.interface';
 
 
 @Component({
@@ -11,8 +15,9 @@ import { Stylist } from '../../models/stylist.interface';
   styleUrls: ['./stylist-card.component.css']
 }) 
 export class StylistCardComponent {
-  @Input() stylist!: Stylist; // Use the stylist object as an input
+  @Input() stylist!: StylistUser; // Use the stylist object as an input
   @Input() rating: number = 0;
+  
   // Méthode pour générer un tableau basé sur le rating
   getStarsArray(): number[] {
     return Array(Math.round(this.rating)).fill(0);

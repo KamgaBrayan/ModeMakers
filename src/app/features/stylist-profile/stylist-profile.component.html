@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<main class="px-4">
+<main class="px-4 mx-20">
     <div class="py-2">
       <app-breadcrumb-stylist-profile></app-breadcrumb-stylist-profile>
     </div>
@@ -15,8 +15,8 @@
                 <app-availability [daysAvailable]="stylist.calendar"></app-availability> 
             </span>
         </div>  
-        <div>
-            <span class="flex p-6 flex-row items-center justify-between">
+        <div class="w-full">
+            <span class="flex p-6 w-full  flex-row items-center justify-between">
                 <span class="flex flex-row items-center">
                     <!-- Affichage du texte dynamique pour les filtres et le tri -->
                     <h1 class="text-md font-bold  p-4">{{ getFilterText() }}</h1>
@@ -26,7 +26,7 @@
                 </span>
             </span>
             <div class="flex flex-row flex-wrap gap-4 max-h-[900px] overflow-y-auto">
-                <app-product-card *ngFor="let product of filteredProducts" [product]="product"></app-product-card>
+                <app-product-card *ngFor="let product of filteredProducts" [product]="product" [reviews]="getProductReviews(product.id)" [rating]="getProductRating(product.id)"></app-product-card>
             </div>
         </div>
     </section>
@@ -35,7 +35,7 @@
     </span>
     <section class="w-full flex p-4 justify-center">
         <div class="overflow-hidden w-[80%] border p-4 bg-white shadow-md rounded-lg">
-            <app-reviews [reviews]="reviews"></app-reviews> <!-- Include the ReviewsComponent -->
+            <app-reviews [reviews]="stylistReviews"></app-reviews> <!-- Include the ReviewsComponent -->
         </div>
   </section>
   <div class="w-full py-28">

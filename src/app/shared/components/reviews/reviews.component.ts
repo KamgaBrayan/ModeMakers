@@ -1,6 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Review } from '../../models/review.interface';
+import { Review } from '../../interfaces/review.interface';
 
 @Component({
   selector: 'app-reviews',

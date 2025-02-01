@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Stylist } from '../../models/stylist.interface';
+import { StylistUser } from '../../interfaces/stylistUser.interface';
 
 @Component({
   selector: 'app-description-stylist',
@@ -10,7 +10,7 @@ import { Stylist } from '../../models/stylist.interface';
   styleUrls: ['./description-stylist.component.css']
 })
 export class DescriptionStylistComponent {
-  @Input() stylist!: Stylist; // Accept stylist data as input
+  @Input() stylist!: StylistUser; // Accept stylist data as input
   @Input() rating: number = 0; // Accept rating as input
 
   getStarsArray(): number[] {

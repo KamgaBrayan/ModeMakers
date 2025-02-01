@@ -1,7 +1,7 @@
 <div class="product-card flex flex-col justify-center">
     <div class="w-full flex justify-center items-center overflow-hidden">
         <span class="w-[230px] h-[260px]  rounded-md flex flex-col justify-center items-center">
-            <img [src]="product.photos[0]" alt="{{ product.name }}" class="product-image">
+            <img [src]="product.images[0]" alt="{{ product.name }}" class="product-image">
         </span>
     </div>
     <span class="flex flex-row justify-between items-center">
@@ -24,7 +24,7 @@
         </span>
     </span>
    
-    <p class="product-price">{{ product.price }} Fcfa</p>
+    <p class="product-price">{{ product.delivery[0].price }} Fcfa</p>
     <div class="flex flex-row justify-between w-full p-2">
         <button [routerLink]="['/products',product.id]" class="w-[90px] h-[40px] rounded-md bg-indigo-700 text-white flex items-center justify-center transition-all hover:bg-indigo-800 text-sm">View more</button>
         <button [routerLink]="['/garment',product.id]" class="w-[90px] h-[40px] rounded-md bg-indigo-700 text-white flex items-center justify-center transition-all hover:bg-indigo-800 text-sm">Command</button>
