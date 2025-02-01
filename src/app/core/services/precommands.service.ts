@@ -7,7 +7,7 @@ import { Precommand } from '../../shared/models/precommand.model';
   providedIn: 'root'
 })
 export class PrecommandsService {
-  private apiUrl = 'http://localhost:3000'; // JSON Server URL
+  private apiUrl = 'http://localhost:3001'; // JSON Server URL
 
   constructor(private http: HttpClient) { }
 
@@ -45,14 +45,14 @@ export class PrecommandsService {
 
   validatePriceFields(precommand: any): any {
     const validated = { ...precommand };
-    
+
     // Ensure prices are not negative
     validated.proposedPrice = Math.max(0, validated.proposedPrice || 0);
     validated.finalPrice = Math.max(0, validated.finalPrice || 0);
-    
+
     // Ensure quantity is at least 1
     validated.quantity = Math.max(1, validated.quantity || 1);
-    
+
     return validated;
   }
 }

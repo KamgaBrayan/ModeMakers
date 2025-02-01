@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import {Product} from '../../shared/models/product.model';
+import { Product } from '../../shared/models/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/products';
+  private apiUrl = 'http://localhost:3001/products';
 
   // get all products
   getAllProducts(): Observable<Product[]> {

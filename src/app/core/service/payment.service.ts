@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {ApiResponse} from '../../shared/interfaces/apiRequest.interface';
-import {Payment} from '../../shared/interfaces/payment.interface';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ApiResponse } from '../../shared/interfaces/apiRequest.interface';
+import { Payment } from '../../shared/interfaces/payment.interface';
 
-const API_URL = 'http://localhost:3000/payment';
+const API_URL = 'http://localhost:3001/payment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getStylistPayments(stylistId: number): Observable<Payment[]> {
     return this.http.get<Payment[]>(`${API_URL}/stylist/${stylistId}`);

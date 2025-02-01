@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import {ApiResponse} from '../../shared/interfaces/apiRequest.interface';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {StylistUser} from '../../shared/interfaces/stylistUser.interface';
+import { ApiResponse } from '../../shared/interfaces/apiRequest.interface';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { StylistUser } from '../../shared/interfaces/stylistUser.interface';
 import { Product } from '../../shared/interfaces/product.interface';
 
-const API_URL = 'http://localhost:3000/stylists';
+const API_URL = 'http://localhost:3001/stylists';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StylistService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllStylists(): Observable<StylistUser[]> {
     return this.http.get<StylistUser[]>(`${API_URL}`);
