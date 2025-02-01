@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {ApiResponse, CreateNotificationRequest} from '../../shared/interfaces/apiRequest.interface';
 import {HttpClient} from '@angular/common/http';
+import { Notification } from '../../shared/interfaces/notification.interface.js';
 
 const API_URL = 'http://localhost:3000';
 
@@ -13,7 +14,7 @@ export class NotificationService {
   constructor(private http: HttpClient) {}
 
   getUserNotifications(userId: number): Observable<Notification[]> {
-    return this.http.get<Notification[]>(`${API_URL}/user/${userId}/notifications`);
+    return this.http.get<Notification[]>(`${API_URL}/notifications`);
   }
 
   deleteNotification(id: number): Observable<void> {

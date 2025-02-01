@@ -1,32 +1,78 @@
-
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-  <div class="flex justify-between items-center mb-6">
-    <h1 class="text-2xl font-bold text-gray-900">Mes Notifications</h1>
-    <div class="relative">
-      <select [(ngModel)]="sortBy"
-              class="appearance-none bg-white border border-gray-300 rounded-lg pl-3 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#3734A9]">
-        <option value="popular">Sort by: Popular</option>
-        <option value="recent">Sort by: Recent</option>
-      </select>
-      <div class="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2">
-        <i class="fas fa-chevron-down text-gray-400"></i>
+<body class="bg-gray-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Header avec titre et filtres -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">Mes Notifications</h1>
+        <p class="text-sm text-gray-500 mt-1">Gérez vos notifications et restez informé</p>
       </div>
-    </div>
-  </div>
-
-  <div class="space-y-4">
-    <div *ngFor="let notification of notifications"
-         class="bg-white rounded-lg border p-4 flex items-start gap-4 hover:shadow-lg transition-shadow">
-      <div class="w-10 h-10 rounded-full bg-[#3734A9] bg-opacity-10 flex items-center justify-center flex-shrink-0">
-        <i class="fas fa-bell text-[#3734A9]"></i>
-      </div>
-      <div class="flex-1 min-w-0">
-        <div class="flex justify-between items-start">
-          <h3 class="text-base font-medium text-gray-900">{{notification.title}}</h3>
-          <span class="text-sm text-gray-500">{{formatTimeAgo(notification.timestamp)}}</span>
+      
+      <div class="flex gap-3 w-full sm:w-auto">
+        <button (click)="markAllAsRead()" class="text-gray-500 hover:text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition-all">
+          <i class="fas fa-check-double mr-2"></i>
+          Tout marquer comme lu
+        </button>
+        
+        <div class="relative flex-1 sm:flex-initial">
+          <select [(ngModel)]="selectedFilter" (change)="applyFilter()"
+            class="w-full sm:w-auto appearance-none bg-white border border-gray-300 rounded-lg pl-3 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#3734A9] hover:border-gray-400 transition-colors">
+            <option value="all">Toutes les notifications</option>
+            <option value="unread">Non lues</option>
+            <option value="read">Lues</option>
+          </select>
+          <div class="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2">
+            <i class="fas fa-chevron-down text-gray-400"></i>
+          </div>
         </div>
-        <p class="mt-1 text-sm text-gray-600">{{notification.message}}</p>
       </div>
     </div>
+
+    <!-- Liste des notifications -->
+    <div class="space-y-4" *ngIf="filteredNotifications.length > 0; else emptyState">
+      <div *ngFor="let notification of filteredNotifications" 
+           class="bg-white rounded-xl border border-gray-200 p-4 hover:shadow-lg transition-all duration-200 cursor-pointer relative">
+        
+        <!-- Indicateur de non-lu -->
+        <div *ngIf="!notification.readed" class="absolute top-4 right-4 h-2 w-2 bg-blue-500 rounded-full"></div>
+
+        <div class="flex gap-4">
+          <!-- Icône de notification -->
+          <div class="w-12 h-12 rounded-full bg-[#3734A9] bg-opacity-10 flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-bell text-[#3734A9] text-lg"></i>
+          </div>
+
+          <!-- Contenu de la notification -->
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+              <h3 class="text-base font-semibold text-gray-900">{{ notification.content }}</h3>
+              <span class="text-sm text-gray-500">{{ formatTimeAgo(notification.date) }}</span>
+            </div>
+            <p class="mt-1 text-sm text-gray-600 leading-relaxed">
+              {{ expandedNotifications.has(notification.id) ? notification.content : notification.content }}
+            </p>
+            
+            <!-- Boutons d'action -->
+            <div class="mt-3 flex gap-2">
+              <button (click)="toggleExpand(notification.id)" class="text-[#3734A9] text-sm font-medium hover:text-[#2d2b8a] transition-colors">
+                {{ expandedNotifications.has(notification.id) ? 'Voir moins' : 'Voir plus' }}
+              </button>
+              <button (click)="deleteNotification(notification.id)" class="text-red-600 text-sm font-medium hover:text-red-800 transition-colors">
+                Supprimer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- État vide -->
+    <ng-template #emptyState>
+      <div class="mt-8 text-center">
+        <h3 class="mt-4 text-lg font-medium text-gray-900">Aucune notification</h3>
+        <p class="mt-1 text-sm text-gray-500">Vous n'avez pas de nouvelles notifications.</p>
+      </div>
+    </ng-template>
+
   </div>
-</div>
+</body>

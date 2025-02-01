@@ -1,0 +1,38 @@
+{
+    "measures": [
+      {
+        "id": 1,
+        "user": {
+          "id": 101,
+          "user_name": "john_doe",
+          "roles": ["admin", "editor"]
+        },
+        "measurements": {
+          "shoulder_length": 45,
+          "head_circumference": 57,
+          "arm_length": 65,
+          "chest_circumference": 100,
+          "underbust_circumference": 85,
+          "waist_circumference": 80,
+          "iliac_crest_circumference": 88,
+          "hip_circumference": 95,
+          "thigh_circumference": 55,
+          "knee_circumference": 40,
+          "calf_circumference": 38,
+          "ankle_circumference": 25,
+          "biceps_circumference": 32,
+          "elbow_circumference": 28,
+          "forearm_circumference": 26,
+          "wrist_circumference": 18,
+          "wrist_to_elbow_length": 30,
+          "knee_to_ankle_length": 42,
+          "inseam_length": 80,
+          "outseam_length": 105,
+          "total_height": 180,
+          "front_body_length": 55,
+          "back_body_length": 57
+        }
+      }
+      
+    ]
+  }

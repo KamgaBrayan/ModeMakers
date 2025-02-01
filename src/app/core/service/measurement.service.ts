@@ -7,6 +7,7 @@ import {
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Measurement} from '../../shared/interfaces/measurement.interface';
+import { IMensuration } from '../../shared/interfaces/imensuration.interface.js';
 
 const API_URL = 'http://localhost:3000';
 
@@ -17,8 +18,11 @@ export class MeasurementService {
 
   constructor(private http: HttpClient) {}
 
-  getUserMeasures(userId: number): Observable<Measurement[]> {
-    return this.http.get<Measurement[]>(`${API_URL}/user/${userId}/measures`);
+  getUserMeasures(userId: number): Observable<IMensuration[]> {
+    return this.http.get<IMensuration[]>(`${API_URL}/user/${userId}/measures`);
+  }
+  getAllMeasures(): Observable<IMensuration[]> {
+    return this.http.get<IMensuration[]>(`${API_URL}//measures`);
   }
 
   deleteMeasure(id: number): Observable<void> {
