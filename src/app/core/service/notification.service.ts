@@ -4,7 +4,7 @@ import {ApiResponse, CreateNotificationRequest} from '../../shared/interfaces/ap
 import {HttpClient} from '@angular/common/http';
 import { Notification } from '../../shared/interfaces/notification.interface.js';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = 'http://localhost:3000';
 
 @Injectable({
   providedIn: 'root'

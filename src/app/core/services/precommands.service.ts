@@ -7,7 +7,7 @@ import { Precommand } from '../../shared/models/precommand.model';
   providedIn: 'root'
 })
 export class PrecommandsService {
-  private apiUrl = 'http://localhost:3001'; // JSON Server URL
+  private apiUrl = 'http://localhost:3000'; // JSON Server URL
 
   constructor(private http: HttpClient) { }
 

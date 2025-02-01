@@ -4,7 +4,7 @@ import {ApiResponse} from '../../shared/interfaces/apiRequest.interface';
 import {Observable} from 'rxjs';
 import {Preferences} from '../../shared/interfaces/preference.interface';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = 'http://localhost:3000';
 
 @Injectable({
   providedIn: 'root'

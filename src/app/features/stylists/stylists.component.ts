@@ -6,98 +6,95 @@ import { CommonModule } from '@angular/common';
 import { SidebarFilterComponent } from '../../shared/components/sidebar-filter/sidebar-filter.component';
 import { SignupComponent } from '../../shared/components/signup/signup.component';
 import { SelectSortComponent } from '../../shared/components/select-sort/select-sort.component';
-import { Stylist } from '../../shared/models/stylist.interface';
-import { Review } from '../../shared/models/review.interface';
-import { Product } from '../../shared/models/product_.interface';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
+import { StylistService } from '../../core/service/stylist.service';
+import { StylistUser } from '../../shared/interfaces/stylistUser.interface';
+import { Product } from '../../shared/interfaces/product.interface';
+import { Review } from '../../shared/interfaces/review.interface';
+import { ReviewService } from '../../core/service/review.service';
+
 
 
 @Component({
   selector: 'app-stylists',
   imports: [
     NavbarComponent,
-    CommonModule, 
-    BreadcrumbComponent, 
-    HeroComponent,       
-    StylistCardComponent,        
-    SidebarFilterComponent,   
-    SelectSortComponent, 
-    SignupComponent, 
+    CommonModule,
+    BreadcrumbComponent,
+    HeroComponent,
+    StylistCardComponent,
+    SidebarFilterComponent,
+    SelectSortComponent,
+    SignupComponent,
   ],
   templateUrl: './stylists.component.html',
   styleUrls: ['./stylists.component.css'],
   // standalone: true // This line indicates it's a standalone component
 })
 export class StylistsComponent implements OnInit {
-  stylists: Stylist[] = []; // Initialisé avec un tableau vide
-  reviews: Review[] = [];
-  products: Product[] = [];
+  stylists:  StylistUser[] = []; // Initialisé avec un tableau vide
+  reviews: Review[]=[];
   categories: string[] = ['Homme', 'Femme', 'Enfant'];
-  specialties: string[] = ['Hair Stylist', 'Makeup Artist', 'Nail Technician'];
-  filteredStylists: Stylist[] = [];
-  
+  specialties: string[] = [];
+  filteredStylists:   StylistUser[] =  [];
+
+
   selectedSort: string = 'popularity';  // Par défaut, tri par popularité
   selectedFilters = {
     categories: this.categories, // Par défaut, toutes les catégories sont sélectionnées
     specialties: this.specialties // Par défaut, toutes les spécialités sont sélectionnées
   };
+  constructor(private stylistService: StylistService, private reviewService: ReviewService) { }
 
   ngOnInit(): void {
-    // Chargez les stylistes depuis le fichier JSON à l'initialisation du composant
-    fetch('/datas/stylists.json')
-      .then(response => response.json())
-      .then((data: Stylist[]) => {
-        this.stylists = data; // Assurez-vous que les données sont bien récupérées et assignées à la variable stylists
-        this.filteredStylists = [...this.stylists]; // Initialiser le tableau des stylistes filtrés
-      })
-      .catch(error => {
-        console.error("Erreur lors de la récupération des stylistes :", error);
-      });
-      this.fetchProducts();
-      this.fetchReviews();
-  }
-
-  fetchProducts(){
-    // Fetch products from the JSON file
-    fetch('/datas/products.json')
-      .then(response => response.json())
-      .then((data: Product[]) => {
-        this.products = data;
-        
-      })
-      .catch(error => {
-        console.error("Error fetching products:", error);
-      });
-  }
-  fetchReviews() {
-    fetch('/datas/reviews.json') // Adjust the path as necessary
-      .then(response => response.json())
-      .then((data: Review[]) => {
-        this.reviews = data;
-      // Assign the fetched reviews to the component's array
-      })
-      .catch(error => {
-        console.error("Error fetching reviews:", error);
-      });
-  }
-
-  getRating(stylistId: number = 0) : number {
-    let reviews : Review[] = [];
-    let products : Product[] = [];
-    products = this.products.filter(product => product.stylist.id === stylistId);
-    for (let product of products){
-      for(let review of this.reviews){
-        if(review.product.product_id === product.id){
-          reviews.push(review); // Add the review to the array=
-        }
+    this.stylistService.getAllStylists().subscribe(stylists => {
+      this.stylists = stylists;
+      this.filteredStylists=this.stylists
+      let specialtiesSet = new Set<string>();
+      for(let stylist of stylists){
+        specialtiesSet.add(stylist.specialty);
       }
-    }
-    return  reviews.reduce((acc, review) => acc + review.product.product_note, 0) / reviews.length;
+      this.specialties = Array.from(specialtiesSet);
+    });
+    this.reviewService.getAllReviews().subscribe(reviews => {
+      this.reviews = reviews;
+    });
+  }
+ getProductsByStylistId(stylistId: number) : Product[] {
+    const stylistEntry = this.stylists.find(entry => entry.id === stylistId);
+    return stylistEntry ? stylistEntry.products : []; // Retourne les produits ou un tableau vide si non trouvé
+  }
+
+  getRating(stylistId: number = 0): number {
+    let products = this.getProductsByStylistId(stylistId);
+
+    return products? products.reduce((acc, product) => acc + product.rating, 0) / products.length: 0;
+  }
+
+  getViews(stylistId: number = 0): number {
+    let products = this.getProductsByStylistId(stylistId);
+    let n=0;
+    for(let review_count of (this.getReviewsCount(products, this.reviews))){
+      n=n+review_count.reviewCount
+      // console.log(review_count.productId, review_count.reviewCount)
+    };
+    return n;
+  }
+  getReviewsCount(products: Product[], reviews: Review[]): { productId: number, reviewCount: number }[] {
+    return products?products.map(product => {
+      // Compte le nombre de reviews pour le produit courant
+      const reviewCount = reviews.filter(review => review.product.id === product.id).length;
+      
+      return {
+        productId: product.id,
+        reviewCount: reviewCount
+      };
+    }):[];
   }
 
   applyFilters(filters: { categories: string[]; specialties: string[] }): void {
     const { categories, specialties } = filters;
-
+    this.filteredStylists= this.stylists;
     this.filteredStylists = this.stylists.filter(stylist =>
       stylist.category.some(cat => categories.includes(cat)) &&
       specialties.includes(stylist.specialty)
@@ -109,18 +106,21 @@ export class StylistsComponent implements OnInit {
     if (sortType === 'popularity') {
       this.filteredStylists = [...this.stylists].sort((a, b) => this.getRating(b.id) - this.getRating(a.id));
     } else if (sortType === 'trending') {
-      this.filteredStylists = [...this.stylists].sort((a, b) => b.views - a.views);
-      
+      this.filteredStylists = [...this.stylists].sort((a, b) => this.getViews(b.id) - this.getViews(a.id));
+
     }
+
+    
   }
+
 
   // Méthode pour obtenir le texte dynamique à afficher pour le tri et les filtres
   getFilterText(): string {
     const sortText = this.selectedSort === 'popularity' ? 'Most Populars' : 'Most on trendind';
-    
+
     const categoriesText = this.selectedFilters.categories.length === this.categories.length ? 'All categories' : 'Filtred Categories';
     const specialtiesText = this.selectedFilters.specialties.length === this.specialties.length ? 'All specialities' : 'Filtred Specialities';
-    
+
     return `${sortText} / ${categoriesText} / ${specialtiesText}`;
   }
 }

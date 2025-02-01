@@ -1,45 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MeasurementService } from '../../../../core/service/measurement.service';
+import { IMensuration } from '../../../../shared/interfaces/imensuration.interface';
+import { MeasurementValues } from '../../../../shared/interfaces/imensuration.interface';
 
-interface PersonalInfo {
-  name: string;
-  age: number;
-  sex: string;
-  weight: number;
-}
 
-interface MeasurementValues {
-  shoulder_length: number;
-  head_circumference: number;
-  arm_length: number;
-  chest_circumference: number;
-  underbust_circumference: number;
-  waist_circumference: number;
-  iliac_crest_circumference: number;
-  hip_circumference: number;
-  thigh_circumference: number;
-  knee_circumference: number;
-  calf_circumference: number;
-  ankle_circumference: number;
-  biceps_circumference: number;
-  elbow_circumference: number;
-  forearm_circumference: number;
-  wrist_circumference: number;
-  wrist_to_elbow_length: number;
-  knee_to_ankle_length: number;
-  inseam_length: number;
-  outseam_length: number;
-  total_height: number;
-  front_body_length: number;
-  back_body_length: number;
-}
-
-interface IMensuration {
-  id: number;
-  personalInfo: PersonalInfo;
-  measurements: MeasurementValues;
-}
 
 @Component({
   selector: 'app-mensurations',
@@ -70,7 +36,7 @@ interface IMensuration {
                  [class.bg-indigo-50]="selectedPerson?.id === person.id"
                  class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-gray-50">
               <div class="w-8 h-8 bg-gray-300 rounded-full mr-3"></div>
-              <span>{{person.personalInfo.name}}</span>
+              <span>{{person.user.user_name}}</span>
             </div>
           </div>
         </div>
@@ -270,45 +236,11 @@ interface IMensuration {
     </div>
   `
 })
-export class MensurationsComponent {
+export class MensurationsComponent implements OnInit {
+  
   measurementForm!: FormGroup;
   addMeasurementForm!: FormGroup;
-  savedMeasurements: IMensuration[] = [
-    {
-      id: 1,
-      personalInfo: {
-        name: 'Moi (default)',
-        age: 25,
-        sex: 'M',
-        weight: 70
-      },
-      measurements: {
-        shoulder_length: 40,
-        head_circumference: 56,
-        arm_length: 60,
-        chest_circumference: 90,
-        underbust_circumference: 85,
-        waist_circumference: 80,
-        iliac_crest_circumference: 88,
-        hip_circumference: 95,
-        thigh_circumference: 55,
-        knee_circumference: 38,
-        calf_circumference: 36,
-        ankle_circumference: 22,
-        biceps_circumference: 32,
-        elbow_circumference: 28,
-        forearm_circumference: 26,
-        wrist_circumference: 16,
-        wrist_to_elbow_length: 25,
-        knee_to_ankle_length: 40,
-        inseam_length: 76,
-        outseam_length: 100,
-        total_height: 170,
-        front_body_length: 70,
-        back_body_length: 68
-      }
-    }
-  ];
+  savedMeasurements: IMensuration[] = [ ];
 
   selectedPerson: IMensuration | null = null;
   measurementFields: string[] = [
@@ -327,10 +259,18 @@ export class MensurationsComponent {
   measurementMethod: 'manual' | 'ai' = 'manual';
   aiMeasurementResults: MeasurementValues | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private measurementService: MeasurementService) {
     this.initForms();
   }
-
+  ngOnInit(): void {
+    this.loadMensurations();
+  }
+  loadMensurations(): void {
+    const userId = 1
+    this.measurementService.getAllMeasures().subscribe((mensurations) => {
+      this.savedMeasurements = mensurations;
+    });
+  }
   initForms(): void {
     this.measurementForm = this.fb.group({
       personalInfo: this.fb.group({
@@ -365,7 +305,7 @@ export class MensurationsComponent {
   selectPerson(person: IMensuration): void {
     this.selectedPerson = { ...person };
     this.measurementForm.patchValue({
-      personalInfo: person.personalInfo,
+      user: person.user,
       measurements: person.measurements
     });
   }
@@ -448,7 +388,7 @@ export class MensurationsComponent {
 
     const newPerson: IMensuration = {
       id: this.savedMeasurements.length + 1,
-      personalInfo: formValues.personalInfo,
+      user: formValues.personalInfo,
       measurements: formValues.measurements
     };
 

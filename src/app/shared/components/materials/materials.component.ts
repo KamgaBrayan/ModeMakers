@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Material } from '../../models/material.interface';
+import { Material } from '../../interfaces/material.interface';
 
 interface ReduceMaterial{
     name: string; 
