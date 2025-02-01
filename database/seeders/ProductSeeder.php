@@ -12,7 +12,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         // Récupérer un styliste
-        $stylist = User::where('role', 'ROLE_STYLIST')->first();
+        $stylist = User::role('ROLE_STYLIST')->first();
         
         // Récupérer tous les matériaux
         $materials = Material::all();

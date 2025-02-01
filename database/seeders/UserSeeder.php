@@ -15,8 +15,8 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Vérifier si les rôles existent
-        $userRole = Role::where('name', 'user')->first();
-        $stylistRole = Role::where('name', 'stylist')->first();
+        $userRole = Role::where('name', 'ROLE_USER')->first();
+        $stylistRole = Role::where('name', 'ROLE_STYLIST')->first();
 
         if (!$userRole || !$stylistRole) {
             $this->command->error("Les rôles n'ont pas été trouvés. Exécute d'abord RoleSeeder.");

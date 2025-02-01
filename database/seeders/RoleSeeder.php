@@ -11,11 +11,13 @@ class RoleSeeder extends Seeder
     public function run()
     {
         // Création des rôles
-        $stylistRole = Role::create(['name' => 'stylist']);
-        $userRole = Role::create(['name' => 'user']);
+        $stylistRole = Role::create(['name' => 'ROLE_STYLIST']);
+        $userRole = Role::create(['name' => 'ROLE_USER']);
 
         // Définition des permissions
         $permissions = [
+            'manage user account',
+            'manage stylist account' ,
             'create styles',
             'edit styles',
             'delete styles',
@@ -29,7 +31,7 @@ class RoleSeeder extends Seeder
 
         // Associer des permissions aux rôles
         $stylistRole->givePermissionTo($permissions);
-        $userRole->givePermissionTo('view styles');
+        $userRole->givePermissionTo('manage user account');
 
         // Assigner un rôle à un utilisateur (optionnel)
         $user = \App\Models\User::find(1); // Change l'ID selon ton utilisateur

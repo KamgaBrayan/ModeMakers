@@ -13,11 +13,13 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StripePaymentController;
-
+use App\Http\Controllers\StylistController;
 
 // Authentication Routes
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/login', [AuthController::class, 'login']);
+Route::post('auth/register/stylist', [StylistController::class, 'store']);
+Route::post('auth/register/user', [UserController::class, 'store']);
 
 // Public Product Routes
 Route::get('product', [ProductController::class, 'index']);
@@ -26,10 +28,6 @@ Route::get('stylists/{id}/products', [ProductController::class, 'getByStylist'])
 
 Route::middleware('auth:api')->group(function () {
 
-    Route::get('/test-role', function () {
-        return "Accès autorisé pour stylist";
-    })->middleware('can:test roles');
-    
 
     Route::post('auth/logout', [AuthController::class, 'logout']);
     Route::get('auth/profile', [AuthController::class, 'profile']);
@@ -43,26 +41,27 @@ Route::middleware('auth:api')->group(function () {
 
     // User Management Routes
     Route::prefix('user')->group(function () {
-
-
-        // Route::middleware(['role:ROLE_STYLIST'])->group(function () {
-        //     Route::get('/', [UserController::class, 'index']);
-        // });
         Route::get('/', [UserController::class, 'index']);
-// =======
-//         Route::middleware(['role:ROLE_STYLIST'])->group(function () {
-//             Route::get('/', [UserController::class, 'index']);
-//         });
-// >>>>>>> d59d47feeaad19e7e423f1b06260c91c31c50015
         Route::get('/{id}', [UserController::class, 'show']);
-        Route::post('/', [UserController::class, 'store']);
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
         Route::post('/{id}/profile-picture', [UserController::class, 'uploadProfilePicture']);
         Route::get('/{id}/notifications', [NotificationController::class, 'show']);
         Route::get('/{id}/measures', [MeasureController::class, 'show']);
 
-    });
+    })->middleware('can:manage user account');
+
+    Route::prefix('stylist')->group(function () {
+        Route::get('/', [UserController::class, 'index']);
+        Route::get('/{id}', [UserController::class, 'show']);
+        Route::put('/{id}', [UserController::class, 'update']);
+        Route::delete('/{id}', [UserController::class, 'destroy']);
+        Route::post('/{id}/profile-picture', [UserController::class, 'uploadProfilePicture']);
+        Route::get('/{id}/notifications', [NotificationController::class, 'show']);
+        Route::get('/{id}/measures', [MeasureController::class, 'show']);
+
+    })->middleware('can:manage stylist account');
+
 
     // Measure Routes
     Route::prefix('measure')->group(function () {
