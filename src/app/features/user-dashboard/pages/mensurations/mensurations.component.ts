@@ -10,26 +10,29 @@ interface PersonalInfo {
 }
 
 interface MeasurementValues {
-  stature: number;
-  shoulder_circumference: number;
-  chest_circumference: number;
-  waist_circumference: number;
-  hip_circumference: number;
-  shoulder_height: number;
-  hip_height: number;
-  knee_height: number;
-  chest_spacing: number;
-  breast_height: number;
-  pelvis_height: number;
-  front_waist_length: number;
   shoulder_length: number;
-  back_waist_length: number;
+  head_circumference: number;
   arm_length: number;
-  total_arm_length_bent: number;
+  chest_circumference: number;
+  underbust_circumference: number;
+  waist_circumference: number;
+  iliac_crest_circumference: number;
+  hip_circumference: number;
+  thigh_circumference: number;
+  knee_circumference: number;
+  calf_circumference: number;
+  ankle_circumference: number;
+  biceps_circumference: number;
+  elbow_circumference: number;
+  forearm_circumference: number;
   wrist_circumference: number;
-  ankle_height: number;
-  seated_height: number;
-  crotch_length: number;
+  wrist_to_elbow_length: number;
+  knee_to_ankle_length: number;
+  inseam_length: number;
+  outseam_length: number;
+  total_height: number;
+  front_body_length: number;
+  back_body_length: number;
 }
 
 interface IMensuration {
@@ -215,7 +218,7 @@ interface IMensuration {
               <ng-container *ngIf="measurementMethod === 'manual'">
                 <h3 class="text-lg font-semibold mb-4">Measurement Guide</h3>
                 <img 
-                  src="/api/placeholder/400/300" 
+                  src="assets/images/mensuration_image.jpg" 
                   alt="Measurement Guide" 
                   class="w-full rounded-lg mb-4"
                 />
@@ -280,37 +283,43 @@ export class MensurationsComponent {
         weight: 70
       },
       measurements: {
-        stature: 170,
-        shoulder_circumference: 100,
-        chest_circumference: 90,
-        waist_circumference: 80,
-        hip_circumference: 95,
-        shoulder_height: 140,
-        hip_height: 85,
-        knee_height: 45,
-        chest_spacing: 35,
-        breast_height: 120,
-        pelvis_height: 90,
-        front_waist_length: 45,
         shoulder_length: 40,
-        back_waist_length: 42,
+        head_circumference: 56,
         arm_length: 60,
-        total_arm_length_bent: 65,
+        chest_circumference: 90,
+        underbust_circumference: 85,
+        waist_circumference: 80,
+        iliac_crest_circumference: 88,
+        hip_circumference: 95,
+        thigh_circumference: 55,
+        knee_circumference: 38,
+        calf_circumference: 36,
+        ankle_circumference: 22,
+        biceps_circumference: 32,
+        elbow_circumference: 28,
+        forearm_circumference: 26,
         wrist_circumference: 16,
-        ankle_height: 10,
-        seated_height: 85,
-        crotch_length: 70
+        wrist_to_elbow_length: 25,
+        knee_to_ankle_length: 40,
+        inseam_length: 76,
+        outseam_length: 100,
+        total_height: 170,
+        front_body_length: 70,
+        back_body_length: 68
       }
     }
   ];
 
   selectedPerson: IMensuration | null = null;
   measurementFields: string[] = [
-    'stature', 'shoulder_circumference', 'chest_circumference', 'waist_circumference',
-    'hip_circumference', 'shoulder_height', 'hip_height', 'knee_height', 'chest_spacing',
-    'breast_height', 'pelvis_height', 'front_waist_length', 'shoulder_length',
-    'back_waist_length', 'arm_length', 'total_arm_length_bent', 'wrist_circumference',
-    'ankle_height', 'seated_height', 'crotch_length'
+    'shoulder_length', 'head_circumference', 'arm_length', 
+    'chest_circumference', 'underbust_circumference', 'waist_circumference', 
+    'iliac_crest_circumference', 'hip_circumference', 'thigh_circumference', 
+    'knee_circumference', 'calf_circumference', 'ankle_circumference', 
+    'biceps_circumference', 'elbow_circumference', 'forearm_circumference', 
+    'wrist_circumference', 'wrist_to_elbow_length', 'knee_to_ankle_length', 
+    'inseam_length', 'outseam_length', 'total_height', 
+    'front_body_length', 'back_body_length'
   ];
 
   // New properties for modal
@@ -337,7 +346,6 @@ export class MensurationsComponent {
         }), {})
       )
     });
-
     this.addMeasurementForm = this.fb.group({
       personalInfo: this.fb.group({
         name: [''],
@@ -353,8 +361,6 @@ export class MensurationsComponent {
       )
     });
   }
-
-  // Continuing from the previous code...
 
   selectPerson(person: IMensuration): void {
     this.selectedPerson = { ...person };
@@ -388,7 +394,7 @@ export class MensurationsComponent {
     this.isAddMeasurementModalOpen = true;
     this.measurementMethod = 'manual';
     this.aiMeasurementResults = null;
-    this.addMeasurementForm.reset(); // Use the new form for resetting
+    this.addMeasurementForm.reset();
   }
 
   closeAddMeasurementModal(): void {
@@ -399,28 +405,30 @@ export class MensurationsComponent {
     const file = event.target.files[0];
     if (file) {
       // Simulate AI measurement API call
-      // In a real scenario, you would call your actual AI measurement API
       this.aiMeasurementResults = {
-        stature: 170,
-        shoulder_circumference: 100,
-        chest_circumference: 90,
-        waist_circumference: 80,
-        hip_circumference: 95,
-        shoulder_height: 140,
-        hip_height: 85,
-        knee_height: 45,
-        chest_spacing: 35,
-        breast_height: 120,
-        pelvis_height: 90,
-        front_waist_length: 45,
         shoulder_length: 40,
-        back_waist_length: 42,
+        head_circumference: 56,
         arm_length: 60,
-        total_arm_length_bent: 65,
+        chest_circumference: 90,
+        underbust_circumference: 85,
+        waist_circumference: 80,
+        iliac_crest_circumference: 88,
+        hip_circumference: 95,
+        thigh_circumference: 55,
+        knee_circumference: 38,
+        calf_circumference: 36,
+        ankle_circumference: 22,
+        biceps_circumference: 32,
+        elbow_circumference: 28,
+        forearm_circumference: 26,
         wrist_circumference: 16,
-        ankle_height: 10,
-        seated_height: 85,
-        crotch_length: 70
+        wrist_to_elbow_length: 25,
+        knee_to_ankle_length: 40,
+        inseam_length: 76,
+        outseam_length: 100,
+        total_height: 170,
+        front_body_length: 70,
+        back_body_length: 68
       };
     }
   }

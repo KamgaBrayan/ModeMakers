@@ -8,7 +8,7 @@ import {Product} from '../../shared/models/product.model';
 })
 export class ProductService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/products';
+  private apiUrl = 'http://localhost:3001/products';
 
   // get all products
   getAllProducts(): Observable<Product[]> {

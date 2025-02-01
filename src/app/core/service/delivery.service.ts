@@ -8,7 +8,7 @@ import {
 } from '../../shared/interfaces/apiRequest.interface';
 import {Delivery} from '../../shared/interfaces/delivery.interface';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3001';
 
 @Injectable({
   providedIn: 'root'

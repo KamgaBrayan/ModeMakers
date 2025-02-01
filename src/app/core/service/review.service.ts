@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {ApiResponse, CreateReviewRequest} from '../../shared/interfaces/apiRequest.interface';
 import {Review} from '../../shared/interfaces/review.interface';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3001';
 
 @Injectable({
   providedIn: 'root'
